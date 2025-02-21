@@ -1,61 +1,74 @@
-## STEPS TO RUN THE PROJECT LOCALLY
+# STEPS TO RUN THE PROJECT LOCALLY
 
-# Git clone the repo
-# Navigate into the cloned project repo
-# cd frontend and run npm install
-# run npm start to start the development server
+### git clone git@github.com:OkwirFrances/Group-A-Student-tracking-System.git 
+Git clone the Project repo
+Navigate into the cloned project repo
 
-# cd backend and run pipenv install to install project dependencies
-# run pipenv shell to activate the virtualenv
+### cd frontend
+Navigate to frontend
 
-# Make sure you have installed pipenv
+### npm install
+Install  frontend dependencies
+### npm start
+Start frontend server
 
-## PROJECT FOLDER STRUCTURE
+### cd backend
+Navigate to backend folder
 
-GROUP-A-STUDENT-TRACKING-SYSTEM/
-├── public/                  # Static assets (e.g., index.html, favicon, etc.)
-├── src/                     # Source code
-│   ├── assets/              # Static assets (images, fonts, etc.)
-│   ├── components/          # Reusable UI components
-│   │   ├── common/          # Common components (e.g., buttons, modals, etc.)
-│   │   ├── Navbar/          # Navigation bar component
-│   │   ├── Sidebar/         # Sidebar component
-│   │   ├── IssueCard/       # Card component for displaying issues
-│   │   └── ...              # Other reusable components
-│   ├── pages/               # Page-level components
-│   │   ├── Home/            # Home page
-│   │   ├── Dashboard/       # Dashboard page
-│   │   ├── Issues/          # Issues listing page
-│   │   ├── IssueDetails/    # Issue details page
-│   │   ├── CreateIssue/     # Page for creating a new issue
-│   │   ├── Profile/         # User profile page
-│   │   └── ...              # Other pages
-│   ├── context/             # React Context API for global state management
-│   │   ├── AuthContext.js   # Authentication context
-│   │   ├── IssueContext.js  # Issue management context
-│   │   └── ...              # Other contexts
-│   ├── hooks/               # Custom React hooks
-│   │   ├── useAuth.js       # Hook for authentication
-│   │   ├── useIssues.js     # Hook for issue management
-│   │   └── ...              # Other custom hooks
-│   ├── services/            # API services and utilities
-│   │   ├── authService.js   # Authentication-related API calls
-│   │   ├── issueService.js  # Issue-related API calls
-│   │   └── ...              # Other services
-│   ├── utils/               # Utility functions and helpers
-│   │   ├── validators.js    # Form validation utilities
-│   │   ├── helpers.js       # General helper functions
-│   │   └── ...              # Other utilities
-│   ├── styles/              # Global styles and themes
-│   │   ├── global.css       # Global CSS styles
-│   │   ├── theme.js         # Theme configuration (if using a theme library)
-│   │   └── ...              # Other style files
-│   ├── App.js               # Main application component
-│   ├── index.js             # Entry point of the application
-│   └── ...                  # Other root-level files
-├── .env                     # Environment variables
-├── .gitignore               # Git ignore file
-├── package.json             # Project dependencies and scripts
-├── README.md                # Project documentation
-└── ...                      # Other configuration files
+### pipenv install
+To install backend dependencies
+
+### pipenv shell
+Activate virtualenv
+
+ Make sure you have installed pipenv
+
+#  PROJECT FOLDER STRUCTURE
+
+### GROUP-A-STUDENT-TRACKING-SYSTEM/
+### ├── public/                  # Static assets (e.g., index.html, favicon, etc.)
+### ├── src/                     # Source code
+### │   ├── assets/              # Static assets (images, fonts, etc.)
+### │   ├── components/          # Reusable UI components
+### │   │   ├── common/          # Common components (e.g., buttons, modals, etc.)
+### │   │   ├── Navbar/          # Navigation bar component
+### │   │   ├── Sidebar/         # Sidebar component
+### │   │   ├── IssueCard/       # Card component for displaying issues
+### │   │   └── ...              # Other reusable components
+### │   ├── pages/               # Page-level components
+### │   │   ├── Home/            # Home page
+### │   │   ├── Dashboard/       # Dashboard page
+### │   │   ├── Issues/          # Issues listing page
+### │   │   ├── IssueDetails/    # Issue details page
+### │   │   ├── CreateIssue/     # Page for creating a new issue
+### │   │   ├── Profile/         # User profile page
+### │   │   └── ...              # Other pages
+### │   ├── context/             # React Context API for global state management
+### │   │   ├── AuthContext.js   # Authentication context
+### │   │   ├── IssueContext.js  # Issue management context
+### │   │   └── ...              # Other contexts
+### │   ├── hooks/               # Custom React hooks
+### │   │   ├── useAuth.js       # Hook for authentication
+### │   │   ├── useIssues.js     # Hook for issue management
+### │   │   └── ...              # Other custom hooks
+### │   ├── services/            # API services and utilities
+### │   │   ├── authService.js   # Authentication-related API calls
+### │   │   ├── issueService.js  # Issue-related API calls
+### │   │   └── ...              # Other services
+### │   ├── utils/               # Utility functions and helpers
+### │   │   ├── validators.js    # Form validation utilities
+### │   │   ├── helpers.js       # General helper functions
+### │   │   └── ...              # Other utilities
+### │   ├── styles/              # Global styles and themes
+### │   │   ├── global.css       # Global CSS styles
+### │   │   ├── theme.js         # Theme configuration (if using a theme library)
+### │   │   └── ...              # Other style files
+### │   ├── App.js               # Main application component
+### │   ├── index.js             # Entry point of the application
+### │   └── ...                  # Other root-level files
+### ├── .env                     # Environment variables
+### ├── .gitignore               # Git ignore file
+### ├── package.json             # Project dependencies and scripts
+### ├── README.md                # Project documentation
+### └── ...                      # Other configuration files
 
