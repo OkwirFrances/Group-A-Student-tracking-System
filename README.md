@@ -22,3 +22,5 @@ To install backend dependencies
 Activate virtualenv
 
  Make sure you have installed pipenv
+
+## READ THE FOLDER STRUCTURE in folderStructure.txt TO UNDERSTAND IT
