@@ -1,0 +1,68 @@
+.profile-section {
+    margin-left: 220px;
+}
+
+.profile-view-container {
+    border: 1px solid #000;
+    border-radius: 30px;
+    border-width: 2px;
+    padding: 5px;
+    margin-bottom: 20px;
+    margin: 20px;
+    width: 1255px;
+}
+
+.profile-view {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    gap: 10px;
+}
+
+.profile-name {
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-left: 20px ;
+    margin-bottom: 30px;
+
+}
+.profile-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.edit {
+    width: 20px;
+    
+}
+
+.profile-info {
+    flex-grow: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    gap: 10px;
+    max-width: 200px;
+    
+}
+
+.edit-button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.3rem;
+    margin-left: 830px;
+
+}
+
+.detail {
+    margin-right: 80px;
+    max-width: 300px;
+    
+}

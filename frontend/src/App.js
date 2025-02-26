@@ -1,12 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import ProfileManagement from './components/ProfileManagement';
+import React from 'react';
+import SideBar from './components/SideBar';
+
 
 function App() {
   return (
-    <div className="App">
-     <h1>Group A Student Academic Issues Tracking System</h1>
-    </div>
+    <>
+      <nav>
+        <ProfileManagement />
+      </nav>
+      <div>
+        <SideBar />
+      </div>
+    </>
   );
-}
+};
 
 export default App;
