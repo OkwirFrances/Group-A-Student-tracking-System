@@ -1,18 +1,36 @@
-import ProfileManagement from './components/ProfileManagement';
-import React from 'react';
-import SideBar from './components/SideBar';
+import React, { useState } from 'react';
+import LandingPage from './components/landingpage';
+import SignUp from './components/signup';
+import SignIn from './components/signin';
 
 
-function App() {
+import './App.css';
+
+const App = () => {
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+
+  const handleSignUpClick = () => {
+    setShowSignUp(true);
+    setShowSignIn(false);
+  };
+
+  const handleSignInClick = () => {
+    setShowSignIn(true);
+    setShowSignUp(false);
+  };
+
+
   return (
-    <>
-      <nav>
-        <ProfileManagement />
-      </nav>
-      <div>
-        <SideBar />
-      </div>
-    </>
+    <div className='App'>
+      {showSignUp ? (
+        <SignUp />
+      ) : showSignIn ? (
+        <SignIn />
+      ) : (
+        <LandingPage onSignUpClick={handleSignUpClick} onSignInClick={handleSignInClick} />
+      )}
+    </div>
   );
 };
 
