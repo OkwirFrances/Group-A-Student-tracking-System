@@ -30,4 +30,15 @@ class Department(models.Model):
     
     def __str__(self):
         return self.department_name
+    
+class Issue(models.Model):
+    STATUS_CHOICES = [('Pending','PENDING'),
+                      ('Resolved','RESOLVED'),
+                      ('In Progress','IN PROGRESS')]
+    
+    ISSUE_CHOICES = [('missing_marks','MISSING MARKS'),
+                     ('appeal','APPEAL'),
+                     ('correction','CORRECTION')]
+    
+    
 
