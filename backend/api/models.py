@@ -40,5 +40,14 @@ class Issue(models.Model):
                      ('appeal','APPEAL'),
                      ('correction','CORRECTION')]
     
-    
+    student = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True),related_name='issues', limit_choices_to={'Role':'Student'}
+    issue_type = models.CharField(max_length=50,choices=ISSUE_CHOICES)
+    issue_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default='Pending')
+    course_unit = models.ForeignKey('CourseUnit',on_delete=models.SET_NULL,null=True)
+    issue_description = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    update = models.DateTimeField(auto_now=True)
+    lecturer = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='lecturer_issues',limit_choices_to={'Role':'Lecturer'})
+    registrar = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='registrar_issues',limit_choices_to={'Role':'Academic_registrar'})
+
 
