@@ -135,7 +135,7 @@ input, .role-select {
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 125%;
+    width: 120%;
     transition: border-color 0.3s;
 }
 
@@ -199,4 +199,47 @@ input:hover, .role-select:hover {
 
 .signin-link:hover {
     text-decoration: underline;
+}
+
+.person-container {
+    position: relative;
+    width: 96%;
+}
+
+.person-icon {
+    position: absolute;
+    right: 5px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    transform: translate(500%);
+}
+
+.mail-container {
+    position: relative;
+    width: 96%;
+}
+
+.mail-icon {
+    position: absolute;
+    right: 5px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    transform: translate(500%);
+}
+
+.padlock-container {
+    position: relative;
+    width: 96%;
+}
+
+.padlock-icon{
+    position: absolute;
+    right: 5px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    transform: translate(500%);
+
 }

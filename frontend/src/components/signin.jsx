@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './signin.css';
 import logo from '../icons/logo.png';
 import mail from '../icons/mail.png';
+import padlock from '../icons/padlock.png';
 
 const SignIn = () => {
     const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ const SignIn = () => {
         console.log('Sign In:', formData);
     };
 
-    const isFormValid = formData.email && formData.password && isTermsAccepted;
+    const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
 
     return (
         <div className='signin-container'>
@@ -54,13 +55,17 @@ const SignIn = () => {
                     </label>
                     <label>
                         Password
-                        <input 
-                        className='pass-word'
-                        type='password'
-                        name='password'
-                        placeholder='Enter Your Password'
-                        value={formData.password}
-                        onChange={handleChange}/>
+                        <div className='input-container' >   
+                            <input 
+                            className='pass-word'
+                            type='password'
+                            name='password'
+                            placeholder='Enter Your Password'
+                            value={formData.password}
+                            onChange={handleChange}
+                            minLength={8}/>
+                        <img src={padlock} alt='padlock logo' className='input-icon' />
+                        </div>
                     </label>
                     <p className='forgot-password'>
                         <a href='forgot-password' className='forgot-password-link'>Forgot Password?</a>
