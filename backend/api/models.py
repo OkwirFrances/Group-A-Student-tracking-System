@@ -48,7 +48,7 @@ class Issue(models.Model):
                      ('appeal','APPEAL'),
                      ('correction','CORRECTION')]
     
-    #student = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True),related_name='issues', limit_choices_to={'Role':'Student'}
+    student = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='issues', limit_choices_to={'Role':'Student'})
     issue_type = models.CharField(max_length=50,choices=ISSUE_CHOICES)
     issue_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default='Pending')
     course_unit = models.ForeignKey('CourseUnit',on_delete=models.SET_NULL,null=True)
