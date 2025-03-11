@@ -16,7 +16,7 @@ class CustomUser(AbstractUser):
             ('YEAR_4','YEAR 4'),
             ('YEAR_5','YEAR 5')]    
     
-    Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='student')
+    Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='Student')
     Gender = models.CharField(max_length=20,choices=GENDER,editable=True)
     year_of_study = models.CharField(max_length=20,choices=YEAR_CHOICES,null=True,editable=True)
 
@@ -31,6 +31,14 @@ class Department(models.Model):
     def __str__(self):
         return self.department_name
     
+class CourseUnit(models.Model):
+    course_unit_name = models.CharField(max_length=100)
+    course_unit_code = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.course_unit_name
+
+
 class Issue(models.Model):
     STATUS_CHOICES = [('Pending','PENDING'),
                       ('Resolved','RESOLVED'),
@@ -40,7 +48,7 @@ class Issue(models.Model):
                      ('appeal','APPEAL'),
                      ('correction','CORRECTION')]
     
-    student = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True),related_name='issues', limit_choices_to={'Role':'Student'}
+    #student = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True),related_name='issues', limit_choices_to={'Role':'Student'}
     issue_type = models.CharField(max_length=50,choices=ISSUE_CHOICES)
     issue_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default='Pending')
     course_unit = models.ForeignKey('CourseUnit',on_delete=models.SET_NULL,null=True)
