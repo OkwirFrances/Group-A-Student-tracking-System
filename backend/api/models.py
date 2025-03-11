@@ -45,9 +45,17 @@ class Issue(models.Model):
     issue_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default='Pending')
     course_unit = models.ForeignKey('CourseUnit',on_delete=models.SET_NULL,null=True)
     issue_description = models.TextField()
+    Image = models.ImageField(upload_to='images/',null=True,blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     lecturer = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='lecturer_issues',limit_choices_to={'Role':'Lecturer'})
     registrar = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='registrar_issues',limit_choices_to={'Role':'Academic_registrar'})
+    
+    class Meta:
+        ordering = ['update','date_created']
+
+    def __str__(self):
+        return self.issue_type
+
 
 
