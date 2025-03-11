@@ -3,7 +3,8 @@ import './congratulations.css';
 import congratulations from '../icons/congratulations.png';
 import help from '../icons/help.png';
 
-const Congratulations = ({onSignInClick}) => {
+
+const Congratulations = ({ onSignInClick }) => {
     return (
         <div className='congratulations-container'>
             <div className='aits-logo'>AITS</div>
@@ -18,9 +19,10 @@ const Congratulations = ({onSignInClick}) => {
                 <img className='congratulations-logo'src={congratulations} alt='congratulations logo' />
                 <h1>Congratulations!</h1>
                 <p>Your account has been successfully created and verified.<br/>Sign In to access your account.</p>
-                <button className='signin-button' onClick={onSignInClick}>
-                    SIGN IN
-                </button>
+                <button className='signin-button' onClick={() => {
+                    console.log('Sign In Button clicked in congratulations');
+                    onSignInClick(); 
+                }}>SIGN IN</button>
             </div>
         </div>
     );

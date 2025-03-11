@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './signup.css';
-import Otp from "./otp";
+import Otp from './otp';
 import logo from '../icons/logo.png';
 
 
@@ -36,7 +36,9 @@ const SignUp = () => {
             confirmPassword &&
             role &&
             termsAccepted &&
-            password === confirmPassword
+            password === confirmPassword &&
+            password.length >= 8 &&
+            confirmPassword.length >=8
         );
     };
 
@@ -96,7 +98,8 @@ const SignUp = () => {
                             name='password' 
                             placeholder='Enter your Password (min - 8 characters)' 
                             value={formData.password} 
-                            onChange={handleChange} />
+                            onChange={handleChange}
+                            minLength={8} />
                     </label>
                     <label>
                         Confirm Password
@@ -106,7 +109,8 @@ const SignUp = () => {
                             name='confirmPassword' 
                             placeholder='Confirm your Password (min -8 characters)' 
                             value={formData.confirmPassword} 
-                            onChange={handleChange} />
+                            onChange={handleChange}
+                            minLength={8} />
                     </label>
                     <label>
                         Role

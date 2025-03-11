@@ -50,7 +50,7 @@
     font-size: 1rem;
     font-weight: bold;
     width: 45%;
-    transition: background-color 0.3s;
+    transition: background-color 0.9s;
 }
 
 .signin-button:hover {

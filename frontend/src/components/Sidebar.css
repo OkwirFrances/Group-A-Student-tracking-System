@@ -1,0 +1,20 @@
+.sidebar {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 200px;
+    height: calc(100% - 50px);
+    background-color: green;
+    color: black;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu {
+    list-style-type: none;
+    padding: o;
+}
+
+.sidebar-item {
+    padding: 10px 20px;
+}

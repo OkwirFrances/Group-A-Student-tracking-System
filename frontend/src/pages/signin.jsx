@@ -3,11 +3,13 @@ import './signin.css';
 import logo from '../icons/logo.png';
 import mail from '../icons/mail.png';
 
-const SignIn = () => {
+const SignIn = ({ onDashboard }) => {
     const [formData, setFormData] = useState({
         email: '',
         password:'',
     });
+
+    
 
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
@@ -25,9 +27,15 @@ const SignIn = () => {
 
     const handleSignInClick = () => {
         console.log('Sign In:', formData);
+
+        if (isFormValid) {
+            onDashboard();
+        } else {
+            console.log('Form is  not valid');
+        }
     };
 
-    const isFormValid = formData.email && formData.password && isTermsAccepted;
+    const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
 
     return (
         <div className='signin-container'>
@@ -60,7 +68,8 @@ const SignIn = () => {
                         name='password'
                         placeholder='Enter Your Password'
                         value={formData.password}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                        minLength={8}/>
                     </label>
                     <p className='forgot-password'>
                         <a href='forgot-password' className='forgot-password-link'>Forgot Password?</a>

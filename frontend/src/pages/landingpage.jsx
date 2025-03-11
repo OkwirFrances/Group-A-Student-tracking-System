@@ -20,6 +20,7 @@ const LandingPage = ({onSignUpClick, onSignInClick}) => {
                 <p className='sub-text' >"Track and manage your issues seamlessly"</p>
 
             </div>
+            
                  
      
     );
