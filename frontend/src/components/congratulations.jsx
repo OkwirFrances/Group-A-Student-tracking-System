@@ -4,6 +4,7 @@ import congratulations from '../icons/congratulations.png';
 import help from '../icons/help.png';
 
 const Congratulations = ({onSignInClick}) => {
+
     return (
         <div className='congratulations-container'>
             <div className='aits-logo'>AITS</div>
