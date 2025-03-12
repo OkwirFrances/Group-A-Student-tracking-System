@@ -18,5 +18,12 @@ class RegisterView(APIView):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message':'User created successfully'})
+            return Response({
+                'message':'User created successfully',
+                'username':serializer.validated_data['username']
+                })
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+class DepartmentView(viewsets.ModelViewSet):
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer

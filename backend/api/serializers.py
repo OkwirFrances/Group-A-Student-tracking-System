@@ -5,10 +5,10 @@ from .models import *
 class CustomUserSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id','first_name','last_name','email','Role','year_of_study','Gender']
+        fields = ['id','first_name','last_name','email','password','image','Role','year_of_study','Gender']
 
 class RegisterSerializer(ModelSerializer):
-    #password2 = serializers.CharField(write_only = True)
+    password2 = serializers.CharField(write_only = True)
     
     class Meta:
         model = CustomUser
@@ -18,9 +18,8 @@ class RegisterSerializer(ModelSerializer):
         if data['username'] in data:
             raise serializers.ValidationError("Username already exists")
         
-        if data['email'] in data:
-            raise serializers.ValidationError("Email already exists")
-
+        if CustomUser.objects.filter(email = data.get('email')).exists():
+            raise serializers.ValidationError("Email already taken....")
     
         if data['password'] != data['password2']:
             raise serializers.ValidationError("Passwords should match")
@@ -29,9 +28,6 @@ class RegisterSerializer(ModelSerializer):
     def create(self , validated_data):
         user = CustomUser.objects.create_user(username=validated_data['username'],email = validated_data['email'],password = validated_data['password'])
         return user
-
-
-
 
 
 class DepartmentSerializer(ModelSerializer):
