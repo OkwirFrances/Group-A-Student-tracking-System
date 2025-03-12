@@ -1,20 +1,37 @@
 .dashboard-content {
-    padding: 20px;
+    padding: 0px;
+    margin-left: 198px;
+    
 }
 
 .cards-container {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    gap: 10px;
 }
 
 .card {
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 30%;
+    width: 28%;
+    height: 50%;
     text-align: center;
+}
+
+.card.pending {
+    background-color: white;
+}
+
+.card.in-progress {
+    background-color: rgb(216, 150, 27);
+}
+
+.card.resolved {
+    background-color: green;
 }
 
 .card h2 {

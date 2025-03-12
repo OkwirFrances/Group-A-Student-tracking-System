@@ -1,12 +1,10 @@
 .dashboard-container {
-    padding: 20px;
+    padding: 0px;
     padding-top: 70px;
     margin: 0;
+    margin-left: -160px;
+    margin-bottom: 10px;
 }
 
-.dashboard-content {
-    margin-left: 200px;
-    background-color: white;
-    padding: 20px;
-}
+
 
