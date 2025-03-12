@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './signup.css';
 import Otp from './otp';
-import logo from '../icons/logo.png';
+import logo from '../assets/logo.png';
 
 
 

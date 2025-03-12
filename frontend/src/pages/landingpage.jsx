@@ -1,6 +1,6 @@
 import React from 'react';
 import './landingpage.css';
-import logo from '../icons/logo.png';
+import logo from '../assets/logo.png';
 
 
 const LandingPage = ({onSignUpClick, onSignInClick}) => {

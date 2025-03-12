@@ -4,3 +4,9 @@
     margin: 0;
 }
 
+.dashboard-content {
+    margin-left: 200px;
+    background-color: white;
+    padding: 20px;
+}
+

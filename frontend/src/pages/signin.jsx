@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './signin.css';
-import logo from '../icons/logo.png';
-import mail from '../icons/mail.png';
+import logo from '../assets/logo.png';
+import mail from '../assets/mail.png';
 
 const SignIn = ({ onDashboard }) => {
     const [formData, setFormData] = useState({
