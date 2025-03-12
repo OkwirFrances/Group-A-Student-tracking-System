@@ -16,10 +16,11 @@ class CustomUser(AbstractUser):
             ('YEAR_4','YEAR 4'),
             ('YEAR_5','YEAR 5')]    
     
+    password2= models.CharField(max_length=20)
     Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='Student')
     Gender = models.CharField(max_length=20,choices=GENDER,editable=True)
-    image = models.ImageField(upload_to='issues/',null=True,blank=True)
-    
+    image = models.ImageField(upload_to='images/',null=True,blank=True)
+    program = models.ForeignKey('Program', on_delete=models.CASCADE,related_name='programs',null = True,blank=True)
     year_of_study = models.CharField(max_length=20,choices=YEAR_CHOICES,null=True,editable=True)
 
 
@@ -61,7 +62,7 @@ class Issue(models.Model):
     semester = models.CharField(max_length=30, null = False,default='Semester 1')
     issue_type = models.CharField(max_length=50,choices=ISSUE_CHOICES)
     issue_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default='Pending')
-    program = models.ForeignKey(Program, on_delete=models.CASCADE,related_name='programs',null = True,blank=True)
+    
     course_unit = models.ForeignKey(CourseUnit,on_delete=models.CASCADE,null=True)
     issue_description = models.TextField()
     Image = models.ImageField(upload_to='images/',null=True,blank=True)

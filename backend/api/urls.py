@@ -7,6 +7,5 @@ router.register(r'users',UserView)
 
 urlpatterns = [
     path('',include(router.urls)),
-
-
+    path('register_user/',RegisterView.as_view()),
 ]
