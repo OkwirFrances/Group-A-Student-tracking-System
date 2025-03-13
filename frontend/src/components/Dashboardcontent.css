@@ -7,7 +7,7 @@
 .cards-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: -10px;
     gap: 10px;
 }
 
@@ -38,8 +38,70 @@
     margin-bottom: 10px;
 }
 
+.recent-actions {
+    margin-top: 20px;
+    padding: 20px;
+    color: black;
+}
+
+.recent-actions h2 {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: black;
+    margin-right: 40px;
+    margin-left: -19px;
+    margin-top: -28px;
+
+}
+
 .issue-count {
     font-size: 2rem;
     font-weight: bold;
     margin: 10px 0;
+}
+
+.my-issues {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 100vh;
+    border: 1px solid black;
+}
+
+.my-issues-title {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    left: 20px;
+    margin-top: -5px;
+}
+
+.my-issues-search-container {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    width: 500px;
+}
+
+.my-issues-search-input {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.my-issues-search-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 480px;
+    cursor: pointer;
 }

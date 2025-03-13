@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Dashboardcontent.css';
+import search from '../assets/search.png';
 
 const DashboardContent = () => {
     const [pendingIssues] = useState(0);
@@ -24,6 +25,19 @@ const DashboardContent = () => {
                     <h2>Resolved Issues</h2>
                     <p className='issue-count'>{resolvedIssues}</p>
                     <p>You have {resolvedIssues} resolved issues.</p>
+                </div>
+            </div>
+            <div className='recent-actions'>
+                <h2>Recent Actions</h2>
+            </div>
+            <div className='my-issues'>
+                <h2 className='my-issues-title' >My Issues</h2>
+                <div className='my-issues-search-container'>
+                    <input 
+                    type='text' 
+                    placeholder='Search for anything...' 
+                    className='my-issues-search-input' />
+                    <img src={search} alt='search' className='my-issues-search-icon' />
                 </div>
             </div>
         </div>
