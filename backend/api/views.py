@@ -5,6 +5,7 @@ from .serializers import *
 from rest_framework.decorators import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import AllowAny 
 
 
 
@@ -14,15 +15,22 @@ class UserView(viewsets.ModelViewSet):
     serializer_class = CustomUserSerializer 
     
 class RegisterView(APIView):
+    permission_classes = [AllowAny]
     def post(self,request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            validated_data = serializer.validated_data
+            password = validated_data.pop('password')
+            user = CustomUser(**validated_data)
+            user.set_password(password)
+            user.save()
             return Response({
                 'message':'User created successfully',
                 'username':serializer.validated_data['username']
                 })
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+    
     
 class DepartmentView(viewsets.ModelViewSet):
     queryset = Department.objects.all()

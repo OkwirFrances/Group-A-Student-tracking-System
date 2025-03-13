@@ -1,5 +1,6 @@
 from django.urls import path,include
 from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from .views import *
 
 router = DefaultRouter()
@@ -15,6 +16,7 @@ router.register(r'programs',ProgramView)
 
 urlpatterns = [
     path('',include(router.urls)),
-    
-    path('register_user/',RegisterView.as_view()),
+    path('register_user/',RegisterView.as_view(),name = 'register_user'),
+    path('access_token/',TokenObtainPairView.as_view(),name = 'access_token'),
+    path('refresh_token/',TokenRefreshView.as_view(),name = 'refresh_token')
 ]
