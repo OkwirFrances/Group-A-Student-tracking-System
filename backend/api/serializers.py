@@ -43,5 +43,10 @@ class IssueSerializer(ModelSerializer):
 class CourseUnitSerializer(ModelSerializer):
     class Meta:
         model = CourseUnit
-        fields = ['course_unit_name','course_unit_code']
+        fields = ['course_unit_name','course_unit_code'] 
+
+class ProgramSerializer(ModelSerializer):
+    class Meta:
+        model = Program
+        fields = ['program_name','course_units']
 

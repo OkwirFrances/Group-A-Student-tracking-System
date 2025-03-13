@@ -5,13 +5,16 @@ from .views import *
 router = DefaultRouter()
 router.register(r'users',UserView)
 
-router = DefaultRouter()
 router.register(r'departments',DepartmentView)
 
-router = DefaultRouter()
 router.register(r'issues',IssueView)
+
+router.register(r'course_units',CourseUnitView)
+
+router.register(r'programs',ProgramView)
 
 urlpatterns = [
     path('',include(router.urls)),
+    
     path('register_user/',RegisterView.as_view()),
 ]
