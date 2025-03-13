@@ -41,7 +41,8 @@ class Department(models.Model):
 
 class CourseUnit(models.Model):
     course_unit_name = models.CharField(max_length=100)
-    course_unit_code = models.CharField(max_length=100)
+    course_unit_code = models.CharField(max_length=100, unique=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='departments',default=1)
 
     def __str__(self):
         return self.course_unit_name
@@ -50,6 +51,8 @@ class Program(models.Model):
     program_name = models.CharField(max_length=100)
     course_units = models.ManyToManyField(CourseUnit, related_name="course_units")
 
+    def __str__(self):
+        return self.program_name
 
 class Issue(models.Model):
     STATUS_CHOICES = [('Pending','PENDING'),
