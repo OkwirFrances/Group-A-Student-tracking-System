@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './signin.css';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
+import { useNavigate } from 'react-router-dom';
 
-const SignIn = ({ onDashboard }) => {
+const SignIn = () => {
+    const navigate=useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         password:'',
@@ -25,11 +27,11 @@ const SignIn = ({ onDashboard }) => {
         setIsTermsAccepted(e.target.checked);
     };
 
-    const handleSignInClick = () => {
+    const handleSignInClick = (e) => {
         console.log('Sign In:', formData);
-
+e.preventDefault();
+navigate('/app');
         if (isFormValid) {
-            onDashboard();
         } else {
             console.log('Form is  not valid');
         }
@@ -44,7 +46,7 @@ const SignIn = ({ onDashboard }) => {
                 <h1 className='system-title'>Welcome to the<br /> Academic Issue Tracking System<br />AITS</h1>
             </div>
             <div className='signin-right'>
-                <form className='signin-right-form'>
+                <form className='signin-right-form'    onSubmit={(e)=>handleSignInClick(e)}>
                     <h2 className='title'>Sign In Into Your Account</h2>
                     <p className='sub-title'>Please fill in all the fields below</p>
                     <label>
@@ -83,9 +85,9 @@ const SignIn = ({ onDashboard }) => {
                         I have read and accepted all the AITS terms and conditions 
                     </label>
                     <button 
-                    type='button'
+                  
                     className='signinbutton'
-                    onClick={handleSignInClick}
+                 
                     disabled={!isFormValid}>
                         SIGN IN
                     </button>

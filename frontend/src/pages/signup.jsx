@@ -5,8 +5,9 @@ import logo from '../assets/logo.png';
 
 
 
-
 const SignUp = () => {
+    
+
     const [formData, setFormData] = useState({
         fullName:'',
         email:'',
@@ -49,17 +50,21 @@ const SignUp = () => {
         console.log('Sending OTP to:', formData.email);
     };
 
-    const handleSignUpClick = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (isFormValid()){
             generateOtp();
             setShowOtpScreen(true);
-        }    
+        } else {
+            console.log('Form is not valid');
+        }   
     };
 
     if (showOtpScreen) {
         return <Otp email={formData.email} generatedOtp={generatedOtp} />;
     }
 
+  
     return (
         <div className='signup-container'>
             <div className='signup-left'>
@@ -67,7 +72,7 @@ const SignUp = () => {
                     <h1 className='system-title'>Welcome to the<br /> Academic Issue Tracking System<br /> AITS</h1>
             </div>
             <div className='sigup-right'>
-                <form className='signup-right-form'>
+                <form className='signup-right-form' onSubmit={handleSubmit}>
                     <h2 className='title'>Create An Account</h2>
                     <p className='sub-title'>Please fill in all the fields below</p>
                     <label>
@@ -137,10 +142,10 @@ const SignUp = () => {
                         I have read and accepted all the AITS terms and conditions.
                     </label>
                     <button 
-                        type='button' 
+                    
                         className='signup-button' 
-                        onClick={handleSignUpClick} 
-                        disabled={!isFormValid()}>
+                        disabled={!isFormValid()}
+                        >
                         SIGN UP
                     </button>
                     <p className='signin-text'>

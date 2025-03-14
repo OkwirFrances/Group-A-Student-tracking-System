@@ -153,6 +153,48 @@
     width: 12%;
     box-shadow: 0 0 5px;
     text-align: center;
-    font-size: 1rem;
-    
+    font-size: 1rem;   
+}
+
+.issues-table {
+    margin-top: 50px;
+    border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    overflow: hidden;
+    background-color: rgb(186, 185, 184);
+}
+
+
+.table-header {
+    display: flex;
+    background-color: rgb(176, 176, 174);
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+.table-header-item {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-body {
+    padding: 10px;
+}
+
+.empty-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.emptybox-icon {
+    width: 550px;
+
+}
+
+.empty-image {
+    max-width: 100%;
+    height: auto;
 }

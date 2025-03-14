@@ -4,6 +4,7 @@ import './Dashboardcontent.css';
 import search from '../assets/search.png';
 import add from '../assets/add.png';
 import filter from '../assets/filter.png';
+import emptybox from '../assets/emptybox.png';
 
 const DashboardContent = () => {
     const [pendingIssues] = useState(0);
@@ -57,15 +58,28 @@ const DashboardContent = () => {
                             <option value='resolved'>Resolved</option>
                             <img src={filter} alt='filter' className='filter-icon' />
                     </select>
-                    
                </div>
-                <div className='my-issues-search-container'>
+               <div className='my-issues-search-container'>
                     <input 
                     type='text' 
                     placeholder='Search for anything...' 
                     className='my-issues-search-input' />
                     <img src={search} alt='search' className='my-issues-search-icon' />
                 </div>
+               <div className='issues-table'>
+                <div className='table-header'>
+                    <div className='table-header-item'>Issue</div>
+                    <div className='table-header-item'>Status</div>
+                    <div className='table-header-item'>Category</div>
+                    <div className='table-header-item'>Date</div>
+                </div>
+                <div className='table-body'>
+                    <div className='empty-image-container'>
+                        <img src={emptybox} alt='emptybox' className='emptybox-icon' />
+                        <p>There are no recent issues added.<br />Kindly click <b>New Issue</b> to get started</p>
+                    </div>
+                </div>
+               </div>    
             </div>
         </div>
     );
