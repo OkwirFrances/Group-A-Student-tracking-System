@@ -15,7 +15,7 @@ class RegisterSerializer(ModelSerializer):
         fields = ['first_name','last_name','username','email','password', 'password2']
 
     def validate(self, data):
-        if data['username'] in data:
+        if CustomUser.objects.filter(username = data.get('username')).exists():
             raise serializers.ValidationError("Username already exists")
         
         if CustomUser.objects.filter(email = data.get('email')).exists():
@@ -38,7 +38,8 @@ class DepartmentSerializer(ModelSerializer):
 class IssueSerializer(ModelSerializer):
     class Meta:
         model = Issue
-        fields = ['student','issue_type','issue_status','course_unit','issue_description','Image','date_created','update','lecturer','registrar']
+        fields = '__all__'
+        #fields = ['student','issue_type','issue_status','course_unit','issue_description','Image','date_created','update','lecturer','registrar']
 
 class CourseUnitSerializer(ModelSerializer):
     class Meta:
