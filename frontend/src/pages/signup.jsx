@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './signup.css';
 import Otp from './otp';
 import logo from '../assets/logo.png';
+import person from '../assets/person.png';
+import mail from '../assets/mail.png';
+import padlock from '../assets/padlock.png';
 
 
 
@@ -77,26 +80,33 @@ const SignUp = () => {
                     <p className='sub-title'>Please fill in all the fields below</p>
                     <label>
                         Full Name
-                        <input 
-                        className='full-name'
-                        type='text'
-                        name='fullName' 
-                        placeholder='Enter your Full Name' 
-                        value={formData.fullName} 
-                        onChange={handleChange}/>
+                        <div className='input-container'>
+                            <input 
+                            className='full-name'
+                            type='text'
+                            name='fullName' 
+                            placeholder='Enter your Full Name' 
+                            value={formData.fullName} 
+                            onChange={handleChange}/>
+                            <img src={person} alt='person' className='person-icon' />
+                        </div>
                     </label>
                     <label>
                         Email Address
-                        <input 
-                        className='email-address'
-                        type='email' 
-                        name='email' 
-                        placeholder='Enter your Email Address' 
-                        value={formData.email} 
-                        onChange={handleChange} />
+                        <div className='input-container'>
+                            <input 
+                            className='email-address'
+                            type='email' 
+                            name='email' 
+                            placeholder='Enter your Email Address' 
+                            value={formData.email} 
+                            onChange={handleChange} />
+                            <img src={mail} alt='mail' className='mail-icon' />
+                        </div>
                     </label>
                     <label>
                         Password
+                        <div className='input-container'>
                         <input 
                             className='password'
                             type='password' 
@@ -105,9 +115,12 @@ const SignUp = () => {
                             value={formData.password} 
                             onChange={handleChange}
                             minLength={8} />
+                            <img src={padlock} alt='padlock' className='padlock-icon' />
+                        </div>
                     </label>
                     <label>
                         Confirm Password
+                        <div className='input-container'>
                         <input 
                             className='confirm-password'
                             type='password' 
@@ -116,6 +129,8 @@ const SignUp = () => {
                             value={formData.confirmPassword} 
                             onChange={handleChange}
                             minLength={8} />
+                            <img src={padlock} alt='padlock' className='padlock-icon' />
+                        </div>
                     </label>
                     <label>
                         Role
