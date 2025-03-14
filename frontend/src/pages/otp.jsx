@@ -4,6 +4,7 @@ import shield from '../assets/shield.png';
 import refresh from '../assets/refresh.png';
 import help from '../assets/help.png';
 import Congratulations from './congratulations';
+import { Link } from 'react-router-dom';
 
 const Otp = ({ email, onResendOtp }) => {
     const [otp, setOtp] = useState(['','','','']);
@@ -79,11 +80,12 @@ const Otp = ({ email, onResendOtp }) => {
                         />
                     ))}
                 </div>
-                <button className='verify-button' 
-                onClick={handleVerifyClick}
-                disabled={!isOtpComplete}>
-                    Verify
-                </button>
+            <Link to="/congs" onClick={handleVerifyClick}>
+            
+            <button className='verify-button' 
+               disabled={!isOtpComplete}>
+                   Verify
+               </button></Link>
                 <button 
                 className='resend-button'
                 onClick={handleResendClick}>

@@ -12,6 +12,8 @@
     left: 0;
     z-index: 1000;
     margin: 0;
+    grid-column: 1/-1;
+  
 }
 
 .navbar-logo {
@@ -29,7 +31,7 @@
 }
 
 .navbar-logo-text {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: black;
     margin-left: 20px;
@@ -124,7 +126,7 @@
 .user-greeting {
     margin-right: 30px;
     margin-left: 290px;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     font-weight: bold;
     color: black;
 }

@@ -52,6 +52,14 @@
     transform: translate(-280%);
 }
 
+.padlock-icon {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    transform: translate(-280%);
+}
 .signinbutton {
     padding: 10px;
     width: 87%;

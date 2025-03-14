@@ -13,37 +13,37 @@ const Sidebar = () => {
         <div className='sidebar'>
             <ul className='sidebar-menu'>
                 <li className='sidebar-item'>
-                    <Link to='/dashboard'>
+                    <Link to='dashboard'>
                         <img src={dashboard} alt='dashboard' className='sidebar-icon'/>
                             Dashboard
                     </Link>
                     </li>
                 <li className='sidebar-item'>
-                    <Link to='/issues'>
+                    <Link to='issues'>
                         <img src={issue} alt='issue' className='sidebar-icon'/>
                         Issues
                     </Link>
                     </li>
                 <li className='sidebar-item'>
-                    <Link to='/profile'>
+                    <Link to='profile'>
                         <img src={person} alt='person' className='sidebar-icon'/>
                         Profile
                     </Link>
                     </li>
                 <li className='sidebar-item'>
-                    <Link to='/settings'>
+                    <Link to='settings'>
                         <img src={settings} alt='settings' className='sidebar-icon'/>
                         Settings
                     </Link>
                     </li>
                 <li className='sidebar-item'>
-                    <Link to='/support'>
+                    <Link to='support'>
                         <img src={support} alt='support' className='sidebar-icon'/>
                         Help & Support
                     </Link>
                         </li>
                 <li className='sidebar-item logout'>
-                    <Link to='/logout'>
+                    <Link to='logout'>
                         <img src={logout} alt='logout' className='sidebar-icon'/>
                         Logout
                     </Link>

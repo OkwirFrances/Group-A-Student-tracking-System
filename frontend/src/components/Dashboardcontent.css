@@ -1,28 +1,201 @@
 .dashboard-content {
-    padding: 20px;
+    padding: 0px;
+    margin-left: 198px;
+    
 }
 
 .cards-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: -10px;
+    gap: 10px;
 }
 
 .card {
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 30%;
+    width: 28%;
+    height: 50%;
     text-align: center;
+}
+
+.card.pending {
+    background-color: white;
+}
+
+.card.in-progress {
+    background-color: rgb(216, 150, 27);
+}
+
+.card.resolved {
+    background-color: green;
 }
 
 .card h2 {
     margin-bottom: 10px;
 }
 
+.recent-actions {
+    margin-top: 20px;
+    padding: 20px;
+    color: black;
+}
+
+.recent-actions h2 {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: black;
+    margin-right: 40px;
+    margin-left: -19px;
+    margin-top: -28px;
+
+}
+
 .issue-count {
     font-size: 2rem;
     font-weight: bold;
     margin: 10px 0;
+}
+
+.my-issues {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 200vh;
+    border: 1px solid black;
+}
+
+.my-issues-title {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    left: 20px;
+    margin-top: -5px;
+}
+
+.my-issues-search-container {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    width: 500px;
+}
+
+.my-issues-search-input {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.my-issues-search-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 480px;
+    cursor: pointer;
+}
+
+.new-issue-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 10px 30px;
+    background-color: green;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.new-issue-button:hover {
+    background-color: rgb(21, 176, 21);
+}
+
+.add-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    bottom: 5px;
+}
+
+
+
+.filter-icon {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.filter-select {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    border: 1px solid black;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    width: 12%;
+    box-shadow: 0 0 5px;
+    text-align: center;
+    font-size: 1rem;   
+}
+
+.issues-table {
+    margin-top: 50px;
+    border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    overflow: hidden;
+    background-color: rgb(186, 185, 184);
+    
+}
+
+
+.table-header {
+    display: flex;
+    background-color: rgb(176, 176, 174);
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+.table-header-item {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-body {
+    padding: 10px;
+}
+
+.empty-image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.emptybox-icon {
+    width: 550px;
+
+}
+
+.emptybox-p {
+    font-size: 1.4rem;
 }

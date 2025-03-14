@@ -89,9 +89,34 @@ label {
     margin-bottom: 5px;
     width: 120%;
     transition: border-color 0.33;
-    margin-bottom: 0px;
-    
-    
+    margin-bottom: 0px;    
+}
+
+.person-icon {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    transform: translate(600%);
+}
+
+.mail-icon {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    transform: translate(600%);
+}
+
+.padlock-icon {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    transform: translate(600%);
 }
 
 .full-name:hover {
