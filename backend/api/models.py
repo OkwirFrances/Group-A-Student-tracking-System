@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxLengthValidator
 
 # Create your models here.
 
@@ -65,7 +66,7 @@ class Issue(models.Model):
     issue_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default='Pending')
     
     course_unit = models.ForeignKey(CourseUnit,on_delete=models.CASCADE,null=True)
-    issue_description = models.TextField()
+    issue_description = models.TextField(validators=[MaxLengthValidator(500)],help_text='Describe the issue in not more than 500 characters')
     Image = models.ImageField(upload_to='images/',null=True,blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
