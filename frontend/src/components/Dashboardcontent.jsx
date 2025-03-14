@@ -76,7 +76,7 @@ const DashboardContent = () => {
                 <div className='table-body'>
                     <div className='empty-image-container'>
                         <img src={emptybox} alt='emptybox' className='emptybox-icon' />
-                        <p>There are no recent issues added.<br />Kindly click <b>New Issue</b> to get started</p>
+                        <p className='emptybox-p'>There are no recent issues added.<br />Kindly click <b>New Issue</b> to get started</p>
                     </div>
                 </div>
                </div>    
