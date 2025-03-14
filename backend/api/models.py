@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+
 # Create your models here.
 
 class CustomUser(AbstractUser):
@@ -10,11 +11,11 @@ class CustomUser(AbstractUser):
     GENDER = [('Male','MALE'),
               ('Female','FEMALE')]
     
-    YEAR_CHOICES = [('YEAR 1','YEAR 1'),
-            ('YEAR_2','YEAR 2'),
-            ('YEAR_3','YEAR 3'),
-            ('YEAR_4','YEAR 4'),
-            ('YEAR_5','YEAR 5')]    
+    YEAR_CHOICES = [('YEAR_1','YEAR_1'),
+            ('YEAR_2','YEAR_2'),
+            ('YEAR_3','YEAR_3'),
+            ('YEAR_4','YEAR_4'),
+            ('YEAR_5','YEAR_5')]    
     email = models.EmailField(unique=True)
     password2= models.CharField(max_length=20)
     Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='Student')
