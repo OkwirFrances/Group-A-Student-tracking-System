@@ -3,6 +3,7 @@ import './signin.css';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
+import padlock from '../assets/padlock.png';
 
 const SignIn = () => {
     const navigate=useNavigate();
@@ -64,14 +65,17 @@ navigate('/app');
                     </label>
                     <label>
                         Password
-                        <input 
-                        className='pass-word'
-                        type='password'
-                        name='password'
-                        placeholder='Enter Your Password'
-                        value={formData.password}
-                        onChange={handleChange}
-                        minLength={8}/>
+                        <div className='input-container'>
+                            <input 
+                            className='pass-word'
+                            type='password'
+                            name='password'
+                            placeholder='Enter Your Password'
+                            value={formData.password}
+                            onChange={handleChange}
+                            minLength={8}/>
+                            <img src={padlock} alt='padlock' className='padlock-icon' />
+                            </div>
                     </label>
                     <p className='forgot-password'>
                         <a href='forgot-password' className='forgot-password-link'>Forgot Password?</a>
