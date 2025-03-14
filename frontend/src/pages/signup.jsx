@@ -101,7 +101,7 @@ const SignUp = () => {
                             placeholder='Enter your Email Address' 
                             value={formData.email} 
                             onChange={handleChange} />
-                            <img src={mail} alt='mail' className='mail-icon' />
+                            <img src={mail} alt='mail' className='mailicon' />
                         </div>
                     </label>
                     <label>
@@ -115,7 +115,7 @@ const SignUp = () => {
                             value={formData.password} 
                             onChange={handleChange}
                             minLength={8} />
-                            <img src={padlock} alt='padlock' className='padlock-icon' />
+                            <img src={padlock} alt='padlock' className='padlockicon' />
                         </div>
                     </label>
                     <label>
@@ -129,7 +129,7 @@ const SignUp = () => {
                             value={formData.confirmPassword} 
                             onChange={handleChange}
                             minLength={8} />
-                            <img src={padlock} alt='padlock' className='padlock-icon' />
+                            <img src={padlock} alt='padlock' className='padlockicon' />
                         </div>
                     </label>
                     <label>
