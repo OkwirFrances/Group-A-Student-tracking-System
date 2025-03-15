@@ -17,8 +17,10 @@ class CustomUser(AbstractUser):
             ('YEAR_3','YEAR_3'),
             ('YEAR_4','YEAR_4'),
             ('YEAR_5','YEAR_5')]    
+    full_name = models.CharField(max_length=100,default='Default_Name')
     email = models.EmailField(unique=True)
     password2= models.CharField(max_length=20)
+    term_accepted = models.BooleanField(default=False)
     Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='Student')
     Gender = models.CharField(max_length=20,choices=GENDER,editable=True)
     image = models.ImageField(upload_to='images/',null=True,blank=True)
