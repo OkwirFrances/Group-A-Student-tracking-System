@@ -34,3 +34,47 @@
     border: 1px solid black;
     width: 74%;
 }
+
+.registrar-select-label {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: black;
+    margin-left: 5px;
+}
+
+.registrar-select {
+    width: 40%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.issue-select {
+    width: 40%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.issue-label {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.issue-title-input {
+    width: 38.2%;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: black;
+}
