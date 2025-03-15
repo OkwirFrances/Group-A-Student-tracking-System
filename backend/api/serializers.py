@@ -25,6 +25,7 @@ class RegisterSerializer(ModelSerializer):
         fields = ['first_name','last_name','username','email','password', 'password2']
 
     def validate(self, data):
+        
         if CustomUser.objects.filter(username = data.get('username')).exists():
             raise serializers.ValidationError("Username already exists")
         
@@ -36,8 +37,9 @@ class RegisterSerializer(ModelSerializer):
         return data
     
     def create(self , validated_data):
-        user = CustomUser.objects.create_user(username=validated_data['username'],email = validated_data['email'],password = validated_data['password'],term_accepted = validated_data['term_accepted'])
-        
+        validated_data.pop('confirm_password')
+        user = CustomUser.objects.create_user(username=validated_data['username'], email=validated_data['email'], password=validated_data['password'], term_accepted=validated_data['term_accepted'])
+
         return user
 
 
