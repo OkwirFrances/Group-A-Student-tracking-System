@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Dashboardcontent.css';
 import search from '../assets/search.png';
 import add from '../assets/add.png';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
+import { Link } from 'react-router-dom';
 
 const DashboardContent = () => {
     const [pendingIssues] = useState(0);
     const [inprogressIssues] = useState(0);
     const [resolvedIssues] = useState(0);
     const [filterStatus, setFilterStatus] = useState('all');
-    const navigate = useNavigate();
-
-    const handleNewIssueClick = () => {
-        navigate('/issueform');
-    };
+    
 
     const handleFilterChange = (event) => {
         setFilterStatus(event.target.value);
@@ -46,10 +42,12 @@ const DashboardContent = () => {
             </div>
             <div className='my-issues'>
                 <h2 className='my-issues-title' >My Issues</h2>
-                <button className='new-issue-button' onClick={handleNewIssueClick}>
+                <Link to = "/app/issueform">
+                <button className='new-issue-button'>
                     <img src={add} alt='add' className='add-icon' />
                     New Issue
                 </button>
+                </Link>
                 <div className='filter-select-container'>
                     <select className='filter-select' value={filterStatus} onChange={handleFilterChange}>
                             <option value='all'>All</option>

@@ -1,0 +1,36 @@
+.issue-form-container {
+    padding: 0px;
+    padding-top: 70px;
+    margin: 0;
+    margin-left: -160px;
+    margin-bottom: 10px;
+    height: 100vh;
+}
+
+.issue-form-header {
+    text-align: left;
+    margin-bottom: 0px;
+}
+
+.issue-form-header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 360px;
+    color: black;
+    margin-top: -26px;
+}
+
+.issue-form-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 20px;
+    margin-left: 360px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 200vh;
+    border: 1px solid black;
+    width: 74%;
+}

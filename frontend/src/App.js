@@ -2,14 +2,14 @@ import React from 'react';
 import LandingPage from './pages/landingpage';
 import SignUp from './pages/signup';
 import SignIn from './pages/signin';
+import IssueForm from './pages/issueform';
 import Congratulations from './pages/congratulations';
 import StudentDashboard from './pages/studentdashboard';
-
-
 import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Otp from './pages/otp';
 import DashboardContent from './components/Dashboardcontent';
+
 
 
 const App = () => {
@@ -25,14 +25,10 @@ const App = () => {
       <Route path="otp" element={<Otp/>}/>
       <Route path="congs" element={<Congratulations/>}/>
       <Route path="app" element={<StudentDashboard/>}>
-      
-      <Route path="dashboard" element={ <DashboardContent />}/>
-      
-      
-      
+        <Route path="dashboard" element={ <DashboardContent />}/>
+        <Route path='issueform' element={<IssueForm />}/>
       </Route>
     </Routes>
-    
     </BrowserRouter>
   );
 };
