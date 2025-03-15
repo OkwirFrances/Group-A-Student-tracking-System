@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './issueform.css';
-
-
-
+import upload from '../assets/upload.png';
 
 const IssueForm = () => {
     const [formData, setFormData] = useState({
@@ -16,12 +14,19 @@ const IssueForm = () => {
         attachment: null,
     });
 
+    const fileInputRef = useRef(null);
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         setFormData({
             ...formData,
             [name]: files ? files[0] : value,
         });
+    };
+
+    const handleFileClick = (e) => {
+        e.preventDefault();
+        fileInputRef.current.click();
     };
 
     return (
@@ -39,7 +44,7 @@ const IssueForm = () => {
                     className='registrar-select'>
                     <option value=''>Select Registrar</option>
                     <option value='cocis'>COCIS Registrar</option>
-                    <option vlaue='cedat'>CEDAT Registrar</option>
+                    <option vue='cedat'>CEDAT Registrar</option>
                     <option value='chuss'>CHUSS Registrar</option>
                 </select>
             </label>
@@ -60,11 +65,30 @@ const IssueForm = () => {
                 value={formData.lecturer}
                 onChange={handleChange}
                 className='lecturer-select'>
-                    <option vlaue=''>Select Lecturer</option>
+                    <option value=''>Select Lecturer</option>
                     <option value='lule'>Dr. Lule Bosco</option>
                     <option value='waswa'>Dr. Waswa Shafick</option>
                     <option value='alvin'>Dr. Alvin David</option>
                 </select>
+            </label>
+            <label className='upload-label'>
+                Upload Photo
+                <div className='upload-section'>
+                    {formData.attachment ? (
+                        <img src={URL.createObjectURL(formData.attachment)} alt='selected' className='selected-image' />
+                    ) : (
+                        <>
+                            <img src={upload} alt='upload' className='upload-icon' />
+                            <button  onClick={handleFileClick} className='upload-link'>Upload a file</button> or drag and drop PNG, JPG
+                        </>
+                    )}
+                    <input
+                        type='file'
+                        ref={fileInputRef}
+                        style={{ display: 'none'}}
+                        accept='image/png, image/jpeg'
+                        onChange={handleChange} />
+                </div>
             </label>
             <label className='issue-label'>
                 Issue Title
