@@ -53,15 +53,44 @@ const SignUp = () => {
         console.log('Sending OTP to:', formData.email);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('Form Data:', formData);
+        
         if (isFormValid()){
+            try{
+                const response = await fetch('http://localhost:5000/api/auth/signup', {
+                    method : 'POST',
+                    headers : {
+                        'Content-Type' : 'application/json',
+                    },
+                    body : JSON.stringify({
+                        username: formData.fullName,
+                        email: formData.email,
+                        password: formData.password,
+                        role: formData.role,
+                        terms_accepted: formData.termsAccepted,}),
+                });
+                const data = await response.json();
+                
+                console.log('Signup Response:', data);
+
+                if (response.ok){
+                    console.log('Signup Successful:', data);
+                    
             generateOtp();
             setShowOtpScreen(true);
         } else {
-            console.log('Form is not valid');
+            const errorData = await response.json();
+            console.error('Signup Failed:', errorData);
         }   
-    };
+    } catch (error) {
+        console.error('Signup Failed:', error);
+    }
+} else {
+    console.error('Form is not valid:', formData);
+}
+};
 
     if (showOtpScreen) {
         return <Otp email={formData.email} generatedOtp={generatedOtp} />;
