@@ -17,6 +17,10 @@ class CustomUser(AbstractUser):
             ('YEAR_3','YEAR_3'),
             ('YEAR_4','YEAR_4'),
             ('YEAR_5','YEAR_5')]    
+    
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+                       
     full_name = models.CharField(max_length=100,default='Default_Name')
     email = models.EmailField(unique=True)
     password2= models.CharField(max_length=20)
