@@ -15,7 +15,7 @@ class SignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['full_name','email','password','confirm_password','term_accepted']
-        
+
 
 class RegisterSerializer(ModelSerializer):
     password2 = serializers.CharField(write_only = True)
@@ -36,7 +36,8 @@ class RegisterSerializer(ModelSerializer):
         return data
     
     def create(self , validated_data):
-        user = CustomUser.objects.create_user(username=validated_data['username'],email = validated_data['email'],password = validated_data['password'])
+        user = CustomUser.objects.create_user(username=validated_data['username'],email = validated_data['email'],password = validated_data['password'],term_accepted = validated_data['term_accepted'])
+        
         return user
 
 
