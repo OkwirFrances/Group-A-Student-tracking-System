@@ -70,11 +70,67 @@
     margin-left: 8px;
 }
 
+.course-code-label {
+    position: absolute;
+    top: 29px;
+    right: 400px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.lecturer-label {
+    position: absolute;
+    top: 111px;
+    right: 440px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.lecturer-select {
+    width: 323%;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+    padding: 10px;
+}
+
+.course-code-input {
+    width: 250%;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+}
+
 .issue-title-input {
     width: 38.2%;
     margin-top: 5px;
     border: 1px solid black;
     border-radius: 10px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: black;
+}
+
+.course-name-input {
+    width: 38.2%;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+}
+
+.issue-description-input {
+    width: 38.2%;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+    height: 50px;
 }

@@ -43,6 +43,29 @@ const IssueForm = () => {
                     <option value='chuss'>CHUSS Registrar</option>
                 </select>
             </label>
+            <label className='course-code-label'>
+                Course Unit Code
+                <input 
+                className='course-code-input'
+                type='text'
+                name='coursecode'
+                placeholder='Enter The Course Code'
+                value={formData.coursecode}
+                onChange={handleChange} />
+            </label>
+            <label className='lecturer-label'>
+                Lecturer's Name
+                <select
+                name='lecturer'
+                value={formData.lecturer}
+                onChange={handleChange}
+                className='lecturer-select'>
+                    <option vlaue=''>Select Lecturer</option>
+                    <option value='lule'>Dr. Lule Bosco</option>
+                    <option value='waswa'>Dr. Waswa Shafick</option>
+                    <option value='alvin'>Dr. Alvin David</option>
+                </select>
+            </label>
             <label className='issue-label'>
                 Issue Title
                 <input
@@ -65,6 +88,26 @@ const IssueForm = () => {
                     <option value='appeal'>Appeal</option>
                     <option value='correction'>Correction</option>
                 </select>
+            </label>
+            <label className='issue-label'>
+                Issue Description
+                <input
+                type='text'
+                name='description'
+                placeholder='Enter the issue description'
+                className='issue-description-input'
+                value={formData.description}
+                onChange={handleChange} />
+            </label>
+            <label className='issue-label'>
+                Course Unit Name
+                <input
+                type='text'
+                name='coursename'
+                placeholder='Enter the Course Unit Name'
+                className='course-name-input'
+                value={formData.coursename}
+                onChange={handleChange} />
             </label>
             </div>
         </div>
