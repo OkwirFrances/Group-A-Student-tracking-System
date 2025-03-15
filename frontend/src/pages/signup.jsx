@@ -33,6 +33,32 @@ const SignUp = () => {
 
     const isFormValid = () => {
         const { fullName, email, password, confirmPassword, role, termsAccepted } = formData;
+        if (!fullName) {
+            console.error('Full Name is required');
+        }
+        if (!email){
+            console.error('Email is required');
+            return false;
+        }
+        if (!password || password.length < 8){
+
+            console.error('Password is required and should be at least 8 characters');
+            return false;
+        }
+        if (password !== confirmPassword)   
+        {
+            console.error('Passwords do not match');
+            return false;
+        }
+        if (!role){
+            console.error('Role is required');
+            return false;
+        }
+        if (!termsAccepted){
+            console.error('Terms and Conditions must be accepted');
+            return false;
+        }
+    
         return (
             fullName &&
             email &&
@@ -56,7 +82,7 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Form Data:', formData);
-        
+
         if (isFormValid()){
             try{
                 const response = await fetch('http://localhost:5000/api/auth/signup', {
@@ -71,6 +97,7 @@ const SignUp = () => {
                         role: formData.role,
                         terms_accepted: formData.termsAccepted,}),
                 });
+                console.log('Response Status:', response.status);
                 const data = await response.json();
                 
                 console.log('Signup Response:', data);
@@ -80,10 +107,10 @@ const SignUp = () => {
                     
             generateOtp();
             setShowOtpScreen(true);
+
         } else {
-            const errorData = await response.json();
-            console.error('Signup Failed:', errorData);
-        }   
+            console.error('Signup Failed:', data);
+        }
     } catch (error) {
         console.error('Signup Failed:', error);
     }
