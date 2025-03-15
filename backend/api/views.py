@@ -13,6 +13,23 @@ from rest_framework.permissions import AllowAny
 class UserView(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer 
+
+class SignUpView(APIView):
+    permission_classes =[AllowAny]
+    def post(self,request):
+        serializer = SignUpSerializer(data=request.data)
+        if serializer.is_valid():
+            validated_data = serializer.validated_data
+            password = validated_data.pop('password')
+            user = CustomUser(**validated_data)
+            user.set_password(password) 
+            user.save()
+            return Response({
+                'message':'User created successfully',
+                'username':serializer.validated_data['username']
+                })
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
     
 class RegisterView(APIView):
     permission_classes = [AllowAny]

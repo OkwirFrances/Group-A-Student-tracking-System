@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxLengthValidator
+
 # Create your models here.
 
 class CustomUser(AbstractUser):
@@ -10,13 +12,15 @@ class CustomUser(AbstractUser):
     GENDER = [('Male','MALE'),
               ('Female','FEMALE')]
     
-    YEAR_CHOICES = [('YEAR 1','YEAR 1'),
-            ('YEAR_2','YEAR 2'),
-            ('YEAR_3','YEAR 3'),
-            ('YEAR_4','YEAR 4'),
-            ('YEAR_5','YEAR 5')]    
+    YEAR_CHOICES = [('YEAR_1','YEAR_1'),
+            ('YEAR_2','YEAR_2'),
+            ('YEAR_3','YEAR_3'),
+            ('YEAR_4','YEAR_4'),
+            ('YEAR_5','YEAR_5')]    
+    full_name = models.CharField(max_length=100,default='Default_Name')
     email = models.EmailField(unique=True)
     password2= models.CharField(max_length=20)
+    term_accepted = models.BooleanField(default=False)
     Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='Student')
     Gender = models.CharField(max_length=20,choices=GENDER,editable=True)
     image = models.ImageField(upload_to='images/',null=True,blank=True)
@@ -64,7 +68,7 @@ class Issue(models.Model):
     issue_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default='Pending')
     
     course_unit = models.ForeignKey(CourseUnit,on_delete=models.CASCADE,null=True)
-    issue_description = models.TextField()
+    issue_description = models.TextField(validators=[MaxLengthValidator(500)],help_text='Describe the issue in not more than 500 characters')
     Image = models.ImageField(upload_to='images/',null=True,blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)

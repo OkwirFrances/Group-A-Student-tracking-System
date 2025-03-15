@@ -1,11 +1,21 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import *
+from django.core.exceptions import ValidationError
 
 class CustomUserSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id','first_name','last_name','email','password','image','Role','year_of_study','Gender']
+
+class SignUpSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only = True)
+    confirm_password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ['full_name','email','password','confirm_password','term_accepted']
+
 
 class RegisterSerializer(ModelSerializer):
     password2 = serializers.CharField(write_only = True)
@@ -15,6 +25,7 @@ class RegisterSerializer(ModelSerializer):
         fields = ['first_name','last_name','username','email','password', 'password2']
 
     def validate(self, data):
+        
         if CustomUser.objects.filter(username = data.get('username')).exists():
             raise serializers.ValidationError("Username already exists")
         
@@ -26,7 +37,9 @@ class RegisterSerializer(ModelSerializer):
         return data
     
     def create(self , validated_data):
-        user = CustomUser.objects.create_user(username=validated_data['username'],email = validated_data['email'],password = validated_data['password'])
+        validated_data.pop('confirm_password')
+        user = CustomUser.objects.create_user(username=validated_data['username'], email=validated_data['email'], password=validated_data['password'], term_accepted=validated_data['term_accepted'])
+
         return user
 
 
