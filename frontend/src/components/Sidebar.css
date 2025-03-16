@@ -71,4 +71,11 @@
     width: 100%;
 }
 
-
+.logout-button {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    align-items: center;
+    padding: 0;
+}
