@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 import dashboard from '../assets/dashboard.png';
 import issue from '../assets/issue.png';
@@ -9,6 +9,13 @@ import support from '../assets/support.png';
 import logout from '../assets/logout.png';
 
 const Sidebar = () => {
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('authToken');
+        navigate('/signin');
+    };
     return (
         <div className='sidebar'>
             <ul className='sidebar-menu'>
@@ -41,12 +48,12 @@ const Sidebar = () => {
                         <img src={support} alt='support' className='sidebar-icon'/>
                         Help & Support
                     </Link>
-                        </li>
+                </li>
                 <li className='sidebar-item logout'>
-                    <Link to='logout'>
+                    <button onClick={handleLogout} className='logout-button'>
                         <img src={logout} alt='logout' className='sidebar-icon'/>
                         Logout
-                    </Link>
+                    </button>
                         </li>
             </ul>
         </div>

@@ -12,11 +12,7 @@
     flex-direction: column;
  
 }
-@media (max-width: 48em) {
-    .sidebar {
-display: none;
-    }
-  }
+
 .sidebar-menu {
     list-style-type: none;
     padding: 0;
