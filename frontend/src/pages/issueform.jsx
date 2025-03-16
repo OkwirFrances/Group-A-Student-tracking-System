@@ -1,10 +1,18 @@
+<<<<<<< Updated upstream
 import React, { useState } from 'react';
 import './issueform.css';
 
 
 
+=======
+import React, { useState, useRef, useContext } from 'react';
+import './issueform.css';
+import upload from '../assets/upload.png';
+import { IssuesContext } from '../context/IssueContext';
+>>>>>>> Stashed changes
 
 const IssueForm = () => {
+    const { addIssue } = useContext(IssuesContext);
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -24,6 +32,41 @@ const IssueForm = () => {
         });
     };
 
+<<<<<<< Updated upstream
+=======
+    const handleFileClick = (e) => {
+        e.preventDefault();
+        fileInputRef.current.click();
+    };
+
+    const isFormComplete = () => {
+        return Object.values(formData).every(value => value !== '' && value !== null);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newIssue = {
+            ...formData,
+            id: Math.floor(Math.random() * 1000),
+            status: 'pending',
+            date: new Date().toLocaleDateString(),
+        };
+        addIssue(newIssue);
+        console.log('Form submitted successfully', formData);
+        alert("Issue submitted successfully!");
+        setFormData({
+            title: '',
+            description: '',
+            category: '',
+            registrar: '',
+            lecturer: '',
+            coursecode: '',
+            coursename: '',
+            attachment: null,
+        });
+    };
+
+>>>>>>> Stashed changes
     return (
         <div className='issue-form-container'>
             <div className='issue-form-header'>

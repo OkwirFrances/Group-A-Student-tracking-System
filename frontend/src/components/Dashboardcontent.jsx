@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './Dashboardcontent.css';
 import search from '../assets/search.png';
 import add from '../assets/add.png';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
 import { Link } from 'react-router-dom';
+import { IssuesContext } from '../context/IssueContext';
 
 const DashboardContent = () => {
-    const [pendingIssues] = useState(0);
-    const [inprogressIssues] = useState(0);
-    const [resolvedIssues] = useState(0);
+    const { issues } = useContext(IssuesContext);
     const [filterStatus, setFilterStatus] = useState('all');
     
 
     const handleFilterChange = (event) => {
         setFilterStatus(event.target.value);
     };
+
+    const filteredIssues = issues.filter((issue) => filterStatus === 'all' || issue.status === filterStatus);
  
     return (
         <div className='dashboard-content'>
@@ -23,18 +24,18 @@ const DashboardContent = () => {
             <div className='cards-container'>
                 <div className='card pending'>
                     <h2>Pending Issues</h2>
-                    <p className='issue-count'>{pendingIssues}</p>
-                    <p>You have {pendingIssues} pending issues.</p>
+                    <p className='issue-count'>{issues.filter(issue => issue.status === 'pending').length}</p>
+                    <p>You have {issues.filter(issue => issue.status === 'pending').length} pending issues.</p>
                 </div>
                 <div className='card in-progress'>
                     <h2>In-progress Issues</h2>
-                    <p className='issue-count'>{inprogressIssues}</p>
-                    <p>You have {inprogressIssues} in-progress issues.</p>
+                    <p className='issue-count'>{issues.filter(issue => issue.status === 'in-progress').length}</p>
+                    <p>You have {issues.filter(issue => issue.status === 'in-progress').length} in-progress issues.</p>
                 </div>
                 <div className='card resolved'>
                     <h2>Resolved Issues</h2>
-                    <p className='issue-count'>{resolvedIssues}</p>
-                    <p>You have {resolvedIssues} resolved issues.</p>
+                    <p className='issue-count'>{issues.filter(issue => issue.status === 'resolved').length}</p>
+                    <p>You have {issues.filter(issue => issue.status === 'resolved').length} resolved issues.</p>
                 </div>
             </div>
             <div className='recent-actions'>
@@ -72,10 +73,21 @@ const DashboardContent = () => {
                     <div className='table-header-item'>Date</div>
                 </div>
                 <div className='table-body'>
-                    <div className='empty-image-container'>
+                    {filteredIssues.length > 0 ? (
+                        filteredIssues.map((issue, index) => (
+                            <div className='table-row' key={index}>
+                                <div className='table-item'>{issue.title}</div>
+                                <div className='table-item'>{issue.status}</div>
+                                <div className='table-item'>{issue.category}</div>
+                                <div className='table-item'>{issue.date}</div>
+                            </div>
+                        ))
+                    ) : (
+                        <div className='empty-image-container'>
                         <img src={emptybox} alt='emptybox' className='emptybox-icon' />
                         <p className='emptybox-p'>There are no recent issues added.<br />Kindly click <b>New Issue</b> to get started</p>
                     </div>
+                    )} 
                 </div>
                </div>    
             </div>

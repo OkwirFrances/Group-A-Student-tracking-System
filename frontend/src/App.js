@@ -9,6 +9,7 @@ import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Otp from './pages/otp';
 import DashboardContent from './components/Dashboardcontent';
+import { IssuesProvider } from './context/IssueContext'; 
 
 
 
@@ -16,6 +17,7 @@ const App = () => {
  
 
   return (
+    <IssuesProvider>
     <BrowserRouter>
     <Routes>
       <Route path="/" index element={<Navigate to="landing"/>}/>
@@ -30,6 +32,7 @@ const App = () => {
       </Route>
     </Routes>
     </BrowserRouter>
+    </IssuesProvider>
   );
 };
 
