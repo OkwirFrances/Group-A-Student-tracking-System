@@ -29,6 +29,26 @@ const IssueForm = () => {
         fileInputRef.current.click();
     };
 
+    const isFormComplete = () => {
+        return Object.values(formData).every(value => value !== '' && value !== null);   
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Form submitted successfully', formData);
+        alert("Issue submitted successfully!");
+        setFormData({
+            title: '',
+            description: '',
+            category: '',
+            registrat: '',
+            lecturer: '',
+            coursecode: '',
+            coursename: '',
+            attachment: null,
+        });
+    };
+
     return (
         <div className='issue-form-container'>
             <div className='issue-form-header'>
@@ -87,26 +107,27 @@ const IssueForm = () => {
                         ref={fileInputRef}
                         style={{ display: 'none'}}
                         accept='image/png, image/jpeg'
+                        name='attachment'
                         onChange={handleChange} />
                 </div>
             </label>
             <label className='issue-label'>
                 Issue Title
                 <input
-                className='issue-title-input'
-                type='text'
-                name='title'
-                placeholder='Enter Issue Title'
-                value={formData.title}
-                onChange={handleChange}/>
+                    className='issue-title-input'
+                    type='text'
+                    name='title'
+                    placeholder='Enter Issue Title'
+                    value={formData.title}
+                    onChange={handleChange}/>
             </label>
             <label className='issue-label'> 
                 Issue Category
                 <select
-                className='issue-select'
-                name='category'
-                value={formData.category}
-                onChange={handleChange}>
+                    className='issue-select'
+                    name='category'
+                    value={formData.category}
+                    onChange={handleChange}>
                     <option value=''>Select Category</option>
                     <option value='missingmarks'>Missing Marks</option>
                     <option value='appeal'>Appeal</option>
@@ -116,12 +137,12 @@ const IssueForm = () => {
             <label className='issue-label'>
                 Issue Description
                 <input
-                type='text'
-                name='description'
-                placeholder='Enter the issue description'
-                className='issue-description-input'
-                value={formData.description}
-                onChange={handleChange} />
+                    type='text'
+                    name='description'
+                    placeholder='Enter the issue description'
+                    className='issue-description-input'
+                    value={formData.description}
+                    onChange={handleChange} />
             </label>
             <label className='issue-label'>
                 Course Unit Name
@@ -133,6 +154,12 @@ const IssueForm = () => {
                 value={formData.coursename}
                 onChange={handleChange} />
             </label>
+            <button 
+                className='issue-submit-button'
+                onClick={handleSubmit}
+                disabled={!isFormComplete()}>
+                    Submit
+            </button>
             </div>
         </div>
     );

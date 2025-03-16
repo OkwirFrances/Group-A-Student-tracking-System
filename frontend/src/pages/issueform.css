@@ -101,14 +101,6 @@
     height: 200vh;
 }
 
-.upload-photo-input {
-    width: 125%;
-    padding: 80px 10px;
-    border: 1px solid black;
-    border-radius: 10px;
-    font-size: 0.9rem;
-}
-
 .upload-section {
     display: flex;
     flex-direction: column;
@@ -118,7 +110,7 @@
     font-size: 1.2rem;
     color: black;
     border: 1px solid black;
-    height: 233px;
+    height: 230px;
     border-radius: 10px;
     width: 560px;
     text-align: center;
@@ -133,13 +125,6 @@
     padding: 0;
     font-size: 1.2rem;
     border: none;
-}
-
-.selected-image {
-    max-width: 300px;
-    max-height: 300px;
-    border-radius: 10px;
-    margin-left: 900px;
 }
 
 .upload-icon {
@@ -196,4 +181,27 @@
     font-size: 1rem;
     color: black;
     height: 50px;
+}
+
+.issue-submit-button {
+    width: 20%;
+    background-color: green;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+    padding: 10px;
+    margin-left: 900px;
+    margin-top: 50px;
+}
+
+.issue-submit-button:disabled {
+    background-color: rgb(100, 137, 100);
+    cursor: not-allowed;
+}
+
+.selected-image {
+    max-width: 200px;
+    max-height: 200px;
 }
