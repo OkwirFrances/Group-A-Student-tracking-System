@@ -29,6 +29,26 @@ const IssueForm = () => {
         fileInputRef.current.click();
     };
 
+    const isFormComplete = () => {
+        return Object.values(formData).every(value => value !== '' && value !== null);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Form submitted successfully', formData);
+        alert("Issue submitted successfully!");
+        setFormData({
+            title: '',
+            description: '',
+            category: '',
+            registrar: '',
+            lecturer: '',
+            coursecode: '',
+            coursename: '',
+            attachment: null,
+        });
+    };
+
     return (
         <div className='issue-form-container'>
             <div className='issue-form-header'>
@@ -87,6 +107,7 @@ const IssueForm = () => {
                         ref={fileInputRef}
                         style={{ display: 'none'}}
                         accept='image/png, image/jpeg'
+                        name='attachment'
                         onChange={handleChange} />
                 </div>
             </label>
@@ -133,6 +154,12 @@ const IssueForm = () => {
                 value={formData.coursename}
                 onChange={handleChange} />
             </label>
+            <button
+                className='issue-submit-button'
+                onClick={handleSubmit}
+                disabled={!isFormComplete()}>
+                    Submit
+            </button>
             </div>
         </div>
     );
