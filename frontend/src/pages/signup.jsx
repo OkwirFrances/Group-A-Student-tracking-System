@@ -5,7 +5,8 @@ import logo from '../assets/logo.png';
 import person from '../assets/person.png';
 import mail from '../assets/mail.png';
 import padlock from '../assets/padlock.png';
-import bcrypt from 'bcryptjs';
+
+
 
 
 
@@ -86,11 +87,6 @@ const SignUp = () => {
 
         if (isFormValid()){
             try{
-
-                const hashedPassword = await bcrypt.hash(formData.password, 10);
-                console.log('Hashed Password:',
-                hashedPassword);
-
                 const response = await fetch('http://localhost:5000/api/auth/signup', {
                     method : 'POST',
                     headers : {
@@ -99,10 +95,11 @@ const SignUp = () => {
                     body : JSON.stringify({
                         username: formData.fullName,
                         email: formData.email,
-                        password: hashedPassword, // will send the Hashed Password
+                        password:formData.password,
                         role: formData.role,
                         terms_accepted: formData.termsAccepted,}),
                 });
+                
                 console.log('Response Status:', response.status);
                 const data = await response.json();
                 
