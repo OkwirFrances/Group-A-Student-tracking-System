@@ -9,13 +9,12 @@ import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Otp from './pages/otp';
 import DashboardContent from './components/Dashboardcontent';
+import IssueDetails from './components/issuedetails';
 import { IssuesProvider } from './context/IssueContext';
 
 
 
 const App = () => {
- 
-
   return (
     <IssuesProvider >
       <BrowserRouter>
@@ -29,6 +28,7 @@ const App = () => {
           <Route path="app" element={<StudentDashboard/>}>
             <Route path="dashboard" element={ <DashboardContent />}/>
             <Route path='issueform' element={<IssueForm />}/>
+            <Route path="issue/:id" element={<IssueDetails />}/>
           </Route>
         </Routes>
       </BrowserRouter>

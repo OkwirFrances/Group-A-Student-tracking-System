@@ -4,16 +4,21 @@ import search from '../assets/search.png';
 import add from '../assets/add.png';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IssuesContext } from '../context/IssueContext';
 
 const DashboardContent = () => {
     const { issues } = useContext(IssuesContext);
     const [filterStatus, setFilterStatus] = useState('all');
+    const navigate = useNavigate();
     
 
     const handleFilterChange = (event) => {
         setFilterStatus(event.target.value);
+    };
+
+    const handleIssueClick = (id) => {
+        navigate(`/app/issue/${id}`);
     };
 
     const filteredIssues = issues.filter(issue => filterStatus === 'all' || issue.status === filterStatus);
@@ -75,7 +80,7 @@ const DashboardContent = () => {
                 <div className='table-body'>
                     {filteredIssues.length > 0 ? (
                         filteredIssues.map((issue, index) => (
-                            <div key={index} className='table-row'>
+                            <div key={index} className='table-row' onClick={() => handleIssueClick(issue.id)}>
                                 <div className='table-row-item'>{issue.title}</div>
                                 <div className='table-row-item'>{issue.status}</div>
                                 <div className='table-row-item'>{issue.category}</div>
