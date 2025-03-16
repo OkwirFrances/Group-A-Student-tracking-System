@@ -88,6 +88,68 @@
     color: black;
 }
 
+.upload-label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 200px;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    right: 180px;
+    width: 36%;
+    height: 200vh;
+}
+
+.upload-photo-input {
+    width: 125%;
+    padding: 80px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: black;
+    border: 1px solid black;
+    height: 233px;
+    border-radius: 10px;
+    width: 560px;
+    text-align: center;
+}
+
+.upload-link {
+    color: green;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 30px;
+    padding: 0;
+    font-size: 1.2rem;
+    border: none;
+}
+
+.selected-image {
+    max-width: 300px;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.upload-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
 .lecturer-select {
     width: 323%;
     margin-top: 5px;
@@ -133,4 +195,19 @@
     font-size: 1rem;
     color: black;
     height: 50px;
+}
+
+.issue-submit-button {
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: green;
+    margin-left: 940px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.issue-submit-button:disabled {
+    background-color: rgb(79, 148, 79);
+    cursor: not-allowed;
 }
