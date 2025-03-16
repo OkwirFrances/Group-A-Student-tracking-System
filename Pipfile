@@ -3,7 +3,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[packages]
+[packages]           
+bcrypt = "*"
+fastapi = "*"
+httpx = "*"
+passlib = "*"
+
 
 [dev-packages]
 

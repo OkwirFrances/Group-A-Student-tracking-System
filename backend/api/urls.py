@@ -16,7 +16,7 @@ router.register(r'programs',ProgramView)
 
 urlpatterns = [
     path('',include(router.urls)),
-    path('register_user/',RegisterView.as_view(),name = 'register_user'),
+    
     path('signup/',SignUpView.as_view(),name = 'signup'),
     path('access_token/',TokenObtainPairView.as_view(),name = 'access_token'),
     path('refresh_token/',TokenRefreshView.as_view(),name = 'refresh_token')

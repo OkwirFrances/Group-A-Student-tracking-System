@@ -21,39 +21,30 @@ class SignUpSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ['full_name','email','password','confirm_password','terms_accepted']
         
-
-
-class RegisterSerializer(ModelSerializer):
-    password2 = serializers.CharField(write_only = True)
-    
-    class Meta:
-        model = CustomUser
-        fields = ['first_name','last_name','username','email','password', 'password2']
-
     def validate(self, data):
         
-        # to check if terms are accepted
-        if not data.get('terms_accepted'):
-            raise serializers.ValidationError("Terms and conditions should be accepted.")
-        
-        if CustomUser.objects.filter(username = data.get('username')).exists():
-            raise serializers.ValidationError("Username already exists")
-        
-        if CustomUser.objects.filter(email = data.get('email')).exists():
-            raise serializers.ValidationError("Email already taken....")
-    
-    # to check if passwords match
+        # checks if passwords  match
         if data['password'] != data['confirm_password']:
-            raise serializers.ValidationError("Passwords should match")
+            raise serializers.ValidationError("Passwords do not match")
+        
+        # check if terms and conditions have been accepted
+        if not data.get('terms_accepted'):
+            raise serializers.ValidationError("You must accept the terms and conditions")
+        
+        # checks if email already exists
+        if CustomUser.objects.filter(email = data.get('email')).exists():
+            raise serializers.ValidationError("Email already used....")
         
         
         return data
     
     def create(self , validated_data):
-        validated_data.pop('confirm_password')
-        user = CustomUser.objects.create_user(username=validated_data['username'], email=validated_data['email'], password=validated_data['password'], term_accepted=validated_data['term_accepted'])
+        
+        user = CustomUser.objects.create_user(username=validated_data['username'], email=validated_data['email'], password=validated_data['password'],terms_accepted=validated_data['terms_accepted'])
 
         return user
+        
+        
 
 
 class DepartmentSerializer(ModelSerializer):
