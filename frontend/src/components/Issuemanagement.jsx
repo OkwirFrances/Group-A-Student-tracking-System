@@ -46,7 +46,7 @@ const Issuemanagement = () => {
                         <div>{issue.title}</div>
                         <div>{issue.category}</div>
                         <div>
-                            <span className={status-badge ${getStatusClass(issue.status)}}>
+                            <span className={`status-badge ${getStatusClass(issue.status)}`}>
                                 {issue.status}
                             </span>
                         </div>
