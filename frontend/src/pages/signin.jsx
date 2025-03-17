@@ -31,7 +31,7 @@ const SignIn = () => {
     const handleSignInClick = (e) => {
         console.log('Sign In:', formData);
 e.preventDefault();
-navigate('/app');
+navigate('/app/dashboard');
         if (isFormValid) {
         } else {
             console.log('Form is  not valid');

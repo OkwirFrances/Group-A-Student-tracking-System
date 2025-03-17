@@ -15,39 +15,39 @@ const Sidebar = () => {
                 <li className='sidebar-item'>
                     <Link to='dashboard'>
                         <img src={dashboard} alt='dashboard' className='sidebar-icon'/>
-                            Dashboard
+                        Dashboard
                     </Link>
-                    </li>
+                </li>
                 <li className='sidebar-item'>
-                    <Link to='issues'>
+                    <Link to='issuemanagement'>
                         <img src={issue} alt='issue' className='sidebar-icon'/>
                         Issues
                     </Link>
-                    </li>
+                </li>
                 <li className='sidebar-item'>
                     <Link to='profile'>
                         <img src={person} alt='person' className='sidebar-icon'/>
                         Profile
                     </Link>
-                    </li>
+                </li>
                 <li className='sidebar-item'>
                     <Link to='settings'>
                         <img src={settings} alt='settings' className='sidebar-icon'/>
                         Settings
                     </Link>
-                    </li>
+                </li>
                 <li className='sidebar-item'>
                     <Link to='support'>
                         <img src={support} alt='support' className='sidebar-icon'/>
                         Help & Support
                     </Link>
-                        </li>
+                </li>
                 <li className='sidebar-item logout'>
                     <Link to='logout'>
                         <img src={logout} alt='logout' className='sidebar-icon'/>
                         Logout
                     </Link>
-                        </li>
+                </li>
             </ul>
         </div>
     );
