@@ -199,3 +199,20 @@
 .emptybox-p {
     font-size: 1.4rem;
 }
+
+.table-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+.table-row-item {
+    flex: 1;
+    text-align: center;
+}
