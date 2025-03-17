@@ -1,6 +1,17 @@
 import React from 'react';
 import './Issuemanagement.css';
 import { FiSearch } from 'react-icons/fi';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Filter, Package, Search } from "lucide-react";
 
 const Issuemanagement = () => {
     const mockIssues = [
@@ -32,7 +43,7 @@ const Issuemanagement = () => {
                 <button className="new-issue-btn">+ New Issue</button>
             </div>
 
-            <div className="issues-table">
+            {/* <div className="issues-table">
                 <div className="table-header">
                     <div>ID</div>
                     <div>Issue Title</div>
@@ -53,27 +64,17 @@ const Issuemanagement = () => {
                         <div>{issue.date}</div>
                     </div>
                 ))}
-            </div>
+            </div> */}
+            <Frame
         </div>
     );
 };
 
 export default Issuemanagement;
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Filter, Package, Search } from "lucide-react";
-import React from "react";
 
-export default function Frame() {
+
+export function Frame() {
   // Table headers data
   const tableHeaders = [
     { id: 1, label: "ISSUE", className: "text-left" },
