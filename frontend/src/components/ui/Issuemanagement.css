@@ -1,0 +1,97 @@
+.issue-management {
+    padding: 20px;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.issue-header {
+    margin-bottom: 30px;
+}
+
+.issue-header h1 {
+    color: #2B3674;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.issue-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid #E0E5F2;
+    border-radius: 8px;
+    padding: 8px 16px;
+    width: 300px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-left: 8px;
+}
+
+.new-issue-btn {
+    background: #4318FF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.issues-table {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.table-header {
+    background: #F4F7FE;
+    padding: 15px 20px;
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr 1fr 1fr 1fr;
+    font-weight: 600;
+    color: #2B3674;
+}
+
+.table-row {
+    padding: 15px 20px;
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr 1fr 1fr 1fr;
+    border-bottom: 1px solid #E0E5F2;
+    align-items: center;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 12px;
+    text-align: center;
+    width: fit-content;
+}
+
+.status-open {
+    background: #E6EDF9;
+    color: #2B3674;
+}
+
+.status-in-progress {
+    background: #FFF6E5;
+    color: #FFB547;
+}
+
+.status-resolved {
+    background: #E6FAF5;
+    color: #01B574;
+}
