@@ -3,14 +3,14 @@ import './Issuemanagement.css';
 import { FiSearch } from 'react-icons/fi';
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { Input } from "@/components/ui/input";
+import { Input } from "./ui/input";
 import {
   Table,
   TableBody,
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "./ui/table";
 import { Filter, Package, Search } from "lucide-react";
 
 const Issuemanagement = () => {
