@@ -74,32 +74,41 @@
     align-items: center;
 }
 
+.table-row:hover {
+    @apply bg-gray-50;
+    transition: all 0.2s ease;
+}
+
 .status-badge {
     padding: 6px 12px;
     border-radius: 12px;
     text-align: center;
     width: fit-content;
-    @apply px-3 py-1 rounded-full text-sm font-medium;
+    @apply px-3 py-1 rounded-full text-sm font-medium border;
+    transition: all 0.2s ease;
 }
 
 .status-open {
     background: #E6EDF9;
     color: #2B3674;
+    @apply bg-yellow-50 text-yellow-700 border-yellow-200;
 }
 
 .status-in-progress {
     background: #FFF6E5;
     color: #FFB547;
+    @apply bg-blue-50 text-blue-700 border-blue-200;
 }
 
 .status-resolved {
     background: #E6FAF5;
     color: #01B574;
+    @apply bg-green-50 text-green-700 border-green-200;
 }
 
 /* Custom scrollbar for the table */
 .table-container {
-    @apply overflow-auto;
+    @apply overflow-auto border border-gray-200 rounded-lg shadow-sm;
     &::-webkit-scrollbar {
         width: 6px;
         height: 6px;
