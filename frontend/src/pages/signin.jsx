@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './signin.css';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 import padlock from '../assets/padlock.png';
+import { AuthContext } from '../App';
 
 const SignIn = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         email: '',
         password:'',
     });
-
-    
 
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
@@ -29,12 +29,14 @@ const SignIn = () => {
     };
 
     const handleSignInClick = (e) => {
+        e.preventDefault();
         console.log('Sign In:', formData);
-e.preventDefault();
-navigate('/app/dashboard');
+        
         if (isFormValid) {
+            login();
+            navigate('/app/dashboard');  // Updated navigation path
         } else {
-            console.log('Form is  not valid');
+            console.log('Form is not valid');
         }
     };
 
@@ -47,7 +49,7 @@ navigate('/app/dashboard');
                 <h1 className='system-title'>Welcome to the<br /> Academic Issue Tracking System<br />AITS</h1>
             </div>
             <div className='signin-right'>
-                <form className='signin-right-form'    onSubmit={(e)=>handleSignInClick(e)}>
+                <form className='signin-right-form' onSubmit={(e)=>handleSignInClick(e)}>
                     <h2 className='title'>Sign In Into Your Account</h2>
                     <p className='sub-title'>Please fill in all the fields below</p>
                     <label>
@@ -89,9 +91,7 @@ navigate('/app/dashboard');
                         I have read and accepted all the AITS terms and conditions 
                     </label>
                     <button 
-                  
                     className='signinbutton'
-                 
                     disabled={!isFormValid}>
                         SIGN IN
                     </button>
