@@ -79,6 +79,7 @@
     border-radius: 12px;
     text-align: center;
     width: fit-content;
+    @apply px-3 py-1 rounded-full text-sm font-medium;
 }
 
 .status-open {
@@ -94,4 +95,19 @@
 .status-resolved {
     background: #E6FAF5;
     color: #01B574;
+}
+
+/* Custom scrollbar for the table */
+.table-container {
+    @apply overflow-auto;
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        @apply bg-gray-100 rounded-full;
+    }
+    &::-webkit-scrollbar-thumb {
+        @apply bg-gray-300 rounded-full;
+    }
 }
