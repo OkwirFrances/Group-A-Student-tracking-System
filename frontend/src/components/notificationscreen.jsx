@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './notificationscreen.css';
 import emptybox from '../assets/emptybox.png';
 import backarrow from '../assets/backarrow.png';
@@ -6,11 +7,17 @@ import Navbar from './Navbar';
 
 
 const NotificationScreen = () => {
+    const navigate = useNavigate();
+
+    const handleBackClick = () => {
+        navigate('/app/dashboard');
+    };
+
     return (
         <div>
             <Navbar />
             <div className='notification-screen'>
-                <img src={backarrow} alt="backarrow" className='backarrow-icon'/>
+                <img src={backarrow} alt="backarrow" className='backarrow-icon' onClick={handleBackClick} />
                 <h1>Notifications</h1>
                 <img src={emptybox} alt="emptybox"  className='notification-emptybox'/>
                 <p>There are no notifications here. You will get notified when you get a notification which will appear here.</p>

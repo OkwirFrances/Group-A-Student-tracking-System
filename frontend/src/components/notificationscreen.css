@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: calc(1oovh - 60px);
     text-align: center;
     background-color: white;
 }
@@ -24,6 +24,7 @@
 }
 
 .backarrow-icon {
+    cursor: pointer;
     width: 30px;
     height: 30px;
     margin-right: 1400px;
