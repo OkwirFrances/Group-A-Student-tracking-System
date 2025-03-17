@@ -2,7 +2,7 @@ import React from 'react';
 import './Issuemanagement.css';
 import { FiSearch } from 'react-icons/fi';
 import { Button } from "./ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "./ui/card";
 import { Input } from "@/components/ui/input";
 import {
   Table,
