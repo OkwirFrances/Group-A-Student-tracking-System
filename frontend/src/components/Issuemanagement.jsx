@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { Filter, Search } from "lucide-react";
+import { Filter } from "lucide-react";
 
 const Issuemanagement = () => {
   const mockIssues = [

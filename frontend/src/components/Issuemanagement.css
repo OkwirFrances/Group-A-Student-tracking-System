@@ -75,7 +75,7 @@
 }
 
 .table-row:hover {
-    @apply bg-gray-50;
+    background-color: #F9FAFB; /* Equivalent to bg-gray-50 */
     transition: all 0.2s ease;
 }
 
@@ -84,39 +84,48 @@
     border-radius: 12px;
     text-align: center;
     width: fit-content;
-    @apply px-3 py-1 rounded-full text-sm font-medium border;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid;
     transition: all 0.2s ease;
 }
 
 .status-open {
-    background: #E6EDF9;
-    color: #2B3674;
-    @apply bg-yellow-50 text-yellow-700 border-yellow-200;
+    background: #FEF3C7; /* Equivalent to bg-yellow-50 */
+    color: #B45309; /* Equivalent to text-yellow-700 */
+    border-color: #FDE68A; /* Equivalent to border-yellow-200 */
 }
 
 .status-in-progress {
-    background: #FFF6E5;
-    color: #FFB547;
-    @apply bg-blue-50 text-blue-700 border-blue-200;
+    background: #DBEAFE; /* Equivalent to bg-blue-50 */
+    color: #1D4ED8; /* Equivalent to text-blue-700 */
+    border-color: #BFDBFE; /* Equivalent to border-blue-200 */
 }
 
 .status-resolved {
-    background: #E6FAF5;
-    color: #01B574;
-    @apply bg-green-50 text-green-700 border-green-200;
+    background: #D1FAE5; /* Equivalent to bg-green-50 */
+    color: #047857; /* Equivalent to text-green-700 */
+    border-color: #A7F3D0; /* Equivalent to border-green-200 */
 }
 
 /* Custom scrollbar for the table */
 .table-container {
-    @apply overflow-auto border border-gray-200 rounded-lg shadow-sm;
-    &::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-    }
-    &::-webkit-scrollbar-track {
-        @apply bg-gray-100 rounded-full;
-    }
-    &::-webkit-scrollbar-thumb {
-        @apply bg-gray-300 rounded-full;
-    }
+    overflow: auto;
+    border: 1px solid #E5E7EB; /* Equivalent to border-gray-200 */
+    border-radius: 0.5rem; /* Equivalent to rounded-lg */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Equivalent to shadow-sm */
+}
+.table-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.table-container::-webkit-scrollbar-track {
+    background-color: #F3F4F6; /* Equivalent to bg-gray-100 */
+    border-radius: 9999px; /* Equivalent to rounded-full */
+}
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #D1D5DB; /* Equivalent to bg-gray-300 */
+    border-radius: 9999px; /* Equivalent to rounded-full */
 }
