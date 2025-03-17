@@ -1,7 +1,7 @@
 import React from 'react';
 import './Issuemanagement.css';
 import { FiSearch } from 'react-icons/fi';
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
@@ -65,7 +65,7 @@ const Issuemanagement = () => {
                     </div>
                 ))}
             </div> */}
-            <Frame
+            <Frame />
         </div>
     );
 };
