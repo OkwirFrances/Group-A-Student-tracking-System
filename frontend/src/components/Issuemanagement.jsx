@@ -2,7 +2,7 @@ import React from 'react';
 import './Sidebar.css';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
-import DashboardContent from './Dashboardcontent';
+//import DashboardContent from './Dashboardcontent';
 const Issuemanagement = () => {
     return (
         <div className="dashboard-container">
