@@ -19,7 +19,7 @@ const IssueDetails = () => {
                 <p><strong>Title:</strong>{issue.title}</p>
                 <p><strong>Description:</strong>{issue.description}</p>
                 <p><strong>Category:</strong>{issue.category}</p>
-                <p><strong>Registrar</strong>{issue.registrar}</p>
+                <p><strong>Registrar:</strong>{issue.registrar}</p>
                 <p><strong>Lecturer:</strong>{issue.lecturer}</p>
                 <p><strong>Course Name:</strong>{issue.coursename}</p>
                 <p><strong>Course Code:</strong>{issue.coursecode}</p>

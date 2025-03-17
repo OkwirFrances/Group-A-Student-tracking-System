@@ -21,3 +21,23 @@
     flex-direction: column;
     gap: 10px;
 }
+
+.issue-detail p {
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 1rem;
+    color: black;
+}
+
+.issue-detail p strong {
+    color: black;
+}
+
+.issue-attachment {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
