@@ -17,6 +17,9 @@ const IssueForm = () => {
         attachment: null,
     });
 
+    const [notification, setNotification] = useState(null);
+    const [badgeCount, setBadgeCount] = useState(0);
+
     const fileInputRef = useRef(null);
 
     const handleChange = (e) => {
@@ -43,8 +46,17 @@ const IssueForm = () => {
             ...formData,
             status: 'pending',
             date: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString(),
         };
         addIssue(newIssue);
+        setNotification({
+            message: 'Your issue has been submitted successfully!',
+            date: newIssue.date,
+            time: newIssue.time,
+        });
+        setBadgeCount(badgeCount + 1);
+
+        setTimeout(() => setNotification(null), 5000);
         console.log('Form submitted successfully', formData);
         alert("Issue submitted successfully!");
         setFormData({
@@ -61,6 +73,12 @@ const IssueForm = () => {
 
     return (
         <div className='issue-form-container'>
+            {notification && (
+                <div className='notification-popup'>
+                    <p>{notification.message}</p>
+                    <p>{notification.date} {notification.time}</p>
+                </div>
+            )}
             <div className='issue-form-header'>
                 <h1>Create a new isssue</h1>
             </div>

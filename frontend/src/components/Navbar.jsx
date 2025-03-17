@@ -6,7 +6,7 @@ import notification from '../assets/notification.png';
 import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ badgeCount }) => {
     const [user] = useState({
         fullName: 'Waluube Alvin David',
         profilePic: null,
@@ -36,6 +36,7 @@ const Navbar = () => {
                     <img src={search} alt='search' className='search-icon' />
                     </div>
                     <img src={notification} alt='notification' className='notification-icon' onClick={handleNotificationClick} />
+                    {badgeCount > 0 && <span className='notification-badge'>{badgeCount}</span>}
                     <img src={mail} alt='mail' className='mail-icon' />
                         {user.profilePic ? (
                             <img src={user.profilePic} alt='user' className='user-icon' />
