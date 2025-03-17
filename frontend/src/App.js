@@ -2,7 +2,7 @@ import React from 'react';
 import LandingPage from './pages/landingpage';
 import SignUp from './pages/signup';
 import SignIn from './pages/signin';
-import IssueForm from './pages/issueform';
+// import IssueForm from './pages/issueform';
 import Congratulations from './pages/congratulations';
 import StudentDashboard from './pages/studentdashboard';
 import './App.css';
