@@ -7,12 +7,11 @@ name = "pypi"
 django = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
+djangorestframework-simplejwt = "*"
+dj-rest-auth = "*"
+pillow = "*"
 
 [dev-packages]
 
 [requires]
-<<<<<<< HEAD
 python_version = "3.13"
-=======
-python_version = "*"
->>>>>>> d744bb313867ce22a69b43a46a890ae39fa957f0

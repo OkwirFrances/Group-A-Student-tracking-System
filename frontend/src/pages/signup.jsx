@@ -33,6 +33,32 @@ const SignUp = () => {
 
     const isFormValid = () => {
         const { fullName, email, password, confirmPassword, role, termsAccepted } = formData;
+        if (!fullName) {
+            console.error('Full Name is required');
+        }
+        if (!email){
+            console.error('Email is required');
+            return false;
+        }
+        if (!password || password.length < 8){
+
+            console.error('Password is required and should be at least 8 characters');
+            return false;
+        }
+        if (password !== confirmPassword)   
+        {
+            console.error('Passwords do not match');
+            return false;
+        }
+        if (!role){
+            console.error('Role is required');
+            return false;
+        }
+        if (!termsAccepted){
+            console.error('Terms and Conditions must be accepted');
+            return false;
+        }
+    
         return (
             fullName &&
             email &&
@@ -53,15 +79,45 @@ const SignUp = () => {
         console.log('Sending OTP to:', formData.email);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('Form Data:', formData);
+
         if (isFormValid()){
+            try{
+                const response = await fetch('http://localhost:5000/api/auth/signup', {
+                    method : 'POST',
+                    headers : {
+                        'Content-Type' : 'application/json',
+                    },
+                    body : JSON.stringify({
+                        username: formData.fullName,
+                        email: formData.email,
+                        password: formData.password,
+                        role: formData.role,
+                        terms_accepted: formData.termsAccepted,}),
+                });
+                console.log('Response Status:', response.status);
+                const data = await response.json();
+                
+                console.log('Signup Response:', data);
+
+                if (response.ok){
+                    console.log('Signup Successful:', data);
+                    
             generateOtp();
             setShowOtpScreen(true);
+
         } else {
-            console.log('Form is not valid');
-        }   
-    };
+            console.error('Signup Failed:', data);
+        }
+    } catch (error) {
+        console.error('Signup Failed:', error);
+    }
+} else {
+    console.error('Form is not valid:', formData);
+}
+};
 
     if (showOtpScreen) {
         return <Otp email={formData.email} generatedOtp={generatedOtp} />;
@@ -101,7 +157,7 @@ const SignUp = () => {
                             placeholder='Enter your Email Address' 
                             value={formData.email} 
                             onChange={handleChange} />
-                            <img src={mail} alt='mail' className='mail-icon' />
+                            <img src={mail} alt='mail' className='mailicon' />
                         </div>
                     </label>
                     <label>
@@ -115,7 +171,7 @@ const SignUp = () => {
                             value={formData.password} 
                             onChange={handleChange}
                             minLength={8} />
-                            <img src={padlock} alt='padlock' className='padlock-icon' />
+                            <img src={padlock} alt='padlock' className='padlockicon' />
                         </div>
                     </label>
                     <label>
@@ -129,7 +185,7 @@ const SignUp = () => {
                             value={formData.confirmPassword} 
                             onChange={handleChange}
                             minLength={8} />
-                            <img src={padlock} alt='padlock' className='padlock-icon' />
+                            <img src={padlock} alt='padlock' className='padlockicon' />
                         </div>
                     </label>
                     <label>

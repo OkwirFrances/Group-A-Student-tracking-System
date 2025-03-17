@@ -101,7 +101,7 @@ label {
     transform: translate(600%);
 }
 
-.mail-icon {
+.mailicon {
     position: absolute;
     right: 10px;
     top: 15px;
@@ -110,7 +110,7 @@ label {
     transform: translate(600%);
 }
 
-.padlock-icon {
+.padlockicon {
     position: absolute;
     right: 10px;
     top: 15px;
