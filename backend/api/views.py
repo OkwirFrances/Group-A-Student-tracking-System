@@ -6,13 +6,19 @@ from rest_framework.decorators import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny 
-import bcrypt
+from django.http import JsonResponse
 
 
 
+def get_users_by_role(request, role):
+    users = CustomUser.objects.filter(Role = role).values('id','full_name')
+    return JsonResponse(list(users), safe=False)
 
+def get_course_units(request):
+    course_units = course_units.all().values('id','course_unit_name')
+    return JsonResponse(list(course_units), safe=False)
+    
 
-# Create your views here.
 class UserView(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer 
