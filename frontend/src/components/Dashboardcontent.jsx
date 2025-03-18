@@ -1,17 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboardcontent.css';
 import search from '../assets/search.png';
 import add from '../assets/add.png';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
+import axios from 'axios';
 
 const DashboardContent = () => {
-    const [pendingIssues] = useState(0);
-    const [inprogressIssues] = useState(0);
-    const [resolvedIssues] = useState(0);
+    const [pendingIssues, setPendingIssues] = useState(0);
+    const [inprogressIssues, setInprogressIssues] = useState(0);
+    const [resolvedIssues, setResolvedIssues] = useState(0);
+    const [recentActions, setRecentActions] = useState([]);
+    const [searchQuerry,setSearchQuerry] = useState('');
     const [filterStatus, setFilterStatus] = useState('all');
+    const [issues, setIssues] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/issues')
+        .then((response) => {
+            const issues = response.data;
+
+            setPendingIssues(issues.filter((issue) => issue.issue_status === 'Pending').length);
+            setInprogressIssues(issues.filter((issue) => issue.issue_status === 'In-progress').length);
+            setResolvedIssues(issues.filter((issue) => issue.issue_status === 'Resolved').length);
+            setRecentActions(issues.sort((a,b) => new Date(b.date_created) -new Date(a.date_created)).slice(0,5));
+            setIssues(issues);
+        })
+        .catch((error) => console.log(error));
+    },
+    []);
+
 
     const handleNewIssueClick = () => {
         navigate('/issueform');
@@ -20,8 +40,18 @@ const DashboardContent = () => {
     const handleFilterChange = (event) => {
         setFilterStatus(event.target.value);
     };
- 
-    return (
+    const filteredIssues = issues.filter((issues) => {
+        const matchesStatus = filterStatus === 'all' || issues.issue_status.toLowerCase()  ===
+        filterStatus.toLowerCase();
+        const matchesSearch = issues.issue_type.toLowerCase().includes(searchQuerry.toLowerCase())
+        || issues.issue_description.toLowerCase().includes(searchQuerry.toLowerCase())
+
+        return matchesStatus && matchesSearch;
+    } );
+
+
+       return (
+     
         <div className='dashboard-content'>
             <h1>Dashboard</h1>
             <div className='cards-container'>
@@ -43,6 +73,13 @@ const DashboardContent = () => {
             </div>
             <div className='recent-actions'>
                 <h2>Recent Actions</h2>
+                <ul>{recentActions.map((action) =>
+                <li key = {action.id} > {action.issue_type} - {action.issue_status}
+                (Created: {new Date(action.date_created).toLocaleDateString()})
+                </li>
+                )}
+                </ul>
+                
             </div>
             <div className='my-issues'>
                 <h2 className='my-issues-title' >My Issues</h2>
@@ -63,7 +100,9 @@ const DashboardContent = () => {
                     <input 
                     type='text' 
                     placeholder='Search for anything...' 
-                    className='my-issues-search-input' />
+                    className='my-issues-search-input' 
+                    value = {searchQuerry}
+                    onChange = {(e) => setSearchQuerry(e.target.value)}/>
                     <img src={search} alt='search' className='my-issues-search-icon' />
                 </div>
                <div className='issues-table'>
@@ -74,15 +113,28 @@ const DashboardContent = () => {
                     <div className='table-header-item'>Date</div>
                 </div>
                 <div className='table-body'>
+                    {filteredIssues.length > 0 ? (
+                        filteredIssues.map((issue) => (
+                            <div key = {issue.id} className='table-row'>
+                                <div className=' table-row-item' >{issue.issue_type}</div>
+                                <div className=' table-row-item' >{issue.issue_status}</div>
+                                <div className=' table-row-item' >{issue.course_unit.course_unit_name}</div>
+                                <div className=' table-row-item' >{new Date(issue.date_created).toLocaleDateString()}</div>
+                                </div>
+                        ))
+                    ):(
                     <div className='empty-image-container'>
                         <img src={emptybox} alt='emptybox' className='emptybox-icon' />
                         <p className='emptybox-p'>There are no recent issues added.<br />Kindly click <b>New Issue</b> to get started</p>
                     </div>
+                    )}
                 </div>
                </div>    
             </div>
         </div>
     );
+
 };
+
 
 export default DashboardContent;
