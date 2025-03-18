@@ -5,9 +5,22 @@
     justify-content: center;
     height: calc(1oovh - 60px);
     text-align: center;
-    background-color: white;
+    
 }
 
+.notification-container {
+    border: 1px solid green;
+    border-radius: 10px;
+    padding: 15px;
+    width: 90%;
+    background-color: white;
+    position: relative;
+}
+
+.notification-container p {
+    margin: 0;
+    font-size: 1rem;
+}
 .notification-screen h1 {
     font-size: 1.5rem;
     font-weight: bold;
