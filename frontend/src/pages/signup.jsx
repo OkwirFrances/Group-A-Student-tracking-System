@@ -8,6 +8,8 @@ import padlock from '../assets/padlock.png';
 
 
 
+
+
 const SignUp = () => {
     
 
@@ -93,10 +95,11 @@ const SignUp = () => {
                     body : JSON.stringify({
                         username: formData.fullName,
                         email: formData.email,
-                        password: formData.password,
+                        password:formData.password,
                         role: formData.role,
                         terms_accepted: formData.termsAccepted,}),
                 });
+                
                 console.log('Response Status:', response.status);
                 const data = await response.json();
                 

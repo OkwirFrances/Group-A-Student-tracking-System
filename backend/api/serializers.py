@@ -1,7 +1,12 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import *
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+
+
+CustomUser = get_user_model()
+
 
 class CustomUserSerializer(ModelSerializer):
     class Meta:
@@ -14,7 +19,8 @@ class SignUpSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['full_name','email','password','confirm_password','term_accepted']
+        fields = ['full_name','email','password','confirm_password','terms_accepted']
+        
 
 
 class RegisterSerializer(ModelSerializer):
@@ -26,14 +32,21 @@ class RegisterSerializer(ModelSerializer):
 
     def validate(self, data):
         
+        # to check if terms are accepted
+        if not data.get('terms_accepted'):
+            raise serializers.ValidationError("Terms and conditions should be accepted.")
+        
         if CustomUser.objects.filter(username = data.get('username')).exists():
             raise serializers.ValidationError("Username already exists")
         
         if CustomUser.objects.filter(email = data.get('email')).exists():
             raise serializers.ValidationError("Email already taken....")
     
-        if data['password'] != data['password2']:
+    # to check if passwords match
+        if data['password'] != data['confirm_password']:
             raise serializers.ValidationError("Passwords should match")
+        
+        
         return data
     
     def create(self , validated_data):
