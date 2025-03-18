@@ -5,7 +5,7 @@ import { IssuesContext } from '../context/IssueContext';
 import { v4 as uuidv4 } from 'uuid';
 
 const IssueForm = () => {
-    const { addIssue } = useContext(IssuesContext);
+    const { addIssue, setNotificationMessage } = useContext(IssuesContext);
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -17,8 +17,6 @@ const IssueForm = () => {
         attachment: null,
     });
 
-    const [notification, setNotification] = useState(null);
-    const [badgeCount, setBadgeCount] = useState(0);
 
     const fileInputRef = useRef(null);
 
@@ -49,14 +47,13 @@ const IssueForm = () => {
             time: new Date().toLocaleTimeString(),
         };
         addIssue(newIssue);
-        setNotification({
+
+        setNotificationMessage({
             message: 'Your issue has been submitted successfully!',
             date: newIssue.date,
             time: newIssue.time,
         });
-        setBadgeCount(badgeCount + 1);
 
-        setTimeout(() => setNotification(null), 5000);
         console.log('Form submitted successfully', formData);
         alert("Issue submitted successfully!");
         setFormData({
@@ -73,12 +70,6 @@ const IssueForm = () => {
 
     return (
         <div className='issue-form-container'>
-            {notification && (
-                <div className='notification-popup'>
-                    <p>{notification.message}</p>
-                    <p>{notification.date} {notification.time}</p>
-                </div>
-            )}
             <div className='issue-form-header'>
                 <h1>Create a new isssue</h1>
             </div>
