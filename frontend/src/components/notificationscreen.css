@@ -18,9 +18,17 @@
 }
 
 .notification-container p {
-    margin: 0;
     font-size: 1rem;
 }
+
+.notification-date {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 0.8rem;
+    color: black;
+}
+
 .notification-screen h1 {
     font-size: 1.5rem;
     font-weight: bold;
