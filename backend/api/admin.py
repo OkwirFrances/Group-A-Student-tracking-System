@@ -6,5 +6,6 @@ admin.site.register(Department)
 admin.site.register(Issue)
 admin.site.register(CourseUnit)
 admin.site.register(Program)
-# Register your models here.
+
+
 
