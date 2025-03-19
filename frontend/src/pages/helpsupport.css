@@ -43,5 +43,9 @@
 .helpsupport-box p {
     font-size: 1.7rem;
     font-weight: bold;
-    margin-right: 460px;
+    margin-right: 60px;
+    border-bottom: 2px solid black;
+    text-align: center;
+    display: inline-block;
+    padding-bottom: 5px;
 }
