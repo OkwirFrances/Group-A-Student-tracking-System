@@ -11,3 +11,10 @@
     justify-content: center;
     padding: 20px;
 }
+
+.helpsupport-content h1 {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 650px;
+    margin-right: 800px;
+}
