@@ -12,6 +12,7 @@ import DashboardContent from './components/Dashboardcontent';
 import IssueDetails from './components/issuedetails';
 import NotificationScreen from './components/notificationscreen';
 import HelpSupport from './pages/helpsupport';
+import Settings from './pages/settings';
 import { IssuesProvider } from './context/IssueContext';
 
 
@@ -33,6 +34,7 @@ const App = () => {
             <Route path='issueform' element={<IssueForm />}/>
             <Route path="issue/:id" element={<IssueDetails />}/>
             <Route path='support' element={<HelpSupport />}/>
+            <Route path="settings" element={<Settings />} />
           </Route>
           <Route path='notifications' element={<NotificationScreen />}/>
         </Routes>
