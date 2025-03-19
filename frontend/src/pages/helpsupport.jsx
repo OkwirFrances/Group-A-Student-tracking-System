@@ -15,7 +15,7 @@ const HelpSupport = () => {
                     <p>Email</p>
                     <h3>Send us an email on; <br />alvin69david@gmail.com</h3>
                     <p className='phone-contacts'>Phone Contacts</p>
-                    <h4>Give us a call on;<br />AIRTEL: 07588862363<br />or<br />MTN: 0784566784</h4>
+                    <h4>Give us a call on;<br /><b>AIRTEL:</b> 07588862363<br />Or<br /><b>MTN:</b> 0784566784</h4>
                 </div>
             </div>
         </div>
