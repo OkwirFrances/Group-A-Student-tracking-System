@@ -67,7 +67,7 @@ class Issue(models.Model):
                         ('Semester 2','SEMESTER 2')]
     
     student = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='issues', limit_choices_to={'Role':'Student'})
-    semester = models.CharField(max_length=30, null = False,default='Semester 1')
+    semester = models.CharField(max_length=30,choices=SEMESTER_CHOICES, null = False,default='Semester 1')
     issue_type = models.CharField(max_length=50,choices=ISSUE_CHOICES)
     issue_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default='Pending')
     
