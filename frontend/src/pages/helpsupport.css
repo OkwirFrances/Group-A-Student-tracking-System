@@ -1,6 +1,7 @@
 .helpsupport-container {
     display: flex;
     height: 100vh;
+    position: relative;
 }
 
 .helpsupport-content {
@@ -17,4 +18,18 @@
     color: black;
     margin-bottom: 650px;
     margin-right: 800px;
+}
+
+.helpsupport-box {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0px;
+    width: 80%;
+    position: absolute;
+    padding: 20px;
+    margin-left: 165px;
+    margin-top: 270px;
+    height: 100vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
