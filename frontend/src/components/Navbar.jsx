@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ badgeCount }) => {
     const [user] = useState({
-        fullName: 'Waluube Alvin David',
+        fullName: 'Alvin David',
         profilePic: null,
     });
 
