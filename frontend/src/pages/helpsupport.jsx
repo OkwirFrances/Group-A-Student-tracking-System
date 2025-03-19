@@ -3,14 +3,21 @@ import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import backarrow from '../assets/backarrow.png';
 import './helpsupport.css';
+import { useNavigate } from 'react-router-dom';
 
 const HelpSupport = () => {
+    const navigate = useNavigate();
+
+    const handleBackClick = () => {
+        navigate('/app/dashboard');
+    };
+
     return (
         <div className='helpsupport-container'>
             <Sidebar />
             <div className='helpsupport-content'>
                 <Navbar />
-                <img src={backarrow} alt="backarrow" className='help-backarrow-icon' />
+                <img src={backarrow} alt="backarrow" className='help-backarrow-icon' onClick={handleBackClick}/>
                 <h1>Help/Support</h1>
                 <div className='helpsupport-box'>
                     <h2>Kindly reach us via Email or Phone<br /> for any help </h2>
