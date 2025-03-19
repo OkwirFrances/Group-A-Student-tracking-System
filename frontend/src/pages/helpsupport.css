@@ -17,7 +17,16 @@
     font-size: 2rem;
     color: black;
     margin-bottom: 650px;
-    margin-right: 800px;
+    margin-right: 750px;
+    margin-top: -44px;
+}
+
+.help-backarrow-icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin-right: 990px;
+    margin-top: 0px;
 }
 
 .helpsupport-box {

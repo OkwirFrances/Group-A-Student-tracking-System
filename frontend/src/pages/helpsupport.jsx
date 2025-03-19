@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
+import backarrow from '../assets/backarrow.png';
 import './helpsupport.css';
 
 const HelpSupport = () => {
@@ -9,6 +10,7 @@ const HelpSupport = () => {
             <Sidebar />
             <div className='helpsupport-content'>
                 <Navbar />
+                <img src={backarrow} alt="backarrow" className='help-backarrow-icon' />
                 <h1>Help/Support</h1>
                 <div className='helpsupport-box'>
                     <h2>Kindly reach us via Email or Phone<br /> for any help </h2>
