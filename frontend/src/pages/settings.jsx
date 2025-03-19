@@ -12,7 +12,10 @@ const Settings = () => {
                 <Navbar />
                 <h1>Settings</h1>
                 <div className='settings-box'>
-                    <img src={logo} alt='muk-logo' className='muklogo' />
+                    <div className='settings-tab'>
+                        <img src={logo} alt='muk-logo' className='muklogo' />
+                    </div>
+                    
                 </div>
             </div>
         </div>
