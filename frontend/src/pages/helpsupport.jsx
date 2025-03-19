@@ -12,6 +12,7 @@ const HelpSupport = () => {
                 <h1>Help/Support</h1>
                 <div className='helpsupport-box'>
                     <h2>Kindly reach us via Email or Phone<br /> for any help </h2>
+                    <p>Email</p>
                 </div>
             </div>
         </div>
