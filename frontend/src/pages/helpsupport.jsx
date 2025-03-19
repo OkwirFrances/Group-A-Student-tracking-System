@@ -14,6 +14,7 @@ const HelpSupport = () => {
                     <h2>Kindly reach us via Email or Phone<br /> for any help </h2>
                     <p>Email</p>
                     <h3>Send us an email on; <br />alvin69david@gmail.com</h3>
+                    <p>Phone Contacts</p>
                 </div>
             </div>
         </div>
