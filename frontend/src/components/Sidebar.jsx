@@ -44,7 +44,7 @@ const Sidebar = () => {
                     </Link>
                     </li>
                 <li className='sidebar-item'>
-                    <Link to='support'>
+                    <Link to='/app/support'>
                         <img src={support} alt='support' className='sidebar-icon'/>
                         Help & Support
                     </Link>
