@@ -5,7 +5,7 @@ import { IssuesContext } from '../context/IssueContext';
 import { v4 as uuidv4 } from 'uuid';
 
 const IssueForm = () => {
-    const { addIssue } = useContext(IssuesContext);
+    const { addIssue, setNotificationMessage } = useContext(IssuesContext);
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -16,6 +16,7 @@ const IssueForm = () => {
         coursename: '',
         attachment: null,
     });
+
 
     const fileInputRef = useRef(null);
 
@@ -43,8 +44,16 @@ const IssueForm = () => {
             ...formData,
             status: 'pending',
             date: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString(),
         };
         addIssue(newIssue);
+
+        setNotificationMessage({
+            message: 'Your issue has been submitted successfully!',
+            date: newIssue.date,
+            time: newIssue.time,
+        });
+
         console.log('Form submitted successfully', formData);
         alert("Issue submitted successfully!");
         setFormData({

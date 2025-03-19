@@ -38,13 +38,13 @@ const Sidebar = () => {
                     </Link>
                     </li>
                 <li className='sidebar-item'>
-                    <Link to='settings'>
+                    <Link to='/app/settings'>
                         <img src={settings} alt='settings' className='sidebar-icon'/>
                         Settings
                     </Link>
                     </li>
                 <li className='sidebar-item'>
-                    <Link to='support'>
+                    <Link to='/app/support'>
                         <img src={support} alt='support' className='sidebar-icon'/>
                         Help & Support
                     </Link>

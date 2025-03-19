@@ -3,18 +3,24 @@ import './Navbar.css';
 import logo from '../assets/logo.png';
 import search from '../assets/search.png';
 import notification from '../assets/notification.png';
-import mail from '../assets/mail.png'; 
+import mail from '../assets/mail.png';
+import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ badgeCount }) => {
     const [user] = useState({
-        fullName: 'Waluube Alvin David',
+        fullName: 'Alvin David',
         profilePic: null,
     });
+
+    const navigate = useNavigate();
 
     const getInitials = (name) => {
         return name.charAt(0).toUpperCase();
     };
 
+    const handleNotificationClick = () => {
+        navigate('/notifications');
+    };
 
     return (
             <nav className='navbar'>
@@ -29,7 +35,8 @@ const Navbar = () => {
                         />
                     <img src={search} alt='search' className='search-icon' />
                     </div>
-                    <img src={notification} alt='notification' className='notification-icon' />
+                    <img src={notification} alt='notification' className='notification-icon' onClick={handleNotificationClick} />
+                    {badgeCount > 0 && <span className='notification-badge'>{badgeCount}</span>}
                     <img src={mail} alt='mail' className='mail-icon' />
                         {user.profilePic ? (
                             <img src={user.profilePic} alt='user' className='user-icon' />
