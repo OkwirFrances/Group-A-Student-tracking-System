@@ -15,8 +15,12 @@ class CustomUser(AbstractUser):
             ('YEAR_3','YEAR 3'),
             ('YEAR_4','YEAR 4'),
             ('YEAR_5','YEAR 5')]    
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    password2= models.CharField(max_length=20)
+    password = models.CharField(max_length=100)
+    username = models.CharField(max_length=100,unique=True)
+    
     Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='Student')
     Gender = models.CharField(max_length=20,choices=GENDER,editable=True)
     image = models.ImageField(upload_to='images/',null=True,blank=True)
@@ -59,13 +63,13 @@ class Issue(models.Model):
                         ('Semester 2','SEMESTER 2')]
     
     student = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='issues', limit_choices_to={'Role':'Student'})
-    semester = models.CharField(max_length=30, null = False,default='Semester 1')
+    semester = models.CharField(max_length=30,choices=SEMESTER_CHOICES)
     issue_type = models.CharField(max_length=50,choices=ISSUE_CHOICES)
     issue_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default='Pending')
     
-    course_unit = models.ForeignKey(CourseUnit,on_delete=models.CASCADE,null=True)
+    course_unit = models.ForeignKey(CourseUnit,on_delete=models.CASCADE)
     issue_description = models.TextField()
-    Image = models.ImageField(upload_to='images/',null=True,blank=True)
+    Image = models.ImageField(upload_to='images/')
     date_created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     lecturer = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='lecturer_issues',limit_choices_to={'Role':'Lecturer'})

@@ -47,3 +47,25 @@ class CourseUnitView(viewsets.ModelViewSet):
 class ProgramView(viewsets.ModelViewSet):
     queryset = Program.objects.all()
     serializer_class = ProgramSerializer
+
+
+class LoginView(APIView):
+    permission_classes = [AllowAny]
+    serializer_class = LoginSerializer
+
+    def post(self,request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            password = serializer.validated_data['password']
+            user = authenticate(email=email,password=password)
+            if user:
+                return Response({
+                    'message':'Login successful',},status=status.HTTP_200_OK)
+                    
+                    
+            return Response({
+                'message':'Invalid credentials' },status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+               

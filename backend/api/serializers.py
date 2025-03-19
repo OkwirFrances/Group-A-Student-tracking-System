@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import *
+from django.contrib.auth import authenticate
 
 class CustomUserSerializer(ModelSerializer):
     class Meta:
@@ -8,23 +9,16 @@ class CustomUserSerializer(ModelSerializer):
         fields = ['id','first_name','last_name','email','password','image','Role','year_of_study','Gender']
 
 class RegisterSerializer(ModelSerializer):
-    password2 = serializers.CharField(write_only = True)
     
     class Meta:
         model = CustomUser
-        fields = ['first_name','last_name','username','email','password', 'password2']
-
+        fields = ['email','password','username']
     def validate(self, data):
-        if CustomUser.objects.filter(username = data.get('username')).exists():
-            raise serializers.ValidationError("Username already exists")
-        
+              
         if CustomUser.objects.filter(email = data.get('email')).exists():
             raise serializers.ValidationError("Email already taken....")
-    
-        if data['password'] != data['password2']:
-            raise serializers.ValidationError("Passwords should match")
         return data
-    
+       
     def create(self , validated_data):
         user = CustomUser.objects.create_user(username=validated_data['username'],email = validated_data['email'],password = validated_data['password'])
         return user
@@ -50,4 +44,22 @@ class ProgramSerializer(ModelSerializer):
     class Meta:
         model = Program
         fields = ['program_name','course_units']
+
+
+class LoginSerializer(ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        fields = ['email', 'password']
+
+    def validate(self, data):
+        email = data.get('email')
+        password = data.get('password')
+
+        user = authenticate(email=email, password=password)
+        if not user:
+            raise serializers.ValidationError("Invalid Credentials")
+        
+        data['user'] = user
+        return data
 
