@@ -10,6 +10,9 @@ const Settings = () => {
             <div className='settings-content'>
                 <Navbar />
                 <h1>Settings</h1>
+                <div className='settings-box'>
+
+                </div>
             </div>
         </div>
     );
