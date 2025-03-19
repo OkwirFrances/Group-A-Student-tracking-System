@@ -10,7 +10,9 @@ const HelpSupport = () => {
             <div className='helpsupport-content'>
                 <Navbar />
                 <h1>Help/Support</h1>
-                <div className='helpsupport-box'></div>
+                <div className='helpsupport-box'>
+                    <h2>Kindly reach us via Email or Phone<br /> for any help </h2>
+                </div>
             </div>
         </div>
     );
