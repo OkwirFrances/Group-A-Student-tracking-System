@@ -1,96 +1,72 @@
-import React, { useState , useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import './Dashboardcontent.css';
 import search from '../assets/search.png';
 import add from '../assets/add.png';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
 const DashboardContent = () => {
-    const [pendingIssues, setPendingIssues] = useState(0);
-    const [inprogressIssues, setInprogressIssues] = useState(0);
-    const [resolvedIssues, setResolvedIssues] = useState(0);
-    const [recentActions, setRecentActions] = useState([]);
-    const [searchQuerry,setSearchQuerry] = useState('');
-    const [filterStatus, setFilterStatus] = useState('all');
+
     const [issues, setIssues] = useState([]);
+    const [filterStatus, setFilterStatus] = useState('all');
     const navigate = useNavigate();
-
-    const [data,SetData] = useState({pendingIssues: 0, inprogressIssues: 0, recentActions: [], recentIssues: []});
-
-
     useEffect(() => {
-        axios.get('http://localhost:8000/issues')
-        .then((response) => {
-            SetData(response.data)
-            const issues = response.data;
-
-            setPendingIssues(issues.filter((issue) => issue.issue_status === 'Pending').length);
-            setInprogressIssues(issues.filter((issue) => issue.issue_status === 'In-progress').length);
-            setResolvedIssues(issues.filter((issue) => issue.issue_status === 'Resolved').length);
-            setRecentActions(issues.sort((a,b) => new Date(b.date_created) -new Date(a.date_created)).slice(0,5));
-            setIssues(issues);
+        axios.get('http://127.0.0.1:8000/issues/', {withCredentials: true})
+        .then(response => {
+            setIssues(response.data);
         })
-        .catch((error) => console.error('Error fectching data fromdashboard!',error));
-    },
-    []);
+        .catch(error => {
+            console.error('Error fetching issues:',error);
 
+    });
 
-    const handleNewIssueClick = () => {
-        navigate('/issueform');
-    };
+}, []);
+    
 
     const handleFilterChange = (event) => {
         setFilterStatus(event.target.value);
     };
-    const filteredIssues = issues.filter((issues) => {
-        const matchesStatus = filterStatus === 'all' || issues.issue_status.toLowerCase()  ===
-        filterStatus.toLowerCase();
-        const matchesSearch = issues.issue_type.toLowerCase().includes(searchQuerry.toLowerCase())
-        || issues.issue_description.toLowerCase().includes(searchQuerry.toLowerCase())
 
-        return matchesStatus && matchesSearch;
-    } );
+    const handleIssueClick = (id) => {
+        navigate(`/app/issue/${id}`);
+    };
 
-
-       return (
-     
+    const filteredIssues = issues.filter(issue => filterStatus === 'all' || issue.status === filterStatus);
+ 
+    return (
         <div className='dashboard-content'>
             <h1>Dashboard</h1>
             <div className='cards-container'>
                 <div className='card pending'>
-                    <h2>Pending Issues: {data.pendingIssues}</h2>
-                    <p className='issue-count'>{pendingIssues}</p>
-                    <p>You have {pendingIssues} pending issues.</p>
+                    <h2>Pending Issues</h2>
+                    <p className='issue-count'>{issues.filter(issue => issue.status === 'pending').length}</p>
+                    <p>You have {issues.filter(issue => issue.status === 'pending').length} pending issues.</p>
                 </div>
                 <div className='card in-progress'>
-                    <h2>In-progress Issues: {data.inprogressIssues}</h2>
-                    <p className='issue-count'>{inprogressIssues}</p>
-                    <p>You have {inprogressIssues} in-progress issues.</p>
+                    <h2>In-progress Issues</h2>
+                    <p className='issue-count'>{issues.filter(issue => issue.status === 'in-progress').length}</p>
+                    <p>You have {issues.filter(issue => issue.status === 'in-progress').length} in-progress issues.</p>
                 </div>
                 <div className='card resolved'>
                     <h2>Resolved Issues</h2>
-                    <p className='issue-count'>{resolvedIssues}</p>
-                    <p>You have {resolvedIssues} resolved issues.</p>
+                    <p className='issue-count'>{issues.filter(issue => issue.status === 'resolved').length}</p>
+                    <p>You have {issues.filter(issue => issue.status === 'resolved').length} resolved issues.</p>
                 </div>
             </div>
             <div className='recent-actions'>
                 <h2>Recent Actions</h2>
-                <ul>{recentActions.map((action) =>
-                <li key = {action.id} > {action.issue_type} - {action.issue_status}
-                (Created: {new Date(action.date_created).toLocaleDateString()})
-                </li>
-                )}
-                </ul>
-                
             </div>
             <div className='my-issues'>
                 <h2 className='my-issues-title' >My Issues</h2>
-                <button className='new-issue-button' onClick={handleNewIssueClick}>
+                <Link to = "/app/issueform">
+                <button className='new-issue-button'>
                     <img src={add} alt='add' className='add-icon' />
                     New Issue
                 </button>
+                </Link>
                 <div className='filter-select-container'>
                     <select className='filter-select' value={filterStatus} onChange={handleFilterChange}>
                             <option value='all'>All</option>
@@ -104,9 +80,7 @@ const DashboardContent = () => {
                     <input 
                     type='text' 
                     placeholder='Search for anything...' 
-                    className='my-issues-search-input' 
-                    value = {searchQuerry}
-                    onChange = {(e) => setSearchQuerry(e.target.value)}/>
+                    className='my-issues-search-input' />
                     <img src={search} alt='search' className='my-issues-search-icon' />
                 </div>
                <div className='issues-table'>
@@ -118,27 +92,25 @@ const DashboardContent = () => {
                 </div>
                 <div className='table-body'>
                     {filteredIssues.length > 0 ? (
-                        filteredIssues.map((issue) => (
-                            <div key = {issue.id} className='table-row'>
-                                <div className=' table-row-item' >{issue.issue_type}</div>
-                                <div className=' table-row-item' >{issue.issue_status}</div>
-                                <div className=' table-row-item' >{issue.course_unit.course_unit_name}</div>
-                                <div className=' table-row-item' >{new Date(issue.date_created).toLocaleDateString()}</div>
-                                </div>
+                        filteredIssues.map((issue, index) => (
+                            <div key={index} className='table-row' onClick={() => handleIssueClick(issue.id)}>
+                                <div className='table-row-item'>{issue.title}</div>
+                                <div className='table-row-item'>{issue.status}</div>
+                                <div className='table-row-item'>{issue.category}</div>
+                                <div className='table-row-item'>{issue.date}</div>
+                            </div>
                         ))
-                    ):(
-                    <div className='empty-image-container'>
+                    ) : (
+                        <div className='empty-image-container'>
                         <img src={emptybox} alt='emptybox' className='emptybox-icon' />
                         <p className='emptybox-p'>There are no recent issues added.<br />Kindly click <b>New Issue</b> to get started</p>
-                    </div>
-                    )}
+                        </div>
+                        )}
                 </div>
                </div>    
             </div>
         </div>
     );
-
 };
-
 
 export default DashboardContent;
