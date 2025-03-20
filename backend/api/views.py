@@ -68,3 +68,13 @@ class IssueListView(APIView):
         serializer = IssueSerializer(issues, many=True)
         
         return Response(serializer.data, status=250)
+    
+class CreateIssueView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        serializer = IssueSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors,status==400)
