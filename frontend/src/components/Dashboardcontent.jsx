@@ -17,9 +17,13 @@ const DashboardContent = () => {
     const [issues, setIssues] = useState([]);
     const navigate = useNavigate();
 
+    const [data,SetData] = useState({pendingIssues: 0, inprogressIssues: 0, recentActions: [], recentIssues: []});
+
+
     useEffect(() => {
         axios.get('http://localhost:8000/issues')
         .then((response) => {
+            SetData(response.data)
             const issues = response.data;
 
             setPendingIssues(issues.filter((issue) => issue.issue_status === 'Pending').length);
@@ -28,7 +32,7 @@ const DashboardContent = () => {
             setRecentActions(issues.sort((a,b) => new Date(b.date_created) -new Date(a.date_created)).slice(0,5));
             setIssues(issues);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error('Error fectching data fromdashboard!',error));
     },
     []);
 
@@ -56,12 +60,12 @@ const DashboardContent = () => {
             <h1>Dashboard</h1>
             <div className='cards-container'>
                 <div className='card pending'>
-                    <h2>Pending Issues</h2>
+                    <h2>Pending Issues: {data.pendingIssues}</h2>
                     <p className='issue-count'>{pendingIssues}</p>
                     <p>You have {pendingIssues} pending issues.</p>
                 </div>
                 <div className='card in-progress'>
-                    <h2>In-progress Issues</h2>
+                    <h2>In-progress Issues: {data.inprogressIssues}</h2>
                     <p className='issue-count'>{inprogressIssues}</p>
                     <p>You have {inprogressIssues} in-progress issues.</p>
                 </div>

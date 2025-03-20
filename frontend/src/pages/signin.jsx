@@ -4,6 +4,7 @@ import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 import padlock from '../assets/padlock.png';
+import axios from 'axios';
 
 const SignIn = () => {
     const navigate=useNavigate();
@@ -28,15 +29,30 @@ const SignIn = () => {
         setIsTermsAccepted(e.target.checked);
     };
 
-    const handleSignInClick = (e) => {
+    const handleSignInClick = async (e) => {
         console.log('Sign In:', formData);
 e.preventDefault();
 navigate('/app');
         if (isFormValid) {
         } else {
             console.log('Form is  not valid');
+            
+            return;
+        }
+
+        try { 
+            const response = await axios.post('https://api.com/auth/SignIn', formData);
+            console.log('SignIn Successful:',response.data);
+            localStorage.setItem('token',response.data.token);
+            navigate('/api');
+        }
+
+        catch (error) {
+            console.error('SignIn failed:', error.response?.data?.message || error.message);
         }
     };
+
+    
 
     const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
 

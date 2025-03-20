@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import axios
 import './signup.css';
 import Otp from './otp';
 import logo from '../assets/logo.png';
@@ -6,19 +7,13 @@ import person from '../assets/person.png';
 import mail from '../assets/mail.png';
 import padlock from '../assets/padlock.png';
 
-
-
-
-
 const SignUp = () => {
-    
-
     const [formData, setFormData] = useState({
-        fullName:'',
-        email:'',
-        password:'',
-        confirmPassword:'',
-        role:'',
+        fullName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        role: '',
         termsAccepted: false,
     });
 
@@ -38,29 +33,27 @@ const SignUp = () => {
         if (!fullName) {
             console.error('Full Name is required');
         }
-        if (!email){
+        if (!email) {
             console.error('Email is required');
             return false;
         }
-        if (!password || password.length < 8){
-
+        if (!password || password.length < 8) {
             console.error('Password is required and should be at least 8 characters');
             return false;
         }
-        if (password !== confirmPassword)   
-        {
+        if (password !== confirmPassword) {
             console.error('Passwords do not match');
             return false;
         }
-        if (!role){
+        if (!role) {
             console.error('Role is required');
             return false;
         }
-        if (!termsAccepted){
+        if (!termsAccepted) {
             console.error('Terms and Conditions must be accepted');
             return false;
         }
-    
+
         return (
             fullName &&
             email &&
@@ -70,68 +63,68 @@ const SignUp = () => {
             termsAccepted &&
             password === confirmPassword &&
             password.length >= 8 &&
-            confirmPassword.length >=8
+            confirmPassword.length >= 8
         );
     };
 
-    const generateOtp = () => {
+    const generateOtp = async () => {
         const otp = Math.floor(1000 + Math.random() * 9000).toString();
         setGeneratedOtp(otp);
         console.log('Generated OTP:', otp);
-        console.log('Sending OTP to:', formData.email);
+    
+        // Send OTP to the user's email
+        try {
+            const response = await axios.post('http://localhost:8000/api/generate-otp/', {
+                email: formData.email,
+                otp_code: otp,
+            });
+            console.log('OTP sent:', response.data);
+        } catch (error) {
+            console.error('Error sending OTP:', error.response ? error.response.data : error.message);
+        }
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Form Data:', formData);
 
-        if (isFormValid()){
-            try{
-                const response = await fetch('http://localhost:5000/api/auth/signup', {
-                    method : 'POST',
-                    headers : {
-                        'Content-Type' : 'application/json',
-                    },
-                    body : JSON.stringify({
-                        username: formData.fullName,
-                        email: formData.email,
-                        password:formData.password,
-                        role: formData.role,
-                        terms_accepted: formData.termsAccepted,}),
+        if (isFormValid()) {
+            try {
+                const response = await axios.post('http://localhost:8000/api/register/', {
+                    username: formData.fullName,
+                    email: formData.email,
+                    password: formData.password,
+                    role: formData.role,
+                    terms_accepted: formData.termsAccepted,
                 });
-                
+
                 console.log('Response Status:', response.status);
-                const data = await response.json();
+                console.log('Signup Response:', response.data);
                 
-                console.log('Signup Response:', data);
 
-                if (response.ok){
-                    console.log('Signup Successful:', data);
-                    
-            generateOtp();
-            setShowOtpScreen(true);
-
+                if (response.status === 201) { // Assuming 201 is the status code for successful creation
+                    console.log('Signup Successful:', response.data);
+                    generateOtp();
+                    setShowOtpScreen(true);
+                } else {
+                    console.error('Signup Failed:', response.data);
+                }
+            } catch (error) {
+                console.error('Signup Failed:', error.response ? error.response.data : error.message);
+            }
         } else {
-            console.error('Signup Failed:', data);
+            console.error('Form is not valid:', formData);
         }
-    } catch (error) {
-        console.error('Signup Failed:', error);
-    }
-} else {
-    console.error('Form is not valid:', formData);
-}
-};
+    };
 
     if (showOtpScreen) {
         return <Otp email={formData.email} generatedOtp={generatedOtp} />;
     }
-
-  
+    
     return (
         <div className='signup-container'>
             <div className='signup-left'>
-                    <img className='muk'src={logo} alt='muk logo' />
-                    <h1 className='system-title'>Welcome to the<br /> Academic Issue Tracking System<br /> AITS</h1>
+                <img className='muk' src={logo} alt='muk logo' />
+                <h1 className='system-title'>Welcome to the<br /> Academic Issue Tracking System<br /> AITS</h1>
             </div>
             <div className='sigup-right'>
                 <form className='signup-right-form' onSubmit={handleSubmit}>
@@ -140,65 +133,65 @@ const SignUp = () => {
                     <label>
                         Full Name
                         <div className='input-container'>
-                            <input 
-                            className='full-name'
-                            type='text'
-                            name='fullName' 
-                            placeholder='Enter your Full Name' 
-                            value={formData.fullName} 
-                            onChange={handleChange}/>
+                            <input
+                                className='full-name'
+                                type='text'
+                                name='fullName'
+                                placeholder='Enter your Full Name'
+                                value={formData.fullName}
+                                onChange={handleChange} />
                             <img src={person} alt='person' className='person-icon' />
                         </div>
                     </label>
                     <label>
                         Email Address
                         <div className='input-container'>
-                            <input 
-                            className='email-address'
-                            type='email' 
-                            name='email' 
-                            placeholder='Enter your Email Address' 
-                            value={formData.email} 
-                            onChange={handleChange} />
+                            <input
+                                className='email-address'
+                                type='email'
+                                name='email'
+                                placeholder='Enter your Email Address'
+                                value={formData.email}
+                                onChange={handleChange} />
                             <img src={mail} alt='mail' className='mail-icon' />
                         </div>
                     </label>
                     <label>
                         Password
                         <div className='input-container'>
-                        <input 
-                            className='password'
-                            type='password' 
-                            name='password' 
-                            placeholder='Enter your Password (min - 8 characters)' 
-                            value={formData.password} 
-                            onChange={handleChange}
-                            minLength={8} />
+                            <input
+                                className='password'
+                                type='password'
+                                name='password'
+                                placeholder='Enter your Password (min - 8 characters)'
+                                value={formData.password}
+                                onChange={handleChange}
+                                minLength={8} />
                             <img src={padlock} alt='padlock' className='padlock-icon' />
                         </div>
                     </label>
                     <label>
                         Confirm Password
                         <div className='input-container'>
-                        <input 
-                            className='confirm-password'
-                            type='password' 
-                            name='confirmPassword' 
-                            placeholder='Confirm your Password (min -8 characters)' 
-                            value={formData.confirmPassword} 
-                            onChange={handleChange}
-                            minLength={8} />
+                            <input
+                                className='confirm-password'
+                                type='password'
+                                name='confirmPassword'
+                                placeholder='Confirm your Password (min -8 characters)'
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                                minLength={8} />
                             <img src={padlock} alt='padlock' className='padlock-icon' />
                         </div>
                     </label>
                     <label>
                         Role
-                        <div className='dropdown' >
-                            <select 
-                            className='role-select' 
-                            name='role' 
-                            value={formData.role} 
-                            onChange={handleChange} >
+                        <div className='dropdown'>
+                            <select
+                                className='role-select'
+                                name='role'
+                                value={formData.role}
+                                onChange={handleChange}>
                                 <option value=''>Select Role</option>
                                 <option value="student">Student</option>
                                 <option value="lecturer">Lecturer</option>
@@ -207,19 +200,17 @@ const SignUp = () => {
                         </div>
                     </label>
                     <label className='terms'>
-                        <input 
-                            type='checkbox' 
-                            className='terms-checkbox' 
-                            name='termsAccepted' 
-                            checked={formData.termsAccepted} 
-                            onChange={handleChange}/> 
+                        <input
+                            type='checkbox'
+                            className='terms-checkbox'
+                            name='termsAccepted'
+                            checked={formData.termsAccepted}
+                            onChange={handleChange} />
                         I have read and accepted all the AITS terms and conditions.
                     </label>
-                    <button 
-                    
-                        className='signup-button' 
-                        disabled={!isFormValid()}
-                        >
+                    <button
+                        className='signup-button'
+                        disabled={!isFormValid()}>
                         SIGN UP
                     </button>
                     <p className='signin-text'>
