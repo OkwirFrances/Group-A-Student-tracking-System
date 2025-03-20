@@ -2,11 +2,13 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .models import *   
 from .serializers import *
-from rest_framework.decorators import APIView
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny 
 from django.http import JsonResponse
+from rest_framework.permissions import IsAuthenticated
+
 
 
 
@@ -56,3 +58,13 @@ class CourseUnitView(viewsets.ModelViewSet):
 class ProgramView(viewsets.ModelViewSet):
     queryset = Program.objects.all()
     serializer_class = ProgramSerializer
+    
+    
+class IssueListView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        issues = Issue.objects.all()
+        serializer = IssueSerializer(issues, many=True)
+        
+        return Response(serializer.data, status=250)
