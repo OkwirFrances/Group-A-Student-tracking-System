@@ -19,6 +19,7 @@ urlpatterns = [
     path('',include(router.urls)),
     path('api/users/', get_users_by_role, name = 'get_users_by_role'),
     path('api/users/', get_course_units, name = 'get_course_units'),
+    path('issues/',IssueListView.as_view(),name = 'issue_list'),
     path('signup/',SignUpView.as_view(),name = 'signup'),
     path('access_token/',TokenObtainPairView.as_view(),name = 'access_token'),
     path('refresh_token/',TokenRefreshView.as_view(),name = 'refresh_token')
