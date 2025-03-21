@@ -19,6 +19,8 @@ const Settings = () => {
                         <img src={logo} alt='muk-logo' className='muklogo' />
                         <button className='change-password'>Change Password</button>
                         <button className='preferences'>Preferences</button>
+                        <button className='help-support'>Help & Support</button>
+                        <button className='delete-account'>Delete Account</button>
                     </div>
                     
                 </div>

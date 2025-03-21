@@ -82,6 +82,20 @@
     transition: background-color 0.3s ease;
 }
 
+.help-support {
+    margin-top: 40px;
+    padding: 10px 75px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.help-support:hover {
+    background-color: green;
+    color: white;
+}
+
 .preferences:hover {
     background-color: green;
     color: white;
