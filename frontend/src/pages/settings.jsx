@@ -17,6 +17,7 @@ const Settings = () => {
                     <h2>Tap one of the tabs to appear here</h2>
                     <div className='settings-tab'>
                         <img src={logo} alt='muk-logo' className='muklogo' />
+                        <button className='change-password'>Change Password</button>
                     </div>
                     
                 </div>
