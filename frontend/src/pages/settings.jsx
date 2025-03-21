@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import './settings.css';
 import logo from '../assets/logo.png';
+import settings from '../assets/settings.png';
 
 const Settings = () => {
     return (
@@ -12,6 +13,7 @@ const Settings = () => {
                 <Navbar />
                 <h1>Settings</h1>
                 <div className='settings-box'>
+                    <img src={settings} alt='settings' className='settings' />
                     <div className='settings-tab'>
                         <img src={logo} alt='muk-logo' className='muklogo' />
                     </div>
