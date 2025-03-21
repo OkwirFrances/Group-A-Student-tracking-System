@@ -73,6 +73,20 @@
     transition: background-color 0.3s ease;
 }
 
+.preferences {
+    margin-top: 40px;
+    padding: 10px 85px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.preferences:hover {
+    background-color: green;
+    color: white;
+}
+
 .change-password:hover {
     background-color: green;
     color: white;

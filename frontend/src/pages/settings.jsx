@@ -18,6 +18,7 @@ const Settings = () => {
                     <div className='settings-tab'>
                         <img src={logo} alt='muk-logo' className='muklogo' />
                         <button className='change-password'>Change Password</button>
+                        <button className='preferences'>Preferences</button>
                     </div>
                     
                 </div>
