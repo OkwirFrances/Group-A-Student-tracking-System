@@ -109,3 +109,42 @@ def resend_otp(request):
     user.save()
     send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'admin@example.com', [email])
     return Response({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
+
+
+# Department View (Only accessible by registrars)
+class DepartmentView(generics.ListCreateAPIView):
+    serializer_class = DepartmentSerializer
+    permission_classes = [IsAuthenticated, IsRegistrar]  # Only registrars can create departments
+
+    def get_queryset(self):
+        return Department.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+# Course View (Only accessible by registrars)
+class CourseView(generics.ListCreateAPIView):
+    serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated, IsRegistrar]  # Only registrars can create courses
+
+    def get_queryset(self):
+        return Course.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+# Resolve Issue View (Accessible by lecturers and registrars)
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def resolve_issue(request, issue_id):
+    issue = get_object_or_404(Issue, id=issue_id)
+    
+    if request.user.role in ['registrar', 'lecturer'] and (issue.assigned_to == request.user or request.user.role == 'registrar'):
+        issue.resolved_by = request.user
+        issue.resolved_at = timezone.now()
+        issue.status = 'resolved'
+        issue.save()
+        return Response({'message': 'Issue resolved successfully'})
+    
+    return Response({'error': 'Unauthorized'}, status=status.HTTP_403_FORBIDDEN)
+
