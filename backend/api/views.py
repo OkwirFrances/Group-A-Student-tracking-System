@@ -1,3 +1,5 @@
+# views.py
+
 import random
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
@@ -8,18 +10,19 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.utils import timezone
 from datetime import timedelta
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from .models import Issue, Lecturer, Registrar, Department, Course
 from .serializers import IssueSerializer, DepartmentSerializer, CourseSerializer, UserUpdateSerializer
-from .permissions import IsRegistrar, IsLecturer, IsStudent 
+from .permissions import IsRegistrar, IsLecturer, IsStudent  # Custom permissions
 
 User = get_user_model()
 
-
+# Helper function to generate OTP
 def generate_otp():
     return str(random.randint(100000, 999999))
 
-
+# Signup View
 @api_view(['POST'])
 def signup(request):
     email = request.data.get('email')
@@ -41,7 +44,6 @@ def signup(request):
     send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'admin@example.com', [email])
     return Response({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
- 
 # Login View for JWT Authentication
 @api_view(['POST'])
 def login(request):
@@ -65,7 +67,6 @@ def login(request):
         'access_token': str(refresh.access_token),
         'refresh_token': str(refresh)
     }, status=status.HTTP_200_OK)
-   
 
 # OTP Verification View with Expiry
 @api_view(['POST'])
@@ -91,7 +92,6 @@ def verify_otp(request):
             return Response({'token': str(refresh.access_token)})
     return Response({'error': 'Invalid OTP or email'}, status=status.HTTP_400_BAD_REQUEST)
 
-
 # Resend OTP View
 @api_view(['POST'])
 def resend_otp(request):
@@ -108,7 +108,6 @@ def resend_otp(request):
     user.save()
     send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'admin@example.com', [email])
     return Response({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
-
 
 # Department View (Only accessible by registrars)
 class DepartmentView(generics.ListCreateAPIView):
@@ -131,6 +130,40 @@ class CourseView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save()
+
+# Issue View (Only accessible by students for their own issues)
+class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = IssueSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        if self.request.user.role == 'student':
+            return Issue.objects.filter(student=self.request.user, course__students=self.request.user)
+        return Issue.objects.all()
+
+    def perform_create(self, serializer):
+        if self.request.user.role == 'student':
+            course = serializer.validated_data.get('course')
+            if course and self.request.user not in course.students.all():
+                raise PermissionDenied('You can only report issues for courses you are enrolled in.')
+            serializer.save(student=self.request.user)
+        else:
+            raise PermissionDenied('Only students can create issues.')
+
+# Assign Issue View (Only accessible by registrars)
+@api_view(['POST'])
+@permission_classes([IsAuthenticated, IsRegistrar])  # Only registrars can assign issues
+def assign_issue(request, issue_id, lecturer_id):
+    issue = get_object_or_404(Issue, id=issue_id)
+    lecturer = get_object_or_404(Lecturer, id=lecturer_id)
+    
+    if issue.course and lecturer.department != issue.course.department:
+        return Response({'error': 'Lecturer must belong to the same department as the course'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    issue.assign_to_lecturer(request.user, lecturer)
+    issue.assigned_at = timezone.now()
+    issue.save()
+    return Response({'message': 'Issue assigned successfully'})
 
 # Resolve Issue View (Accessible by lecturers and registrars)
 @api_view(['POST'])
