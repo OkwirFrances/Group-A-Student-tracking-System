@@ -46,7 +46,7 @@ const Settings = () => {
                             className='old-password'
                             />
                         </label>
-                        <label>
+                        <label className='newpassword'>
                             New Password
                             <input 
                             type='password'
