@@ -92,7 +92,7 @@ const Settings = () => {
                         </label>
                         <button 
                         className='save-changes'
-                        disabled={!isFormComplete}
+                        disabled={!isFormComplete()}
                         >Save Changes</button>
                     </div>
                     )}
