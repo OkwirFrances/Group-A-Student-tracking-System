@@ -68,6 +68,7 @@ const Settings = () => {
                             className='old-password'
                             value={formData.oldPassword}
                             onChange={handleInputChange}
+                            minLength={8}
                             />
                         </label>
                         <label className='newpassword'>
@@ -78,7 +79,8 @@ const Settings = () => {
                             value={formData.newPassword}
                             placeholder='Enter Your New Password'
                             className='new-password'
-                            onChange={handleInputChange}/>
+                            onChange={handleInputChange}
+                            minLength={8}/>
                         </label>
                         <label className='confirmpassword'>
                             Confirm Password
@@ -88,7 +90,8 @@ const Settings = () => {
                             value={formData.confirmPassword}
                             placeholder='Confirm Your New Password'
                             className='confirm-password'
-                            onChange={handleInputChange}/>
+                            onChange={handleInputChange}
+                            minLength={8}/>
                         </label>
                         <button 
                         className='save-changes'
