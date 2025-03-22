@@ -58,14 +58,15 @@ class User(AbstractUser):
     objects = CustomUserManager() 
 
     def __str__(self):
-        return self.full_name
-
-class Department(models.Model):
-    department_name = models.CharField(max_length=100, unique=True)
-    description = models.TextField()
+        return self.fullname
+    
+class Department(models.Model):  
+    code = models.CharField(max_length=10, unique=True)
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
     
     def __str__(self):
-        return self.department_name
+        return f"{self.code} - {self.name}"
 
 class CourseUnit(models.Model):
     course_unit_name = models.CharField(max_length=100)
