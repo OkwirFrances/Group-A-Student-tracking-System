@@ -80,13 +80,14 @@ class IssueSerializer(serializers.ModelSerializer):
         return instance
 
 
-class CourseUnitSerializer(ModelSerializer):
+class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CourseUnit
-        fields = ['course_unit_name','course_unit_code'] 
-
-class ProgramSerializer(ModelSerializer):
-    class Meta:
-        model = Program
-        fields = ['program_name','course_units']
-
+        model = User
+        fields = ['fullname', 'phone_number', 'profile_picture'] 
+    
+    def update(self, instance, validated_data):
+        instance.fullname = validated_data.get('fullname', instance.fullname)
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        instance.profile_picture = validated_data.get('profile_picture', instance.profile_picture)
+        instance.save()
+        return instance
