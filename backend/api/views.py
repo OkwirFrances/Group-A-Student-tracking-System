@@ -164,3 +164,14 @@ class UserInfoView(generics.RetrieveAPIView):
         }
         return Response(user_data, status=status.HTTP_200_OK)
 
+# User Edit View (Accessible by authenticated users)
+class UserEditView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserUpdateSerializer
+
+    def get_object(self):
+        return self.request.user
+
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+        return response
