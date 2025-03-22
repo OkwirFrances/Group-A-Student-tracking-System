@@ -234,10 +234,46 @@
 .delete-confirmation {
     text-align: center;
     margin-top: 20px;
+    width: 80%;
+    margin-left: 180px;
+    background-color: white;
+    margin-top: 220px;
 }
 
 .delete-buttons {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+}
+
+.delete-no {
+    padding: 10px 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 450px;
+}
+
+.delete-no:hover {
+    background-color: green;
+    color: white;
+}
+
+.delete-yes {
+    padding: 10px 40px;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 150px;
+}
+
+.delete-yes:hover {
+    background-color: red;
+    color: white;
 }
