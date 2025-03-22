@@ -67,19 +67,27 @@ def login(request):
         'refresh_token': str(refresh)
     }, status=status.HTTP_200_OK)
    
-    
-class DepartmentView(viewsets.ModelViewSet):
-    queryset = Department.objects.all()
-    serializer_class = DepartmentSerializer
 
-class IssueView(viewsets.ModelViewSet):
-    queryset = Issue.objects.all()
-    serializer_class = IssueSerializer
+# OTP Verification View with Expiry
+@api_view(['POST'])
+def verify_otp(request):
+    email = request.data.get('email')
+    otp = request.data.get('otp')
 
-class CourseUnitView(viewsets.ModelViewSet):
-    queryset = CourseUnit.objects.all()
-    serializer_class = CourseUnitSerializer
+    if not email or not otp:
+        return Response({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
 
-class ProgramView(viewsets.ModelViewSet):
-    queryset = Program.objects.all()
-    serializer_class = ProgramSerializer
+    user = User.objects.filter(email=email).first()
+    if user:
+        otp_created_at = user.otp_created_at
+        # Check if OTP is expired (expires after 10 minutes)
+        if otp_created_at and timezone.now() - otp_created_at > timedelta(minutes=10):
+            return Response({'error': 'OTP has expired'}, status=status.HTTP_400_BAD_REQUEST)
+        if user.otp == otp:
+            user.is_verified = True
+            user.otp = None
+            user.otp_created_at = None  # Clear OTP and timestamp
+            user.save()
+            refresh = RefreshToken.for_user(user)
+            return Response({'token': str(refresh.access_token)})
+    return Response({'error': 'Invalid OTP or email'}, status=status.HTTP_400_BAD_REQUEST)
