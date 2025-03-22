@@ -48,23 +48,37 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         fields = ['id', 'code', 'name', 'department', 'description']
 
-    def create(self , validated_data):
-        validated_data.pop('confirm_password')
-        user = CustomUser.objects.create_user(username=validated_data['username'], email=validated_data['email'], password=validated_data['password'], term_accepted=validated_data['term_accepted'])
-
-        return user
-
-
-class DepartmentSerializer(ModelSerializer):
-    class Meta:
-        model = Department
-        fields = ['department_name','description']
-
-class IssueSerializer(ModelSerializer):
+class IssueSerializer(serializers.ModelSerializer):
+    student = StudentSerializer(read_only=True)
+    course = CourseSerializer(read_only=True)
+    assigned_to = LecturerSerializer(read_only=True)
+    assigned_by = RegistrarSerializer(read_only=True)
+    resolved_by = RegistrarSerializer(read_only=True)
+    
+    issue_type = serializers.ChoiceField(choices=Issue.ISSUE_CHOICES)
+    semester = serializers.ChoiceField(choices=Issue.SEMESTER_CHOICES)
+    status = serializers.ChoiceField(choices=Issue.ISSUE_STATUS)
+    
     class Meta:
         model = Issue
-        fields = '__all__'
-        #fields = ['student','issue_type','issue_status','course_unit','issue_description','Image','date_created','update','lecturer','registrar']
+        fields = [
+            'id', 'student', 'issue_type', 'semester', 'course', 'title', 'description', 
+            'status', 'created_at', 'updated_at', 'assigned_to', 'assigned_by', 
+            'assigned_at', 'resolved_by', 'resolved_at'
+        ]
+
+    def create(self, validated_data):
+        student = self.context['request'].user
+        validated_data['student'] = student
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        for attr, value in validated_data.items():
+            if attr not in ['assigned_to', 'assigned_by', 'resolved_by']:
+                setattr(instance, attr, value)
+        instance.save()
+        return instance
+
 
 class CourseUnitSerializer(ModelSerializer):
     class Meta:
