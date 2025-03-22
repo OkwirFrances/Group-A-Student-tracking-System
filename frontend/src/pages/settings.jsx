@@ -13,6 +13,8 @@ const Settings = () => {
         confirmPassword: '',
     });
 
+    const [notification, setNotification] = useState('');
+
     const handleChangePasswordClick = () => {
         setShowChangePassword(true);
     };
@@ -33,6 +35,23 @@ const Settings = () => {
             formData.newPassword === formData.confirmPassword
         );
     };
+
+    const handleSaveChanges = () => {
+        setNotification('Password has been successfully set!');
+
+            setFormData({
+            oldPassword: '',
+            newPassword: '',
+            confirmPassword: '',
+        });
+
+        setShowChangePassword(false);
+
+        setTimeout(() => {
+            setNotification('');
+        }, 3000);
+    };
+
 
     return (
         <div className='settings-container'>
@@ -97,10 +116,17 @@ const Settings = () => {
                         <button 
                         className='save-changes'
                         disabled={!isFormComplete()}
-                        >Save Changes</button>
+                        onClick={handleSaveChanges}
+                        >Save Changes
+                        </button>
                     </div>
                     )}
                 </div>
+                {notification && (
+                    <div className='notification'>
+                        {notification}
+                    </div>
+                )}
             </div>
         </div>
     );
