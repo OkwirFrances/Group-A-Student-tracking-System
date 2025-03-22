@@ -51,9 +51,14 @@ class User(AbstractUser):
     
    
     terms_accepted = models.BooleanField(default=False)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['full_name', 'role'] 
+    
+    
+    objects = CustomUserManager() 
 
     def __str__(self):
-        return self.username
+        return self.full_name
 
 class Department(models.Model):
     department_name = models.CharField(max_length=100, unique=True)
