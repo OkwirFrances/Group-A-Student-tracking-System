@@ -176,7 +176,7 @@
 }
 
 .change-password {
-    margin-top: 40px;
+    margin-top: 60px;
     padding: 10px 60px;
     border-radius: 10px;
     font-size: 1rem;
@@ -184,17 +184,8 @@
     transition: background-color 0.3s ease;
 }
 
-.preferences {
-    margin-top: 70px;
-    padding: 10px 85px;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
 .help-support {
-    margin-top: 70px;
+    margin-top: 80px;
     padding: 10px 75px;
     border-radius: 10px;
     font-size: 1rem;
@@ -207,13 +198,8 @@
     color: white;
 }
 
-.preferences:hover {
-    background-color: green;
-    color: white;
-}
-
 .delete-account {
-    margin-top: 70px;
+    margin-top: 80px;
     padding: 10px 75px;
     border-radius: 10px;
     font-size: 1rem;

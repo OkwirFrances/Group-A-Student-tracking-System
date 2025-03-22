@@ -94,7 +94,6 @@ const Settings = () => {
                             <button 
                             className='change-password'
                             onClick={handleChangePasswordClick}>Change Password</button>
-                            <button className='preferences'>Preferences</button>
                             <button 
                             className='help-support'
                             onClick={handleHelpSupportClick}
