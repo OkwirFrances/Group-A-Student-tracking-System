@@ -7,16 +7,21 @@ import settings from '../assets/settings.png';
 
 const Settings = () => {
     const [showChangePassword, setShowChangePassword] = useState(false);
+    const [showHelpSupport, setShowHelpSupport] = useState(false);
     const [formData, setFormData] = useState({
         oldPassword: '',
         newPassword: '',
         confirmPassword: '',
     });
 
-    const [notification, setNotification] = useState('');
-
     const handleChangePasswordClick = () => {
         setShowChangePassword(true);
+        setShowHelpSupport(false);
+    };
+
+    const handleHelpSupportClick = () => {
+        setShowHelpSupport(true);
+        setShowChangePassword(false);
     };
 
     const handleInputChange = (e) => {
@@ -37,7 +42,7 @@ const Settings = () => {
     };
 
     const handleSaveChanges = () => {
-        setNotification('Password has been successfully set!');
+        alert('Password has been successfully set!');
 
             setFormData({
             oldPassword: '',
@@ -46,10 +51,6 @@ const Settings = () => {
         });
 
         setShowChangePassword(false);
-
-        setTimeout(() => {
-            setNotification('');
-        }, 3000);
     };
 
 
@@ -61,7 +62,7 @@ const Settings = () => {
                 <h1>Settings</h1>
                 <div className='settings-box'>
                     <div className='settings-left'>
-                    {!showChangePassword && (
+                    {!showChangePassword && !showHelpSupport && (
                         <>
                             <img src={settings} alt='settings' className='settings' />
                             <h2>Tap one of the tabs to appear here</h2>
@@ -73,7 +74,10 @@ const Settings = () => {
                             className='change-password'
                             onClick={handleChangePasswordClick}>Change Password</button>
                             <button className='preferences'>Preferences</button>
-                            <button className='help-support'>Help & Support</button>
+                            <button 
+                            className='help-support'
+                            onClick={handleHelpSupportClick}
+                            >Help & Support</button>
                             <button className='delete-account'>Delete Account</button>
                         </div>
                     </div>
@@ -120,13 +124,14 @@ const Settings = () => {
                         >Save Changes
                         </button>
                     </div>
-                    )}
-                </div>
-                {notification && (
-                    <div className='notification'>
-                        {notification}
+                )}
+                {showHelpSupport && (
+                    <div className='settings-right'>
+                        <h2>Help & Support</h2>
+                        
                     </div>
                 )}
+                </div>
             </div>
         </div>
     );
