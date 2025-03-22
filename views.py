@@ -14,15 +14,15 @@ from rest_framework.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from .models import Issue, Lecturer, Registrar, Department, Course
 from .serializers import IssueSerializer, DepartmentSerializer, CourseSerializer, UserUpdateSerializer
-
+from .permissions import IsRegistrar, IsLecturer, IsStudent  # Custom permissions
 
 User = get_user_model()
 
-
+# Helper function to generate OTP
 def generate_otp():
     return str(random.randint(100000, 999999))
 
-
+# Signup View
 @api_view(['POST'])
 def signup(request):
     email = request.data.get('email')

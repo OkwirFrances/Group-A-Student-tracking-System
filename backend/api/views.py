@@ -8,11 +8,10 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.utils import timezone
 from datetime import timedelta
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from .models import Issue, Lecturer, Registrar, Department, Course
 from .serializers import IssueSerializer, DepartmentSerializer, CourseSerializer, UserUpdateSerializer
- 
+from .permissions import IsRegistrar, IsLecturer, IsStudent 
 
 User = get_user_model()
 
