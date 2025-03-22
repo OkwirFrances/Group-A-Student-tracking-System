@@ -52,29 +52,29 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=20, blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True) 
     
-    # Role choices
+    
     ROLE_CHOICES = [
         ('student', 'Student'),
         ('lecturer', 'Lecturer'),
         ('registrar', 'Registrar'),
     ]
     
-    # Setting default role as 'student'
+    
     role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='student')
     
-    # Terms acceptance
+   
     terms_accepted = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name', 'role'] 
     
-     # Fields required for admin creation
+    
     objects = CustomUserManager() 
 
     def __str__(self):
         return self.full_name
     
-class Department(models.Model):  # Changed inheritance
+class Department(models.Model):  
     code = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)

@@ -27,29 +27,30 @@ class CustomUserManager(BaseUserManager):
 
         return self.create_user(email, password, **extra_fields)
 
-class CustomUser(AbstractUser):
-    ROLE_CHOICES = [( 'Student','STUDENT'), 
-                    ('Lecturer', 'LECTURER'),
-                 ('Academic_registrar','ACADEMIC REGISTRAR')]
-    
-    GENDER = [('Male','MALE'),
-              ('Female','FEMALE')]
-    
-    YEAR_CHOICES = [('YEAR_1','YEAR_1'),
-            ('YEAR_2','YEAR_2'),
-            ('YEAR_3','YEAR_3'),
-            ('YEAR_4','YEAR_4'),
-            ('YEAR_5','YEAR_5')]    
-    full_name = models.CharField(max_length=100,default='Default_Name')
+class User(AbstractUser):
+    username = None  # Removing the username field
     email = models.EmailField(unique=True)
-    password2= models.CharField(max_length=20)
-    term_accepted = models.BooleanField(default=False)
-    Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='Student')
-    Gender = models.CharField(max_length=20,choices=GENDER,editable=True)
-    image = models.ImageField(upload_to='images/',null=True,blank=True)
-    program = models.ForeignKey('Program', on_delete=models.CASCADE,related_name='programs',null = True,blank=True)
-    year_of_study = models.CharField(max_length=20,choices=YEAR_CHOICES,null=True,editable=True)
-
+    fullname = models.CharField(max_length=255, null=False)
+    otp = models.CharField(max_length=6, blank=True, null=True)
+    is_verified = models.BooleanField(default=False)
+    otp_created_at = models.DateTimeField(null=True, blank=True)
+    first_name = models.CharField(max_length=30, blank=True)  # Added first_name field
+    last_name = models.CharField(max_length=30, blank=True)
+    phone_number = models.CharField(max_length=20, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True) 
+    
+    
+    ROLE_CHOICES = [
+        ('student', 'Student'),
+        ('lecturer', 'Lecturer'),
+        ('registrar', 'Registrar'),
+    ]
+    
+    
+    role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='student')
+    
+   
+    terms_accepted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username
