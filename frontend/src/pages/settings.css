@@ -230,3 +230,14 @@
     background-color: green;
     color: white;
 }
+
+.delete-confirmation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.delete-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
