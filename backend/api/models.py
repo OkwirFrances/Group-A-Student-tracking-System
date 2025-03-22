@@ -102,6 +102,17 @@ class Student(User):
 
     def __str__(self):
         return f"{self.student_id} - {self.first_name} {self.last_name}" 
+    
+class Registrar(User):  
+    staff_id = models.CharField(max_length=20, unique=True)
+    office_number = models.CharField(max_length=20)
+
+    def save(self, *args, **kwargs):
+        self.role = 'registrar' 
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.staff_id} - {self.first_name} {self.last_name}"     
 
 class Program(models.Model):
     program_name = models.CharField(max_length=100)

@@ -123,7 +123,7 @@ class Registrar(User):
     office_number = models.CharField(max_length=20)
 
     def save(self, *args, **kwargs):
-        self.role = 'registrar'  # Ensure role is set to 'registrar'
+        self.role = 'registrar' 
         super().save(*args, **kwargs)
 
     def __str__(self):
