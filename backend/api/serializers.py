@@ -1,7 +1,4 @@
 from rest_framework import serializers
-from rest_framework.serializers import ModelSerializer
-from .models import *
-from django.core.exceptions import ValidationError
 from .models import User, Department, Course, Lecturer, Student, Registrar, Issue
 from django.contrib.auth import get_user_model
 
