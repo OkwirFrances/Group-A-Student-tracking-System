@@ -21,6 +21,7 @@
 
 .settings-box {
     position: absolute;
+    justify-content: center;
     border: 1px solid black;
     border-radius: 10px;
     padding: 20px;
@@ -31,6 +32,36 @@
     margin-top: 250px;
     height: 100vh;
     background-color: white;
+    align-items: flex-start;
+}
+
+.settings-left {
+    flex: 1;
+    text-align: center;
+}
+
+.settings-right {
+    
+    text-align: center;
+    padding-left: 20px;
+}
+
+.settings-right label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.old-password {
+    position: absolute;
+    width: 90%;
+    padding: 10px;
+    margin-top: 30px;
+    margin-left: -100px;
+    border-radius: 10px;
+    font-size: 1rem;
+    width: 400px;
+    border: 1px solid black;
 }
 
 .settings-tab {
@@ -57,6 +88,7 @@
     border: 1px solid black;
 }
 
+
 .settings {
     width: 100px;
     height: 100px;
@@ -74,7 +106,7 @@
 }
 
 .preferences {
-    margin-top: 40px;
+    margin-top: 70px;
     padding: 10px 85px;
     border-radius: 10px;
     font-size: 1rem;
@@ -83,7 +115,7 @@
 }
 
 .help-support {
-    margin-top: 40px;
+    margin-top: 70px;
     padding: 10px 75px;
     border-radius: 10px;
     font-size: 1rem;
@@ -97,6 +129,20 @@
 }
 
 .preferences:hover {
+    background-color: green;
+    color: white;
+}
+
+.delete-account {
+    margin-top: 70px;
+    padding: 10px 75px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-account:hover {
     background-color: green;
     color: white;
 }
