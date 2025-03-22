@@ -3,6 +3,9 @@ from rest_framework.serializers import ModelSerializer
 from .models import *
 from django.core.exceptions import ValidationError
 from .models import User, Department, Course, Lecturer, Student, Registrar, Issue
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,8 +17,16 @@ class LecturerSerializer(UserSerializer):
     courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True)
 
     class Meta:
-        model = CustomUser
-        fields = ['full_name','email','password','confirm_password','term_accepted']
+        model = Lecturer
+        fields = UserSerializer.Meta.fields + ['staff_id', 'department', 'courses', 'office_location']
+
+class StudentSerializer(UserSerializer):
+    department = serializers.StringRelatedField()
+    enrolled_courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True)
+
+    class Meta:
+        model = Student
+        fields = UserSerializer.Meta.fields + ['student_id', 'department', 'enrolled_courses', 'enrollment_date']
 
 
 class RegisterSerializer(ModelSerializer):

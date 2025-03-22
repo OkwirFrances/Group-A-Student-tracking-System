@@ -1,5 +1,8 @@
 from rest_framework import serializers
 from .models import User, Department, Course, Lecturer, Student, Registrar, Issue
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -62,27 +65,23 @@ class IssueSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
-        # Automatically set the student from the request user if it's a student
         student = self.context['request'].user
         validated_data['student'] = student
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
-        # Update only non-readonly fields
         for attr, value in validated_data.items():
             if attr not in ['assigned_to', 'assigned_by', 'resolved_by']:
                 setattr(instance, attr, value)
         instance.save()
         return instance
 
-from django.contrib.auth import get_user_model
 
-User = get_user_model()
 
 class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['fullname', 'phone_number', 'profile_picture']  # Fields you want users to update
+        fields = ['fullname', 'phone_number', 'profile_picture'] 
     
     def update(self, instance, validated_data):
         instance.fullname = validated_data.get('fullname', instance.fullname)
