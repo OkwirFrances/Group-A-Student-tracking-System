@@ -29,7 +29,8 @@ const Settings = () => {
         return (
             formData.oldPassword.trim() !== '' &&
             formData.newPassword.trim() !== '' &&
-            formData.confirmPassword.trim() !== ''
+            formData.confirmPassword.trim() !== '' &&
+            formData.newPassword === formData.confirmPassword
         );
     };
 
