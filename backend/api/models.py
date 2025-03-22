@@ -68,12 +68,14 @@ class Department(models.Model):
     def __str__(self):
         return f"{self.code} - {self.name}"
 
-class CourseUnit(models.Model):
-    course_unit_name = models.CharField(max_length=100)
-    course_unit_code = models.CharField(max_length=100)
-
+class Course(models.Model):  # Changed inheritance
+    code = models.CharField(max_length=10, unique=True)
+    name = models.CharField(max_length=100)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    description = models.TextField(blank=True)
+    
     def __str__(self):
-        return self.course_unit_name
+        return f"{self.code} - {self.name}"   
 
 class Program(models.Model):
     program_name = models.CharField(max_length=100)
