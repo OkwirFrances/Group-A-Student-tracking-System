@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import './settings.css';
@@ -8,20 +9,31 @@ import settings from '../assets/settings.png';
 const Settings = () => {
     const [showChangePassword, setShowChangePassword] = useState(false);
     const [showHelpSupport, setShowHelpSupport] = useState(false);
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [formData, setFormData] = useState({
         oldPassword: '',
         newPassword: '',
         confirmPassword: '',
     });
 
+    const navigate = useNavigate();
+
     const handleChangePasswordClick = () => {
         setShowChangePassword(true);
         setShowHelpSupport(false);
+        setShowDeleteConfirmation(false);
     };
 
     const handleHelpSupportClick = () => {
         setShowHelpSupport(true);
         setShowChangePassword(false);
+        setShowDeleteConfirmation(false);
+    };
+
+    const handleDeleteAccountClick = () => {
+        setShowDeleteConfirmation(true);
+        setShowChangePassword(false);
+        setShowHelpSupport(false);
     };
 
     const handleInputChange = (e) => {
@@ -53,6 +65,15 @@ const Settings = () => {
         setShowChangePassword(false);
     };
 
+    const handleDeleteAccount = () => {
+        alert('Your account has been deleted!');
+        navigate('/signin');
+    };
+
+    const handleCancelDelete = () => {
+        setShowDeleteConfirmation(false);
+    };
+
 
     return (
         <div className='settings-container'>
@@ -62,7 +83,7 @@ const Settings = () => {
                 <h1>Settings</h1>
                 <div className='settings-box'>
                     <div className='settings-left'>
-                    {!showChangePassword && !showHelpSupport && (
+                    {!showChangePassword && !showHelpSupport && !showDeleteConfirmation && (
                         <>
                             <img src={settings} alt='settings' className='settings' />
                             <h2>Tap one of the tabs to appear here</h2>
@@ -78,7 +99,11 @@ const Settings = () => {
                             className='help-support'
                             onClick={handleHelpSupportClick}
                             >Help & Support</button>
-                            <button className='delete-account'>Delete Account</button>
+                            <button 
+                            className='delete-account'
+                            onClick={handleDeleteAccountClick}
+                            >Delete Account
+                            </button>
                         </div>
                     </div>
                     {showChangePassword && (
@@ -133,6 +158,22 @@ const Settings = () => {
                         <h4 className='email-contact'>Send us an email on;<br /><b>alvin69david@gmail.com</b></h4>
                         <h5 className='Email'>Phone</h5>
                         <h6 className='email-contact'>Give us a call on;<br/><b>MTN: 0772834567<br/>AIRTEL: 0758862363</b></h6>
+                    </div>
+                )}
+                {showDeleteConfirmation && (
+                    <div className='delete-confirmation'>
+                        <h2>Are you sure your want to delete your account?</h2>
+                        <div className='delete-buttons'>
+                            <button
+                            className='delete-no'
+                            onClick={handleCancelDelete}
+                            >No</button>
+                            <button
+                            className='delete-yes'
+                            onClick={handleDeleteAccount}
+                            >Yes
+                            </button>
+                        </div>
                     </div>
                 )}
                 </div>
