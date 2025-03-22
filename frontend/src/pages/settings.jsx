@@ -42,9 +42,16 @@ const Settings = () => {
                             Old Password
                             <input 
                             type='password'
-                            placeholder='Enter your old password'
+                            placeholder='Enter Your Old Password'
                             className='old-password'
                             />
+                        </label>
+                        <label>
+                            New Password
+                            <input 
+                            type='password'
+                            placeholder='Enter Your New Password'
+                            className='new-password'/>
                         </label>
                     </div>
                     )}
