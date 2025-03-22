@@ -42,24 +42,31 @@ def signup(request):
     send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'admin@example.com', [email])
     return Response({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
-    
-class RegisterView(APIView):
-    permission_classes = [AllowAny]
-    def post(self,request):
-        serializer = RegisterSerializer(data=request.data)
-        if serializer.is_valid():
-            validated_data = serializer.validated_data
-            password = validated_data.pop('password')
-            user = CustomUser(**validated_data)
-            user.set_password(password)
-            user.save()
-            return Response({
-                'message':'User created successfully',
-                'username':serializer.validated_data['username']
-                })
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-    
-    
+ 
+# Login View for JWT Authentication
+@api_view(['POST'])
+def login(request):
+    email = request.data.get('email')
+    password = request.data.get('password')
+
+    if not email or not password:
+        return Response({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return Response({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
+
+    if not user.check_password(password):
+        return Response({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
+
+    # Generate the JWT tokens
+    refresh = RefreshToken.for_user(user)
+    return Response({
+        'access_token': str(refresh.access_token),
+        'refresh_token': str(refresh)
+    }, status=status.HTTP_200_OK)
+   
     
 class DepartmentView(viewsets.ModelViewSet):
     queryset = Department.objects.all()
