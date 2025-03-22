@@ -98,7 +98,7 @@ class Lecturer(User):  # Updated inheritance
     office_location = models.CharField(max_length=100)
 
     def save(self, *args, **kwargs):
-        self.role = 'lecturer'  # Ensure role is set to 'lecturer'
+        self.role = 'lecturer'  
         super().save(*args, **kwargs)
 
     def __str__(self):
