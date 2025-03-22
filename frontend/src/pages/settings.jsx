@@ -60,6 +60,7 @@ const Settings = () => {
                             placeholder='Confirm Your New Password'
                             className='confirm-password'/>
                         </label>
+                        <button className='save-changes'>Save Changes</button>
                     </div>
                     )}
                 </div>
