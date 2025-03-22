@@ -222,8 +222,8 @@
 }
 
 .delete-account:hover {
-    background-color: green;
-    color: white;
+    background-color: rgb(164, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .change-password:hover {
