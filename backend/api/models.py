@@ -68,7 +68,7 @@ class Department(models.Model):
     def __str__(self):
         return f"{self.code} - {self.name}"
 
-class Course(models.Model):  # Changed inheritance
+class Course(models.Model):  
     code = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=100)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
@@ -77,7 +77,7 @@ class Course(models.Model):  # Changed inheritance
     def __str__(self):
         return f"{self.code} - {self.name}"   
 
-class Lecturer(User):  # Updated inheritance
+class Lecturer(User):
     staff_id = models.CharField(max_length=20, unique=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     courses = models.ManyToManyField(Course)
@@ -90,6 +90,18 @@ class Lecturer(User):  # Updated inheritance
     def __str__(self):
         return f"{self.staff_id} - {self.first_name} {self.last_name}" 
 
+class Student(User): 
+    student_id = models.CharField(max_length=20, unique=True)
+    department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
+    enrolled_courses = models.ManyToManyField(Course, blank=True)
+    enrollment_date = models.DateField()
+
+    def save(self, *args, **kwargs):
+        self.role = 'student'
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.student_id} - {self.first_name} {self.last_name}" 
 
 class Program(models.Model):
     program_name = models.CharField(max_length=100)

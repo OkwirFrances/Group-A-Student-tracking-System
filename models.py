@@ -111,14 +111,14 @@ class Student(User):  # Updated inheritance
     enrollment_date = models.DateField()
 
     def save(self, *args, **kwargs):
-        self.role = 'student'  # Ensure role is set to 'student'
+        self.role = 'student'
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.student_id} - {self.first_name} {self.last_name}" 
-     # Fixed get_full_name usage
+     
 
-class Registrar(User):  # Updated inheritance
+class Registrar(User):  
     staff_id = models.CharField(max_length=20, unique=True)
     office_number = models.CharField(max_length=20)
 
