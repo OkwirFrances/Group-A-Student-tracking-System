@@ -7,9 +7,30 @@ import settings from '../assets/settings.png';
 
 const Settings = () => {
     const [showChangePassword, setShowChangePassword] = useState(false);
+    const [formData, setFormData] = useState({
+        oldPassword: '',
+        newPassword: '',
+        confirmPassword: '',
+    });
 
     const handleChangePasswordClick = () => {
         setShowChangePassword(true);
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const isFormComplete = () => {
+        return (
+            formData.oldPassword.trim() !== '' &&
+            formData.newPassword.trim() !== '' &&
+            formData.confirmPassword.trim() !== ''
+        );
     };
 
     return (
@@ -42,25 +63,37 @@ const Settings = () => {
                             Old Password
                             <input 
                             type='password'
+                            name='oldPassword'
                             placeholder='Enter Your Old Password'
                             className='old-password'
+                            value={formData.oldPassword}
+                            onChange={handleInputChange}
                             />
                         </label>
                         <label className='newpassword'>
                             New Password
                             <input 
                             type='password'
+                            name='newPassword'
+                            value={formData.newPassword}
                             placeholder='Enter Your New Password'
-                            className='new-password'/>
+                            className='new-password'
+                            onChange={handleInputChange}/>
                         </label>
                         <label className='confirmpassword'>
                             Confirm Password
                             <input 
                             type='password'
+                            name='confirmPassword'
+                            value={formData.confirmPassword}
                             placeholder='Confirm Your New Password'
-                            className='confirm-password'/>
+                            className='confirm-password'
+                            onChange={handleInputChange}/>
                         </label>
-                        <button className='save-changes'>Save Changes</button>
+                        <button 
+                        className='save-changes'
+                        disabled={!isFormComplete}
+                        >Save Changes</button>
                     </div>
                     )}
                 </div>
