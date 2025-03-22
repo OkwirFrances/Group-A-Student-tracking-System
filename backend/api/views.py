@@ -91,3 +91,21 @@ def verify_otp(request):
             refresh = RefreshToken.for_user(user)
             return Response({'token': str(refresh.access_token)})
     return Response({'error': 'Invalid OTP or email'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Resend OTP View
+@api_view(['POST'])
+def resend_otp(request):
+    email = request.data.get('email')
+    if not email:
+        return Response({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = User.objects.filter(email=email).first()
+    if not user:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    user.otp = generate_otp()
+    user.otp_created_at = timezone.now()  # Reset the OTP timestamp
+    user.save()
+    send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'admin@example.com', [email])
+    return Response({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
