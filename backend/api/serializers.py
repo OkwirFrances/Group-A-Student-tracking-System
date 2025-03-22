@@ -2,15 +2,16 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import *
 from django.core.exceptions import ValidationError
+from .models import User, Department, Course, Lecturer, Student, Registrar, Issue
 
-class CustomUserSerializer(ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser
-        fields = ['id','first_name','last_name','email','password','image','Role','year_of_study','Gender']
+        model = User
+        fields = ['id', 'email', 'fullname', 'role', 'is_verified', 'first_name', 'last_name', 'phone_number', 'profile_picture', 'terms_accepted']
 
-class SignUpSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only = True)
-    confirm_password = serializers.CharField(write_only=True)
+class LecturerSerializer(UserSerializer):
+    department = serializers.StringRelatedField()
+    courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True)
 
     class Meta:
         model = CustomUser

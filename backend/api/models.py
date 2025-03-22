@@ -18,8 +18,8 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class User(AbstractUser):
-    username = None  # Removing the username field
+class CustomUser(AbstractUser):
+    username = None  
     email = models.EmailField(unique=True)
     fullname = models.CharField(max_length=255, null=False)
     otp = models.CharField(max_length=6, blank=True, null=True)
@@ -68,7 +68,7 @@ class Course(models.Model):
     def __str__(self):
         return f"{self.code} - {self.name}"   
 
-class Lecturer(User):
+class Lecturer(CustomUser):
     staff_id = models.CharField(max_length=20, unique=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     courses = models.ManyToManyField(Course)
@@ -81,7 +81,7 @@ class Lecturer(User):
     def __str__(self):
         return f"{self.staff_id} - {self.first_name} {self.last_name}" 
 
-class Student(User): 
+class Student(CustomUser): 
     student_id = models.CharField(max_length=20, unique=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     enrolled_courses = models.ManyToManyField(Course, blank=True)
@@ -94,7 +94,7 @@ class Student(User):
     def __str__(self):
         return f"{self.student_id} - {self.first_name} {self.last_name}" 
     
-class Registrar(User):  
+class Registrar(CustomUser):  
     staff_id = models.CharField(max_length=20, unique=True)
     office_number = models.CharField(max_length=20)
 
