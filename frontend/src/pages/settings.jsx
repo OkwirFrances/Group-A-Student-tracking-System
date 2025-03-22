@@ -53,6 +53,13 @@ const Settings = () => {
                             placeholder='Enter Your New Password'
                             className='new-password'/>
                         </label>
+                        <label className='confirmpassword'>
+                            Confirm Password
+                            <input 
+                            type='password'
+                            placeholder='Confirm Your New Password'
+                            className='confirm-password'/>
+                        </label>
                     </div>
                     )}
                 </div>
