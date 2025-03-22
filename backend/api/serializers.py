@@ -28,26 +28,26 @@ class StudentSerializer(UserSerializer):
         model = Student
         fields = UserSerializer.Meta.fields + ['student_id', 'department', 'enrolled_courses', 'enrollment_date']
 
+class RegistrarSerializer(UserSerializer):
+    staff_id = serializers.CharField(max_length=20)
+    office_number = serializers.CharField(max_length=20)
 
-class RegisterSerializer(ModelSerializer):
-    password2 = serializers.CharField(write_only = True)
-    
     class Meta:
-        model = CustomUser
-        fields = ['first_name','last_name','username','email','password', 'password2']
+        model = Registrar
+        fields = UserSerializer.Meta.fields + ['staff_id', 'office_number']
 
-    def validate(self, data):
-        
-        if CustomUser.objects.filter(username = data.get('username')).exists():
-            raise serializers.ValidationError("Username already exists")
-        
-        if CustomUser.objects.filter(email = data.get('email')).exists():
-            raise serializers.ValidationError("Email already taken....")
-    
-        if data['password'] != data['password2']:
-            raise serializers.ValidationError("Passwords should match")
-        return data
-    
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
+        fields = ['id', 'code', 'name', 'description']
+
+class CourseSerializer(serializers.ModelSerializer):
+    department = DepartmentSerializer()
+
+    class Meta:
+        model = Course
+        fields = ['id', 'code', 'name', 'department', 'description']
+
     def create(self , validated_data):
         validated_data.pop('confirm_password')
         user = CustomUser.objects.create_user(username=validated_data['username'], email=validated_data['email'], password=validated_data['password'], term_accepted=validated_data['term_accepted'])
