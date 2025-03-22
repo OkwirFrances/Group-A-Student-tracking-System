@@ -126,13 +126,13 @@ const Settings = () => {
                     </div>
                 )}
                 {showHelpSupport && (
-                    <div className='settings-right'>
+                    <div className='settingsright'>
                         <h2>Help & Support</h2>
-                        <p>Kindly reach us via Email or Phone for any help.</p>
-                        <h3>Email</h3>
-                        <h4>Send us an email on;<br /><b>alvin69david@gmail.com</b></h4>
-                        <h5>Phone</h5>
-                        <h6>Give us a call on;<br/><b>MTN: 0772834567<br/>AIRTEL: 0758862363</b></h6>
+                        <p className='p'>Kindly reach us via Email or Phone for any help.</p>
+                        <h3 className='Email'>Email</h3>
+                        <h4 className='email-contact'>Send us an email on;<br /><b>alvin69david@gmail.com</b></h4>
+                        <h5 className='Email'>Phone</h5>
+                        <h6 className='email-contact'>Give us a call on;<br/><b>MTN: 0772834567<br/>AIRTEL: 0758862363</b></h6>
                     </div>
                 )}
                 </div>
