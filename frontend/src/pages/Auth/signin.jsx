@@ -59,13 +59,13 @@ const SignIn = () => {
                 // Redirect to the appropriate dashboard based on the user's role
                 switch (data.role) {
                     case 'lecturer':
-                        navigate('/LecturerDashboard');
+                        navigate('/lecturer/dashboard');
                         break;
                     case 'student':
-                        navigate('/StudentDashboard');
+                        navigate('/student/dashboard');
                         break;
                     case 'registrar':
-                        navigate('/RegistrarDashboard');
+                        navigate('/registrar/dashboard');
                         break;
                     default:
                         setError('Unknown user role.');

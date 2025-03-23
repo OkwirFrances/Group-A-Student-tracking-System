@@ -7,9 +7,11 @@ import Sidebar from "../../Components/Sidebar/Sidebar";
 
 
 const RegistrarDashboard = () => {
+    const userRole = localStorage.getItem('userRole');
     return (
             <div className="dashboard-container">
-                <h1>Registrar</h1>
+                <h1>Registrar Dashboard</h1>
+                <p>Welcome {userRole}</p>
                 <Navbar />
                 <Sidebar />
                 <div className="dashboard-content">
