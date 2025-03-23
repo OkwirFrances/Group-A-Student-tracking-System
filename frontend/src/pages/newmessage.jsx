@@ -34,6 +34,7 @@ const NewMessage = () => {
                     <img src={search} alt='search' className='search' />
                 </div>
                 <img src={emptybox} alt='emptybox' className='newmessage-emptybox' />
+                <p>Click the button below to start a new chat.</p>
             </div>
         </div>
     );

@@ -37,6 +37,12 @@
     border-radius: 20px;
 }
 
+.newmessage-left p {
+    font-weight: bold;
+    margin-left: 60px;
+    font-size: 1rem;
+}
+
 .searchcontainer {
     position: relative;
     display: flex;
@@ -70,5 +76,5 @@
     height: 200px;
     justify-content: center;
     margin-left: 95px;
-    margin-top: 95px;
+    margin-top: 80px;
 }
