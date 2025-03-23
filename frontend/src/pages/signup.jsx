@@ -18,28 +18,39 @@ const SignUp = () => {
     const [showOtpScreen, setShowOtpScreen] = useState(false);
     const [error, setError] = useState(''); // State to store error messages
 
-    const [isFormValidState, setIsFormValidState] = useState(false);
-
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        const updatedFormData = {
+        setFormData({
             ...formData,
             [name]: type === 'checkbox' ? checked : value,
-        };
-        setFormData(updatedFormData);
-        setIsFormValidState(validateForm(updatedFormData));
+        });
     };
-    
-    const validateForm = (data) => {
-        const { fullname, email, password, role, termsAccepted } = data;
-        return (
-            fullname &&
-            email &&
-            password &&
-            password.length >= 8 &&
-            role &&
-            termsAccepted
-        );
+
+    const isFormValid = () => {
+        const { fullname, email, password, role, termsAccepted } = formData;
+        if (!fullname) {
+            setError('Full Name is required');
+            return false;
+        }
+        if (!email) {
+            setError('Email is required');
+            return false;
+        }
+        if (!password || password.length < 8) {
+            setError('Password is required and should be at least 8 characters');
+            return false;
+        }
+        if (!role) {
+            setError('Role is required');
+            return false;
+        }
+        if (!termsAccepted) {
+            setError('Terms and Conditions must be accepted');
+            return false;
+        }
+
+        setError(''); // Clear any previous errors
+        return true;
     };
 
     const handleSubmit = async (e) => {
@@ -48,7 +59,7 @@ const SignUp = () => {
 
         if (isFormValid()) {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/signup/`, {
+                const response = await fetch('http://localhost:8000/signup/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -163,13 +174,13 @@ const SignUp = () => {
                         />
                         I have read and accepted all the AITS terms and conditions.
                     </label>
-              <button
-                className='signup-button'
-                disabled={!isFormValidState}
-               >
-                SIGN UP
-              </button>
-              <p className='signin-text'>
+                    <button
+                        className='signup-button'
+                        disabled={!isFormValid()}
+                    >
+                        SIGN UP
+                    </button>
+                    <p className='signin-text'>
                         Already have an account? <a href='signin' className='signin-link'>Sign In</a>
                     </p>
                 </form>

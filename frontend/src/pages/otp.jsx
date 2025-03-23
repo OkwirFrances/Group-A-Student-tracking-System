@@ -7,7 +7,6 @@ import Congratulations from './congratulations';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Otp = ({ email, onResendOtp }) => {
-    const [loading, setLoading] = useState(false);
     const [otp, setOtp] = useState(['', '', '', '']);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
@@ -16,29 +15,27 @@ const Otp = ({ email, onResendOtp }) => {
     const navigate = useNavigate();
 
     const handleChange = (e, index) => {
-        const value = e.target.value.slice(0, 1); // Ensure only one character
+        const value = e.target.value;
         if (/^\d$/.test(value) || value === '') {
             const newOtp = [...otp];
             newOtp[index] = value;
             setOtp(newOtp);
-    
-            if (value !== '' && index < otp.length - 1) {
+
+            if (value !== '' && index < 3) {
                 inputRefs.current[index + 1].focus();
             }
         }
     };
 
     const handleVerifyClick = async () => {
-        setLoading(true);
         const enteredOtp = otp.join('');
         if (!enteredOtp) {
             setError('Please enter the OTP.');
-            setLoading(false);
             return;
         }
-    
+
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/verify-otp/`, {
+            const response = await fetch('http://localhost:8000/verify-otp/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,13 +45,14 @@ const Otp = ({ email, onResendOtp }) => {
                     otp: enteredOtp,
                 }),
             });
-    
+
             const data = await response.json();
             if (response.ok) {
                 setSuccess(true);
                 setError('');
+                console.log('OTP verified successfully:', data);
                 setShowCongratulations(true);
-                navigate('/congratulations');
+                navigate('/congratulations'); // Redirect to congratulations page
             } else {
                 setError(data.error || 'Invalid OTP. Please try again.');
                 setSuccess(false);
@@ -62,8 +60,6 @@ const Otp = ({ email, onResendOtp }) => {
         } catch (error) {
             console.error('OTP verification failed:', error);
             setError('Unable to connect to the server. Please try again later.');
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -71,15 +67,9 @@ const Otp = ({ email, onResendOtp }) => {
         setOtp(['', '', '', '']);
         setError('');
         setSuccess(false);
-    
-        if (onResendOtp) {
-            // Call the onResendOtp prop if it is passed
-            onResendOtp();
-            return;
-        }
-    
+
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/resend-otp/`, {
+            const response = await fetch('http://localhost:8000/resend-otp/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -88,7 +78,7 @@ const Otp = ({ email, onResendOtp }) => {
                     email: email,
                 }),
             });
-    
+
             const data = await response.json();
             if (response.ok) {
                 console.log('OTP resent successfully:', data);
@@ -100,6 +90,7 @@ const Otp = ({ email, onResendOtp }) => {
             setError('Unable to connect to the server. Please try again later.');
         }
     };
+
     const isOtpComplete = otp.every(digit => digit !== '');
 
     if (showCongratulations) {
@@ -123,19 +114,18 @@ const Otp = ({ email, onResendOtp }) => {
                 <div className='otp-inputs'>
                     {otp.map((digit, index) => (
                         <input
-                        key={index}
-                        className='otp-input'
-                        type='text'
-                        maxLength='1'
-                        value={digit}
-                        onChange={(e) => handleChange(e, index)}
-                        ref={(el) => (inputRefs.current[index] = el)}
-                        aria-label={`OTP digit ${index + 1}`}
-                    />
+                            key={index}
+                            className='otp-input'
+                            type='text'
+                            maxLength='1'
+                            value={digit}
+                            onChange={(e) => handleChange(e, index)}
+                            ref={(el) => (inputRefs.current[index] = el)}
+                        />
                     ))}
                 </div>
-                <button className='verify-button' onClick={handleVerifyClick} disabled={!isOtpComplete || loading}>
-                     {loading ? 'Verifying...' : 'Verify'}
+                <button className='verify-button' onClick={handleVerifyClick} disabled={!isOtpComplete}>
+                    Verify
                 </button>
                 <button className='resend-button' onClick={handleResendClick}>
                     <img className='refresh-icon' src={refresh} alt='refresh icon' />
