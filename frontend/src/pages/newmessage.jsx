@@ -5,6 +5,7 @@ import './newmessage.css';
 import backarrow from '../assets/backarrow.png';
 import search from '../assets/search.png';
 import emptybox from '../assets/emptybox.png';
+import newmessage from '../assets/newmessage.png';
 
 const NewMessage = () => {
     const navigate = useNavigate();
@@ -35,6 +36,7 @@ const NewMessage = () => {
                 </div>
                 <img src={emptybox} alt='emptybox' className='newmessage-emptybox' />
                 <p>Click the button below to start a new chat.</p>
+                <img src={newmessage} alt='newmessage' className='newmessage' />
             </div>
         </div>
     );

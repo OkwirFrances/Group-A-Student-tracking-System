@@ -78,3 +78,15 @@
     margin-left: 95px;
     margin-top: 80px;
 }
+
+.newmessage {
+    width: 50px;
+    height: 50px;
+    right: 10px;
+    position: absolute;
+    bottom: 10px;
+    border-radius: 5px;
+    background-color: green;
+    cursor: pointer;
+
+}
