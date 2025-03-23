@@ -21,7 +21,7 @@ const Otp = ({ email, onResendOtp }) => {
             newOtp[index] = value;
             setOtp(newOtp);
 
-            if (value !== '' && index < 3) {
+            if (value !== '' && index < 5) {
                 inputRefs.current[index + 1].focus();
             }
         }
@@ -64,13 +64,14 @@ const Otp = ({ email, onResendOtp }) => {
     };
 
     const handleResendClick = async () => {
-        setOtp(['', '', '', '']);
+        setOtp(['', '', '', '', '', '']);
         setError('');
         setSuccess(false);
 
         try {
-            const response = await fetch('http://localhost:8000/api/resend-otp/', {
+            const response = await fetch('http://localhost:8000/resend-otp/', {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json',
                 },
