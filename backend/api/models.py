@@ -28,7 +28,7 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=30, blank=True)  # Added first_name field
     last_name = models.CharField(max_length=30, blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
-    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)      role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='student')
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)   
     termsAccepted = models.BooleanField(default=False)
 
     
@@ -38,6 +38,8 @@ class CustomUser(AbstractUser):
         ('registrar', 'Registrar'),
     ]
     
+    role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='student')
+
     
     
    
