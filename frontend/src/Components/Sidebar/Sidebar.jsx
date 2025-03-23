@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
-import dashboard from '../assets/dashboard.png';
-import issue from '../assets/issue.png';
-import person from '../assets/person.png';
-import settings from '../assets/settings.png';
-import support from '../assets/support.png';
-import logout from '../assets/logout.png';
+import dashboard from '../../assets/dashboard.png';
+import issue from '../../assets/issue.png';
+import person from '../../assets/person.png';
+import settings from '../../assets/settings.png';
+import support from '../../assets/support.png';
+import logout from '../../assets/logout.png';
 
 const Sidebar = () => {
 

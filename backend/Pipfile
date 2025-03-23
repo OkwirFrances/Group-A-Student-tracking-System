@@ -5,13 +5,14 @@ name = "pypi"
 
 [packages]
 django = "*"
-djangorestframework = "*"
-djangorestframework-simplejwt = "*"
 dj-rest-auth = "*"
 pillow = "*"
 django-cors-headers = "*"
+djangorestframework-simplejwt = "*"
+djangorestframework = "*"
+django-otp = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.13"
+python_version = "*"

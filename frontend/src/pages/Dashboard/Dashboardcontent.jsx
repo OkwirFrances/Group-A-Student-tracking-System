@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import './Dashboardcontent.css';
-import search from '../assets/search.png';
-import add from '../assets/add.png';
-import filter from '../assets/filter.png';
-import emptybox from '../assets/emptybox.png';
+import search from '../../assets/search.png';
+import add from '../../assets/add.png';
+import filter from '../../assets/filter.png';
+import emptybox from '../../assets/emptybox.png';
 import { Link, useNavigate } from 'react-router-dom';
-import { IssuesContext } from '../context/IssueContext';
+import { IssuesContext } from '../../context/IssueContext';
 
 const DashboardContent = () => {
     const { issues } = useContext(IssuesContext);
@@ -60,7 +60,7 @@ const DashboardContent = () => {
                             <option value='pending'>Pending</option>
                             <option value='in-progress'>In-progress</option>
                             <option value='resolved'>Resolved</option>
-                            <img src={filter} alt='filter' className='filter-icon' />
+                            {/* <img src={filter} alt='filter' className='filter-icon' /> */}
                     </select>
                </div>
                <div className='my-issues-search-container'>

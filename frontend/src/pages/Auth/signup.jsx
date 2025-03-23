@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './signup.css';
 import Otp from './otp';
-import logo from '../assets/logo.png';
-import person from '../assets/person.png';
-import mail from '../assets/mail.png';
-import padlock from '../assets/padlock.png';
+import logo from '../../assets/logo.png';
+import person from '../../assets/person.png';
+import mail from '../../assets/mail.png';
+import padlock from '../../assets/padlock.png';
 
 const SignUp = () => {
     const [formData, setFormData] = useState({

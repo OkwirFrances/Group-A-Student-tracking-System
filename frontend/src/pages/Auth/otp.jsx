@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
 import './Otp.css';
-import shield from '../assets/shield.png';
-import refresh from '../assets/refresh.png';
-import help from '../assets/help.png';
-import Congratulations from './congratulations';
+import shield from '../../assets/shield.png';
+import refresh from '../../assets/refresh.png';
+import help from '../../assets/help.png';
+import Congratulations from '../congratulations';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Otp = ({ email, onResendOtp }) => {
-    const [otp, setOtp] = useState(['', '', '', '']);
+    const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const [showCongratulations, setShowCongratulations] = useState(false);
@@ -21,7 +21,7 @@ const Otp = ({ email, onResendOtp }) => {
             newOtp[index] = value;
             setOtp(newOtp);
 
-            if (value !== '' && index < 3) {
+            if (value !== '' && index < 5) {
                 inputRefs.current[index + 1].focus();
             }
         }
@@ -52,6 +52,7 @@ const Otp = ({ email, onResendOtp }) => {
                 setError('');
                 console.log('OTP verified successfully:', data);
                 setShowCongratulations(true);
+                console.log('showCongratulations:', true);
                 navigate('/congratulations'); // Redirect to congratulations page
             } else {
                 setError(data.error || 'Invalid OTP. Please try again.');
@@ -64,7 +65,7 @@ const Otp = ({ email, onResendOtp }) => {
     };
 
     const handleResendClick = async () => {
-        setOtp(['', '', '', '']);
+        setOtp(['', '', '', '', '', '']);
         setError('');
         setSuccess(false);
 
