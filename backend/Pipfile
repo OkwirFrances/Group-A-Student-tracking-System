@@ -6,10 +6,10 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
-django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
 dj-rest-auth = "*"
 pillow = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
