@@ -26,6 +26,7 @@
     position: absolute;
     margin-bottom: 590px;
     margin-right: 1400px;
+    cursor: pointer;
 }
 
 .content {
@@ -68,4 +69,9 @@
     background-color: green;
     font-weight: bold;
     font-size: 1rem;
+    cursor: pointer;
+}
+
+.new-message:hover {
+    color: white;
 }

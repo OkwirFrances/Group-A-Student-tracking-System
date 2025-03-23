@@ -59,6 +59,7 @@
     width: 35px;
     height: 35px;
     margin-left:80px;
+    cursor: pointer;
 }
 
 .notification-icon:hover {
@@ -71,6 +72,7 @@
     height: 32px;
     margin-left:70px;
     bottom: 50px;
+    cursor: pointer;
 }
 
 .mail-icon:hover {
@@ -106,6 +108,7 @@
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .user-initials {
