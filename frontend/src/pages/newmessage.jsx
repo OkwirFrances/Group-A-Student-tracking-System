@@ -7,6 +7,7 @@ import search from '../assets/search.png';
 import emptybox from '../assets/emptybox.png';
 import newmessage from '../assets/newmessage.png';
 import userimage from '../assets/userimage.png';
+import attachment from '../assets/attachment.png';
 
 const users = [
     { id: 1 , name:'Dr. Alvin David' , profilePic: userimage},
@@ -19,6 +20,7 @@ const users = [
 const NewMessage = () => {
     const navigate = useNavigate();
     const [showUserList, setShowUserList] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     const handleBackMessageClick = () => {
         navigate('/messages');
@@ -26,6 +28,10 @@ const NewMessage = () => {
 
     const handleNewMessageClick = () => {
         setShowUserList(true);
+    };
+
+    const handleUserClick = (user) => {
+        setSelectedUser(user);
     };
 
     return (
@@ -61,7 +67,10 @@ const NewMessage = () => {
                 ) : (
                     <div className='user-list'>
                         {users.map(user => (
-                            <div key={user.id} className='user-item'>
+                            <div 
+                            key={user.id} 
+                            className='user-item'
+                            onClick={() => handleUserClick(user)}>
                                 <img src={user.profilePic} alt={user.name} className="user-profile-pic" />
                                 <span className='user-name'>{user.name}</span>
                             </div>   
@@ -70,10 +79,33 @@ const NewMessage = () => {
                 )}
             </div>
             <div className='newmessage-right'>
-                <nav>Chat Area</nav>
-                <div className='chat-box'>
-                    <h2 className='chatmessage'>Select a chat for it to appear here by clicking on it.</h2>
+            {selectedUser ? (
+                <div className='chat-area'>
+                    <div className='chat-header'>
+                        <img src={selectedUser.profilePic} alt={selectedUser.name} className='chat-profile-pic' />
+                        <span className='chat-user-name'>{selectedUser.name}</span>
+                    </div>
+                    <div className='chatbox'>
+
+                    </div>
+                    <div className='chat-input-section'>
+                        <input 
+                        type='text'
+                        className='chat-input'
+                        placeholder='Type a message...'
+                        />
+                        <img src={attachment} alt='attachment' className='attachment' />
+                        <button className='send-button'>Send</button>
+                    </div>
                 </div>
+            ) : (
+                <div>
+                    <nav>Chat Area</nav>
+                    <div className='chat-box'>
+                        <h2 className='chatmessage'>Select a chat for it to appear here by clicking on it.</h2>
+                    </div>
+                </div>
+            )}
             </div>
         </div>
     );
