@@ -1,6 +1,7 @@
 # views.py
 
 import random
+from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from rest_framework import status, generics
@@ -31,10 +32,10 @@ def signup(request):
     role = request.data.get('role', 'student')
 
     if not email or not password:
-        return Response({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
 
     if User.objects.filter(email=email).exists():
-        return Response({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
 
     user = User.objects.create_user(fullname=fullname, email=email, password=password, role=role)
     user.otp = generate_otp()
@@ -42,7 +43,7 @@ def signup(request):
     user.save()
 
     send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'admin@example.com', [email])
-    return Response({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
+    return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
 # Login View for JWT Authentication
 @api_view(['POST'])
@@ -51,19 +52,19 @@ def login(request):
     password = request.data.get('password')
 
     if not email or not password:
-        return Response({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
 
     try:
         user = User.objects.get(email=email)
     except User.DoesNotExist:
-        return Response({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
 
     if not user.check_password(password):
-        return Response({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
 
     # Generate the JWT tokens
     refresh = RefreshToken.for_user(user)
-    return Response({
+    return JsonResponse({
         'access_token': str(refresh.access_token),
         'refresh_token': str(refresh)
     }, status=status.HTTP_200_OK)
@@ -75,7 +76,7 @@ def verify_otp(request):
     otp = request.data.get('otp')
 
     if not email or not otp:
-        return Response({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
 
     user = User.objects.filter(email=email).first()
     if user:
@@ -89,8 +90,8 @@ def verify_otp(request):
             user.otp_created_at = None  # Clear OTP and timestamp
             user.save()
             refresh = RefreshToken.for_user(user)
-            return Response({'token': str(refresh.access_token)})
-    return Response({'error': 'Invalid OTP or email'}, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({'token': str(refresh.access_token)})
+    return JsonResponse({'error': 'Invalid OTP or email'}, status=status.HTTP_400_BAD_REQUEST)
 
 # Resend OTP View
 @api_view(['POST'])
