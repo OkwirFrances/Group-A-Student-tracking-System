@@ -22,6 +22,10 @@ const Navbar = ({ badgeCount }) => {
         navigate('/notifications');
     };
 
+    const handleMailClick = () => {
+        navigate('/messages');
+    };
+
     return (
             <nav className='navbar'>
                 <div className='navbar-logo'>
@@ -37,7 +41,12 @@ const Navbar = ({ badgeCount }) => {
                     </div>
                     <img src={notification} alt='notification' className='notification-icon' onClick={handleNotificationClick} />
                     {badgeCount > 0 && <span className='notification-badge'>{badgeCount}</span>}
-                    <img src={mail} alt='mail' className='mail-icon' />
+                    <img 
+                    src={mail} 
+                    alt='mail' 
+                    className='mail-icon'
+                    onClick={handleMailClick}
+                    />
                         {user.profilePic ? (
                             <img src={user.profilePic} alt='user' className='user-icon' />
                         ) : (
