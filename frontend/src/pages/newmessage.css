@@ -48,7 +48,7 @@
 }
 
 .newmessage-right nav {
-    background-color: rgb(11, 165, 11);
+    background-color: rgb(27, 196, 27);
     top: 0;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -248,4 +248,12 @@
 
 .send-button:hover {
     color: black;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+}
+
+.chat-sender {
+    font-weight: bold;
 }

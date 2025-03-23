@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import './newmessage.css';
@@ -21,6 +21,9 @@ const NewMessage = () => {
     const navigate = useNavigate();
     const [showUserList, setShowUserList] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [message, setMessage] = useState('');
+    const [messages, setMessages] = useState([]);
+    const fileInputRef = useRef(null);
 
     const handleBackMessageClick = () => {
         navigate('/messages');
@@ -32,6 +35,29 @@ const NewMessage = () => {
 
     const handleUserClick = (user) => {
         setSelectedUser(user);
+        setMessages([]);
+    };
+
+    const handleInputChange = (e) => {
+        setMessage(e.target.value);
+    };
+
+    const handleSendClick = () => {
+        if (message.trim() !== '') {
+            setMessages([...messages, { text: message, sender: 'me' }]);
+            setMessage('');
+        };
+    };
+    
+    const handleAttachmentClick = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            console.log('Selected file:', file);
+        };
     };
 
     return (
@@ -71,7 +97,10 @@ const NewMessage = () => {
                             key={user.id} 
                             className='user-item'
                             onClick={() => handleUserClick(user)}>
-                                <img src={user.profilePic} alt={user.name} className="user-profile-pic" />
+                                <img 
+                                src={user.profilePic} 
+                                alt={user.name} 
+                                className="user-profile-pic" />
                                 <span className='user-name'>{user.name}</span>
                             </div>   
                         ))}
@@ -82,20 +111,39 @@ const NewMessage = () => {
             {selectedUser ? (
                 <div className='chat-area'>
                     <div className='chat-header'>
-                        <img src={selectedUser.profilePic} alt={selectedUser.name} className='chat-profile-pic' />
+                        <img 
+                        src={selectedUser.profilePic} 
+                        alt={selectedUser.name} 
+                        className='chat-profile-pic' />
                         <span className='chat-user-name'>{selectedUser.name}</span>
                     </div>
                     <div className='chatbox'>
-
+                        {messages.map((msg, index) => (
+                            <div key={index} className='chat-message'>
+                                <span className='chat-sender'>{msg.sender}:</span> {msg.text}
+                            </div>
+                        ))}
                     </div>
                     <div className='chat-input-section'>
                         <input 
-                        type='text'
-                        className='chat-input'
-                        placeholder='Type a message...'
+                            type='text'
+                            className='chat-input'
+                            placeholder='Type a message...'
+                            value={message}
+                            onChange={handleInputChange}
                         />
-                        <img src={attachment} alt='attachment' className='attachment' />
-                        <button className='send-button'>Send</button>
+                        <img 
+                            src={attachment} 
+                            alt='attachment' 
+                            className='attachment'
+                            onClick={handleAttachmentClick}
+                        />
+                        <input 
+                            type='file'
+                            ref={fileInputRef}
+                            style={{ display: 'none' }}
+                            onChange={handleFileChange}/>
+                        <button className='send-button' onClick={handleSendClick}>Send</button>
                     </div>
                 </div>
             ) : (
