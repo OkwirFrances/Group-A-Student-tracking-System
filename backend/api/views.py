@@ -107,7 +107,7 @@ def resend_otp(request):
     user.otp = generate_otp()
     user.otp_created_at = timezone.now()  # Reset the OTP timestamp
     user.save()
-    send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'admin@example.com', [email])
+    send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'AITS@mail.com', [email])
     return Response({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
 # Department View (Only accessible by registrars)
