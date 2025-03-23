@@ -10,6 +10,7 @@ pillow = "*"
 django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
 djangorestframework = "*"
+django-otp = "*"
 
 [dev-packages]
 
