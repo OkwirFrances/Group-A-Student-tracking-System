@@ -26,8 +26,8 @@ def generate_otp():
 @api_view(['POST'])
 def signup(request):
     email = request.data.get('email')
-    password = request.data.get('password')
     fullname = request.data.get('fullname')
+    password = request.data.get('password')
     role = request.data.get('role', 'student')
 
     if not email or not password:
