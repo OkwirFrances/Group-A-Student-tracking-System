@@ -15,7 +15,7 @@ from rest_framework.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from .models import Issue, Lecturer, Registrar, Department, Course
 from .serializers import IssueSerializer, DepartmentSerializer, CourseSerializer, UserUpdateSerializer
-from .permissions import IsRegistrar, IsLecturer, IsStudent  # Custom permissions
+from .permissions import IsRegistrar, IsLecturer, IsStudent  
 
 User = get_user_model()
 
@@ -42,32 +42,9 @@ def signup(request):
     user.otp_created_at = timezone.now()  # Store OTP timestamp
     user.save()
 
-    send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'admin@example.com', [email])
+    send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'Group-A-AITS@mail.com', [email])
     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
-# Login View for JWT Authentication
-# @api_view(['POST'])
-# def login(request):
-#     email = request.data.get('email')
-#     password = request.data.get('password')
-
-#     if not email or not password:
-#         return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
-
-#     try:
-#         user = User.objects.get(email=email)
-#     except User.DoesNotExist:
-#         return JsonResponse({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
-
-#     if not user.check_password(password):
-#         return JsonResponse({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
-
-#     # Generate the JWT tokens
-#     refresh = RefreshToken.for_user(user)
-#     return JsonResponse({
-#         'access_token': str(refresh.access_token),
-#         'refresh_token': str(refresh)
-#     }, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def login(request):
