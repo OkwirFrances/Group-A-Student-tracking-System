@@ -29,7 +29,7 @@ const App = () => {
           <Route path="signup" element={<ErrorBoundary><SignUp/></ErrorBoundary>}/>
           <Route path="signin" element={<SignIn/>}/>
           <Route path="otp" element={<Otp/>}/>
-          <Route path="congs" element={<Congratulations/>}/>
+          <Route path="/congratulations" element={<Congratulations/>}/>
           <Route path="app" element={<StudentDashboard/>}>
             <Route path="dashboard" element={ <DashboardContent />}/>
             <Route path='issueform' element={<IssueForm />}/>

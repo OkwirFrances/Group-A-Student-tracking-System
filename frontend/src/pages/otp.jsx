@@ -7,7 +7,7 @@ import Congratulations from './congratulations';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Otp = ({ email, onResendOtp }) => {
-    const [otp, setOtp] = useState(['', '', '', '']);
+    const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const [showCongratulations, setShowCongratulations] = useState(false);
@@ -52,6 +52,7 @@ const Otp = ({ email, onResendOtp }) => {
                 setError('');
                 console.log('OTP verified successfully:', data);
                 setShowCongratulations(true);
+                console.log('showCongratulations:', true);
                 navigate('/congratulations'); // Redirect to congratulations page
             } else {
                 setError(data.error || 'Invalid OTP. Please try again.');
@@ -71,7 +72,6 @@ const Otp = ({ email, onResendOtp }) => {
         try {
             const response = await fetch('http://localhost:8000/resend-otp/', {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json',
                 },

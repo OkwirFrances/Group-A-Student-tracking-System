@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 const Congratulations = () => {
+    console.log('Congratulations component rendered');
     return (
         <div className='congratulations-container'>
             <div className='aits-logo'>AITS</div>
