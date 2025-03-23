@@ -23,7 +23,7 @@ const SignIn = () => {
     };
 
     const handleSignInClick = async (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault(); 
 
         // Validate form data
         if (!formData.email || !formData.password) {
@@ -53,8 +53,8 @@ const SignIn = () => {
 
             if (response.ok) {
                 // Save the token and role to local storage
-                localStorage.setItem('authToken', data.token); // Assuming the token is returned as `data.token`
-                localStorage.setItem('userRole', data.role); // Assuming the role is returned as `data.role`
+                localStorage.setItem('authToken', data.token); 
+                localStorage.setItem('userRole', data.role); 
 
                 // Redirect to the appropriate dashboard based on the user's role
                 switch (data.role) {
