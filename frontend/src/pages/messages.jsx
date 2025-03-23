@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './messages.css';
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 import backarrow from '../assets/backarrow.png';
 import emptybox from '../assets/emptybox.png';
 
@@ -11,6 +11,10 @@ const Messages = () => {
 
     const handleBackClick = () => {
         navigate('/app/dashboard');
+    };
+
+    const handleNewMessageClick = () => {
+        navigate('/newmessage');
     };
 
     return (
@@ -26,6 +30,7 @@ const Messages = () => {
                 <div className='content'>
                     <button 
                     className='new-message'
+                    onClick={handleNewMessageClick}
                     >New Message
                     </button>
                     <img src={emptybox} alt='emptybox' className='empty-box'/>
