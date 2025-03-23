@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import './studentdashboard.css';
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+import Navbar from "../../Components/Navbar/Navbar";
+import Sidebar from "../../Components/Sidebar/Sidebar";
 
 
 
-const StudentDashboard = () => {
+const RegistrarDashboard = () => {
     return (
             <div className="dashboard-container">
                 <Navbar />
@@ -19,4 +19,4 @@ const StudentDashboard = () => {
     );
 };
 
-export default StudentDashboard;
+export default RegistrarDashboard;

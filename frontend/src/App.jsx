@@ -1,23 +1,24 @@
 import React from 'react';
-import LandingPage from './pages/landingpage';
+import LandingPage from './pages/Home/landingpage';
 import SignUp from './pages/signup';
 import SignIn from './pages/signin';
-import IssueForm from './pages/issueform';
+import IssueForm from './pages/Issues/issueform';
 import Congratulations from './pages/congratulations';
 import StudentDashboard from './pages/studentdashboard';
-import LecturerDashboard from './pages/LecturerDashboard';
-import RegistrarDashboard from './pages/RegistrarDashboard';
+import LecturerDashboard from './pages/Dashboard/LecturerDashboard';
+import RegistrarDashboard from './pages/Dashboard/RegistrarDashboard';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Otp from './pages/otp';
-import DashboardContent from './components/Dashboardcontent';
-import IssueDetails from './components/issuedetails';
-import NotificationScreen from './components/notificationscreen';
+import DashboardContent from './pages/Dashboard/Dashboardcontent';
+import IssueDetails from './pages/IssueDetails/issuedetails';
+import NotificationScreen from './pages/Dashboard/notificationscreen';
 import HelpSupport from './pages/helpsupport';
-import Settings from './pages/settings';
+import Settings from './pages/Profile/settings';
 import { IssuesProvider } from './context/IssueContext';
 import ErrorBoundary from './pages/ErrorBoundary';
-import ProtectedRoute from './components/ProtectedRoute'; // Import the ProtectedRoute component
+import ProtectedRoute from './pages/ProtectedRoute';
+import { Navigate } from 'react-router-dom';
 
 const App = () => {
   return (

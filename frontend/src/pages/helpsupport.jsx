@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
+import Navbar from '../Components/Navbar/Navbar';
+import Sidebar from '../Components/Sidebar/Sidebar';
 import backarrow from '../assets/backarrow.png';
 import './helpsupport.css';
 import { useNavigate } from 'react-router-dom';
