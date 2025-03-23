@@ -177,3 +177,75 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
+
+.chat-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 400px;
+    justify-content: center;
+    position: absolute;
+}
+
+.chat-user-name {
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    margin-left: 450px
+}
+
+.chatbox {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 20px;
+    overflow-y: auto;
+}
+
+.chat-input-section {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #0eb213;
+    border-radius: 10px;
+    font-size: 1rem;
+    position: absolute;
+    margin-bottom: 9px;
+    width: 700px;
+    color: rgb(0, 0, 0);
+}
+
+.attachment {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    margin-bottom: 5px;
+    cursor: pointer;
+    margin-left: 780px;
+}
+
+.send-button {
+    padding: 10px 20px;
+    margin-left: 860px;
+    background-color: #0eb213;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.send-button:hover {
+    color: black;
+}
