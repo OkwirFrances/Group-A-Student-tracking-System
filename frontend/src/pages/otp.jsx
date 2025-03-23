@@ -4,49 +4,102 @@ import shield from '../assets/shield.png';
 import refresh from '../assets/refresh.png';
 import help from '../assets/help.png';
 import Congratulations from './congratulations';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Otp = ({ email, onResendOtp }) => {
-    const [otp, setOtp] = useState(['','','','']);
+    const [loading, setLoading] = useState(false);
+    const [otp, setOtp] = useState(['', '', '', '']);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const [showCongratulations, setShowCongratulations] = useState(false);
     const inputRefs = useRef([]);
+    const navigate = useNavigate();
 
     const handleChange = (e, index) => {
-        const value = e.target.value;
+        const value = e.target.value.slice(0, 1); // Ensure only one character
         if (/^\d$/.test(value) || value === '') {
             const newOtp = [...otp];
             newOtp[index] = value;
             setOtp(newOtp);
-
-            if (value !== '' && index < 3) {
+    
+            if (value !== '' && index < otp.length - 1) {
                 inputRefs.current[index + 1].focus();
             }
         }
     };
 
-    const handleVerifyClick = () => {
+    const handleVerifyClick = async () => {
+        setLoading(true);
         const enteredOtp = otp.join('');
-        const fixedOtp = '1234';
-        if (enteredOtp === fixedOtp) {
-            setSuccess(true);
-            setError('');
-            console.log('OTP verified successfully');
-            setShowCongratulations(true);
-        } else {
-            setError('Invalid OTP. Please try again.');
-            setSuccess(false);
+        if (!enteredOtp) {
+            setError('Please enter the OTP.');
+            setLoading(false);
+            return;
+        }
+    
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/verify-otp/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    otp: enteredOtp,
+                }),
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                setSuccess(true);
+                setError('');
+                setShowCongratulations(true);
+                navigate('/congratulations');
+            } else {
+                setError(data.error || 'Invalid OTP. Please try again.');
+                setSuccess(false);
+            }
+        } catch (error) {
+            console.error('OTP verification failed:', error);
+            setError('Unable to connect to the server. Please try again later.');
+        } finally {
+            setLoading(false);
         }
     };
 
-    const handleResendClick = () => {
-        setOtp(['','','','']);
+    const handleResendClick = async () => {
+        setOtp(['', '', '', '']);
         setError('');
         setSuccess(false);
-        onResendOtp();
+    
+        if (onResendOtp) {
+            // Call the onResendOtp prop if it is passed
+            onResendOtp();
+            return;
+        }
+    
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/resend-otp/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                }),
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                console.log('OTP resent successfully:', data);
+            } else {
+                setError(data.error || 'Failed to resend OTP.');
+            }
+        } catch (error) {
+            console.error('Failed to resend OTP:', error);
+            setError('Unable to connect to the server. Please try again later.');
+        }
     };
-
     const isOtpComplete = otp.every(digit => digit !== '');
 
     if (showCongratulations) {
@@ -64,37 +117,33 @@ const Otp = ({ email, onResendOtp }) => {
                 </div>
             </div>
             <div className='otp-content'>
-                <img  className='shield'src={shield} alt='shiled logo' />
+                <img className='shield' src={shield} alt='shiled logo' />
                 <h2 className='authenticate-title'>Authenticate Your Account</h2>
                 <p className='authenticate-sub-title'>Protecting your account is our top priority. Please confirm your account by entering the authorization code we sent to <strong>{email}</strong>.</p>
                 <div className='otp-inputs'>
                     {otp.map((digit, index) => (
                         <input
-                            key={index}
-                            className='otp-input'
-                            type='text'
-                            maxLength='1'
-                            value={digit}
-                            onChange={(e) => handleChange(e, index)}
-                            ref={(el) => (inputRefs.current[index] = el)} 
-                        />
+                        key={index}
+                        className='otp-input'
+                        type='text'
+                        maxLength='1'
+                        value={digit}
+                        onChange={(e) => handleChange(e, index)}
+                        ref={(el) => (inputRefs.current[index] = el)}
+                        aria-label={`OTP digit ${index + 1}`}
+                    />
                     ))}
                 </div>
-            <Link to="/congs" onClick={handleVerifyClick}>
-            
-            <button className='verify-button' 
-               disabled={!isOtpComplete}>
-                   Verify
-               </button></Link>
-                <button 
-                className='resend-button'
-                onClick={handleResendClick}>
-                    <img className='refresh-icon'src={refresh} alt='refresh icon' /> 
+                <button className='verify-button' onClick={handleVerifyClick} disabled={!isOtpComplete || loading}>
+                     {loading ? 'Verifying...' : 'Verify'}
+                </button>
+                <button className='resend-button' onClick={handleResendClick}>
+                    <img className='refresh-icon' src={refresh} alt='refresh icon' />
                     Resend Code
                 </button>
-                </div>   
                 {error && <p className='error-message'>{error}</p>}
                 {success && <p className='success-message'>OTP verified successfully!</p>}
+            </div>
         </div>
     );
 };
