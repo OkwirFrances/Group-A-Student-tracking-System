@@ -9,6 +9,9 @@ import Sidebar from "../../Components/Sidebar/Sidebar";
 const LecturerDashboard = () => {
     return (
             <div className="dashboard-container">
+                <h1>
+                    Lecturer
+                </h1>
                 <Navbar />
                 <Sidebar />
                 <div className="dashboard-content">
