@@ -14,6 +14,7 @@ import NotificationScreen from './components/notificationscreen';
 import HelpSupport from './pages/helpsupport';
 import Settings from './pages/settings';
 import { IssuesProvider } from './context/IssueContext';
+import ErrorBoundary from './pages/ErrorBoundary';
 
 
 
@@ -25,7 +26,7 @@ const App = () => {
         <Routes>
           <Route path="/" index element={<Navigate to="landing"/>}/>
           <Route path="landing" element={<LandingPage/>}/>
-          <Route path="signup" element={<SignUp/>}/>
+          <Route path="signup" element={<ErrorBoundary><SignUp/></ErrorBoundary>}/>
           <Route path="signin" element={<SignIn/>}/>
           <Route path="otp" element={<Otp/>}/>
           <Route path="congs" element={<Congratulations/>}/>

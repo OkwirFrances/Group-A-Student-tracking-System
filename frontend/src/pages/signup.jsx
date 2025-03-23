@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './signup.css';
 import Otp from './otp';
 import logo from '../assets/logo.png';
@@ -26,67 +26,62 @@ const SignUp = () => {
         });
     };
 
-    const isFormValid = () => {
+    // Function to validate form
+    const validateForm = () => {
         const { fullname, email, password, role, termsAccepted } = formData;
-        if (!fullname) {
-            setError('Full Name is required');
-            return false;
-        }
-        if (!email) {
-            setError('Email is required');
-            return false;
-        }
-        if (!password || password.length < 8) {
-            setError('Password is required and should be at least 8 characters');
-            return false;
-        }
-        if (!role) {
-            setError('Role is required');
-            return false;
-        }
-        if (!termsAccepted) {
-            setError('Terms and Conditions must be accepted');
-            return false;
-        }
 
-        setError(''); // Clear any previous errors
-        return true;
+        if (!fullname) return 'Full Name is required';
+        if (!email) return 'Email is required';
+        if (!password || password.length < 8) return 'Password is required and should be at least 8 characters';
+        if (!role) return 'Role is required';
+        if (!termsAccepted) return 'Terms and Conditions must be accepted';
+
+        return ''; // No errors
     };
+
+    // Effect to check if form is valid
+    useEffect(() => {
+        const formError = validateForm();
+        setError(formError);
+    }, [formData]); // Runs every time formData changes
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Form Data:', formData);
 
-        if (isFormValid()) {
-            try {
-                const response = await fetch('http://localhost:8000/signup/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        fullname: formData.fullname,
-                        email: formData.email,
-                        password: formData.password,
-                        role: formData.role,
-                    }),
-                });
+        if (error) {
+            return; // Prevent form submission if there's an error
+        }
 
-                const data = await response.json();
-                console.log('Signup Response:', data);
+        try {
+            console.log('Sending signup request...');
+            const response = await fetch('http://localhost:8000/signup/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    fullname: formData.fullname,
+                    email: formData.email,
+                    password: formData.password,
+                    role: formData.role,
+                }),
+            });
+            console.log('Response Status:', response.status);        
+            const data = await response.json();
+            console.log('Signup Response:', data);
 
-                if (response.ok) {
-                    console.log('Signup Successful:', data);
-                    setShowOtpScreen(true); // Show OTP screen after successful signup
-                } else {
-                    // Display backend error message
-                    setError(data.error || 'Signup failed. Please try again.');
-                }
-            } catch (error) {
-                console.error('Signup Failed:', error);
-                // Handle network errors
-                setError('Unable to connect to the server. Please try again later.');
+            if (response.ok) {
+                console.log('Signup Successful:', data);
+                setShowOtpScreen(true); // Show OTP screen after successful signup
+            } else {
+                // Display backend error message
+                setError(data.error || 'Signup failed. Please try again.');
             }
+        } catch (error) {
+            console.error('Signup Failed:', error);
+            // Handle network errors
+            setError('Unable to connect to the server. Please try again later.');
         }
     };
 
@@ -176,7 +171,8 @@ const SignUp = () => {
                     </label>
                     <button
                         className='signup-button'
-                        disabled={!isFormValid()}
+                        type="submit"
+                        disabled={error !== ''} // Disable if error exists
                     >
                         SIGN UP
                     </button>
