@@ -1,23 +1,23 @@
 import React from 'react';
 import LandingPage from './pages/Home/landingpage';
-import SignUp from 'pages/signup';
-import SignIn from 'pages/signin';
-import IssueForm from 'pages/Issues/issueform';
-import Congratulations from 'pages/congratulations';
-import StudentDashboard from 'pages/studentdashboard';
-import LecturerDashboard from 'pages/Dashboard/LecturerDashboard';
-import RegistrarDashboard from 'pages/Dashboard/RegistrarDashboard';
-import 'App.css';
+import SignUp from 'pages/Auth/signup';
+import SignIn from './pages/Auth/signin';
+import IssueForm from './pages/Issues/issueform';
+import Congratulations from './pages/congratulations';
+import StudentDashboard from './pages/studentdashboard';
+import LecturerDashboard from './pages/Dashboard/LecturerDashboard';
+import RegistrarDashboard from './pages/Dashboard/RegistrarDashboard';
+import './App.css';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import Otp from 'pages/otp';
-import DashboardContent from 'pages/Dashboard/Dashboardcontent';
-import IssueDetails from 'pages/Issues/issuedetails';
-import NotificationScreen from 'pages/notificationscreen';
-import HelpSupport from 'pages/helpsupport';
-import Settings from 'pages/Profile/settings';
-import { IssuesProvider } from 'context/IssueContext';
-import ErrorBoundary from 'pages/ErrorBoundary';
-import ProtectedRoute from 'pages/ProtectedRoute';
+import Otp from './pages/Auth/otp';
+import DashboardContent from './pages/Dashboard/Dashboardcontent';
+import IssueDetails from './pages/Issues/issuedetails';
+import NotificationScreen from './pages/notificationscreen';
+import HelpSupport from './pages/helpsupport';
+import Settings from './pages/Profile/settings';
+import { IssuesProvider } from './context/IssueContext';
+import ErrorBoundary from './pages/ErrorBoundary';
+import ProtectedRoute from './pages/ProtectedRoute';
 
 const App = () => {
   return (
