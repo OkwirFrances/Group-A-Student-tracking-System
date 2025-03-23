@@ -16,7 +16,7 @@
 }
 
 .messages-content h1 {
-    margin-bottom: 520px;
+    margin-bottom: 620px;
     margin-right: 1200px;
 }
 
@@ -24,7 +24,7 @@
     width: 40px;
     height: 40px;
     position: absolute;
-    margin-bottom: 500px;
+    margin-bottom: 590px;
     margin-right: 1400px;
 }
 
@@ -34,7 +34,7 @@
     border-radius: 10px;
     height: 100vh;
     position: absolute;
-    margin-top: 380px;
+    margin-top: 300px;
     width: 95%;
     background-color: white;
 }
@@ -46,8 +46,26 @@
 }
 
 .content h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-align: center;
     justify-content: center;
     align-items: center;
+}
+
+.content p {
+    font-size: 1.7rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-message {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: green;
+    font-weight: bold;
+    font-size: 1rem;
 }
