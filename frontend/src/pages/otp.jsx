@@ -69,7 +69,7 @@ const Otp = ({ email, onResendOtp }) => {
         setSuccess(false);
 
         try {
-            const response = await fetch('http://localhost:8000/resend-otp/', {
+            const response = await fetch('http://localhost:8000/api/resend-otp/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

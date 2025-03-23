@@ -55,7 +55,7 @@ const SignUp = () => {
 
         try {
             console.log('Sending signup request...');
-            const response = await fetch('http://localhost:8000/signup/', {
+            const response = await fetch('http://localhost:8000/api/signup/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
