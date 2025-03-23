@@ -13,6 +13,7 @@ import IssueDetails from './components/issuedetails';
 import NotificationScreen from './components/notificationscreen';
 import HelpSupport from './pages/helpsupport';
 import Settings from './pages/settings';
+import Messages from './components/messages';
 import { IssuesProvider } from './context/IssueContext';
 
 
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="settings" element={<Settings />} />
           </Route>
           <Route path='notifications' element={<NotificationScreen />}/>
+          <Route path='messages' element={<Messages />}/>
         </Routes>
       </BrowserRouter>
     </IssuesProvider>
