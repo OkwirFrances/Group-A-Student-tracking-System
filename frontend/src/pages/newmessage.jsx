@@ -44,7 +44,7 @@ const NewMessage = () => {
 
     const handleSendClick = () => {
         if (message.trim() !== '') {
-            setMessages([...messages, { text: message, sender: 'me' }]);
+            setMessages([...messages, { text: message, sender: 'Me', type: 'text' }]);
             setMessage('');
         };
     };
@@ -56,7 +56,11 @@ const NewMessage = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            console.log('Selected file:', file);
+            const reader = new FileReader();
+            reader.onload = () => {
+                setMessages([...messages, { text: reader.result, sender: 'Me', type: 'image' }]);
+            };
+            reader.readAsDataURL(file);
         };
     };
 
@@ -98,9 +102,9 @@ const NewMessage = () => {
                             className='user-item'
                             onClick={() => handleUserClick(user)}>
                                 <img 
-                                src={user.profilePic} 
-                                alt={user.name} 
-                                className="user-profile-pic" />
+                                    src={user.profilePic} 
+                                    alt={user.name} 
+                                    className="user-profile-pic" />
                                 <span className='user-name'>{user.name}</span>
                             </div>   
                         ))}
@@ -120,7 +124,12 @@ const NewMessage = () => {
                     <div className='chatbox'>
                         {messages.map((msg, index) => (
                             <div key={index} className='chat-message'>
-                                <span className='chat-sender'>{msg.sender}:</span> {msg.text}
+                                <span className='chat-sender'>{msg.sender}:</span>
+                                {msg.type === 'text' ? (
+                                    msg.text
+                                ) : (
+                                    <img src={msg.text} alt='attachment' className='chat-image' />
+                                )}
                             </div>
                         ))}
                     </div>
