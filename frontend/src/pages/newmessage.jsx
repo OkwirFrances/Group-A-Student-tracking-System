@@ -38,6 +38,7 @@ const NewMessage = () => {
                 <p>Click the button below to start a new chat.</p>
                 <img src={newmessage} alt='newmessage' className='newmessage' />
             </div>
+            <div className='newmessage-right'></div>
         </div>
     );
 };

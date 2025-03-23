@@ -37,6 +37,16 @@
     border-radius: 20px;
 }
 
+.newmessage-right {
+    border: 1px solid black;
+    position: absolute;
+    height: 80vh;
+    width: 65%;
+    margin-top: 130px;
+    margin-left: 500px;
+    border-radius: 20px;
+}
+
 .newmessage-left p {
     font-weight: bold;
     margin-left: 60px;
@@ -88,5 +98,4 @@
     border-radius: 5px;
     background-color: green;
     cursor: pointer;
-
 }
