@@ -1,5 +1,5 @@
 import React from 'react';
-import LandingPage from 'pages/Home/landingpage';
+import LandingPage from './pages/Home/landingpage';
 import SignUp from 'pages/signup';
 import SignIn from 'pages/signin';
 import IssueForm from 'pages/Issues/issueform';
