@@ -25,7 +25,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" index element={<Navigate to="landing"/>}/>
-          <Route path="landing" element={<LandingPage/>}/>
+          <Route path="landing" element={<ErrorBoundary><LandingPage/></ErrorBoundary>}/>
           <Route path="signup" element={<ErrorBoundary><SignUp/></ErrorBoundary>}/>
           <Route path="signin" element={<SignIn/>}/>
           <Route path="otp" element={<Otp/>}/>
