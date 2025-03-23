@@ -47,6 +47,18 @@
     border-radius: 20px;
 }
 
+.newmessage-right nav {
+    background-color: rgb(11, 165, 11);
+    top: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    height: 40px;
+    text-align: center;
+    align-items: center;
+}
+
 .newmessage-left p {
     font-weight: bold;
     margin-left: 60px;
@@ -96,6 +108,24 @@
     position: absolute;
     bottom: 10px;
     border-radius: 5px;
-    background-color: green;
+    background-color: rgb(11, 165, 11);
     cursor: pointer;
+}
+
+.chat-box {
+    display: flex;
+    background-color: rgb(16, 166, 16);
+    border-radius: 10px;
+    width: 600px;
+    justify-content: center;
+    margin-left: 150px;
+    height: 300px;
+    margin-top: 130px;
+}
+
+.chatmessage {
+    text-align: center;
+    margin-left: 10px;
+    margin-top: 130px;
+    font-size: 1.1rem;
 }

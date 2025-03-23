@@ -38,7 +38,12 @@ const NewMessage = () => {
                 <p>Click the button below to start a new chat.</p>
                 <img src={newmessage} alt='newmessage' className='newmessage' />
             </div>
-            <div className='newmessage-right'></div>
+            <div className='newmessage-right'>
+                <nav>Chat Area</nav>
+                <div className='chat-box'>
+                    <h2 className='chatmessage'>Select a chat for it to appear here by clicking on it.</h2>
+                </div>
+            </div>
         </div>
     );
 };
