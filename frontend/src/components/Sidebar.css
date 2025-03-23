@@ -12,11 +12,7 @@
     flex-direction: column;
  
 }
-@media (max-width: 48em) {
-    .sidebar {
-display: none;
-    }
-  }
+
 .sidebar-menu {
     list-style-type: none;
     padding: 0;
@@ -75,4 +71,11 @@ display: none;
     width: 100%;
 }
 
-
+.logout-button {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    align-items: center;
+    padding: 0;
+}
