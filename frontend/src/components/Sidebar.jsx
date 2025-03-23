@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import dashboard from '../assets/dashboard.png';
@@ -10,17 +10,13 @@ import support from '../assets/support.png';
 import logout from '../assets/logout.png';
 
 const Sidebar = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
 
-    const toggleSidebar = () => {
-        setIsCollapsed(!isCollapsed);
-        // Fix the optional chaining expression
-        const content = document.querySelector('.dashboard-content');
-        if (content) {
-            content.classList.toggle('sidebar-collapsed');
-        }
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('authToken');
+        navigate('/signin');
     };
-
     return (
         <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
             <button className="sidebar-toggle" onClick={toggleSidebar}>
@@ -58,11 +54,11 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li className='sidebar-item logout'>
-                    <Link to='/app/logout'>
+                    <button onClick={handleLogout} className='logout-button'>
                         <img src={logout} alt='logout' className='sidebar-icon'/>
-                        <span>Logout</span>
-                    </Link>
-                </li>
+                        Logout
+                    </button>
+                        </li>
             </ul>
         </div>
     );

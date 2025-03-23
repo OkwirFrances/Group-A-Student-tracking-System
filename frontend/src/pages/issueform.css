@@ -211,3 +211,15 @@
     background-color: rgb(79, 148, 79);
     cursor: not-allowed;
 }
+
+.notification-popup {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    background-color: green;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}

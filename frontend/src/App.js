@@ -9,63 +9,37 @@ import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Otp from './pages/otp';
 import DashboardContent from './components/Dashboardcontent';
-import Issuemanagement from './components/Issuemanagement';
+import IssueDetails from './components/issuedetails';
+import NotificationScreen from './components/notificationscreen';
+import HelpSupport from './pages/helpsupport';
+import Settings from './pages/settings';
+import { IssuesProvider } from './context/IssueContext';
 
-// Create auth context
-export const AuthContext = createContext(null);
 
-// Protected route component
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useContext(AuthContext);
-  
-  if (!isAuthenticated) {
-    return <Navigate to="/signin" />;
-  }
-  
-  return children;
-};
 
 const App = () => {
-  // Add authentication state
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
-  
-  // Auth context value
-  const authValue = {
-    isAuthenticated,
-    login: () => {
-      localStorage.setItem('isAuthenticated', 'true');
-      setIsAuthenticated(true);
-    },
-    logout: () => {
-      localStorage.setItem('isAuthenticated', 'false');
-      setIsAuthenticated(false);
-    }
-  };
 
   return (
-    <AuthContext.Provider value={authValue}>
+    <IssuesProvider >
       <BrowserRouter>
         <Routes>
-          <Route path="/" index element={<Navigate to="landing" />} />
-          <Route path="landing" element={<LandingPage />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="otp" element={<Otp />} />
-          <Route path="congs" element={<Congratulations />} />
-          
-          {/* Nest all protected routes under /app */}
-          <Route path="app" element={
-            <ProtectedRoute>
-              <StudentDashboard />
-            </ProtectedRoute>
-          }>
-            <Route path="dashboard" element={<DashboardContent />} />
-            <Route path="issuemanagement" element={<Issuemanagement />} />
-            <Route index element={<Navigate to="dashboard" />} />
+          <Route path="/" index element={<Navigate to="landing"/>}/>
+          <Route path="landing" element={<LandingPage/>}/>
+          <Route path="signup" element={<SignUp/>}/>
+          <Route path="signin" element={<SignIn/>}/>
+          <Route path="otp" element={<Otp/>}/>
+          <Route path="congs" element={<Congratulations/>}/>
+          <Route path="app" element={<StudentDashboard/>}>
+            <Route path="dashboard" element={ <DashboardContent />}/>
+            <Route path='issueform' element={<IssueForm />}/>
+            <Route path="issue/:id" element={<IssueDetails />}/>
+            <Route path='support' element={<HelpSupport />}/>
+            <Route path="settings" element={<Settings />} />
           </Route>
+          <Route path='notifications' element={<NotificationScreen />}/>
         </Routes>
       </BrowserRouter>
-    </AuthContext.Provider>
+    </IssuesProvider>
   );
 };
 
