@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import './Otp.css';
-import shield from '../assets/shield.png';
-import refresh from '../assets/refresh.png';
-import help from '../assets/help.png';
+import shield from '../../assets/shield.png';
+import refresh from '../../assets/refresh.png';
+import help from '../../assets/help.png';
 import Congratulations from '../congratulations';
 import { Link, useNavigate } from 'react-router-dom';
 

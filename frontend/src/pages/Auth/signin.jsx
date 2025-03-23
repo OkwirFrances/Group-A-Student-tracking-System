@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './signin.css';
-import logo from '../assets/logo.png';
-import mail from '../assets/mail.png';
+import logo from '../../assets/logo.png';
+import mail from '../../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
-import padlock from '../assets/padlock.png';
+import padlock from '../../assets/padlock.png';
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ const SignIn = () => {
 
         // Call the backend API for authentication
         try {
-            const response = await fetch('http://localhost:8000/signin', {
+            const response = await fetch('http://localhost:8000/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,13 +59,13 @@ const SignIn = () => {
                 // Redirect to the appropriate dashboard based on the user's role
                 switch (data.role) {
                     case 'lecturer':
-                        navigate('/lecturerDashboard');
+                        navigate('/LecturerDashboard');
                         break;
                     case 'student':
-                        navigate('/studentDashboard');
+                        navigate('/StudentDashboard');
                         break;
                     case 'registrar':
-                        navigate('/registrarDashboard');
+                        navigate('/RegistrarDashboard');
                         break;
                     default:
                         setError('Unknown user role.');

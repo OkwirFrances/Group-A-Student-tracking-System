@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../Components/Navbar/Navbar';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import './settings.css';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png';
 
 const Settings = () => {
     return (

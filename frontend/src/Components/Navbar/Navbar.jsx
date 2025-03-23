@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './Navbar.css';
-import logo from '../assets/logo.png';
-import search from '../assets/search.png';
-import notification from '../assets/notification.png';
-import mail from '../assets/mail.png';
+import logo from '../../assets/logo.png';
+import search from '../../assets/search.png';
+import notification from '../../assets/notification.png';
+import mail from '../../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ badgeCount }) => {

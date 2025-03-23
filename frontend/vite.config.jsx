@@ -6,11 +6,11 @@ import path from 'path'
 export default defineConfig({
     base: '',
     plugins: [react(), viteTsconfigPaths()],
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, './src'),
-        },
-    },
+    // resolve: {
+    //     alias: {
+    //         '@': path.resolve(__dirname, './src'),
+    //     },
+    // },
     server: {    
         open: true,
         port: 3000, 

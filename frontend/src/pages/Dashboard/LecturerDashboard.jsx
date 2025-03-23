@@ -10,7 +10,7 @@ const LecturerDashboard = () => {
     return (
             <div className="dashboard-container">
                 <h1>
-                    Lecturer
+                    <h1>Lecturer Dashboard</h1>
                 </h1>
                 <Navbar />
                 <Sidebar />

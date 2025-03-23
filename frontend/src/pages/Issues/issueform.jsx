@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext } from 'react';
 import './issueform.css';
-import upload from '../assets/upload.png';
+import upload from '../../assets/upload.png';
 import { IssuesContext } from '../../context/IssueContext';
 import { v4 as uuidv4 } from 'uuid';
 
