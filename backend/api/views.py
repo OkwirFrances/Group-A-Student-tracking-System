@@ -46,6 +46,29 @@ def signup(request):
     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
 # Login View for JWT Authentication
+# @api_view(['POST'])
+# def login(request):
+#     email = request.data.get('email')
+#     password = request.data.get('password')
+
+#     if not email or not password:
+#         return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+#     try:
+#         user = User.objects.get(email=email)
+#     except User.DoesNotExist:
+#         return JsonResponse({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
+
+#     if not user.check_password(password):
+#         return JsonResponse({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
+
+#     # Generate the JWT tokens
+#     refresh = RefreshToken.for_user(user)
+#     return JsonResponse({
+#         'access_token': str(refresh.access_token),
+#         'refresh_token': str(refresh)
+#     }, status=status.HTTP_200_OK)
+
 @api_view(['POST'])
 def login(request):
     email = request.data.get('email')
@@ -66,7 +89,8 @@ def login(request):
     refresh = RefreshToken.for_user(user)
     return JsonResponse({
         'access_token': str(refresh.access_token),
-        'refresh_token': str(refresh)
+        'refresh_token': str(refresh),
+        'role': user.role  # Include the user's role in the response
     }, status=status.HTTP_200_OK)
 
 # OTP Verification View with Expiry
