@@ -122,7 +122,7 @@ const SignUp = () => {
                         Confirm Password
                         <div className='input-container'>
                         <input 
-                            className='confirm-password'
+                            className='confirpassword'
                             type='password' 
                             name='confirmPassword' 
                             placeholder='Confirm your Password (min -8 characters)' 

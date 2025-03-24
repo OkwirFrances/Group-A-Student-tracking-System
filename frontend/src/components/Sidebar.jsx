@@ -32,7 +32,7 @@ const Sidebar = () => {
                     </Link>
                     </li>
                 <li className='sidebar-item'>
-                    <Link to='profile'>
+                    <Link to='/profile'>
                         <img src={person} alt='person' className='sidebar-icon'/>
                         Profile
                     </Link>
