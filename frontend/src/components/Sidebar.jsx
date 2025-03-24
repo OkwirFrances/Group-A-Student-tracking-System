@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
@@ -10,6 +10,11 @@ import support from '../assets/support.png';
 import logout from '../assets/logout.png';
 
 const Sidebar = () => {
+    const [isCollapsed, setIsCollapsed] = useState(false);
+
+    const toggleSidebar = () => {
+        setIsCollapsed(!isCollapsed);
+    };
 
     const navigate = useNavigate();
 

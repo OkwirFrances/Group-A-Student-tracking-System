@@ -31,23 +31,41 @@
     border-radius: 8px;
     padding: 8px 16px;
     width: 300px;
+    position: relative;
+    width: 350px;
 }
 
 .search-bar input {
-    border: none;
-    outline: none;
-    width: 100%;
-    margin-left: 8px;
+    padding: 10px 10px;
+    border: 1px solid green;
+    border-radius: 15px;
+    font-size: 1rem;
+    margin-left: 80px;
+    flex-grow: 1;
+    width: 350px;
 }
 
 .new-issue-btn {
-    background: #4318FF;
+    background:green;
     color: white;
     border: none;
     border-radius: 8px;
+    float: right;
     padding: 10px 20px;
     cursor: pointer;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.new-issue-btn:hover {
+    background-color: #1d4ed8;
 }
 
 .issues-table {
@@ -116,6 +134,8 @@
     border: 1px solid #E5E7EB; /* Equivalent to border-gray-200 */
     border-radius: 0.5rem; /* Equivalent to rounded-lg */
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Equivalent to shadow-sm */
+    border-radius: 0.5rem;
+    overflow: hidden;
 }
 .table-container::-webkit-scrollbar {
     width: 6px;

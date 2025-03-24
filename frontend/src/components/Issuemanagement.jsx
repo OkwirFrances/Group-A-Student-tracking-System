@@ -38,7 +38,7 @@ const Issuemanagement = () => {
       <div className="max-w-[1200px] mx-auto space-y-8">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-gray-800">Issue Management</h1>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg flex items-center gap-2 shadow-sm">
+          <Button className="new-issue-btn">
             <FiPlus size={20} />
             New Issue
           </Button>
@@ -47,7 +47,7 @@ const Issuemanagement = () => {
         <Card className="rounded-xl shadow-lg border border-gray-200 bg-white overflow-hidden">
           <CardContent className="p-8">
             <div className="flex justify-between items-center mb-8">
-              <div className="relative w-96">
+              <div className="search-bar input">
                 <Input
                   placeholder="Search issues..."
                   className="pl-10 pr-4 py-2.5 w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
