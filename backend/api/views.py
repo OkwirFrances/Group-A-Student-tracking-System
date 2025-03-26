@@ -99,17 +99,17 @@ def verify_otp(request):
 def resend_otp(request):
     email = request.data.get('email')
     if not email:
-        return Response({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse+({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
 
     user = User.objects.filter(email=email).first()
     if not user:
-        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+        return JsonResponse({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
 
     user.otp = generate_otp()
     user.otp_created_at = timezone.now()  # Reset the OTP timestamp
     user.save()
     send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'AITS@mail.com', [email])
-    return Response({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
+    return JsonResponse({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
 # Department View (Only accessible by registrars)
 class DepartmentView(generics.ListCreateAPIView):
@@ -160,12 +160,12 @@ def assign_issue(request, issue_id, lecturer_id):
     lecturer = get_object_or_404(Lecturer, id=lecturer_id)
     
     if issue.course and lecturer.department != issue.course.department:
-        return Response({'error': 'Lecturer must belong to the same department as the course'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'error': 'Lecturer must belong to the same department as the course'}, status=status.HTTP_400_BAD_REQUEST)
     
     issue.assign_to_lecturer(request.user, lecturer)
     issue.assigned_at = timezone.now()
     issue.save()
-    return Response({'message': 'Issue assigned successfully'})
+    return JsonResponse({'message': 'Issue assigned successfully'})
 
 # Resolve Issue View (Accessible by lecturers and registrars)
 @api_view(['POST'])
@@ -178,9 +178,9 @@ def resolve_issue(request, issue_id):
         issue.resolved_at = timezone.now()
         issue.status = 'resolved'
         issue.save()
-        return Response({'message': 'Issue resolved successfully'})
+        return JsonResponse({'message': 'Issue resolved successfully'})
     
-    return Response({'error': 'Unauthorized'}, status=status.HTTP_403_FORBIDDEN)
+    return JsonResponse({'error': 'Unauthorized'}, status=status.HTTP_403_FORBIDDEN)
 
 # User Info View (Accessible by authenticated users)
 class UserInfoView(generics.RetrieveAPIView):
@@ -196,7 +196,7 @@ class UserInfoView(generics.RetrieveAPIView):
             "phone_number": user.phone_number,
             "profile_picture": user.profile_picture.url if user.profile_picture else None
         }
-        return Response(user_data, status=status.HTTP_200_OK)
+        return JsonResponse(user_data, status=status.HTTP_200_OK)
 
 # User Edit View (Accessible by authenticated users)
 class UserEditView(generics.UpdateAPIView):

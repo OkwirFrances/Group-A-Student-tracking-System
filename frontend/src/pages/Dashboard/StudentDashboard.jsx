@@ -1,25 +1,25 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useContext } from 'react';
+import { Outlet } from 'react-router-dom';
 import './studentdashboard.css';
 import Navbar from "../../Components/Navbar/Navbar";
 import Sidebar from "../../Components/Sidebar/Sidebar";
+import { IssuesContext } from '../../context/IssueContext';
 
-
-
-const RegistrarDashboard = () => {
-    const userRole = localStorage.getItem('userRole');
+// Example for StudentDashboard.jsx
+const StudentDashboard = () => {
+    const { issues, loading } = useContext(IssuesContext);
+    
     return (
-            <div className="dashboard-container">
-                <h1>Student Dashboard</h1>
-                <p>Welcome {userRole}</p>
-                <Navbar />
-                <Sidebar />
-                <div className="dashboard-content">
-                    <Outlet/>
-                </div>
+        <div className="dashboard-container">
+            <Navbar />
+            <Sidebar />
+            <div className="dashboard-content">
+                <Outlet context={{ 
+                    issues: issues || [],
+                    loading: loading || false
+                }} />
             </div>
-       
+        </div>
     );
 };
-
-export default RegistrarDashboard;
+export default StudentDashboard;
