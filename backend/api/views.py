@@ -24,6 +24,8 @@ def generate_otp():
     return str(random.randint(100000, 999999))
 
 # Signup View
+from django.core.cache import cache  # Import Django cache
+
 @api_view(['POST'])
 def signup(request):
     email = request.data.get('email')
@@ -37,12 +39,10 @@ def signup(request):
     if User.objects.filter(email=email).exists():
         return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
 
-    user = User.objects.create_user(fullname=fullname, email=email, password=password, role=role)
-    user.otp = generate_otp()
-    user.otp_created_at = timezone.now()  # Store OTP timestamp
-    user.save()
+    otp = generate_otp()
+    cache.set(f'otp_{email}', {'otp': otp, 'fullname': fullname, 'password': password, 'role': role}, timeout=600)  # Store OTP for 10 minutes
 
-    send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'Group-A-AITS@mail.com', [email])
+    send_mail('Your OTP Code', f'Your OTP is {otp}', 'Group-A-AITS@mail.com', [email])
     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
 
@@ -79,20 +79,27 @@ def verify_otp(request):
     if not email or not otp:
         return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
 
-    user = User.objects.filter(email=email).first()
-    if user:
-        otp_created_at = user.otp_created_at
-        # Check if OTP is expired (expires after 10 minutes)
-        if otp_created_at and timezone.now() - otp_created_at > timedelta(minutes=10):
-            return Response({'error': 'OTP has expired'}, status=status.HTTP_400_BAD_REQUEST)
-        if user.otp == otp:
-            user.is_verified = True
-            user.otp = None
-            user.otp_created_at = None  # Clear OTP and timestamp
-            user.save()
-            refresh = RefreshToken.for_user(user)
-            return JsonResponse({'token': str(refresh.access_token)})
-    return JsonResponse({'error': 'Invalid OTP or email'}, status=status.HTTP_400_BAD_REQUEST)
+    cached_data = cache.get(f'otp_{email}')
+    if not cached_data:
+        return JsonResponse({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
+
+    if cached_data['otp'] == otp:
+        # Create user after OTP verification
+        user = User.objects.create_user(
+            fullname=cached_data['fullname'], 
+            email=email, 
+            password=cached_data['password'], 
+            role=cached_data['role']
+        )
+        user.is_verified = True
+        user.save()
+
+        cache.delete(f'otp_{email}')  # Clear OTP data
+
+        refresh = RefreshToken.for_user(user)
+        return JsonResponse({'token': str(refresh.access_token), 'message': 'User created successfully!'}, status=status.HTTP_201_CREATED)
+
+    return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
 
 # Resend OTP View
 @api_view(['POST'])
