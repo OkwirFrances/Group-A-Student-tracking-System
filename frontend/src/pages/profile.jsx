@@ -10,6 +10,7 @@ const Profile = () => {
             <div className='profile-content'>
                 <Navbar />
                 <h1>Profile</h1>
+                <div className='profile'></div>
                 <div className='profile-section'></div>
             </div>
         </div>
