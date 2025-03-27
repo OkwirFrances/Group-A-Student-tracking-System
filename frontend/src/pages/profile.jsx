@@ -30,7 +30,7 @@ const Profile = () => {
                         )}
                         <div className="profile-details">
                             <label className='fullname'>Full Name:</label>
-                            <h2>{user.fullName}</h2>
+                            <h2 className='name'>{user.fullName}</h2>
                         </div>
                     </div>
                 </div>
