@@ -92,10 +92,12 @@
     color: black;
     font-weight: bold;
     font-size: 1.1rem;
-    margin-left: 1200px;
+    margin-left: 1170px;
     margin-bottom: -50px;
     margin-top: -100px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .editbutton:hover {
@@ -105,4 +107,15 @@
 
 .edit {
     width: 20px;
+}
+
+.personal-information {
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 680px;
+    margin-left: 165px;
+    width: 77%;
+    height: 40%;
+    border-radius: 10px;
+    margin-bottom: 350px;
 }

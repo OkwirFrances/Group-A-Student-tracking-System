@@ -38,7 +38,9 @@ const Profile = () => {
                         <img src={edit} alt='edit' className='edit' />
                     </button>
                 </div>
-                
+                <div className='personal-information'>
+                    <h1>Personal Information </h1>
+                </div>
             </div>
         </div>
     );
