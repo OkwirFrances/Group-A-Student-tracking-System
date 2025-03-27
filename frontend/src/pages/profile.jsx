@@ -33,7 +33,7 @@ const Profile = () => {
                             <h2 className='name'>{user.fullName}</h2>
                         </div>
                     </div>
-                    <button>Edit</button>
+                    <button className='editbutton'>Edit</button>
                 </div>
                 
             </div>
