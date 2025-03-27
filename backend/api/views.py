@@ -99,7 +99,7 @@ def verify_otp(request):
 def resend_otp(request):
     email = request.data.get('email')
     if not email:
-        return JsonResponse+({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
 
     user = User.objects.filter(email=email).first()
     if not user:

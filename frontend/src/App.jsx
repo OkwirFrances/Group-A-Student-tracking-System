@@ -18,6 +18,8 @@ import Settings from './pages/Profile/settings';
 import { IssuesProvider } from './context/IssueContext';
 import ErrorBoundary from './pages/ErrorBoundary';
 import ProtectedRoute from './pages/ProectectedRoute';
+import DepartmentManagement from './pages/DepartmentManagement';
+import CourseManagement from './pages/CourseManagement';
 
 // const App = () => {
 //   return (
@@ -143,8 +145,8 @@ const App = () => {
             <Route path="issue/:id" element={<IssueDetails />} />
             <Route path="support" element={<HelpSupport />} />
             <Route path="settings" element={<Settings />} />
-            {/* <Route path="departments" element={<DepartmentManagement />} /> */}
-            {/* <Route path="courses" element={<CourseManagement />} /> */}
+            <Route path="departments" element={<DepartmentManagement />} />
+            <Route path="courses" element={<CourseManagement />} />
           </Route>
 
           {/* Notifications Route */}
