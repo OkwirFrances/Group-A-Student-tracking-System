@@ -1,70 +1,90 @@
 from rest_framework import serializers
-from rest_framework.serializers import ModelSerializer
-from .models import *
+from .models import Department, Course, Lecturer, Student, Registrar, Issue
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
 
+User = get_user_model()
 
-CustomUser = get_user_model()
-
-
-class CustomUserSerializer(ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser
-        fields = ['id','first_name','last_name','email','password','image','Role','year_of_study','Gender']
+        model = User
+        fields = ['id', 'email', 'fullname', 'role', 'is_verified', 'first_name', 'last_name', 'phone_number', 'profile_picture', 'termsAccepted']
 
-class SignUpSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only = True)
-    confirm_password = serializers.CharField(write_only=True)
+class LecturerSerializer(UserSerializer):
+    department = serializers.StringRelatedField()
+    courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True)
 
     class Meta:
-        model = CustomUser
-        fields = ['full_name','email','password','confirm_password','terms_accepted']
-        
-    def validate(self, data):
-        
-        # checks if passwords  match
-        if data['password'] != data['confirm_password']:
-            raise serializers.ValidationError("Passwords do not match")
-        
-        # check if terms and conditions have been accepted
-        if not data.get('terms_accepted'):
-            raise serializers.ValidationError("You must accept the terms and conditions")
-        
-        # checks if email already exists
-        if CustomUser.objects.filter(email = data.get('email')).exists():
-            raise serializers.ValidationError("Email already used....")
-        
-        
-        return data
-    
-    def create(self , validated_data):
-        
-        user = CustomUser.objects.create_user(username=validated_data['username'], email=validated_data['email'], password=validated_data['password'],terms_accepted=validated_data['terms_accepted'])
+        model = Lecturer
+        fields = UserSerializer.Meta.fields + ['staff_id', 'department', 'courses', 'office_location']
 
-        return user
-        
-        
+class StudentSerializer(UserSerializer):
+    department = serializers.StringRelatedField()
+    enrolled_courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True)
 
+    class Meta:
+        model = Student
+        fields = UserSerializer.Meta.fields + ['student_id', 'department', 'enrolled_courses', 'enrollment_date']
 
-class DepartmentSerializer(ModelSerializer):
+class RegistrarSerializer(UserSerializer):
+    staff_id = serializers.CharField(max_length=20)
+    office_number = serializers.CharField(max_length=20)
+
+    class Meta:
+        model = Registrar
+        fields = UserSerializer.Meta.fields + ['staff_id', 'office_number']
+
+class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
-        fields = ['department_name','description']
+        fields = ['id', 'code', 'name', 'description']
 
-class IssueSerializer(ModelSerializer):
+class CourseSerializer(serializers.ModelSerializer):
+    department = DepartmentSerializer()
+
+    class Meta:
+        model = Course
+        fields = ['id', 'code', 'name', 'department', 'description']
+
+class IssueSerializer(serializers.ModelSerializer):
+    student = StudentSerializer(read_only=True)
+    course = CourseSerializer(read_only=True)
+    assigned_to = LecturerSerializer(read_only=True)
+    assigned_by = RegistrarSerializer(read_only=True)
+    resolved_by = RegistrarSerializer(read_only=True)
+    
+    issue_type = serializers.ChoiceField(choices=Issue.ISSUE_CHOICES)
+    semester = serializers.ChoiceField(choices=Issue.SEMESTER_CHOICES)
+    status = serializers.ChoiceField(choices=Issue.ISSUE_STATUS)
+    
     class Meta:
         model = Issue
-        fields = '__all__'
-        #fields = ['student','issue_type','issue_status','course_unit','issue_description','Image','date_created','update','lecturer','registrar']
+        fields = [
+            'id', 'student', 'issue_type', 'semester', 'course', 'title', 'description', 
+            'status', 'created_at', 'updated_at', 'assigned_to', 'assigned_by', 
+            'assigned_at', 'resolved_by', 'resolved_at'
+        ]
 
-class CourseUnitSerializer(ModelSerializer):
+    def create(self, validated_data):
+        student = self.context['request'].user
+        validated_data['student'] = student
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        for attr, value in validated_data.items():
+            if attr not in ['assigned_to', 'assigned_by', 'resolved_by']:
+                setattr(instance, attr, value)
+        instance.save()
+        return instance
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CourseUnit
-        fields = ['course_unit_name','course_unit_code'] 
-
-class ProgramSerializer(ModelSerializer):
-    class Meta:
-        model = Program
-        fields = ['program_name','course_units']
-
+        model = User
+        fields = ['fullname', 'phone_number', 'profile_picture'] 
+    
+    def update(self, instance, validated_data):
+        instance.fullname = validated_data.get('fullname', instance.fullname)
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        instance.profile_picture = validated_data.get('profile_picture', instance.profile_picture)
+        instance.save()
+        return instance

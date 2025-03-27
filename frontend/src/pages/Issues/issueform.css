@@ -1,0 +1,225 @@
+.issue-form-container {
+    padding: 0px;
+    padding-top: 70px;
+    margin: 0;
+    margin-left: -160px;
+    margin-bottom: 10px;
+    height: 100vh;
+}
+
+.issue-form-header {
+    text-align: left;
+    margin-bottom: 0px;
+}
+
+.issue-form-header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 360px;
+    color: black;
+    margin-top: -26px;
+}
+
+.issue-form-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 20px;
+    margin-left: 360px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 200vh;
+    border: 1px solid black;
+    width: 74%;
+}
+
+.registrar-select-label {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: black;
+    margin-left: 5px;
+}
+
+.registrar-select {
+    width: 40%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.issue-select {
+    width: 40%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.issue-label {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.course-code-label {
+    position: absolute;
+    top: 29px;
+    right: 400px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.lecturer-label {
+    position: absolute;
+    top: 111px;
+    right: 440px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.upload-label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 200px;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    right: 180px;
+    width: 36%;
+    height: 200vh;
+}
+
+.upload-photo-input {
+    width: 125%;
+    padding: 80px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: black;
+    border: 1px solid black;
+    height: 233px;
+    border-radius: 10px;
+    width: 560px;
+    text-align: center;
+}
+
+.upload-link {
+    color: green;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 30px;
+    padding: 0;
+    font-size: 1.2rem;
+    border: none;
+}
+
+.selected-image {
+    max-width: 300px;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.upload-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
+.lecturer-select {
+    width: 323%;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+    padding: 10px;
+}
+
+.course-code-input {
+    width: 250%;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+}
+
+.issue-title-input {
+    width: 38.2%;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+}
+
+.course-name-input {
+    width: 38.2%;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+}
+
+.issue-description-input {
+    width: 38.2%;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: black;
+    height: 50px;
+}
+
+.issue-submit-button {
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: green;
+    margin-left: 940px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.issue-submit-button:disabled {
+    background-color: rgb(79, 148, 79);
+    cursor: not-allowed;
+}
+
+.notification-popup {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    background-color: green;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
