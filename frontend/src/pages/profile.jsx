@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import './profile.css';
+import edit from '../assets/edit.png';
 
 const Profile = () => {
     const [user] = useState({
@@ -33,7 +34,9 @@ const Profile = () => {
                             <h2 className='name'>{user.fullName}</h2>
                         </div>
                     </div>
-                    <button className='editbutton'>Edit</button>
+                    <button className='editbutton'>Edit
+                        <img src={edit} alt='edit' className='edit' />
+                    </button>
                 </div>
                 
             </div>
