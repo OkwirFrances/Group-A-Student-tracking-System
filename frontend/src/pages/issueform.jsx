@@ -115,6 +115,9 @@ const IssueForm = () => {
                     <option value='lule'>Dr. Lule Bosco</option>
                     <option value='waswa'>Dr. Waswa Shafick</option>
                     <option value='alvin'>Dr. Alvin David</option>
+                    <option value='aloi'>Mrs. Aloi Racheal</option>
+                    <option value='denish'>Mr. Denish</option>
+                    <option value='muwonge'>Mr. Muwonge Benard</option>
                 </select>
             </label>
             <label className='upload-label'>
