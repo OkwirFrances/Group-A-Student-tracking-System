@@ -58,6 +58,10 @@ const SignUp = () => {
         if (isFormValid()){
             generateOtp();
             setShowOtpScreen(true);
+
+            if (formData.role === 'registrar') {
+                localStorage.setItem('userRole', formData.role);
+            }
         } else {
             console.log('Form is not valid');
         }   
@@ -157,7 +161,7 @@ const SignUp = () => {
                         I have read and accepted all the AITS terms and conditions.
                     </label>
                     <button 
-                    
+                        onClick={handleSubmit}
                         className='signup-button' 
                         disabled={!isFormValid()}
                         >
