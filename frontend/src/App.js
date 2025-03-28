@@ -16,6 +16,7 @@ import Settings from './pages/settings';
 import Messages from './pages/messages';
 import NewMessage from './pages/newmessage';
 import Profile from './pages/profile';
+import RegistrarDashboard from './pages/registrardashboard';
 import { IssuesProvider } from './context/IssueContext';
 import RoleBasedRoute from './components/rolebassedroute';
 
@@ -42,6 +43,9 @@ const App = () => {
             <Route path='support' element={<HelpSupport />}/>
             <Route path="settings" element={<Settings />} />
           </Route>
+          <Route path='registrar-dashboard' element={<RoleBasedRoute allowedRoles={['registrar']}>
+            <RegistrarDashboard />
+          </RoleBasedRoute>} />
           <Route path='notifications' element={<NotificationScreen />}/>
           <Route path='messages' element={<Messages />}/>
           <Route path='newmessage' element={<NewMessage />}/>
