@@ -5,6 +5,7 @@ import refresh from '../assets/refresh.png';
 import help from '../assets/help.png';
 import Congratulations from './congratulations';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Otp = ({ email, onResendOtp }) => {
     const [otp, setOtp] = useState(['','','','']);
@@ -12,6 +13,7 @@ const Otp = ({ email, onResendOtp }) => {
     const [success, setSuccess] = useState(false);
     const [showCongratulations, setShowCongratulations] = useState(false);
     const inputRefs = useRef([]);
+    const navigate = useNavigate();
 
     const handleChange = (e, index) => {
         const value = e.target.value;
@@ -34,6 +36,16 @@ const Otp = ({ email, onResendOtp }) => {
             setError('');
             console.log('OTP verified successfully');
             setShowCongratulations(true);
+
+            const userRole = localStorage.getItem('userRole');
+
+            if (userRole === 'registrar') {
+                navigate('/signin');
+            } else if (userRole === 'student') {
+                navigate('/signin');
+            } else if (userRole === 'lecturer') {
+                navigate('/signin');
+            }
         } else {
             setError('Invalid OTP. Please try again.');
             setSuccess(false);

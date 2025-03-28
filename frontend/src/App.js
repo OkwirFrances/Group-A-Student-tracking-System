@@ -17,6 +17,7 @@ import Messages from './pages/messages';
 import NewMessage from './pages/newmessage';
 import Profile from './pages/profile';
 import { IssuesProvider } from './context/IssueContext';
+import RoleBasedRoute from './components/rolebassedroute';
 
 
 
@@ -32,7 +33,9 @@ const App = () => {
           <Route path="signin" element={<SignIn/>}/>
           <Route path="otp" element={<Otp/>}/>
           <Route path="congs" element={<Congratulations/>}/>
-          <Route path="app" element={<StudentDashboard/>}>
+          <Route path="app" element={<RoleBasedRoute allowedRoles={['student']}>
+            <StudentDashboard />
+          </RoleBasedRoute>}>
             <Route path="dashboard" element={ <DashboardContent />}/>
             <Route path='issueform' element={<IssueForm />}/>
             <Route path="issue/:id" element={<IssueDetails />}/>

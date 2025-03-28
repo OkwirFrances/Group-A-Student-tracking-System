@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import padlock from '../assets/padlock.png';
 
 const SignIn = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         password:'',
@@ -30,9 +30,19 @@ const SignIn = () => {
 
     const handleSignInClick = (e) => {
         console.log('Sign In:', formData);
-e.preventDefault();
-navigate('/app');
+        e.preventDefault();
         if (isFormValid) {
+            const userRole = localStorage.getItem('userRole');
+
+            if (userRole === 'registrar') {
+                navigate('/registrar-dashboard');
+            } else if (userRole === 'student') {
+                navigate('/app');
+            } else if (userRole === 'lecturer') {
+                navigate('/lecturer-dashboard');
+            } else {
+                console.log('Invalid user role');
+            }
         } else {
             console.log('Form is  not valid');
         }

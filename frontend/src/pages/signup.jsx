@@ -59,7 +59,7 @@ const SignUp = () => {
             generateOtp();
             setShowOtpScreen(true);
 
-            if (formData.role === 'registrar') {
+            if (formData.role === 'registrar' || formData.role === 'student') {
                 localStorage.setItem('userRole', formData.role);
             }
         } else {
