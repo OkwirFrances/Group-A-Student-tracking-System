@@ -78,3 +78,43 @@
     align-items: center;
     padding: 0;
 }
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .sidebar-item {
+        padding: 10px 15px;
+    }
+
+    .sidebar-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        transform: translateX(-100%); /* Hide sidebar by default */
+    }
+
+    .sidebar.open {
+        transform: translateX(0); /* Show sidebar when open */
+    }
+
+    .sidebar-item {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .sidebar-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .logout-button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
