@@ -19,7 +19,7 @@
 
 
 // src/context/IssueContext.jsx
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 export const IssuesContext = createContext();
@@ -55,8 +55,14 @@ export const IssuesProvider = ({ children }) => {
     setIssues([...issues, issue]);
   };
 
+
+  useEffect(() => {
+    fetchIssues();
+  }
+  , []);
+
   return (
-    <IssuesContext.Provider value={{ issues, addIssue }}>
+    <IssuesContext.Provider value={{ issues, addIssue,fetchIssues,loading,error }}>
       {children}
     </IssuesContext.Provider>
   );
