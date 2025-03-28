@@ -12,15 +12,27 @@ const Sidebar = () => {
 
     const navigate = useNavigate();
 
+    const userRole = localStorage.getItem('userRole');
+
     const handleLogout = () => {
         localStorage.removeItem('authToken');
+        localStorage.removeItem('userRole');
         navigate('/signin');
     };
+
     return (
         <div className='sidebar'>
             <ul className='sidebar-menu'>
                 <li className='sidebar-item'>
-                    <Link to='dashboard'>
+                    <Link to={
+                        userRole === 'registrar'
+                            ? 'registrar-dashboard'
+                            : userRole === 'student'
+                            ? 'dashboard'
+                            : userRole === 'lecturer'
+                            ? '/lecturer-dashboard'
+                            : '/signin'
+                    }>
                         <img src={dashboard} alt='dashboard' className='sidebar-icon'/>
                             Dashboard
                     </Link>
