@@ -13,7 +13,6 @@
     z-index: 1000;
     margin: 0;
     grid-column: 1/-1;
-  
 }
 
 .navbar-logo {
@@ -147,4 +146,173 @@
     border-radius: 50%;
     padding: 5px 10px;
     font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .navbar-logo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .search-container {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .navbar-logo-text {
+        font-size: 1rem;
+    }
+
+    .notification-icon,
+    .mail-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .user-icon,
+    .user-initials {
+        width: 30px;
+        height: 30px;
+    }
+
+    .user-greeting {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .navbar-logo-text {
+        font-size: 1rem;
+    }
+
+    .user-greeting {
+        font-size: 0.9rem;
+    }
+
+    .search-input {
+        width: 80%;
+    }
+
+    .notification-icon,
+    .mail-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .user-icon,
+    .user-initials {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .navbar-logo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .makerere-logo {
+        width: 40px;
+    }
+
+    .navbar-logo-text {
+        font-size: 0.9rem;
+    }
+
+    .search-container {
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .notification-icon,
+    .mail-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .user-icon,
+    .user-initials {
+        width: 25px;
+        height: 25px;
+    }
+
+    .user-greeting {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .navbar-logo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .makerere-logo {
+        width: 35px;
+        height: auto;
+    }
+
+    .navbar-logo-text {
+        font-weight: 0.8rem
+    }
+
+    .search-input {
+        width: 100%;
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .notification-icon,
+    .mail-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .user-icon,
+    .user-initials {
+        width: 20px;
+        height: 20px;
+    }
+
+    .user-greeting {
+        font-size: 0.7rem;
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .notification-container {
+        margin-top: 10px;
+    }
 }

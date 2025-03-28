@@ -27,8 +27,10 @@ navigate("/signup")
                     <button className='auth-button' onClick={handlesignin}>SIGN IN</button>
                 </div>
                 <p className='auth-text'>"Please Sign Up to get started"</p>
-                <h1 className='body-words'>ACADEMIC ISSUE TRACKING SYSTEM</h1>
-                <p className='sub-text' >"Track and manage your issues seamlessly"</p>
+                <div className='landing-text'>
+                    <h1 className='body-words'>ACADEMIC ISSUE TRACKING SYSTEM</h1>
+                    <p className='sub-text' >"Track and manage your issues seamlessly"</p>
+                </div>
             </div>
     );
 };
