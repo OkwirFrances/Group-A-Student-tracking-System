@@ -66,7 +66,7 @@ const Sidebar = () => {
                         <img src={logout} alt='logout' className='sidebar-icon'/>
                         Logout
                     </button>
-                        </li>
+                </li>
             </ul>
         </div>
     );

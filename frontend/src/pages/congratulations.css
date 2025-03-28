@@ -9,6 +9,13 @@
     background-color: orange;
 }
 
+aits-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+
+}
+
 .congratulations-logo {
     width: 100px;
     height: 100px;
@@ -55,4 +62,60 @@
 
 .signin-button:hover {
     background-color: orange;
+}
+
+@media (max-width: 768px) {
+    .aits-logo {
+        font-size: 1.5rem;
+    }
+
+    .help {
+        font-size: 0.8rem;
+    }
+
+    .congratulations-logo {
+        width: 120px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .signin-button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .aits-logo {
+        font-size: 1.2rem;
+    }
+
+    .help {
+        font-size: 0.7rem;
+        top: 10px;
+        right: 10px;
+    }
+
+    .congratulations-logo {
+        width: 100px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+
+    .signin-button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
 }
