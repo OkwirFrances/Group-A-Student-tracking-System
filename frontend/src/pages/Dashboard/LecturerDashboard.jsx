@@ -124,6 +124,24 @@ const LecturerDashboard = () => {
         
         return () => clearInterval(interval);
     }, []);
+    
+
+    {loading ? (
+        <p>Loading...</p>
+    ) : assignedIssues.length === 0 ? (
+        <p>No issues assigned to you at the moment.</p>
+    ) : (
+        <ul>
+            {assignedIssues.map(issue => (
+                <li key={issue.id}>
+                    <h3>{issue.title}</h3>
+                    <p>Status: {issue.status}</p>
+                    <button onClick={() => handleResolve(issue.id)}>Resolve</button>
+                </li>
+            ))}
+        </ul>
+    )}
+    
 
     return (
         <div className="dashboard-container">
