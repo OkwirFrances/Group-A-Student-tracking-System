@@ -82,3 +82,69 @@
     font-family: Arial, Helvetica, sans-serif;
 
 }
+
+@media (max-width: 768px) {
+    .helpsupport-container {
+        flex-direction: column;
+    }
+
+    .helpsupport-content {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .helpsupport-box {
+        padding: 15px;
+        max-width: 90%;
+        min-height: 150px;
+    }
+
+    .helpsupport-box h2 {
+        font-size: 1.2rem;
+    }
+
+    .helpsupport-box h3,
+    .helpsupport-box h4 {
+        font-size: 0.9rem;
+    }
+
+    .help-backarrow-icon {
+        width: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .helpsupport-container {
+        flex-direction: column;
+    }
+
+    .helpsupport-content {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .helpsupport-box {
+        padding: 10px;
+        max-width: 100%;
+        min-height: 120px;
+    }
+
+    .helpsupport-box h2 {
+        font-size: 1rem;
+    }
+
+    .helpsupport-box h3,
+    .helpsupport-box h4 {
+        font-size: 0.8rem;
+    }
+
+    .help-backarrow-icon {
+        width: 20px;
+    }
+}
