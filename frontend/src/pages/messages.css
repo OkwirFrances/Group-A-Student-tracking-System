@@ -1,6 +1,8 @@
 .messages-container {
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100vh;
     background-color: white;
 }
 
@@ -38,12 +40,14 @@
     margin-top: 300px;
     width: 95%;
     background-color: white;
+    gap: 20px;
 }
 
 .empty-box {
-    width: 500px;
-    height: 500px;
-    margin-left: 380px;
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+    margin-left: 450px;
 }
 
 .content h2 {
@@ -74,4 +78,76 @@
 
 .new-message:hover {
     color: white;
+}
+
+@media (max-width: 768px) {
+    .messages-content {
+        padding: 15px;
+    }
+
+    .messages-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .backarrow {
+        width: 30px;
+        height: 30px;
+        top: 15px;
+        left: 15px;
+    }
+
+    .content {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .empty-box {
+        width: 200px;
+    }
+
+    .content h2 {
+        font-size: 1.2rem;
+    }
+
+    .content p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .messages-container {
+        padding: 10px;
+    }
+
+    .messages-content {
+        padding: 10px;
+    }
+
+    .messages-content h1 {
+        font-size: 1.2rem;
+    }
+
+    .backarrow {
+        width: 20px;
+        height: 20px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .empty-box {
+        width: 150px;
+    }
+
+    .content h2 {
+        font-size: 1rem;
+    }
+
+    .content p {
+        font-size: 0.8rem;
+    }
 }

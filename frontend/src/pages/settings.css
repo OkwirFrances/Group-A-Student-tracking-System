@@ -1,5 +1,6 @@
 .settings-container {
     display: flex;
+    flex-direction: row;
     height: 100vh;
 }
 
@@ -262,4 +263,84 @@
 .delete-yes:hover {
     background-color: red;
     color: white;
+}
+
+@media (max-width: 768px) {
+    .settings-container {
+        flex-direction: column;
+    }
+
+    .settings-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .settings-box {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .settings-tab {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .old-password,
+    .new-password,
+    .confirm-password {
+        font-size: 0.9rem;
+    }
+
+    .save-changes {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .delete-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .delete-no,
+    .delete-yes {
+        width: 100%;
+    }
+}
+
+/* Responsive Styles for Mobile Devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .settings-content h1 {
+        font-size: 1.2rem;
+    }
+
+    .settings-box {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .settings-tab {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .old-password,
+    .new-password,
+    .confirm-password {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .save-changes {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .delete-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .delete-no,
+    .delete-yes {
+        width: 100%;
+    }
 }
