@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import './studentdashboard.css';
-import Navbar from "../../Components/Navbar/Navbar";
-import Sidebar from "../../Components/Sidebar/Sidebar";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 
 
 

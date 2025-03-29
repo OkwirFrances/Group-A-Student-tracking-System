@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import './studentdashboard.css';
-import Navbar from "../../Components/Navbar/Navbar";
-import Sidebar from "../../Components/Sidebar/Sidebar";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 
 
 
-const RegistrarDashboard = () => {
+const StudentDashboard = () => {
     const userRole = localStorage.getItem('userRole');
     return (
             <div className="dashboard-container">
@@ -22,4 +22,4 @@ const RegistrarDashboard = () => {
     );
 };
 
-export default RegistrarDashboard;
+export default StudentDashboard;
