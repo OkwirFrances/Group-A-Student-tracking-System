@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import './notificationscreen.css';
 import emptybox from '../assets/emptybox.png';
 import backarrow from '../assets/backarrow.png';
+<<<<<<< HEAD
 import Navbar from '../Components/Navbar/Navbar';
+=======
+import Navbar from '../components/Navbar';
+>>>>>>> 6eda13b8a350b0543cc42fdcf84e8b251810697a
 import { IssuesContext } from '../context/IssueContext';
 
 const NotificationScreen = () => {

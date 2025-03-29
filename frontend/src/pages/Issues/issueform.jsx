@@ -85,6 +85,13 @@ const IssueForm = () => {
                     <option value='cocis'>COCIS Registrar</option>
                     <option vue='cedat'>CEDAT Registrar</option>
                     <option value='chuss'>CHUSS Registrar</option>
+                    <option value='caes'>CAES Registrar</option>
+                    <option value='cobams'>COBAMS Registrar</option>
+                    <option value='cees'>CEES Registrar</option>
+                    <option value='chs'>CHS Registrar</option>
+                    <option value='conas'>CONAS Registrar</option>
+                    <option value='school of law'>School Of Law</option>
+                    <option vlaue='covab'>COVAB Registrar</option>
                 </select>
             </label>
             <label className='course-code-label'>
@@ -108,6 +115,9 @@ const IssueForm = () => {
                     <option value='lule'>Dr. Lule Bosco</option>
                     <option value='waswa'>Dr. Waswa Shafick</option>
                     <option value='alvin'>Dr. Alvin David</option>
+                    <option value='aloi'>Mrs. Aloi</option>
+                    <option value='denish'>Mr. Denish</option>
+                    <option value='muwonge'>Mr. Muwonge</option>
                 </select>
             </label>
             <label className='upload-label'>

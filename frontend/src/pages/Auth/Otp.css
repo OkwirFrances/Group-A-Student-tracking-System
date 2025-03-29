@@ -157,3 +157,82 @@
     color: rgb(35, 176, 35);
     margin-top: 10px;
 }
+
+@media (max-width: 768px) {
+    .aits-logo {
+        font-size: 1.2rem;
+    }
+
+    .help {
+        font-size: 0.9rem;
+    }
+
+    .otp-content {
+        padding: 15px;
+    }
+
+    .authenticate-title {
+        font-size: 1.5rem;
+    }
+
+    .authenticate-sub-title {
+        font-size: 0.9rem;
+    }
+
+    .otp-input {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    .verify-button,
+    .resend-button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .aits-logo {
+        font-size: 1rem;
+    }
+
+    .help {
+        font-size: 0.8rem;
+    }
+
+    .otp-content {
+        padding: 10px;
+    }
+
+    .shield {
+        width: 80px;
+        height: 80px;
+    }
+
+    .authenticate-title {
+        font-size: 1.2rem;
+    }
+
+    .authenticate-sub-title {
+        font-size: 0.8rem;
+    }
+
+    .otp-input {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .verify-button,
+    .resend-button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .help-logo {
+        width: 15px;
+        height: 15px;
+    }
+}

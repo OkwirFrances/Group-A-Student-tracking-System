@@ -12,15 +12,27 @@ const Sidebar = () => {
 
     const navigate = useNavigate();
 
+    const userRole = localStorage.getItem('userRole');
+
     const handleLogout = () => {
         localStorage.removeItem('authToken');
+        localStorage.removeItem('userRole');
         navigate('/signin');
     };
+
     return (
         <div className='sidebar'>
             <ul className='sidebar-menu'>
                 <li className='sidebar-item'>
-                    <Link to='dashboard'>
+                    <Link to={
+                        userRole === 'registrar'
+                            ? 'registrar-dashboard'
+                            : userRole === 'student'
+                            ? 'dashboard'
+                            : userRole === 'lecturer'
+                            ? '/lecturer-dashboard'
+                            : '/signin'
+                    }>
                         <img src={dashboard} alt='dashboard' className='sidebar-icon'/>
                             Dashboard
                     </Link>
@@ -32,7 +44,7 @@ const Sidebar = () => {
                     </Link>
                     </li>
                 <li className='sidebar-item'>
-                    <Link to='profile'>
+                    <Link to='/profile'>
                         <img src={person} alt='person' className='sidebar-icon'/>
                         Profile
                     </Link>
@@ -54,7 +66,7 @@ const Sidebar = () => {
                         <img src={logout} alt='logout' className='sidebar-icon'/>
                         Logout
                     </button>
-                        </li>
+                </li>
             </ul>
         </div>
     );

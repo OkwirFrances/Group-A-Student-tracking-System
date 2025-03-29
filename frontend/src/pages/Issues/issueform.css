@@ -5,6 +5,8 @@
     margin-left: -160px;
     margin-bottom: 10px;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .issue-form-header {
@@ -222,4 +224,71 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .issue-form-container {
+        padding: 15px;
+    }
+
+    .issue-form-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .issue-form-content {
+        padding: 15px;
+        margin-left: 0;
+        max-width: 90%;
+    }
+
+    .issue-form-content input,
+    .issue-form-content select {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .issue-title-input,
+    .course-name-input,
+    .issue-description-input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .issue-form-container {
+        padding: 10px;
+    }
+
+    .issue-form-header h1 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .issue-form-content {
+        padding: 10px;
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .issue-form-content input,
+    .issue-form-content select {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+
+    .issue-title-input,
+    .course-name-input,
+    .issue-description-input {
+        width: 100%; 
+    }
+
+    .upload-section {
+        width: 100%; 
+    }
+
+    .issue-submit-button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+        width: 100%; 
+    }
 }
