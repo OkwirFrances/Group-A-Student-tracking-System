@@ -7,6 +7,8 @@ import person from '../assets/person.png';
 import settings from '../assets/settings.png';
 import support from '../assets/support.png';
 import logout from '../assets/logout.png';
+import department from '../assets/department.png';
+import course from '../assets/course.png';
 
 const Sidebar = () => {
 
@@ -24,19 +26,27 @@ const Sidebar = () => {
         <div className='sidebar'>
             <ul className='sidebar-menu'>
                 <li className='sidebar-item'>
-                    <Link to={
-                        userRole === 'registrar'
-                            ? 'registrar-dashboard'
-                            : userRole === 'student'
-                            ? 'dashboard'
-                            : userRole === 'lecturer'
-                            ? '/lecturer-dashboard'
-                            : '/signin'
-                    }>
+                    <Link to='dashboard'>
                         <img src={dashboard} alt='dashboard' className='sidebar-icon'/>
                             Dashboard
                     </Link>
                     </li>
+                    {userRole === 'registrar' && (
+                        <>
+                            <li className='sidebar-item'>
+                                <Link to='/department'>
+                                    <img src={department} alt='department' className='sidebar-icon'/>
+                                    Departments
+                                </Link>
+                            </li>
+                            <li className='sidebar-item'>
+                                <Link to='/course'>
+                                    <img src={course} alt='course' className='sidebar-icon'/>
+                                    Courses
+                                </Link>
+                            </li>
+                        </>
+                    )}
                 <li className='sidebar-item'>
                     <Link to='issues'>
                         <img src={issue} alt='issue' className='sidebar-icon'/>
