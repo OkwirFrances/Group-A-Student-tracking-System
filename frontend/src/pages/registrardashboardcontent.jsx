@@ -32,6 +32,7 @@ const RegistrarDashboardContent = () => {
                     <p>You have {resolvedIssues} resolved issues</p>
                 </div>
             </div>
+            <p className="recent">Recent Actions</p>
         </div>
     )
 };
