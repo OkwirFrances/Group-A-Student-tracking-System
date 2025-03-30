@@ -31,10 +31,12 @@
 
 .notification-screen h1 {
     font-size: 1.5rem;
+    position: absolute;
     font-weight: bold;
     color: black;
-    margin-top: -33px;
+    margin-bottom: 500px;
     margin-right: 1200px;
+    margin-left: -250px;
 }
 
 .notification-screen p {
@@ -48,15 +50,16 @@
     cursor: pointer;
     width: 30px;
     height: 30px;
-    margin-right: 1400px;
-    margin-top: 100px;
+    margin-right: 980px;
+    margin-top: 99px;
+    margin-bottom: -10px;
+    position: relative;
+    
 }
 
 .notification-emptybox {
     width: 500px;
     height: 500px;
-<<<<<<< HEAD
-=======
 }
 
 @media (max-width: 768px) {
@@ -131,5 +134,4 @@
     .notification-screen p {
         font-size: 0.8rem;
     }
->>>>>>> 6eda13b8a350b0543cc42fdcf84e8b251810697a
 }

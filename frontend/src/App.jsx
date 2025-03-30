@@ -38,20 +38,24 @@ const App = () => {
             <StudentDashboard />
           </RoleBasedRoute>}>
             <Route path="dashboard" element={ <DashboardContent />}/>
+            <Route path='notifications' element={<NotificationScreen />}/>
             <Route path='issueform' element={<IssueForm />}/>
             <Route path="issue/:id" element={<IssueDetails />}/>
             <Route path='support' element={<HelpSupport />}/>
             <Route path="settings" element={<Settings />} />
+            <Route path='profile' element={<Profile />}/>
           </Route>
+
+
           <Route path='registrar-dashboard' element={<RoleBasedRoute allowedRoles={['registrar']}>
             <RegistrarDashboard />
           </RoleBasedRoute>} >
-          <Route path="dashboard" element={<RegistrarDashboard />} />
+            <Route path="dashboard" element={<RegistrarDashboard />} />
+            <Route path='notifications' element={<NotificationScreen />}/>
+            <Route path='profile' element={<Profile />}/>
           </Route>
-          <Route path='notifications' element={<NotificationScreen />}/>
           <Route path='messages' element={<Messages />}/>
           <Route path='newmessage' element={<NewMessage />}/>
-          <Route path='profile' element={<Profile />}/>
         </Routes>
       </BrowserRouter>
     </IssuesProvider>

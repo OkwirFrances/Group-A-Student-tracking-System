@@ -1,6 +1,10 @@
 .dashboard-content {
     padding: 0px;
+    display: flex;
+    flex-direction: column;
     margin-left: 198px;
+    height: 100vh;
+    width: 85%;
     
 }
 
@@ -18,12 +22,12 @@
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 28%;
-    height: 50%;
+    height: 70%;
     text-align: center;
 }
 
 .card.pending {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 
 .card.in-progress {

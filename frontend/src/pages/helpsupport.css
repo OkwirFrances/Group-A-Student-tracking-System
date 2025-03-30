@@ -16,24 +16,25 @@
 .helpsupport-content h1 {
     font-size: 2rem;
     color: black;
-    margin-bottom: 650px;
-    margin-right: 750px;
-    margin-top: -44px;
+    margin-bottom: 670px;
+    margin-right: 760px;
+    margin-top: -40px;
 }
 
 .help-backarrow-icon {
     cursor: pointer;
+    position: absolute;
     width: 40px;
     height: 40px;
-    margin-right: 990px;
-    margin-top: 0px;
+    margin-right: 800px;
+    margin-bottom: 600px;
 }
 
 .helpsupport-box {
     border: 1px solid black;
     border-radius: 10px;
     padding: 0px;
-    width: 80%;
+    width: 100%;
     position: absolute;
     padding: 20px;
     margin-left: 165px;
