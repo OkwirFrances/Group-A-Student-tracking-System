@@ -10,8 +10,6 @@ const StudentDashboard = () => {
     const userRole = localStorage.getItem('userRole');
     return (
             <div className="dashboard-container">
-                <h1>Student Dashboard</h1>
-                <p>Welcome {userRole}</p>
                 <Navbar />
                 <Sidebar />
                 <div className="dashboard-content">
