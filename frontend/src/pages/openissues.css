@@ -63,3 +63,82 @@
     margin-left: 170px;
     margin-top: 180px;
 }
+
+.issue p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.myissuescontainer {
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    margin-left: 10px;
+}
+
+.myissuesinput {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin-right: 10px;
+    border-radius: 10px;
+    margin-bottom: 80px;
+    margin-top: -50px;
+}
+
+.myissuesicon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 265px;
+    cursor: pointer;
+    margin-bottom: 130px;
+}
+
+.filter-issues {
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    margin-top: 200px;
+    margin-right: 90px;
+}
+
+.issuefiltersicon {
+    width: 10px;
+    margin-bottom: 80px;
+    margin-right: 1000px;
+    position: relative;
+}
+
+.table {
+    border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    position: absolute;
+    margin-left: 182px;
+    margin-top: 300px;
+    overflow: hidden;
+    background-color: rgb(186, 185, 184);
+}
+
+.header {
+    display: flex;
+    background-color: rgb(176, 176, 174);
+    padding: 10px;
+    border-bottom: 1px solid black;
+    gap: 320px;
+    font-weight: bold;
+}
+
+.emptybox {
+    justify-content: center;
+    align-items: center;
+    margin-left: 250px;
+}
