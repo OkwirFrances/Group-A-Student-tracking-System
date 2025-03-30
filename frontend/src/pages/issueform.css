@@ -124,6 +124,8 @@
     border-radius: 10px;
     width: 560px;
     text-align: center;
+    margin-right: 120px;
+    margin-left: -19px;
 }
 
 .upload-link {
@@ -204,7 +206,7 @@
     padding: 10px;
     border-radius: 10px;
     background-color: green;
-    margin-left: 940px;
+    margin-left: 890px;
     margin-top: 40px;
     cursor: pointer;
 }

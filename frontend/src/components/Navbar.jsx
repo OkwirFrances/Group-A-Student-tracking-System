@@ -28,7 +28,6 @@ const Navbar = ({ badgeCount }) => {
         const userRole = localStorage.getItem('userRole');
         const basePath = userRole === 'registrar' ? '/registrar-dashboard' : '/app';
         navigate(`${basePath}/messages`);
-        navigate('/messages');
     };
 
     return (
