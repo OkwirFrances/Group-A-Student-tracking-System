@@ -1,0 +1,18 @@
+.open-issues-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.open-issues-content {
+    display: flex;
+    flex: 1;
+}
+
+.open-issues-content h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-left: 160px;
+    color: black;
+}

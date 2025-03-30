@@ -18,6 +18,7 @@ import NewMessage from './pages/newmessage';
 import Profile from './pages/profile';
 import RegistrarDashboard from './pages/registrardashboard';
 import RegistrarDashboardContent from './pages/registrardashboardcontent';
+import OpenIssues from './pages/openissues';
 import { IssuesProvider } from './context/IssueContext';
 import RoleBasedRoute from './components/rolebassedroute';
 
@@ -52,6 +53,7 @@ const App = () => {
             <RegistrarDashboard />
           </RoleBasedRoute>} >
             <Route path="dashboard" element={<RegistrarDashboardContent />} />
+            <Route path='openissues' element={<OpenIssues />}/>
             <Route path='notifications' element={<NotificationScreen />}/>
             <Route path='profile' element={<Profile />}/>
             <Route path='messages' element={<Messages />}/>

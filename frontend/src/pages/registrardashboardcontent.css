@@ -174,3 +174,10 @@
     left: 500px;
     cursor: pointer;
 }
+
+.issuefiltericon {
+    width: 10px;
+    margin-bottom: 80px;
+    margin-right: 1000px;
+    position: relative;
+}
