@@ -101,3 +101,76 @@
     font-size: 1rem;
     position: absolute;
 }
+
+.open-issues-button:hover {
+    color: white;
+}
+
+.filter-issue {
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.issuestable {
+    margin-top: 90px;
+    border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    overflow: hidden;
+    background-color: rgb(186, 185, 184);
+}
+
+.tableheader {
+    display: flex;
+    background-color: rgb(176, 176, 174);
+    padding: 10px;
+    border-bottom: 1px solid black;
+    gap: 320px;
+    font-weight: bold;
+}
+
+.registrar-issues-container {
+    text-align: center;
+    color: black;
+    margin-top: 20px;
+}
+
+.emptyboxicon {
+    height: auto;
+}
+
+
+.registrar-issues-container p {
+    font-size: 1.5rem;
+}
+
+.myissuessearchcontainer {
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    margin-left: 10px;
+}
+
+.myissuessearchinput {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.myissuessearchicon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 500px;
+    cursor: pointer;
+}

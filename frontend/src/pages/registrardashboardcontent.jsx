@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import './registrardashboardcontent.css';
+import filter from '../assets/filter.png';
+import emptybox from '../assets/emptybox.png';
+import search from '../assets/search.png';
 
 const RegistrarDashboardContent = () => {
     const [assignedIssues, setAssignedIssues] = useState(0);
@@ -36,6 +39,34 @@ const RegistrarDashboardContent = () => {
             <div className="registrar-recent">
                 <p className="assigned">Assigned Issues</p>
                 <button className="open-issues-button">Open Issues</button>
+                <div className='filter-issue-container'>
+                    <select className='filter-issue' >
+                        <option value='all'>All</option>
+                        <option value='pending'>Pending</option>
+                        <option value='in-progress'>In-progress</option>
+                        <option value='resolved'>Resolved</option>
+                        <img src={filter} alt='filter' className='issue-filter-icon' /> 
+                    </select>
+                </div>
+                <div className='myissuessearchcontainer'>
+                    <input 
+                        type='text' 
+                        placeholder='Search for anything...' 
+                        className='myissuessearchinput' />
+                        <img src={search} alt='search' className='myissuessearchicon' />
+                </div>
+                <div className='issuestable'>
+                <div className='tableheader'>
+                    <div className='tableheader-item'>Issue</div>
+                    <div className='tableheader-item'>Status</div>
+                    <div className='tableheader-item'>Category</div>
+                    <div className='tableheader-item'>Date</div>
+                </div>
+                <div className="registrar-issues-container">
+                    <img src={emptybox} alt="emptybox" className="emptyboxicon" />
+                    <p>There are no recent issues worked upon.<br/>Kindly click <b>Open Issues</b> to get started.</p>
+                </div>
+                </div>
             </div>
         </div>
     )
