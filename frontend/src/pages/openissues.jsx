@@ -15,7 +15,7 @@ const OpenIssues = () => {
                     <button className='nav-button'>In-Progress</button>
                     <button className='nav-button'>Resolved</button>
                 </div>
-                <div className='Issues'></div>
+                <div className='issue'></div>
             </div>
         </div>
     );
