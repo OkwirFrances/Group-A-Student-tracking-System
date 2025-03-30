@@ -33,6 +33,10 @@ const RegistrarDashboardContent = () => {
                 </div>
             </div>
             <p className="recent">Recent Actions</p>
+            <div className="registrar-recent">
+                <p className="assigned">Assigned Issues</p>
+                <button className="open-issues-button">Open Issues</button>
+            </div>
         </div>
     )
 };

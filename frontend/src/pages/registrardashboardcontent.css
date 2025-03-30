@@ -73,3 +73,31 @@
     font-weight: bold;
     margin-right: 1210px;
 }
+
+.registrar-recent {
+    border: 1px solid black;    
+    border-radius: 10px;
+    height: 100vh;
+    width: 69%;
+    margin-left: 160px;
+}
+
+.assigned {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: black;
+    margin-left: 8px;
+    margin-top: 8px;
+}
+
+.open-issues-button {
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: rgb(28, 184, 28);
+    right: 30px;
+    margin-bottom: 30px;
+    margin-top: -50px;
+    font-weight: bold;
+    font-size: 1rem;
+    position: absolute;
+}
