@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import search from '../assets/search.png';
@@ -7,6 +7,8 @@ import emptybox from '../assets/emptybox.png';
 import './openissues.css';
 
 const OpenIssues = () => {
+    const [selectedTab, setSelectedTab] = useState('pending');
+
     return (
         <div className='open-issues-container'>
             <Navbar />
@@ -14,9 +16,21 @@ const OpenIssues = () => {
             <div className='open-issues-content'>
                 <h1>Assigned Issues</h1>
                 <div className='issues-navigation'>
-                    <button className='nav-button'>Pending</button>
-                    <button className='nav-button'>In-Progress</button>
-                    <button className='nav-button'>Resolved</button>
+                    <button 
+                    className={`nav-button ${selectedTab === 'pending' ? 'active' : ''}`}
+                    onClick={() => setSelectedTab('pending')}>
+                        Pending
+                    </button>
+                    <button 
+                    className={`nav-button ${selectedTab === 'in-progress' ? 'active' : ''}`}
+                    onClick={() => setSelectedTab('in-progress')}>
+                        In-Progress
+                    </button>
+                    <button 
+                    className={`nav-button ${selectedTab === 'resolved' ? 'active' : ''}`}
+                    onClick={() => setSelectedTab('resolved')}>
+                        Resolved
+                    </button>
                 </div>
                 <div className='issue'>
                     <p>Issues</p>
@@ -45,7 +59,24 @@ const OpenIssues = () => {
                         <div className='item'>Date</div>
                     </div>
                     <div className='body'>
-                        <img src={emptybox} alt="emptybox" className="emptybox" />
+                        {selectedTab === 'pending' && (
+                        <div className='emptyboxcontainers'>
+                            <img src={emptybox} alt="emptybox" className="emptybox" />
+                            <p>There are no pending issues.</p>
+                        </div>
+                    )}
+                    {selectedTab === 'in-progress' && (
+                        <div className='emptyboxcontainers'>
+                            <img src={emptybox} alt="emptybox" className="emptybox" />
+                            <p>There are no in-progress issues.</p>
+                        </div>
+                        )}
+                        {selectedTab === 'resolved' && (
+                            <div className='emptyboxcontainers'>
+                                <img src={emptybox} alt="emptybox" className="emptybox" />
+                                <p>There are no resolved issues.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

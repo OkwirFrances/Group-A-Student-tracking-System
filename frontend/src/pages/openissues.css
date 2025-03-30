@@ -34,14 +34,12 @@
     background-color: green;
     color: white;
     border: none;
-    display: inline;
     border-radius: 5px;
     padding: 10px 40px;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    
 }
 
 .nav-button:hover {
@@ -50,6 +48,17 @@
     display: inline;
     border-bottom: 1px solid black;
     border: 1px solid black;
+}
+
+.nav-button.active {
+    background-color: white;
+    color: black;
+}
+
+.emptyboxcontainers {
+    text-align: center;
+    color: black;
+    margin-top: 20px;
 }
 
 .issue {
@@ -140,5 +149,15 @@
 .emptybox {
     justify-content: center;
     align-items: center;
-    margin-left: 250px;
+    margin-left: 50px;
+    position: relative;
+    width: 350px;
+}
+
+.body {
+    height: 55vh;
+}
+
+.emptyboxcontainers p {
+    font-size: 1.3rem;
 }
