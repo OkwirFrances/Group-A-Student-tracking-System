@@ -10,6 +10,12 @@ const OpenIssues = () => {
             <Sidebar />
             <div className='open-issues-content'>
                 <h1>Assigned Issues</h1>
+                <div className='issues-navigation'>
+                    <button className='nav-button'>Pending</button>
+                    <button className='nav-button'>In-Progress</button>
+                    <button className='nav-button'>Resolved</button>
+                </div>
+                <div className='Issues'></div>
             </div>
         </div>
     );

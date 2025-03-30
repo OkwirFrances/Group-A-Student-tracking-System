@@ -45,6 +45,7 @@ const App = () => {
             <Route path="issue/:id" element={<IssueDetails />}/>
             <Route path='support' element={<HelpSupport />}/>
             <Route path="settings" element={<Settings />} />
+            <Route path='messages' element={<Messages />}/>
             <Route path='profile' element={<Profile />}/>
           </Route>
 

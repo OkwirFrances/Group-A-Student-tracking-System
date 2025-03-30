@@ -16,3 +16,38 @@
     margin-left: 160px;
     color: black;
 }
+
+.issues-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 10px; 
+    gap: 10px;
+    position: absolute;
+    margin-left: 146px;
+    margin-top: 100px;
+}
+
+.nav-button {
+    background-color: green;
+    color: white;
+    border: none;
+    display: inline;
+    border-radius: 5px;
+    padding: 10px 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+}
+
+.nav-button:hover {
+    background-color: white;
+    color: black;
+    display: inline;
+    border-bottom: 1px solid black;
+    border: 1px solid black;
+}

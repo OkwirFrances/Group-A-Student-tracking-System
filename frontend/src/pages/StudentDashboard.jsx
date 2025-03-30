@@ -11,7 +11,9 @@ const StudentDashboard = () => {
     return (
             <div className="dashboard-container">
                 <Navbar />
-                <Sidebar />
+                <div className="dashboard-layout">
+                    <Sidebar />
+                </div>
                 <div className="dashboard-content">
                     <Outlet/>
                 </div>
