@@ -45,7 +45,9 @@ const App = () => {
           </Route>
           <Route path='registrar-dashboard' element={<RoleBasedRoute allowedRoles={['registrar']}>
             <RegistrarDashboard />
-          </RoleBasedRoute>} />
+          </RoleBasedRoute>} >
+          <Route path="dashboard" element={<RegistrarDashboard />} />
+          </Route>
           <Route path='notifications' element={<NotificationScreen />}/>
           <Route path='messages' element={<Messages />}/>
           <Route path='newmessage' element={<NewMessage />}/>

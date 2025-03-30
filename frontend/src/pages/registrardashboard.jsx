@@ -1,6 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import './studentdashboard.css';
+import './registrardashboard.css';
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
@@ -11,11 +10,10 @@ const RegistrarDashboard = () => {
     return (
             <div className="dashboard-container">
                 <h1>Registrar Dashboard</h1>
-                <p>Welcome {userRole}</p>
                 <Navbar />
                 <Sidebar />
                 <div className="dashboard-content">
-                    <Outlet/>
+                
                 </div>
             </div>
        

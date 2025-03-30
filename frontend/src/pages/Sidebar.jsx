@@ -26,7 +26,7 @@ const Sidebar = () => {
         <div className='sidebar'>
             <ul className='sidebar-menu'>
                 <li className='sidebar-item'>
-                    <Link to='dashboard'>
+                    <Link to='/registrar-dashboard/dashboard'>
                         <img src={dashboard} alt='dashboard' className='sidebar-icon'/>
                             Dashboard
                     </Link>
