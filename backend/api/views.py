@@ -152,6 +152,7 @@ class DepartmentView(generics.ListCreateAPIView):
 
 # Course View (Only accessible by registrars)
 class CourseView(generics.ListCreateAPIView):
+    
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated, IsRegistrar]  # Only registrars can create courses
 
