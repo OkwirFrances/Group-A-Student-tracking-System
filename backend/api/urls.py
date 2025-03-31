@@ -3,6 +3,7 @@ from .views import signup, verify_otp, login, resend_otp, DepartmentView, Course
 
 
 urlpatterns = [
+    
     path('signup/', signup),
     path('verify-otp/', verify_otp),
     path('login/', login),
