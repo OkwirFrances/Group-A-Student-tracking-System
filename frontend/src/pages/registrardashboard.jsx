@@ -9,14 +9,15 @@ import Sidebar from "../components/Sidebar";
 const RegistrarDashboard = () => {
     const userRole = localStorage.getItem('userRole');
     return (
-            <div className="dashboard-container">
-                <Navbar />
+        <div className="dashboard-container">
+            <Navbar />
+            <div className="main-layout">
                 <Sidebar />
                 <div className="dashboard-content">
                     <Outlet/>
                 </div>
             </div>
-       
+        </div>
     );
 };
 
