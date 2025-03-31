@@ -23,11 +23,14 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     fullname = models.CharField(max_length=255, null=False)
     otp = models.CharField(max_length=6, blank=True, null=True)
+
     is_verified = models.BooleanField(default=False)
     otp_created_at = models.DateTimeField(null=True, blank=True)
+
     first_name = models.CharField(max_length=30, blank=True)  # Added first_name field
     last_name = models.CharField(max_length=30, blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
+    
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)   
     termsAccepted = models.BooleanField(default=False)
 
@@ -41,7 +44,7 @@ class CustomUser(AbstractUser):
     role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='student')
 
     
-    
+
     
    
     USERNAME_FIELD = 'email'
