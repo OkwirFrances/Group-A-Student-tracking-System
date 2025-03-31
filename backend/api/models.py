@@ -42,6 +42,7 @@ class CustomUser(AbstractUser):
 
     
     
+    
    
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name', 'role'] 
