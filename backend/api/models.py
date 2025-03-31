@@ -30,7 +30,7 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=30, blank=True)  # Added first_name field
     last_name = models.CharField(max_length=30, blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
-    
+
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)   
     termsAccepted = models.BooleanField(default=False)
 
@@ -126,11 +126,13 @@ class Issue(models.Model):
     SEMESTER_CHOICES = (('Semester 1','SEMESTER 1'),
                         ('Semester 2','SEMESTER 2'))
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    
     issue_type = models.CharField(max_length=50,choices=ISSUE_CHOICES)
     semester = models.CharField(max_length=50,choices=SEMESTER_CHOICES)
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True)
     title = models.CharField(max_length=200)
     description = models.TextField()
+
     status = models.CharField(max_length=20, choices=ISSUE_STATUS, default='open')
     created_at = models.DateTimeField(default=datetime.datetime.now)
     updated_at = models.DateTimeField(auto_now=True)
