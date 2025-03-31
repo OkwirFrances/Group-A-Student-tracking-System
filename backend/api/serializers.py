@@ -9,6 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'email', 'fullname', 'role', 'is_verified', 'first_name', 'last_name', 'phone_number', 'profile_picture', 'termsAccepted']
 
+
 class LecturerSerializer(UserSerializer):
     department = serializers.StringRelatedField()
     courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True)
