@@ -115,6 +115,7 @@ const Sidebar = () => {
 >>>>>>> de4c61a8e5bf09af41722aea7ae149074d20aa2d
                     </Link>
                 </li>
+                </li>
                 <li className='sidebar-item logout'>
                     <button onClick={handleLogout} className='logout-button'>
                         <img src={logout} alt='logout' className='sidebar-icon' />

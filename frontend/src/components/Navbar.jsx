@@ -5,12 +5,18 @@ import search from '../assets/search.png';
 import notification from '../assets/notification.png';
 import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
+import mail from '../assets/mail.png';
+import { useNavigate } from 'react-router-dom';
 
+const Navbar = ({ badgeCount }) => {
 const Navbar = ({ badgeCount }) => {
     const [user] = useState({
         fullName: 'Alvin David',
+        fullName: 'Alvin David',
         profilePic: null,
     });
+
+    const navigate = useNavigate();
 
     const navigate = useNavigate();
 
@@ -43,6 +49,14 @@ const Navbar = ({ badgeCount }) => {
                         />
                     <img src={search} alt='search' className='search-icon' />
                     </div>
+                    <img src={notification} alt='notification' className='notification-icon' onClick={handleNotificationClick} />
+                    {badgeCount > 0 && <span className='notification-badge'>{badgeCount}</span>}
+                    <img 
+                    src={mail} 
+                    alt='mail' 
+                    className='mail-icon'
+                    onClick={handleMailClick}
+                    />
                     <img src={notification} alt='notification' className='notification-icon' onClick={handleNotificationClick} />
                     {badgeCount > 0 && <span className='notification-badge'>{badgeCount}</span>}
                     <img 

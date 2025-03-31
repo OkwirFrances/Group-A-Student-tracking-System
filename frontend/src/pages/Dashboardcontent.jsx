@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import './Dashboardcontent.css';
 import search from '../assets/search.png';
 import add from '../assets/add.png';
@@ -8,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IssuesContext } from '../context/IssueContext';
 
 const DashboardContent = () => {
+    const { issues } = useContext(IssuesContext);
     const { issues } = useContext(IssuesContext);
     const [filterStatus, setFilterStatus] = useState('all');
     const navigate = useNavigate();
@@ -31,14 +33,20 @@ const DashboardContent = () => {
                     <h2>Pending Issues</h2>
                     <p className='issue-count'>{issues.filter(issue => issue.status === 'pending').length}</p>
                     <p>You have {issues.filter(issue => issue.status === 'pending').length} pending issues.</p>
+                    <p className='issue-count'>{issues.filter(issue => issue.status === 'pending').length}</p>
+                    <p>You have {issues.filter(issue => issue.status === 'pending').length} pending issues.</p>
                 </div>
                 <div className='card in-progress'>
                     <h2>In-progress Issues</h2>
                     <p className='issue-count'>{issues.filter(issue => issue.status === 'in-progress').length}</p>
                     <p>You have {issues.filter(issue => issue.status === 'in-progress').length} in-progress issues.</p>
+                    <p className='issue-count'>{issues.filter(issue => issue.status === 'in-progress').length}</p>
+                    <p>You have {issues.filter(issue => issue.status === 'in-progress').length} in-progress issues.</p>
                 </div>
                 <div className='card resolved'>
                     <h2>Resolved Issues</h2>
+                    <p className='issue-count'>{issues.filter(issue => issue.status === 'resolved').length}</p>
+                    <p>You have {issues.filter(issue => issue.status === 'resolved').length} resolved issues.</p>
                     <p className='issue-count'>{issues.filter(issue => issue.status === 'resolved').length}</p>
                     <p>You have {issues.filter(issue => issue.status === 'resolved').length} resolved issues.</p>
                 </div>

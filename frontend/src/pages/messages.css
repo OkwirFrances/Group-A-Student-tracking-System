@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: flex-start;
     min-height: 100vh;
+    height: 100vh;
     background-color: white;
 }
 
@@ -50,6 +51,7 @@
     margin-left: 450px;
 }
 
+
 .content h2 {
     font-size: 1.8rem;
     text-align: center;
@@ -78,6 +80,7 @@
 
 .new-message:hover {
     color: white;
+
 }
 
 @media (max-width: 768px) {
@@ -150,4 +153,5 @@
     .content p {
         font-size: 0.8rem;
     }
+
 }

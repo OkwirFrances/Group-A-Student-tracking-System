@@ -35,6 +35,9 @@
 >>>>>>> de4c61a8e5bf09af41722aea7ae149074d20aa2d
 }
 
+ 
+}
+
 .sidebar-menu {
     list-style-type: none;
     padding: 0;
@@ -150,4 +153,12 @@
         padding: 10px;
         font-size: 0.9rem;
     }
+}
+.logout-button {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    align-items: center;
+    padding: 0;
 }
