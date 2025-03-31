@@ -1,3 +1,4 @@
+
 # views.py
 
 import random
@@ -23,27 +24,36 @@ User = get_user_model()
 def generate_otp():
     return str(random.randint(100000, 999999))
 
-# Signup View
-@api_view(['POST'])
+# Signup View@api_view(['POST'])
 def signup(request):
     email = request.data.get('email')
-    fullname = request.data.get('fullname')
+    fullname = request.data.get('fullname', '')  # Optional fullname
     password = request.data.get('password')
     role = request.data.get('role', 'student')
 
     if not email or not password:
         return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
 
-    if User.objects.filter(email=email).exists():
+    if User.objects.filter(email=email, is_active=True).exists():
         return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
 
-    user = User.objects.create_user(fullname=fullname, email=email, password=password, role=role)
-    user.otp = generate_otp()
+    # Create an inactive user
+    user, created = User.objects.get_or_create(email=email, defaults={'fullname': fullname, 'role': role})
+    
+    if not created:
+        user.fullname = fullname  # Update in case of reattempt
+        user.role = role
+        user.set_password(password)  # Update password if reattempting signup
+    
+    user.is_active = False  # User remains inactive until OTP verification
+    user.otp = generate_otp()  # Generate OTP
     user.otp_created_at = timezone.now()  # Store OTP timestamp
     user.save()
 
     send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'Group-A-AITS@mail.com', [email])
-    return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
+
+    return JsonResponse({'message': 'OTP sent. Verify to activate your account.'}, status=status.HTTP_201_CREATED)
+
 
 
 @api_view(['POST'])
@@ -70,8 +80,7 @@ def login(request):
         'role': user.role  # Include the user's role in the response
     }, status=status.HTTP_200_OK)
 
-# OTP Verification View with Expiry
-@api_view(['POST'])
+# OTP Verification View with Expiry@api_view(['POST'])
 def verify_otp(request):
     email = request.data.get('email')
     otp = request.data.get('otp')
@@ -79,20 +88,26 @@ def verify_otp(request):
     if not email or not otp:
         return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
 
-    user = User.objects.filter(email=email).first()
+    user = User.objects.filter(email=email, is_active=False).first()
     if user:
         otp_created_at = user.otp_created_at
-        # Check if OTP is expired (expires after 10 minutes)
         if otp_created_at and timezone.now() - otp_created_at > timedelta(minutes=10):
-            return Response({'error': 'OTP has expired'}, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({'error': 'OTP has expired'}, status=status.HTTP_400_BAD_REQUEST)
+        
         if user.otp == otp:
-            user.is_verified = True
+            user.is_active = True  # Activate the user
             user.otp = None
             user.otp_created_at = None  # Clear OTP and timestamp
             user.save()
+
             refresh = RefreshToken.for_user(user)
-            return JsonResponse({'token': str(refresh.access_token)})
+            return JsonResponse({
+                'message': 'Account verified successfully!',
+                'token': str(refresh.access_token)
+            }, status=status.HTTP_200_OK)
+
     return JsonResponse({'error': 'Invalid OTP or email'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 # Resend OTP View
 @api_view(['POST'])
@@ -151,6 +166,44 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
             serializer.save(student=self.request.user)
         else:
             raise PermissionDenied('Only students can create issues.')
+        
+
+class CreateIssueView(generics.CreateAPIView):
+    serializer_class = IssueSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        if self.request.user.role == 'student':
+            if serializer.is_valid():
+                course = serializer.validated_data.get('course')
+                if course and self.request.user not in course.students.all():
+                    raise PermissionDenied('You can only report issues for courses you are enrolled in.')
+            serializer.save(student=self.request.user)
+        else:
+            raise PermissionDenied('Only students can create issues.')        
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+# Filter Issues View (Accessible by students to filter their own issues)
+def filter_issues(request):
+    user = request.user
+    if user.role != 'student':
+        return Response({'error': 'Only students can filter issues'}, status=status.HTTP_403_FORBIDDEN)
+    
+    status= request.GET.get('status', None)
+
+    issues = Issue.filter(student=user)
+
+    if status:
+        issues = issues.filter(status=status)
+
+
+    serializer = IssueSerializer(issues, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+
 
 # Assign Issue View (Only accessible by registrars)
 @api_view(['POST'])
