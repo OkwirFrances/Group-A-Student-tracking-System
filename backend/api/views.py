@@ -1,6 +1,7 @@
 
 # views.py
 
+
 import random
 from django.http import JsonResponse
 from django.core.mail import send_mail
@@ -20,11 +21,13 @@ from .permissions import IsRegistrar, IsLecturer, IsStudent
 
 User = get_user_model()
 
+
 # Helper function to generate OTP
 def generate_otp():
     return str(random.randint(100000, 999999))
 
 # Signup View@api_view(['POST'])
+
 def signup(request):
     email = request.data.get('email')
     fullname = request.data.get('fullname', '')  # Optional fullname
@@ -56,6 +59,7 @@ def signup(request):
 
 
 
+
 @api_view(['POST'])
 def login(request):
     email = request.data.get('email')
@@ -72,7 +76,7 @@ def login(request):
 
 
     if not user.check_password(password):
-        
+
         return JsonResponse({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
 
     # Generate the JWT tokens
@@ -85,6 +89,7 @@ def login(request):
 
 
 # OTP Verification View with Expiry@api_view(['POST'])
+
 def verify_otp(request):
     email = request.data.get('email')
     otp = request.data.get('otp')
@@ -114,6 +119,7 @@ def verify_otp(request):
 
 
 
+
 # Resend OTP View
 @api_view(['POST'])
 def resend_otp(request):
@@ -131,6 +137,7 @@ def resend_otp(request):
     send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'AITS@mail.com', [email])
     return Response({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
+
 # Department View (Only accessible by registrars)
 class DepartmentView(generics.ListCreateAPIView):
     serializer_class = DepartmentSerializer
@@ -142,6 +149,7 @@ class DepartmentView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save()
 
+
 # Course View (Only accessible by registrars)
 class CourseView(generics.ListCreateAPIView):
     serializer_class = CourseSerializer
@@ -152,6 +160,7 @@ class CourseView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save()
+
 
 # Issue View (Only accessible by students for their own issues)
 class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
@@ -173,6 +182,7 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
             raise PermissionDenied('Only students can create issues.')
         
 
+
 class CreateIssueView(generics.CreateAPIView):
     serializer_class = IssueSerializer
     permission_classes = [IsAuthenticated]
@@ -186,6 +196,7 @@ class CreateIssueView(generics.CreateAPIView):
             serializer.save(student=self.request.user)
         else:
             raise PermissionDenied('Only students can create issues.')        
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -210,6 +221,7 @@ def filter_issues(request):
 
 
 
+
 # Assign Issue View (Only accessible by registrars)
 @api_view(['POST'])
 @permission_classes([IsAuthenticated, IsRegistrar])  # Only registrars can assign issues
@@ -224,6 +236,7 @@ def assign_issue(request, issue_id, lecturer_id):
     issue.assigned_at = timezone.now()
     issue.save()
     return Response({'message': 'Issue assigned successfully'})
+
 
 # Resolve Issue View (Accessible by lecturers and registrars)
 @api_view(['POST'])
@@ -240,6 +253,7 @@ def resolve_issue(request, issue_id):
     
     return Response({'error': 'Unauthorized'}, status=status.HTTP_403_FORBIDDEN)
 
+
 # User Info View (Accessible by authenticated users)
 class UserInfoView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
@@ -255,6 +269,7 @@ class UserInfoView(generics.RetrieveAPIView):
             "profile_picture": user.profile_picture.url if user.profile_picture else None
         }
         return Response(user_data, status=status.HTTP_200_OK)
+
 
 # User Edit View (Accessible by authenticated users)
 class UserEditView(generics.UpdateAPIView):
