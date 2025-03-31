@@ -69,6 +69,7 @@ def login(request):
     except User.DoesNotExist:
         return JsonResponse({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
 
+
     if not user.check_password(password):
         return JsonResponse({'error': 'Invalid email or password'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -79,6 +80,7 @@ def login(request):
         'refresh_token': str(refresh),
         'role': user.role  # Include the user's role in the response
     }, status=status.HTTP_200_OK)
+
 
 # OTP Verification View with Expiry@api_view(['POST'])
 def verify_otp(request):
@@ -107,6 +109,7 @@ def verify_otp(request):
             }, status=status.HTTP_200_OK)
 
     return JsonResponse({'error': 'Invalid OTP or email'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 # Resend OTP View
