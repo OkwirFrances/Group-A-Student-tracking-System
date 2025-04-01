@@ -10,6 +10,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Otp from './pages/otp';
 import DashboardContent from './pages/Dashboardcontent';
 import IssueDetails from './pages/issuedetails';
+import Issuemanagement from './pages/Issuemanagement';
 import NotificationScreen from './pages/notificationscreen';
 import HelpSupport from './pages/helpsupport';
 import Settings from './pages/settings';
@@ -47,6 +48,7 @@ const App = () => {
             <Route path="settings" element={<Settings />} />
             <Route path='messages' element={<Messages />}/>
             <Route path='profile' element={<Profile />}/>
+            <Route path='issues' element={<Issuemanagement />}/>
           </Route>
 
 

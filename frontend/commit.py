@@ -7,5 +7,5 @@ def commit():
         os.system("git push origin timo")
         time.sleep(120)
 
-    
+  
 commit()
