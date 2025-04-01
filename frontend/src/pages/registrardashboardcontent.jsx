@@ -42,7 +42,9 @@ const RegistrarDashboardContent = () => {
         }
     };
 
-
+    useEffect(() => {
+        fetchData(); // Fetch data when the component mounts
+    }, []);
 
 
     const navigate = useNavigate();
