@@ -90,5 +90,26 @@ const DepartmentManagement = () => {
                                 placeholder="E.g. Computer Science"
                             />
                         </div>
+                        <div className="form-group">
+                            <label>Department Code</label>
+                            <input
+                                type="text"
+                                name="code"
+                                value={formData.code}
+                                onChange={handleChange}
+                                required
+                                minLength={2}
+                                maxLength={10}
+                                pattern="[A-Za-z0-9]+"
+                                title="Alphanumeric characters only"
+                                placeholder="E.g. CS"
+                                className="uppercase-input"
+                            />
+                        </div>
+                        <button type="submit" className="submit-button">
+                            Create Department
+                        </button>
+                    </form>
+                </div>
 
 
