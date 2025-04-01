@@ -185,5 +185,15 @@ export const courseAPI = {
           throw error.response?.data || error.message;
         }
       },
+      deleteCourse: async (courseId) => {
+        try {
+          const response = await api.delete(`/courses/${courseId}/`);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
+    };
+    
   
 
