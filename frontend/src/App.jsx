@@ -5,6 +5,15 @@ import ErrorBoundary from './pages/ErrorBoundary';
 import ProtectedRoute from './pages/ProectectedRoute';
 import './App.css';
 
+// Simple fallback component instead of LoadingSpinner
+const Fallback = () => <div>Loading...</div>;
+
+// Lazy load components for better performance
+const LandingPage = React.lazy(() => import('./pages/Home/landingpage'));
+const SignUp = React.lazy(() => import('./pages/Auth/signup'));
+const SignIn = React.lazy(() => import('./pages/Auth/signin'));
+const Otp = React.lazy(() => import('./pages/Auth/otp'));
+const Congratulations = React.lazy(() => import('./pages/congratulations'));
 
 const App = () => {
   return (
