@@ -72,4 +72,24 @@ export const authAPI = {
         throw error.response?.data || error.message;
       }
     },
-}
+
+    verifyOTP: async (email, otp) => {
+        try {
+        const response = await api.post('/verify-otp/', { email, otp });
+        return response.data;
+        } catch (error) {
+        throw error.response?.data || error.message;
+        }
+    },
+    login: async (email, password) => {
+        try {
+          const response = await api.post('/login/', { email, password });
+          // Store tokens
+          storeToken(response.data.access);
+          localStorage.setItem('refreshToken', response.data.refresh);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
+      
