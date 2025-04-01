@@ -92,4 +92,20 @@ export const authAPI = {
           throw error.response?.data || error.message;
         }
       },
+    resendOTP: async (email) => {
+    try {
+        const response = await api.post('/resend-otp/', { email });
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+    },
+    refreshAccessToken: async (refreshToken) => {
+        try {
+          const response = await api.post('/token/refresh/', { refresh: refreshToken });
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
       
