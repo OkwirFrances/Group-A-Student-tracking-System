@@ -111,5 +111,45 @@ const DepartmentManagement = () => {
                         </button>
                     </form>
                 </div>
+                <div className="list-section">
+                    <h2>Existing Departments</h2>
+                    {departments.length > 0 ? (
+                        <div className="table-container">
+                            <table className="management-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Code</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {departments.map(dept => (
+                                        <tr key={dept.id}>
+                                            <td>{dept.name}</td>
+                                            <td>{dept.code}</td>
+                                            <td>
+                                                <button 
+                                                    onClick={() => handleDelete(dept.id)}
+                                                    className="delete-button"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    ) : (
+                        <p className="no-data">No departments found</p>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default DepartmentManagement;
 
 
