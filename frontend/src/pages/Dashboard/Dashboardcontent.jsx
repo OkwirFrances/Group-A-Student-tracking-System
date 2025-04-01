@@ -34,15 +34,15 @@ const DashboardContent = () => {
         const searchMatch = issue.title.toLowerCase().includes(searchQuery.toLowerCase());
         return statusMatch && searchMatch;
     });
-    
+
     return (
         <div className='dashboard-content'>
-            <h1>Dashboard</h1>
+            <h1>{`${userRole.charAt(0).toUpperCase() + userRole.slice(1)} Dashboard`}</h1>
+            
             <div className='cards-container'>
                 <div className='card pending'>
-                    <h2>Pending Issues</h2>
-                    <p className='issue-count'>{issues.filter(issue => issue.status === 'pending').length}</p>
-                    <p>You have {issues.filter(issue => issue.status === 'pending').length} pending issues.</p>
+                    <h2>Pending</h2>
+                    <p>{(displayIssues || []).filter(i => i.status === 'pending').length}</p>
                 </div>
                 <div className='card in-progress'>
                     <h2>In-progress Issues</h2>
