@@ -59,14 +59,21 @@ const DashboardContent = () => {
                     <h2>{userRole === 'student' ? 'My Issues' : 
                         userRole === 'lecturer' ? 'Assigned Issues' : 'All Issues'}</h2>
                     
-            <div className='my-issues'>
-                <h2 className='my-issues-title' >My Issues</h2>
-                <Link to = "/app/issueform">
-                <button className='new-issue-button'>
-                    <img src={add} alt='add' className='add-icon' />
-                    New Issue
-                </button>
-                </Link>
+                    <div className='header-actions'>
+                        {userRole === 'student' && (
+                            <Link to={`/${userRole}/issueform`}>
+                                <button className='new-issue-button'>
+                                    <img 
+                                        src={add} 
+                                        alt='add' 
+                                        className='add-icon'
+                                        width={16}
+                                        height={16}
+                                        loading="lazy"
+                                    /> New Issue
+                                </button>
+                            </Link>
+                        )}
                 <div className='filter-select-container'>
                     <select className='filter-select' value={filterStatus} onChange={handleFilterChange}>
                             <option value='all'>All</option>
