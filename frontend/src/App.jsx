@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { IssuesProvider } from './context/IssueContext';
-import ErrorBoundary from './pages/ErrorBoundary';
+
 import ProtectedRoute from './pages/ProectectedRoute';
 import './App.css';
 
@@ -33,13 +33,13 @@ const App = () => {
   return (
     <IssuesProvider >
       <BrowserRouter>
-        <ErrorBoundary>
+        
           <Suspense fallback={<Fallback />}>
             <Routes>
               {/* Public Routes */}
               <Route path="/" index element={<Navigate to="landing" />} />
-              <Route path="landing" element={<ErrorBoundary><LandingPage /></ErrorBoundary>} />
-              <Route path="signup" element={<ErrorBoundary><SignUp /></ErrorBoundary>} />
+              <Route path="landing" element={<LandingPage />} />
+              <Route path="signup" element={<SignUp />} />
               <Route path="signin" element={<SignIn />} />
               <Route path="otp" element={<Otp />} />
               <Route path="/congratulations" element={<Congratulations />} />
@@ -105,7 +105,7 @@ const App = () => {
             <Route path="*" element={<Navigate to="/landing" replace />} />
             </Routes>
           </Suspense>
-        </ErrorBoundary>
+        
       </BrowserRouter>
     </IssuesProvider>
   );

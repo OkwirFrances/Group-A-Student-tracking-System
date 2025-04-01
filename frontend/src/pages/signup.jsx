@@ -44,7 +44,7 @@ const SignUp = () => {
     };
 
     useEffect(() => {
-        const formError = validateForm();
+        const formError = isFormValid();
         setError(formError);
     }, [formData]);
 
