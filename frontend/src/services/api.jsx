@@ -161,5 +161,13 @@ export const courseAPI = {
         throw error.response?.data || error.message;
       }
     },
+    getCourseDetail: async (courseId) => {
+        try {
+          const response = await api.get(`/courses/${courseId}/`);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
   
 
