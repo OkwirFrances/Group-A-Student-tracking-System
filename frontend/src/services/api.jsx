@@ -108,4 +108,10 @@ export const authAPI = {
           throw error.response?.data || error.message;
         }
       },
-      
+      logout: () => {
+        clearToken();
+        localStorage.removeItem('refreshToken');
+      },
+    };
+    
+
