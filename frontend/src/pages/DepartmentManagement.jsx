@@ -67,4 +67,28 @@ const DepartmentManagement = () => {
         }
     };
 
+    if (loading) return <div className="loading">Loading departments...</div>;
+
+    return (
+        <div className="dashboard-content">
+            <h1>Department Management</h1>
+            
+            <div className="management-container">
+                <div className="form-section">
+                    <h2>Create New Department</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label>Department Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                                minLength={2}
+                                maxLength={100}
+                                placeholder="E.g. Computer Science"
+                            />
+                        </div>
+
 
