@@ -255,6 +255,14 @@ export const issueAPI = {
           throw error.response?.data || error.message;
         }
       },
+      deleteIssue: async (issueId) => {
+        try {
+          const response = await api.delete(`/issues/${issueId}/`);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
     
     
   
