@@ -120,6 +120,20 @@ const DashboardContent = () => {
                                 <div className={`status-${issue.status.replace(' ', '-')}`}>
                                     {issue.status}
                                 </div>
+                                {userRole === 'registrar' && (
+                                    <div>
+                                        <select 
+                                            value={issue.assigned_to || ''}
+                                            onChange={(e) => onAssignIssue(issue.id, e.target.value)}
+                                            className='filter-select'
+                                        >
+                                            <option value="">Unassigned</option>
+                                            {lecturers.map(l => (
+                                                <option key={l.id} value={l.id}>{l.fullname}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                )}
 };
 
 export default DashboardContent;
