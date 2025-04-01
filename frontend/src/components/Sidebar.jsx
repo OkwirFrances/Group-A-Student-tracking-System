@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+// import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import dashboard from '../assets/dashboard.png';
 import issue from '../assets/issue.png';
 import person from '../assets/person.png';
@@ -12,15 +12,6 @@ import department from '../assets/department.png';
 import course from '../assets/course.png';
 
 const Sidebar = () => {
-<<<<<<< HEAD
-=======
-    const [isCollapsed, setIsCollapsed] = useState(false);
-
-    const toggleSidebar = () => {
-        setIsCollapsed(!isCollapsed);
-    };
-
->>>>>>> de4c61a8e5bf09af41722aea7ae149074d20aa2d
     const navigate = useNavigate();
     const userRole = localStorage.getItem('userRole'); // Get the user role from localStorage
 
@@ -40,7 +31,6 @@ const Sidebar = () => {
             </button>
             <ul className='sidebar-menu'>
                 <li className='sidebar-item'>
-<<<<<<< HEAD
                     <Link to={`${basePath}/dashboard`}> 
                         <img src={dashboard} alt='dashboard' className='sidebar-icon' />
                         Dashboard
@@ -84,37 +74,7 @@ const Sidebar = () => {
                     <Link to={`${basePath}/support`}>
                         <img src={support} alt='support' className='sidebar-icon' />
                         Help & Support
-=======
-                    <Link to='/app/dashboard'>
-                        <img src={dashboard} alt='dashboard' className='sidebar-icon'/>
-                        <span>Dashboard</span>
                     </Link>
-                </li>
-                <li className='sidebar-item'>
-                    <Link to='/app/issuemanagement'>
-                        <img src={issue} alt='issue' className='sidebar-icon'/>
-                        <span>Issues</span>
-                    </Link>
-                </li>
-                <li className='sidebar-item'>
-                    <Link to='/app/profile'>
-                        <img src={person} alt='person' className='sidebar-icon'/>
-                        <span>Profile</span>
-                    </Link>
-                </li>
-                <li className='sidebar-item'>
-                    <Link to='/app/settings'>
-                        <img src={settings} alt='settings' className='sidebar-icon'/>
-                        <span>Settings</span>
-                    </Link>
-                </li>
-                <li className='sidebar-item'>
-                    <Link to='/app/support'>
-                        <img src={support} alt='support' className='sidebar-icon'/>
-                        <span>Help & Support</span>
->>>>>>> de4c61a8e5bf09af41722aea7ae149074d20aa2d
-                    </Link>
-                </li>
                 </li>
                 <li className='sidebar-item logout'>
                     <button onClick={handleLogout} className='logout-button'>

@@ -5,20 +5,18 @@ import search from '../assets/search.png';
 import notification from '../assets/notification.png';
 import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
-import mail from '../assets/mail.png';
-import { useNavigate } from 'react-router-dom';
+ 
 
 const Navbar = ({ badgeCount }) => {
-const Navbar = ({ badgeCount }) => {
+
     const [user] = useState({
-        fullName: 'Alvin David',
         fullName: 'Alvin David',
         profilePic: null,
     });
 
     const navigate = useNavigate();
 
-    const navigate = useNavigate();
+    
 
     const getInitials = (name) => {
         return name.charAt(0).toUpperCase();
