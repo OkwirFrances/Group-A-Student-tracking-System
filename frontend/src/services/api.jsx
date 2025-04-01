@@ -113,5 +113,14 @@ export const authAPI = {
         localStorage.removeItem('refreshToken');
       },
     };
-    
+    // User API
+export const userAPI = {
+    getUserInfo: async () => {
+      try {
+        const response = await api.get('/user-info/');
+        return response.data;
+      } catch (error) {
+        throw error.response?.data || error.message;
+      }
+    },
 
