@@ -43,17 +43,28 @@ class CustomUser(AbstractUser):
             ('YEAR_2','YEAR 2'),
             ('YEAR_3','YEAR 3'),
             ('YEAR_4','YEAR 4'),
-            ('YEAR_5','YEAR 5')]    
+            ('YEAR_5','YEAR 5')]  
+    username = None
     email = models.EmailField(unique=True)
     fullname = models.CharField(max_length=100, null=False)
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=30, blank=True)  
     otp = models.CharField(max_length=6, blank=True, null=True)
     is_verified = models.BooleanField(default=False)
     otp_created_at = models.DateTimeField(null=True, blank=True)
     Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='Student')
     Gender = models.CharField(max_length=20,choices=GENDER,editable=True)
+    phone_number = models.CharField(max_length=20, blank=True)
     image = models.ImageField(upload_to='images/',null=True,blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)   
     program = models.ForeignKey('Program', on_delete=models.CASCADE,related_name='programs',null = True,blank=True)
     year_of_study = models.CharField(max_length=20,choices=YEAR_CHOICES,null=True,editable=True)
+    termsAccepted = models.BooleanField(default=False)
+    
+    
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['fullname','role']
+    
 
 
     def __str__(self):
