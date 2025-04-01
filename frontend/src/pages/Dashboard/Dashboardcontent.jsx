@@ -154,6 +154,17 @@ const DashboardContent = () => {
                             </div>
                         ))
                     ) : (
+                        <div className='empty-state'>
+                            <img src={emptybox} alt='No issues' className='emptybox-icon' />
+                            <p className='emptybox-p'>{searchQuery ? 'No matching issues' : 'No issues found'}</p>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default DashboardContent;
+
+
