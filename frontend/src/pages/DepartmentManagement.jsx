@@ -57,5 +57,14 @@ const DepartmentManagement = () => {
             toast.error(error.message || 'Failed to create department. Please check your inputs.');
         }
     };
+    const handleDelete = async (departmentId) => {
+        try {
+            await departmentAPI.deleteDepartment(departmentId);
+            toast.success('Department deleted successfully');
+            await fetchData();
+        } catch (error) {
+            toast.error(error.message || 'Failed to delete department');
+        }
+    };
 
 
