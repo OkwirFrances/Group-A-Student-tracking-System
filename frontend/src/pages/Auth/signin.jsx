@@ -36,7 +36,7 @@ const SignIn = () => {
             setError('Password must be at least 8 characters long.');
             return;
 
-        {
+        }
 
         try {
             const data = await authAPI.login(formData.email, formData.password);
@@ -64,14 +64,11 @@ const SignIn = () => {
                     setError('Unknown user role.');
                     break;
             }
-        } else {
-            // Display error message from the API
-            setError(data.error || 'Sign-in failed. Please try again.');
+        
+        } catch (error) {
+            console.error('Sign-in failed:', error);
+            setError('Unable to connect to the server. Please try again later.');
         }
-    } catch (error) {
-        console.error('Sign-in failed:', error);
-        setError('Unable to connect to the server. Please try again later.');
-    }
     };
 
     const isFormValid = formData.email && formData.password.length >= 8;
