@@ -32,77 +32,79 @@ const App = () => {
   return (
     <IssuesProvider>
       <BrowserRouter>
-      <ErrorBoundary>
-        <Suspense fallback={<Fallback />}></Suspense>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" index element={<Navigate to="landing" />} />
-          <Route path="landing" element={<ErrorBoundary><LandingPage /></ErrorBoundary>} />
-          <Route path="signup" element={<ErrorBoundary><SignUp /></ErrorBoundary>} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="otp" element={<Otp />} />
-          <Route path="/congratulations" element={<Congratulations />} />
+        <ErrorBoundary>
+          <Suspense fallback={<Fallback />}>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" index element={<Navigate to="landing" />} />
+              <Route path="landing" element={<ErrorBoundary><LandingPage /></ErrorBoundary>} />
+              <Route path="signup" element={<ErrorBoundary><SignUp /></ErrorBoundary>} />
+              <Route path="signin" element={<SignIn />} />
+              <Route path="otp" element={<Otp />} />
+              <Route path="/congratulations" element={<Congratulations />} />
 
-          {/* Protected Routes */}
-          <Route
-            path="/student/*"
-            element={
-              <ProtectedRoute allowedRoles={["student"]}>
-                <StudentDashboard />
-              </ProtectedRoute>
-            }
-          > 
-            <Route index element={<Navigate to="dashboard" replace />} />
-            <Route path="dashboard" element={<DashboardContent />} />
-            <Route path="issueform" element={<IssueForm />} />
-            <Route path="issues" element={<DashboardContent />} />
-            <Route path="issue/:id" element={<IssueDetails />} />
-            <Route path="notifications" element={<NotificationScreen />} />
-            <Route path="support" element={<HelpSupport />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
-           
-           {/* Protected Lecturer Routes */}
-          <Route
-            path="/lecturer/*"
-            element={
-              <ProtectedRoute allowedRoles={["lecturer"]}>
-                <LecturerDashboard />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<Navigate to="dashboard" replace />} />
+              {/* Protected Routes */}
+              <Route
+                path="/student/*"
+                element={
+                  <ProtectedRoute allowedRoles={["student"]}>
+                    <StudentDashboard />
+                  </ProtectedRoute>
+                }
+            > 
+                <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="dashboard" element={<DashboardContent />} />
+                <Route path="issueform" element={<IssueForm />} />
+                <Route path="issues" element={<DashboardContent />} />
                 <Route path="issue/:id" element={<IssueDetails />} />
-                <Route path="issues" element={<LecturerIssues />} />
                 <Route path="notifications" element={<NotificationScreen />} />
                 <Route path="support" element={<HelpSupport />} />
                 <Route path="settings" element={<Settings />} />
               </Route>
             
+              {/* Protected Lecturer Routes */}
+              <Route
+                path="/lecturer/*"
+                element={
+                  <ProtectedRoute allowedRoles={["lecturer"]}>
+                    <LecturerDashboard />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<Navigate to="dashboard" replace />} />
+                  <Route path="dashboard" element={<DashboardContent />} />
+                  <Route path="issue/:id" element={<IssueDetails />} />
+                  <Route path="issues" element={<LecturerIssues />} />
+                  <Route path="notifications" element={<NotificationScreen />} />
+                  <Route path="support" element={<HelpSupport />} />
+                  <Route path="settings" element={<Settings />} />
+                </Route>
+                
+                {/* Protected Registrar Routes */}
+                <Route
+                  path="/registrar/*"
+                  element={
+                    <ProtectedRoute allowedRoles={["registrar"]}>
+                      <RegistrarDashboard />
+                    </ProtectedRoute>
+                  }
+              >
+                <Route index element={<Navigate to="dashboard" replace />} />
+                  <Route path="dashboard" element={<DashboardContent />} />
+                  <Route path="issue/:id" element={<IssueDetails />} />
+                  <Route path="notifications" element={<NotificationScreen />} />
+                  <Route path="support" element={<HelpSupport />} />
+                  <Route path="settings" element={<Settings />} />
+                  <Route path="lecturers" element={<LecturerManagement />} />
+                  <Route path="departments" element={<DepartmentManagement />} />
+                  <Route path="courses" element={<CourseManagement />} />
+                </Route>
 
-          <Route
-            path="/registrar/*"
-            element={
-              <ProtectedRoute allowedRoles={["registrar"]}>
-                <RegistrarDashboard />
-              </ProtectedRoute>
-            }
-          >
-           <Route index element={<Navigate to="dashboard" replace />} />
-                <Route path="dashboard" element={<DashboardContent />} />
-                <Route path="issue/:id" element={<IssueDetails />} />
-                <Route path="notifications" element={<NotificationScreen />} />
-                <Route path="support" element={<HelpSupport />} />
-                <Route path="settings" element={<Settings />} />
-                <Route path="lecturers" element={<LecturerManagement />} />
-                <Route path="departments" element={<DepartmentManagement />} />
-                <Route path="courses" element={<CourseManagement />} />
-              </Route>
-
-          {/* Notifications Route */}
-          <Route path="notifications" element={<NotificationScreen />} />
-        </Routes>
+            {/* Fallback Route */}
+            <Route path="*" element={<Navigate to="/landing" replace />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
       </BrowserRouter>
     </IssuesProvider>
   );
