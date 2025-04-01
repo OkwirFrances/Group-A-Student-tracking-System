@@ -21,6 +21,12 @@ const DashboardContent = React.lazy(() => import('./pages/Dashboard/Dashboardcon
 const IssueForm = React.lazy(() => import('./pages/Issues/issueform'));
 const IssueDetails = React.lazy(() => import('./pages/Issues/issuedetails'));
 const NotificationScreen = React.lazy(() => import('./pages/notificationscreen'));
+const HelpSupport = React.lazy(() => import('./pages/helpsupport'));
+const Settings = React.lazy(() => import('./pages/Profile/settings'));
+const DepartmentManagement = React.lazy(() => import('./pages/DepartmentManagement'));
+const CourseManagement = React.lazy(() => import('./pages/CourseManagement'));
+import LecturerManagement from './pages/LecturerManagement';
+const LecturerIssues = React.lazy(() => import('./pages/LecturerIssues'));
 
 const App = () => {
   return (
