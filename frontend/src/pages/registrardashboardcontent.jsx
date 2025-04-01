@@ -21,7 +21,20 @@ const RegistrarDashboardContent = () => {
                 issueAPI.getIssues(), // Fetch issues from the API
                 lecturerAPI.getLecturers() // Fetch lecturers from the API
             ]);
-            
+            setAssignedIssues(issuesResponse);
+            setLecturers(lecturersResponse);
+        } catch (error) {
+            toast.error("Error fetching data:");
+            console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false);
+        }
+
+
+
+
+
+
 
 
     const navigate = useNavigate();
