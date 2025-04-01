@@ -27,3 +27,8 @@ const ProtectedRoute = ({ allowedRoles, children }) => {
             }
         }
     
+        // If authorized, render the child routes
+    return children ? children : <Outlet />;
+};
+
+export default ProtectedRoute;
