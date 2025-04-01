@@ -107,6 +107,19 @@ useEffect(() => {
                                 required
                                 placeholder="E.g. Data Structures"
                             />
+                            </div>
+                        <div className="form-group">
+                            <label>Course Code</label>
+                            <input
+                                type="text"
+                                name="code"
+                                value={formData.code}
+                                onChange={handleChange}
+                                required
+                                placeholder="E.g. CS201"
+                            />
+                        </div>
+                            
 
 
     
