@@ -134,6 +134,26 @@ const DashboardContent = () => {
                                         </select>
                                     </div>
                                 )}
+                                <div>{new Date(issue.date).toLocaleDateString()}</div>
+                                <div>
+                                    {userRole === 'lecturer' && issue.status !== 'resolved' && (
+                                        <button 
+                                            className='action-button resolve-button'
+                                            onClick={() => onResolveIssue(issue.id)}
+                                        >
+                                            Resolve
+                                        </button>
+                                    )}
+                                    <button 
+                                        className='action-button view-button'
+                                        onClick={() => navigate(`/${userRole}/issue/${issue.id}`)}
+                                    >
+                                        View
+                                    </button>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
 };
 
 export default DashboardContent;
