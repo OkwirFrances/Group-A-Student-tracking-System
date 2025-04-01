@@ -177,5 +177,13 @@ export const courseAPI = {
           throw error.response?.data || error.message;
         }
       },
+      updateCourse: async (courseId, courseData) => {
+        try {
+          const response = await api.put(`/courses/${courseId}/`, courseData);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
   
 
