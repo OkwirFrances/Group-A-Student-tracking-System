@@ -89,11 +89,16 @@ const App = () => {
               </ProtectedRoute>
             }
           >
-            <Route path="dashboard" element={<DashboardContent />} />
-            <Route path="issue/:id" element={<IssueDetails />} />
-            <Route path="support" element={<HelpSupport />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
+           <Route index element={<Navigate to="dashboard" replace />} />
+                <Route path="dashboard" element={<DashboardContent />} />
+                <Route path="issue/:id" element={<IssueDetails />} />
+                <Route path="notifications" element={<NotificationScreen />} />
+                <Route path="support" element={<HelpSupport />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="lecturers" element={<LecturerManagement />} />
+                <Route path="departments" element={<DepartmentManagement />} />
+                <Route path="courses" element={<CourseManagement />} />
+              </Route>
 
           {/* Notifications Route */}
           <Route path="notifications" element={<NotificationScreen />} />
