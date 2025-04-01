@@ -135,6 +135,28 @@ useEffect(() => {
                                 ))}
                             </select>
                         </div>
+                        <button type="submit" className="submit-button">
+                            Create Course
+                        </button>
+                    </form>
+                </div>
+
+                <div className="list-section">
+                    <h2>Existing Courses</h2>
+                    {courses.length > 0 ? (
+                        <div className="table-container">
+                            <table className="management-table">
+                                <thead>
+                                    <tr>
+                                    <th>Name</th>
+                                        <th>Code</th>
+                                        <th>Department</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    </tr>
+                        
 
                             
 
