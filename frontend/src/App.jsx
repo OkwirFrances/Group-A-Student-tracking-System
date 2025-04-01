@@ -14,6 +14,13 @@ const SignUp = React.lazy(() => import('./pages/Auth/signup'));
 const SignIn = React.lazy(() => import('./pages/Auth/signin'));
 const Otp = React.lazy(() => import('./pages/Auth/otp'));
 const Congratulations = React.lazy(() => import('./pages/congratulations'));
+const StudentDashboard = React.lazy(() => import('./pages/Dashboard/StudentDashboard'));
+const LecturerDashboard = React.lazy(() => import('./pages/Dashboard/LecturerDashboard'));
+const RegistrarDashboard = React.lazy(() => import('./pages/Dashboard/RegistrarDashboard'));
+const DashboardContent = React.lazy(() => import('./pages/Dashboard/Dashboardcontent'));
+const IssueForm = React.lazy(() => import('./pages/Issues/issueform'));
+const IssueDetails = React.lazy(() => import('./pages/Issues/issuedetails'));
+const NotificationScreen = React.lazy(() => import('./pages/notificationscreen'));
 
 const App = () => {
   return (
