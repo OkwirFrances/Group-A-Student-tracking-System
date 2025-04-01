@@ -231,6 +231,15 @@ export const issueAPI = {
         throw error.response?.data || error.message;
       }
     },
+    getIssueDetail: async (issueId) => {
+        try {
+          const response = await api.get(`/issues/${issueId}/`);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
+    
     
   
 
