@@ -45,9 +45,8 @@ const DashboardContent = () => {
                     <p>{(displayIssues || []).filter(i => i.status === 'pending').length}</p>
                 </div>
                 <div className='card in-progress'>
-                    <h2>In-progress Issues</h2>
-                    <p className='issue-count'>{issues.filter(issue => issue.status === 'in-progress').length}</p>
-                    <p>You have {issues.filter(issue => issue.status === 'in-progress').length} in-progress issues.</p>
+                    <h2>In Progress</h2>
+                    <p>{(displayIssues || []).filter(i => i.status === 'in-progress').length}</p>
                 </div>
                 <div className='card resolved'>
                     <h2>Resolved Issues</h2>
