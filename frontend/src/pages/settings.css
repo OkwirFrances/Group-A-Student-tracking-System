@@ -1,6 +1,6 @@
 .settings-container {
     display: flex;
-flex-direction: row;
+    flex-direction: row;
     height: 100vh;
 }
 
@@ -16,11 +16,11 @@ flex-direction: row;
 .settings-content h1 {
     font-size: 2rem;
     font-weight: bold;
-
     margin-right: 1000px;
     margin-bottom: 670px;
-    margin-right: 900px;
-    margin-bottom: 680px;
+}
+
+.settings-box {
     position: absolute;
     justify-content: center;
     border: 1px solid black;
@@ -197,7 +197,7 @@ flex-direction: row;
 .help-support:hover {
     background-color: green;
     color: white;
-}git add frontend/src/pages/profile.css
+}
 
 .delete-account {
     margin-top: 80px;
@@ -263,7 +263,6 @@ flex-direction: row;
 .delete-yes:hover {
     background-color: red;
     color: white;
-
 }
 
 @media (max-width: 768px) {

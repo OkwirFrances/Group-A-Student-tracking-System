@@ -1,17 +1,5 @@
 import React from 'react';
 import './Issuemanagement.css';
-import { FiSearch, FiPlus } from 'react-icons/fi';
-import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
-import { Input } from "./ui/input";
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "./ui/table";
-import { Filter } from "lucide-react";
 
 const Issuemanagement = () => {
   const mockIssues = [
