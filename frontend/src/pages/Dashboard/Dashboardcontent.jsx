@@ -22,17 +22,19 @@ const DashboardContent = () => {
         onAssignIssue = () => {},
         lecturers = []
     } = outletContext;
+
+    const userRole = localStorage.getItem('userRole') || 'student';
     
-    const handleFilterChange = (event) => {
-        setFilterStatus(event.target.value);
-    };
+    const displayIssues = userRole === 'student' ? issues : 
+                        userRole === 'lecturer' ? assignedIssues : 
+                        allIssues;
 
-    const handleIssueClick = (id) => {
-        navigate(`/app/issue/${id}`);
-    };
-
-    const filteredIssues = issues.filter(issue => filterStatus === 'all' || issue.status === filterStatus);
- 
+    const filteredIssues = (displayIssues || []).filter(issue => {
+        const statusMatch = filterStatus === 'all' || issue.status === filterStatus;
+        const searchMatch = issue.title.toLowerCase().includes(searchQuery.toLowerCase());
+        return statusMatch && searchMatch;
+    });
+    
     return (
         <div className='dashboard-content'>
             <h1>Dashboard</h1>
