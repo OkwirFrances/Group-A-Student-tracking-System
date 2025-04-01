@@ -31,4 +31,21 @@ useEffect(() => {
         fetchData();
     }, [navigate]);
 
+    const fetchData = async () => {
+        try {
+            setLoading(true);
+            const [coursesData, departmentsData] = await Promise.all([
+                courseAPI.getCourses(),
+                departmentAPI.getDepartments()
+            ]);
+            setCourses(coursesData);
+            setDepartments(departmentsData);
+        } catch (error) {
+            toast.error(error.message || 'Failed to fetch data');
+            console.error('Fetch error:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     
