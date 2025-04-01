@@ -29,8 +29,9 @@ import LecturerManagement from './pages/LecturerManagement';
 // const LecturerIssues = React.lazy(() => import('./pages/LecturerIssues'));
 
 const App = () => {
+
   return (
-    <IssuesProvider>
+    <IssuesProvider >
       <BrowserRouter>
         <ErrorBoundary>
           <Suspense fallback={<Fallback />}>

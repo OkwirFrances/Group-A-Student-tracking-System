@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './notificationscreen.css';
 import emptybox from '../assets/emptybox.png';
 import backarrow from '../assets/backarrow.png';
-import Navbar from '../Components/Navbar/Navbar';
+import Navbar from '../components/Navbar';
 import { IssuesContext } from '../context/IssueContext';
 
 const NotificationScreen = () => {
