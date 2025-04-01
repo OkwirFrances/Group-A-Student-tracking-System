@@ -271,6 +271,17 @@ export const issueAPI = {
           throw error.response?.data || error.message;
         }
       },
+      resolveIssue: async (issueId) => {
+        try {
+          const response = await api.post(`/issues/${issueId}/resolve/`);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
+    };
+    
+    export default api;
     
     
   
