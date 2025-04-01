@@ -45,7 +45,10 @@ class CustomUser(AbstractUser):
             ('YEAR_4','YEAR 4'),
             ('YEAR_5','YEAR 5')]    
     email = models.EmailField(unique=True)
-    password2= models.CharField(max_length=20)
+    fullname = models.CharField(max_length=100, null=False)
+    otp = models.CharField(max_length=6, blank=True, null=True)
+    is_verified = models.BooleanField(default=False)
+    otp_created_at = models.DateTimeField(null=True, blank=True)
     Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='Student')
     Gender = models.CharField(max_length=20,choices=GENDER,editable=True)
     image = models.ImageField(upload_to='images/',null=True,blank=True)
