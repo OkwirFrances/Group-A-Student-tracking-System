@@ -28,3 +28,16 @@ const DepartmentManagement = () => {
         fetchData();
     }, [navigate]);
 
+    const fetchData = async () => {
+        try {
+            setLoading(true);
+            const data = await departmentAPI.getDepartments();
+            setDepartments(data);
+        } catch (error) {
+            toast.error(error.message || 'Failed to load departments');
+            console.error('Fetch error:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
