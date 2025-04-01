@@ -142,5 +142,14 @@ export const departmentAPI = {
         throw error.response?.data || error.message;
       }
     },
+    createDepartment: async (departmentData) => {
+        try {
+          const response = await api.post('/departments/', departmentData);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
+    };
   
 
