@@ -212,6 +212,15 @@ export const lecturerAPI = {
           throw error.response?.data || error.message;
         }
       },
+      getLecturerIssues: async () => {
+        try {
+          const response = await api.get('/lecturers/issues/');
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
+    };
     
   
 
