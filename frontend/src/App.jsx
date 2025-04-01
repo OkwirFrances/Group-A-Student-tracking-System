@@ -71,11 +71,15 @@ const App = () => {
               </ProtectedRoute>
             }
           >
-            <Route path="dashboard" element={<DashboardContent />} />
-            <Route path="issue/:id" element={<IssueDetails />} />
-            <Route path="support" element={<HelpSupport />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
+            <Route index element={<Navigate to="dashboard" replace />} />
+                <Route path="dashboard" element={<DashboardContent />} />
+                <Route path="issue/:id" element={<IssueDetails />} />
+                <Route path="issues" element={<LecturerIssues />} />
+                <Route path="notifications" element={<NotificationScreen />} />
+                <Route path="support" element={<HelpSupport />} />
+                <Route path="settings" element={<Settings />} />
+              </Route>
+            
 
           <Route
             path="/registrar/*"
