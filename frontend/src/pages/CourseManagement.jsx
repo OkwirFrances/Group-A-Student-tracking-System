@@ -27,5 +27,8 @@ useEffect(() => {
             console.error('Role verification failed:', error);
         }
     };
+    verifyAccess();
+        fetchData();
+    }, [navigate]);
 
     
