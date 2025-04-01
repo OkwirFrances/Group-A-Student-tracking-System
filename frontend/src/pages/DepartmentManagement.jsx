@@ -11,3 +11,16 @@ const DepartmentManagement = () => {
         code: ''
     });
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const verifyAccess = async () => {
+            try {
+                const userInfo = await userAPI.getUserInfo();
+                if (userInfo.role !== 'registrar') {
+                    toast.error('Unauthorized access');
+                    navigate('/dashboard');
+                }
+            } catch (error) {
+                console.error('Role verification failed:', error);
+            }
+        };
