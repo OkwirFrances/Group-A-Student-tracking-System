@@ -85,21 +85,23 @@ const DashboardContent = () => {
                             <option value='in-progress'>In Progress</option>
                             <option value='resolved'>Resolved</option>
                         </select>
-               </div>
-               <div className='my-issues-search-container'>
-                    <input 
-                    type='text' 
-                    placeholder='Search for anything...' 
-                    className='my-issues-search-input' />
-                    <img src={search} alt='search' className='my-issues-search-icon' />
+                        
+                        <div className='search-container'>
+                            <input 
+                                type='text' 
+                                placeholder='Search...'
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                            <img 
+                                src={search}
+                                alt='search' 
+                                loading="lazy"
+                            />
+                        </div>
+                    </div>
                 </div>
-               <div className='issues-table'>
-                <div className='table-header'>
-                    <div className='table-header-item'>Issue</div>
-                    <div className='table-header-item'>Status</div>
-                    <div className='table-header-item'>Category</div>
-                    <div className='table-header-item'>Date</div>
-                </div>
+
                 <div className='table-body'>
                     {filteredIssues.length > 0 ? (
                         filteredIssues.map((issue, index) => (
