@@ -247,6 +247,14 @@ export const issueAPI = {
           throw error.response?.data || error.message;
         }
       },
+      updateIssue: async (issueId, issueData) => {
+        try {
+          const response = await api.put(`/issues/${issueId}/`, issueData);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
     
     
   
