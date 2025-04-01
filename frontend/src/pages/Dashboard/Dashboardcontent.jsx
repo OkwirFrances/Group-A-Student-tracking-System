@@ -85,7 +85,7 @@ const DashboardContent = () => {
                             <option value='in-progress'>In Progress</option>
                             <option value='resolved'>Resolved</option>
                         </select>
-                        
+
                         <div className='search-container'>
                             <input 
                                 type='text' 
@@ -102,15 +102,14 @@ const DashboardContent = () => {
                     </div>
                 </div>
 
-                <div className='table-body'>
-                    {filteredIssues.length > 0 ? (
-                        filteredIssues.map((issue, index) => (
-                            <div key={index} className='table-row' onClick={() => handleIssueClick(issue.id)}>
-                                <div className='table-row-item'>{issue.title}</div>
-                                <div className='table-row-item'>{issue.status}</div>
-                                <div className='table-row-item'>{issue.category}</div>
-                                <div className='table-row-item'>{issue.date}</div>
-                            </div>
+                <div className='issues-table'>
+                    <div className='table-header'>
+                        <div>Title</div>
+                        <div>Status</div>
+                        {userRole === 'registrar' && <div>Assigned To</div>}
+                        <div>Date</div>
+                        <div>Actions</div>
+                    </div>
                         ))
                     ) : (
                         <div className='empty-image-container'>
