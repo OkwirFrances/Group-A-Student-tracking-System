@@ -119,6 +119,23 @@ useEffect(() => {
                                 placeholder="E.g. CS201"
                             />
                         </div>
+                        <div className="form-group">
+                            <label>Department</label>
+                            <select
+                                name="department_id"  // Changed to match state
+                                value={formData.department_id}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="">Select Department</option>
+                                {departments.map(dept => (
+                                    <option key={dept.id} value={dept.id}>
+                                        {dept.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
                             
 
 
