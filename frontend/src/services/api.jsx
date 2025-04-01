@@ -132,4 +132,15 @@ export const userAPI = {
         }
       },
     };
+    // Department API
+export const departmentAPI = {
+    getDepartments: async () => {
+      try {
+        const response = await api.get('/departments/');
+        return response.data;
+      } catch (error) {
+        throw error.response?.data || error.message;
+      }
+    },
+  
 
