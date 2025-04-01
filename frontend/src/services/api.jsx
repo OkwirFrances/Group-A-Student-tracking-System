@@ -204,6 +204,14 @@ export const lecturerAPI = {
         throw error.response?.data || error.message;
       }
     },
+    createLecturer: async (lecturerData) => {
+        try {
+          const response = await api.post('/lecturers/', lecturerData);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
     
   
 
