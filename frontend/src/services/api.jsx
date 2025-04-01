@@ -239,6 +239,14 @@ export const issueAPI = {
           throw error.response?.data || error.message;
         }
       },
+      createIssue: async (issueData) => {
+        try {
+          const response = await api.post('/issues/', issueData);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
     
     
   
