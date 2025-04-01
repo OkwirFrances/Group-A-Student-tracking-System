@@ -194,6 +194,16 @@ export const courseAPI = {
         }
       },
     };
+    // Lecturer API
+export const lecturerAPI = {
+    getLecturers: async () => {
+      try {
+        const response = await api.get('/lecturers/');
+        return response.data;
+      } catch (error) {
+        throw error.response?.data || error.message;
+      }
+    },
     
   
 
