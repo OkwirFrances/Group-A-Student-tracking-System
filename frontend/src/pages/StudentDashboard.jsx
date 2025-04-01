@@ -3,11 +3,12 @@ import { Outlet } from "react-router-dom";
 import './studentdashboard.css';
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import { IssuesContext } from "../context/IssueContext";
 
 
 
 const StudentDashboard = () => {
-    const userRole = localStorage.getItem('userRole');
+   const {issues, loading} = useContext(IssuesContext);
     return (
             <div className="dashboard-container">
                 <Navbar />
@@ -15,7 +16,12 @@ const StudentDashboard = () => {
                     <Sidebar />
                 </div>
                 <div className="dashboard-content">
-                    <Outlet/>
+                    
+                    <Outlet context ={{
+                        issues: issues || [],
+                        loading: loading || false
+                    }}
+                    />
                 </div>
             </div>
        
