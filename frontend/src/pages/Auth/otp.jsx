@@ -5,6 +5,7 @@ import refresh from '../../assets/refresh.png';
 import help from '../../assets/help.png';
 import Congratulations from '../congratulations';
 import { Link, useNavigate } from 'react-router-dom';
+import { authAPI } from '../../services/api';
 
 const Otp = ({ email, onResendOtp }) => {
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -35,34 +36,19 @@ const Otp = ({ email, onResendOtp }) => {
         }
 
         try {
-            const response = await fetch('http://localhost:8000/verify-otp/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email,
-                    otp: enteredOtp,
-                }),
-            });
-
-            const data = await response.json();
-            if (response.ok) {
+            const data = await authAPI.verifyOTP(email, enteredOtp);
                 setSuccess(true);
                 setError('');
                 console.log('OTP verified successfully:', data);
                 setShowCongratulations(true);
                 console.log('showCongratulations:', true);
                 navigate('/congratulations'); // Redirect to congratulations page
-            } else {
+            } catch (error) {
+                console.error('OTP verification failed:', error);
                 setError(data.error || 'Invalid OTP. Please try again.');
                 setSuccess(false);
             }
-        } catch (error) {
-            console.error('OTP verification failed:', error);
-            setError('Unable to connect to the server. Please try again later.');
-        }
-    };
+        } 
 
     const handleResendClick = async () => {
         setOtp(['', '', '', '', '', '']);
