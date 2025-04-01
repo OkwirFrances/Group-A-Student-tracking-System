@@ -48,7 +48,7 @@ const SignUp = () => {
         setError(formError);
     }, [formData]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
 
@@ -61,8 +61,17 @@ const SignUp = () => {
                 formData.email, 
                 formData.fullName, 
                 formData.password,
-                formData.role);
+                formData.role
+            );
+        
+
+        console.log('Signup Successful:', data);
+        setShowOtpScreen(true);
+        } catch (error) {
+            console.error('Signup Failed:', error);
+            setError(error.message || 'Unable to connect to the server. Please try again later.');
         }
+    };
        
 
     if (showOtpScreen) {
