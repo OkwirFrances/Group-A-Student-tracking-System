@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
+// import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import dashboard from '../assets/dashboard.png';
 import issue from '../assets/issue.png';
 import person from '../assets/person.png';
@@ -72,7 +73,7 @@ const Sidebar = () => {
                         Help & Support
                     </Link>
                 </li>
-                <li className='sidebar-item'>
+                <li className='sidebar-item logout'>
                     <button onClick={handleLogout} className='logout-button'>
                         <img src={logout} alt='logout' className='sidebar-icon' />
                         Logout
