@@ -38,12 +38,7 @@ class CustomUser(AbstractUser):
     
     GENDER = [('Male','MALE'),
               ('Female','FEMALE')]
-    
-    YEAR_CHOICES = [('YEAR 1','YEAR 1'),
-            ('YEAR_2','YEAR 2'),
-            ('YEAR_3','YEAR 3'),
-            ('YEAR_4','YEAR 4'),
-            ('YEAR_5','YEAR 5')]  
+     
     username = None
     email = models.EmailField(unique=True)
     fullname = models.CharField(max_length=100, null=False)
@@ -65,7 +60,7 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['fullname','role']
     
-
+    objects = CustomUserManager()
 
     def __str__(self):
         return self.fullname
@@ -138,7 +133,9 @@ class Issue(models.Model):
                      ('correction','CORRECTION'))
     
     SEMESTER_CHOICES = [('Semester 1','SEMESTER 1'),
-                        ('Semester 2','SEMESTER 2')]
+                        ('Semester 2','SEMESTER 2'),
+                        ('Semester 3','SEMESTER 3'),
+                        ('Semester 4','SEMESTER 4'),]
     
     student = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='issues', limit_choices_to={'Role':'Student'})
     semester = models.CharField(max_length=30, null = False,default='Semester 1')
