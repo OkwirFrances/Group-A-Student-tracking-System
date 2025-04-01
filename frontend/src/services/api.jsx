@@ -169,5 +169,13 @@ export const courseAPI = {
           throw error.response?.data || error.message;
         }
       },
+      createCourse: async (courseData) => {
+        try {
+          const response = await api.post('/courses/', courseData);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
   
 
