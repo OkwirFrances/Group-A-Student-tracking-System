@@ -32,6 +32,8 @@ const App = () => {
   return (
     <IssuesProvider>
       <BrowserRouter>
+      <ErrorBoundary>
+        <Suspense fallback={<Fallback />}></Suspense>
         <Routes>
           {/* Public Routes */}
           <Route path="/" index element={<Navigate to="landing" />} />
@@ -45,7 +47,7 @@ const App = () => {
           <Route
             path="/student/*"
             element={
-              <ProtectedRoute requiredRole="student">
+              <ProtectedRoute allowedRoles={["student"]}>
                 <StudentDashboard />
               </ProtectedRoute>
             }
