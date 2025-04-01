@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getToken, clearToken, storeToken} from '../pages/Auth/auth'; // Adjust the import path as necessary
+import { getToken, clearToken, storeToken} from '../pages/auth'; // Adjust the import path as necessary
 
 const API_BASE_URL = 'http://localhost:8000';
 
