@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './registrardashboardcontent.css';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
 import search from '../assets/search.png';
+import { issueAPI, lecturerAPI } from "../services/api"; //imports the api methods from the api.js file
 
 const RegistrarDashboardContent = () => {
     const [assignedIssues, setAssignedIssues] = useState(0);
     const [pendingIssues, setPendingIssues] = useState(0);
     const [inProgressIssues, setInProgressIssues] = useState(0);
     const [resolvedIssues, setResolvedIssues] = useState(0);
+    const [lecturers, setLecturers] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+
+    const fetchData = async () => {
+        try {
+            const [issuesResponse, lecturersResponse] = await Promise.all([
+                issueAPI.getIssues(), // Fetch issues from the API
+                lecturerAPI.getLecturers() // Fetch lecturers from the API
+            ]);
+            
 
 
     const navigate = useNavigate();
