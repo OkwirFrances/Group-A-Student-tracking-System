@@ -55,4 +55,60 @@ useEffect(() => {
         });
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            // Prepare data according to your model
+            const courseData = {
+                name: formData.name,
+                code: formData.code,
+                department: formData.department_id  // Changed to match model's ForeignKey field
+            };
+            await courseAPI.createCourse(courseData);
+            toast.success('Course created successfully');
+            setFormData({ name: '', code: '', department_id: '' });
+            await fetchData();
+
+        } catch (error) {
+            console.error('Error creating course:', error);
+            toast.error(error.response?.data?.message || 
+                       error.message || 
+                       'Failed to create course. Please check your inputs.');
+        }
+    };
+
+    const handleDelete = async (courseId) => {
+        try {
+            await courseAPI.deleteCourse(courseId);
+            toast.success('Course deleted successfully');
+            await fetchData();
+        } catch (error) {
+            toast.error(error.message || 'Failed to delete course');
+        }
+    };
+
+    if (loading) return <div className="loading">Loading courses...</div>;
+
+    return (
+        <div className="dashboard-content">
+            <h1>Course Management</h1>
+
+            <div className="management-container">
+                <div className="form-section">
+                    <h2>Create New Course</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label>Course Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                                placeholder="E.g. Data Structures"
+                            />
+
+
+    
+
     
