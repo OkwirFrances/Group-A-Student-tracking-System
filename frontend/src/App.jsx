@@ -26,7 +26,7 @@ const Settings = React.lazy(() => import('./pages/Profile/settings'));
 const DepartmentManagement = React.lazy(() => import('./pages/DepartmentManagement'));
 const CourseManagement = React.lazy(() => import('./pages/CourseManagement'));
 import LecturerManagement from './pages/LecturerManagement';
-const LecturerIssues = React.lazy(() => import('./pages/LecturerIssues'));
+// const LecturerIssues = React.lazy(() => import('./pages/LecturerIssues'));
 
 const App = () => {
   return (
@@ -74,7 +74,7 @@ const App = () => {
                 <Route index element={<Navigate to="dashboard" replace />} />
                   <Route path="dashboard" element={<DashboardContent />} />
                   <Route path="issue/:id" element={<IssueDetails />} />
-                  <Route path="issues" element={<LecturerIssues />} />
+                  {/* <Route path="issues" element={<LecturerIssues />} /> */}
                   <Route path="notifications" element={<NotificationScreen />} />
                   <Route path="support" element={<HelpSupport />} />
                   <Route path="settings" element={<Settings />} />
