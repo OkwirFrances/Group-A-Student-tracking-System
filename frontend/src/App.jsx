@@ -51,12 +51,18 @@ const App = () => {
                 <StudentDashboard />
               </ProtectedRoute>
             }
-          >
+          > 
+            <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<DashboardContent />} />
+            <Route path="issueform" element={<IssueForm />} />
+            <Route path="issues" element={<DashboardContent />} />
             <Route path="issue/:id" element={<IssueDetails />} />
+            <Route path="notifications" element={<NotificationScreen />} />
             <Route path="support" element={<HelpSupport />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+           
+           {/* Protected Lecturer Routes */}
           <Route
             path="/lecturer/*"
             element={
