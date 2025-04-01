@@ -221,6 +221,16 @@ export const lecturerAPI = {
         }
       },
     };
+    // Issue API
+export const issueAPI = {
+    getIssues: async () => {
+      try {
+        const response = await api.get('/issues/');
+        return response.data;
+      } catch (error) {
+        throw error.response?.data || error.message;
+      }
+    },
     
   
 
