@@ -263,6 +263,14 @@ export const issueAPI = {
           throw error.response?.data || error.message;
         }
       },
+      assignIssue: async (issueId, lecturerId) => {
+        try {
+          const response = await api.post(`/issues/${issueId}/assign/${lecturerId}/`);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
     
     
   
