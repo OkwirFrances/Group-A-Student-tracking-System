@@ -151,5 +151,15 @@ export const departmentAPI = {
         }
       },
     };
+    // Course API
+export const courseAPI = {
+    getCourses: async () => {
+      try {
+        const response = await api.get('/courses/');
+        return response.data;
+      } catch (error) {
+        throw error.response?.data || error.message;
+      }
+    },
   
 
