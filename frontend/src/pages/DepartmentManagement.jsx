@@ -24,3 +24,7 @@ const DepartmentManagement = () => {
                 console.error('Role verification failed:', error);
             }
         };
+        verifyAccess();
+        fetchData();
+    }, [navigate]);
+
