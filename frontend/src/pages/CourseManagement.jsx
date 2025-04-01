@@ -155,7 +155,35 @@ useEffect(() => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    </tr>
+                                {courses.map(course => (
+                                        <tr key={course.id}>
+                                            <td>{course.name}</td>
+                                            <td>{course.code}</td>
+                                            <td>{course.department?.name || 'N/A'}</td>
+                                            <td>
+                                                <button 
+                                                    onClick={() => handleDelete(course.id)}
+                                                    className="delete-button"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    ) : (
+                        <p className="no-data">No courses found</p>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default CourseManagement;
+
                         
 
                             
