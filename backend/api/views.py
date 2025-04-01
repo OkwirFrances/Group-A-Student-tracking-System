@@ -31,7 +31,7 @@ def generate_otp():
 def signup(request):
     email = request.data.get('email')
     fullname = request.data.get('fullname', '')  # Optional fullname
-    password = request.data.get('password')
+    password = request.data.get('password'),
     role = request.data.get('role', 'student')
 
     if not email or not password:
