@@ -48,7 +48,7 @@ const Otp = ({ email, onResendOtp }) => {
                 setError(data.error || 'Invalid OTP. Please try again.');
                 setSuccess(false);
             }
-        } 
+        };
 
     const handleResendClick = async () => {
         setOtp(['', '', '', '', '', '']);
@@ -56,28 +56,16 @@ const Otp = ({ email, onResendOtp }) => {
         setSuccess(false);
 
         try {
-            const response = await fetch('http://localhost:8000/resend-otp/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email,
-                }),
-            });
-
-            const data = await response.json();
-            if (response.ok) {
-                console.log('OTP resent successfully:', data);
-            } else {
-                setError(data.error || 'Failed to resend OTP.');
-            }
+            const data = await authAPI.resendOTP(email);
+            console.log('OTP resent successfully:', data);
         } catch (error) {
-            console.error('Failed to resend OTP:', error);
-            setError('Unable to connect to the server. Please try again later.');
+            console.error('Failed to resend OTP:', error); 
+            setError(error.message || 'Failed to resend OTP.');  
         }
-    };
-
+    };     
+                   
+            
+           
     const isOtpComplete = otp.every(digit => digit !== '');
 
     if (showCongratulations) {
