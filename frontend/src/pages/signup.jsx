@@ -75,7 +75,7 @@ const SignUp = () => {
        
 
     if (showOtpScreen) {
-        return <Otp email={formData.email} generatedOtp={generatedOtp} />;
+        return <Otp email={formData.email} onResendOtp={() => {}} />;
     }
 
   
