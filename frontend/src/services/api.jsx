@@ -123,4 +123,13 @@ export const userAPI = {
         throw error.response?.data || error.message;
       }
     },
+    updateUserInfo: async (userData) => {
+        try {
+          const response = await api.put('/user-info/edit/', userData);
+          return response.data;
+        } catch (error) {
+          throw error.response?.data || error.message;
+        }
+      },
+    };
 
