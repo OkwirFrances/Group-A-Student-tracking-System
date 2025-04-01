@@ -53,9 +53,12 @@ const DashboardContent = () => {
                     <p>{(displayIssues || []).filter(i => i.status === 'resolved').length}</p>
                 </div>
             </div>
-            <div className='recent-actions'>
-                <h2>Recent Actions</h2>
-            </div>
+
+            <div className='issues-section'>
+                <div className='section-header'>
+                    <h2>{userRole === 'student' ? 'My Issues' : 
+                        userRole === 'lecturer' ? 'Assigned Issues' : 'All Issues'}</h2>
+                    
             <div className='my-issues'>
                 <h2 className='my-issues-title' >My Issues</h2>
                 <Link to = "/app/issueform">
