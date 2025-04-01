@@ -74,14 +74,17 @@ const DashboardContent = () => {
                                 </button>
                             </Link>
                         )}
-                <div className='filter-select-container'>
-                    <select className='filter-select' value={filterStatus} onChange={handleFilterChange}>
+
+                        <select 
+                            value={filterStatus} 
+                            onChange={(e) => setFilterStatus(e.target.value)}
+                            className='filter-select'
+                        >
                             <option value='all'>All</option>
                             <option value='pending'>Pending</option>
-                            <option value='in-progress'>In-progress</option>
+                            <option value='in-progress'>In Progress</option>
                             <option value='resolved'>Resolved</option>
-                            {/* <img src={filter} alt='filter' className='filter-icon' /> */}
-                    </select>
+                        </select>
                </div>
                <div className='my-issues-search-container'>
                     <input 
