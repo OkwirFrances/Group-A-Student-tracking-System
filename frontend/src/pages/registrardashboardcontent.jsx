@@ -1,50 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './registrardashboardcontent.css';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
 import search from '../assets/search.png';
-import { issueAPI, lecturerAPI } from "../services/api"; //imports the api methods from the api.js file
 
 const RegistrarDashboardContent = () => {
     const [assignedIssues, setAssignedIssues] = useState(0);
     const [pendingIssues, setPendingIssues] = useState(0);
     const [inProgressIssues, setInProgressIssues] = useState(0);
     const [resolvedIssues, setResolvedIssues] = useState(0);
-    const [lecturers, setLecturers] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-
-    const fetchData = async () => {
-        try {
-            const [issuesResponse, lecturersResponse] = await Promise.all([
-                issueAPI.getIssues(), // Fetch issues from the API
-                lecturerAPI.getLecturers() // Fetch lecturers from the API
-            ]);
-            setAssignedIssues(issuesResponse);
-            setLecturers(lecturersResponse);
-        } catch (error) {
-            toast.error("Error fetching data:");
-            console.error('Error fetching data:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleAssign = async (issueId, lecturerId) => {
-        try {
-            await issueAPI.assignIssue(issueId, lecturerId); 
-            await fetchData();// Assign the issue to the lecturer
-            toast.success("Issue assigned successfully!");
-        } catch (error) {
-            toast.error("Error assigning issue:");
-            console.error('Error assigning issue:', error);
-        }
-    };
-
-    useEffect(() => {
-        fetchData(); // Fetch data when the component mounts
-    }, []);
 
 
     const navigate = useNavigate();
