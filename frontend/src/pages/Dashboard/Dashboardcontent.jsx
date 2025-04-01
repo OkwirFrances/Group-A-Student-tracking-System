@@ -2,17 +2,27 @@ import React, { useState, useContext } from 'react';
 import './Dashboardcontent.css';
 import search from '../../assets/search.png';
 import add from '../../assets/add.png';
-import filter from '../../assets/filter.png';
 import emptybox from '../../assets/emptybox.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { IssuesContext } from '../../context/IssueContext';
 
 const DashboardContent = () => {
-    const { issues } = useContext(IssuesContext);
+    const { issues:contextIssues } = useContext(IssuesContext);
     const [filterStatus, setFilterStatus] = useState('all');
+    const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
     
-
+    const outletContext = useOutletContext() || {};
+    const { 
+        issues = contextIssues || [], 
+        assignedIssues = [], 
+        allIssues = [],
+        loading = false,
+        onResolveIssue = () => {},
+        onAssignIssue = () => {},
+        lecturers = []
+    } = outletContext;
+    
     const handleFilterChange = (event) => {
         setFilterStatus(event.target.value);
     };
