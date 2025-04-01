@@ -29,10 +29,18 @@ const RegistrarDashboardContent = () => {
         } finally {
             setLoading(false);
         }
+    };
 
-
-
-
+    const handleAssign = async (issueId, lecturerId) => {
+        try {
+            await issueAPI.assignIssue(issueId, lecturerId); 
+            await fetchData();// Assign the issue to the lecturer
+            toast.success("Issue assigned successfully!");
+        } catch (error) {
+            toast.error("Error assigning issue:");
+            console.error('Error assigning issue:', error);
+        }
+    };
 
 
 
