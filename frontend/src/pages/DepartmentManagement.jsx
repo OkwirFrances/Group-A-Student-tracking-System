@@ -46,5 +46,16 @@ const DepartmentManagement = () => {
             [e.target.name]: e.target.value
         });
     };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await departmentAPI.createDepartment(formData);
+            toast.success('Department created successfully');
+            setFormData({ name: '', code: '' });
+            await fetchData();
+        } catch (error) {
+            toast.error(error.message || 'Failed to create department. Please check your inputs.');
+        }
+    };
 
 
