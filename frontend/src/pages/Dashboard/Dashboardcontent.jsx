@@ -110,18 +110,16 @@ const DashboardContent = () => {
                         <div>Date</div>
                         <div>Actions</div>
                     </div>
-                        ))
-                    ) : (
-                        <div className='empty-image-container'>
-                        <img src={emptybox} alt='emptybox' className='emptybox-icon' />
-                        <p className='emptybox-p'>There are no recent issues added.<br />Kindly click <b>New Issue</b> to get started</p>
-                        </div>
-                        )}
-                </div>
-               </div>    
-            </div>
-        </div>
-    );
+                       
+                    {filteredIssues.length > 0 ? (
+                        filteredIssues.map(issue => (
+                            <div key={issue.id} className='table-row'>
+                                <div onClick={() => navigate(`/${userRole}/issue/${issue.id}`)}>
+                                    {issue.title}
+                                </div>
+                                <div className={`status-${issue.status.replace(' ', '-')}`}>
+                                    {issue.status}
+                                </div>
 };
 
 export default DashboardContent;
