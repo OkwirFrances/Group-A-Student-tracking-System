@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png';
 import mail from '../../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 import padlock from '../../assets/padlock.png';
+import { authAPI } from '../../services/api';
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -34,51 +35,43 @@ const SignIn = () => {
         if (formData.password.length < 8) {
             setError('Password must be at least 8 characters long.');
             return;
-        }
 
-        // Call the backend API for authentication
+        {
+
         try {
-            const response = await fetch('http://localhost:8000/login/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: formData.email,
-                    password: formData.password,
-                }),
-            });
+            const data = await authAPI.login(formData.email, formData.password);
+            
+            // Store user data in localStorage
+            localStorage.setItem('authToken', data.access);
+            localStorage.setItem('refreshToken', data.refresh);
+            localStorage.setItem('userRole', data.role);
+            localStorage.setItem('userEmail', data.email);
+            localStorage.setItem('userFullname', data.fullname);
 
-            const data = await response.json();
 
-            if (response.ok) {
-                // Save the token and role to local storage
-                localStorage.setItem('authToken', data.token); 
-                localStorage.setItem('userRole', data.role); 
-
-                // Redirect to the appropriate dashboard based on the user's role
-                switch (data.role) {
-                    case 'lecturer':
-                        navigate('/lecturer/dashboard');
-                        break;
-                    case 'student':
-                        navigate('/student/dashboard');
-                        break;
-                    case 'registrar':
-                        navigate('/registrar/dashboard');
-                        break;
-                    default:
-                        setError('Unknown user role.');
-                        break;
-                }
-            } else {
-                // Display error message from the API
-                setError(data.error || 'Sign-in failed. Please try again.');
+            // Redirect to the appropriate dashboard based on the user's role
+            switch (data.role) {
+                case 'lecturer':
+                    navigate('/lecturer/dashboard');
+                    break;
+                case 'student':
+                    navigate('/student/dashboard');
+                    break;
+                case 'registrar':
+                    navigate('/registrar/dashboard');
+                    break;
+                default:
+                    setError('Unknown user role.');
+                    break;
             }
-        } catch (error) {
-            console.error('Sign-in failed:', error);
-            setError('Unable to connect to the server. Please try again later.');
+        } else {
+            // Display error message from the API
+            setError(data.error || 'Sign-in failed. Please try again.');
         }
+    } catch (error) {
+        console.error('Sign-in failed:', error);
+        setError('Unable to connect to the server. Please try again later.');
+    }
     };
 
     const isFormValid = formData.email && formData.password.length >= 8;
