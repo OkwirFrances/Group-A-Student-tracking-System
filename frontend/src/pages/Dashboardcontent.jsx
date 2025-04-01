@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+
 import './Dashboardcontent.css';
 import search from '../assets/search.png';
 import add from '../assets/add.png';
@@ -9,6 +10,7 @@ import { IssuesContext } from '../context/IssueContext';
 
 const DashboardContent = () => {
     const { issues } = useContext(IssuesContext);
+    
     const [filterStatus, setFilterStatus] = useState('all');
     const navigate = useNavigate();
     

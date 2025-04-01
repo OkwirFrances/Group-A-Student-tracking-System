@@ -13,7 +13,12 @@ const RegistrarDashboard = () => {
                 <Navbar />
                 <Sidebar />
                 <div className="dashboard-content">
-                    <Outlet/>
+                    <Outlet content = {{
+                       allIssues,
+                       lecturers,
+                       loading,
+                       onAssignIssue: handleAssign
+                   }} />
                 </div>
             </div>
        
