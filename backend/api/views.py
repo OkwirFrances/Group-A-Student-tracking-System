@@ -3,9 +3,10 @@ from django.core.mail import send_mail
 from rest_framework import status, generics
 from rest_framework.response import Response
 from django.utils import timezone
+from .serializers import IssueSerializer, LecturerSerializer, DepartmentSerializer, CourseSerializer, UserUpdateSerializer
 from .models import *   
 from .serializers import *  # Import all serializers
-from .serializers import CourseSerializer  # Explicitly import CourseSerializer
+from .serializers import CourseSerializer, UserUpdateSerializer  # Explicitly import required serializers
 from rest_framework.exceptions import PermissionDenied
 from django.http import JsonResponse
 from .permissions import IsRegistrar, IsLecturer, IsStudent 
@@ -247,6 +248,10 @@ class UserEditView(generics.UpdateAPIView):
     def update(self, request, *args, **kwargs):
         response = super().update(request, *args, **kwargs)
         return response
+    
+class LecturerView(generics.ListCreateAPIView):
+    serializer_class = LecturerSerializer
+    permission_classes = [IsAuthenticated, IsRegistrar]
     
 
 
