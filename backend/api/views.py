@@ -211,6 +211,14 @@ def assign_issue(request, issue_id, lecturer_id):
 @permission_classes([IsAuthenticated])
 def resolve_issue(request, issue_id):
     issue = get_object_or_404(Issue, id=issue_id)
+    
+    if request.user.role in ['registrar', 'lecturer'] and (issue.assigned_to == request.user or request.user.role == 'registrar'):
+        issue.resolved_by = request.user
+        issue.resolved_at = timezone.now()
+        issue.status = 'resolved'
+        issue.save()
+        return JsonResponse({'message': 'Issue resolved successfully'})
+    
 
 
 
