@@ -175,6 +175,12 @@ class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
 class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     serializer_class = IssueSerializer
     permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        if self.request.user.role == 'student':
+            return Issue.objects.filter(student=self.request.user, course__students=self.request.user)
+        return Issue.objects.all()
+
 
 
 class ProgramView(viewsets.ModelViewSet):
