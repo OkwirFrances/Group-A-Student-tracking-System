@@ -170,6 +170,12 @@ class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated, IsRegistrar]
+    
+# Issue View (Only accessible by students for their own issues)
+class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = IssueSerializer
+    permission_classes = [IsAuthenticated]
+
 
 class ProgramView(viewsets.ModelViewSet):
     queryset = Program.objects.all()
