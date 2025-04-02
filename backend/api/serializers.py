@@ -44,6 +44,13 @@ class StudentSerializer(UserSerializer):
         model = Student
         fields = UserSerializer.Meta.fields + ['student_id', 'department', 'enrolled_courses', 'enrollment_date']
 
+class RegistrarSerializer(UserSerializer):
+    staff_id = serializers.CharField(max_length=20)
+    office_number = serializers.CharField(max_length=20)
+
+    class Meta:
+        model = Registrar
+        fields = UserSerializer.Meta.fields + ['staff_id', 'office_number']
 
 
 
