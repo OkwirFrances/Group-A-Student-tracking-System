@@ -1,14 +1,24 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework.response import Response
 from .models import *   
 from .serializers import *
+from django.http import JsonResponse
 from rest_framework.decorators import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.contrib.auth import get_user_model
 from rest_framework.permissions import AllowAny,IsAuthenticated
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.shortcuts import get_list_or_404
+import random
 
+
+User = get_user_model()
+
+def generate_otp():
+    return str(random.randint(100000, 999999))
 
 
 # Create your views here.

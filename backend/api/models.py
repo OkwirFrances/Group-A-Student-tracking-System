@@ -38,6 +38,13 @@ class CustomUser(AbstractUser):
     
     GENDER = [('Male','MALE'),
               ('Female','FEMALE')]
+    
+    YEAR_CHOICES = [
+        ('year_1','YEAR_1'),
+        ('year_2','YEAR_2'),
+        ('year_3','YEAR_3'),
+        ('year_4','YEAR_4'),
+        ]
      
     username = None
     email = models.EmailField(unique=True)
@@ -52,7 +59,6 @@ class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=20, blank=True)
     image = models.ImageField(upload_to='images/',null=True,blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)   
-    program = models.ForeignKey('Program', on_delete=models.CASCADE,related_name='programs',null = True,blank=True)
     year_of_study = models.CharField(max_length=20,choices=YEAR_CHOICES,null=True,editable=True)
     termsAccepted = models.BooleanField(default=False)
     
@@ -140,7 +146,6 @@ class Issue(models.Model):
     student = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='issues', limit_choices_to={'Role':'Student'})
     semester = models.CharField(max_length=30, null = False,default='Semester 1')
     issue_type = models.CharField(max_length=50,choices=ISSUE_CHOICES)
-    semester = models.CharField(max_length=50,choices=SEMESTER_CHOICES)
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True)
     Image = models.ImageField(upload_to='images/',null=True,blank=True)
     description = models.TextField()
@@ -149,17 +154,15 @@ class Issue(models.Model):
     created_at = models.DateTimeField(default=datetime.datetime.now)
     updated_at = models.DateTimeField(auto_now=True)
     assigned_to = models.ForeignKey(Lecturer, on_delete=models.SET_NULL,  null=True,  blank=True, related_name='assigned_issues')
-    registrar = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='registrar_issues',limit_choices_to={'Role':'Academic_registrar'})
     assigned_by = models.ForeignKey(Registrar, on_delete=models.SET_NULL,  null=True, blank=True,related_name='assigned_issues')
     resolved_by = models.ForeignKey(Registrar,on_delete=models.SET_NULL,null=True,blank=True,related_name='resolved_issues')
     assigned_at = models.DateTimeField(null=True, blank=True)
     resolved_at = models.DateTimeField(null=True, blank=True)
 
-    class Meta:
-        ordering = ['-created_at']
+    
         
         
-        def __str__(self):
+    def __str__(self):
          return f"Issue #{self.id} - {self.title}"
 
     def assign_to_lecturer(self, registrar, lecturer):
