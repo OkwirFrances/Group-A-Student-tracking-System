@@ -17,6 +17,19 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
+    
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_active", True)
+        
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("Superuser must have is_staff=True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
+
+        return self.create_user(email, password, **extra_fields)
+
 
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [( 'Student','STUDENT'), 
@@ -26,19 +39,34 @@ class CustomUser(AbstractUser):
     GENDER = [('Male','MALE'),
               ('Female','FEMALE')]
     
-    YEAR_CHOICES = [('YEAR 1','YEAR 1'),
-            ('YEAR_2','YEAR 2'),
-            ('YEAR_3','YEAR 3'),
-            ('YEAR_4','YEAR 4'),
-            ('YEAR_5','YEAR 5')]    
+    YEAR_CHOICES = [
+        ('year_1','YEAR_1'),
+        ('year_2','YEAR_2'),
+        ('year_3','YEAR_3'),
+        ('year_4','YEAR_4'),
+        ]
+     
+    username = None
     email = models.EmailField(unique=True)
-    password2= models.CharField(max_length=20)
+    fullname = models.CharField(max_length=100, null=False)
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=30, blank=True)  
+    otp = models.CharField(max_length=6, blank=True, null=True)
+    is_verified = models.BooleanField(default=False)
+    otp_created_at = models.DateTimeField(null=True, blank=True)
     Role = models.CharField(max_length=40,choices=ROLE_CHOICES,default='Student')
     Gender = models.CharField(max_length=20,choices=GENDER,editable=True)
+    phone_number = models.CharField(max_length=20, blank=True)
     image = models.ImageField(upload_to='images/',null=True,blank=True)
-    program = models.ForeignKey('Program', on_delete=models.CASCADE,related_name='programs',null = True,blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)   
     year_of_study = models.CharField(max_length=20,choices=YEAR_CHOICES,null=True,editable=True)
-
+    termsAccepted = models.BooleanField(default=False)
+    
+    
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['fullname','role']
+    
+    objects = CustomUserManager()
 
     def __str__(self):
         return self.fullname
@@ -111,23 +139,44 @@ class Issue(models.Model):
                      ('correction','CORRECTION'))
     
     SEMESTER_CHOICES = [('Semester 1','SEMESTER 1'),
-                        ('Semester 2','SEMESTER 2')]
+                        ('Semester 2','SEMESTER 2'),
+                        ('Semester 3','SEMESTER 3'),
+                        ('Semester 4','SEMESTER 4'),]
     
     student = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='issues', limit_choices_to={'Role':'Student'})
     semester = models.CharField(max_length=30, null = False,default='Semester 1')
     issue_type = models.CharField(max_length=50,choices=ISSUE_CHOICES)
-    issue_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default='Pending')
-    
-    course_unit = models.ForeignKey(CourseUnit,on_delete=models.CASCADE,null=True)
-    issue_description = models.TextField()
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True)
     Image = models.ImageField(upload_to='images/',null=True,blank=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-    update = models.DateTimeField(auto_now=True)
-    lecturer = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='lecturer_issues',limit_choices_to={'Role':'Lecturer'})
-    registrar = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='registrar_issues',limit_choices_to={'Role':'Academic_registrar'})
+    description = models.TextField()
+    status = models.CharField(max_length=50,choices=ISSUE_STATUS,default='open')
+    title = models.CharField(max_length=200)
+    created_at = models.DateTimeField(default=datetime.datetime.now)
+    updated_at = models.DateTimeField(auto_now=True)
+    assigned_to = models.ForeignKey(Lecturer, on_delete=models.SET_NULL,  null=True,  blank=True, related_name='assigned_issues')
+    assigned_by = models.ForeignKey(Registrar, on_delete=models.SET_NULL,  null=True, blank=True,related_name='assigned_issues')
+    resolved_by = models.ForeignKey(Registrar,on_delete=models.SET_NULL,null=True,blank=True,related_name='resolved_issues')
+    assigned_at = models.DateTimeField(null=True, blank=True)
+    resolved_at = models.DateTimeField(null=True, blank=True)
+
     
+        
+        
+    def __str__(self):
+         return f"Issue #{self.id} - {self.title}"
+
+    def assign_to_lecturer(self, registrar, lecturer):
+        self.assigned_to = lecturer
+        self.assigned_by = registrar
+        self.assigned_at = timezone.now()
+        self.status = 'assigned'
+        self.save()
+        
+    def resolve_issue(self, registrar):
+        self.resolved_by = registrar
+        self.resolved_at = timezone.now()
+        self.status = 'resolved'
+        self.save()
+        
     class Meta:
         ordering = ['-created_at']
-
-
-
