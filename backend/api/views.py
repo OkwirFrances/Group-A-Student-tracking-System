@@ -63,7 +63,12 @@ def login(request):
             status=status.HTTP_400_BAD_REQUEST
         )
         
-    
+    if not user.check_password(password):
+        return JsonResponse(
+            {'error': 'Invalid email or password'}, 
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
 
 
 
