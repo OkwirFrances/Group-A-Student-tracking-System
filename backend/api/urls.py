@@ -7,8 +7,8 @@ from .views import (signup, verify_otp, login, resend_otp, DepartmentView, Cours
 
 
 
-router = DefaultRouter()
-router.register(r'users',UserView)
+
+
 
 router.register(r'departments',DepartmentView)
 
@@ -19,7 +19,11 @@ router.register(r'course_units',CourseUnitView)
 router.register(r'programs',ProgramView)
 
 urlpatterns = [
-    path('',include(router.urls)),
+    path('signup/', signup),
+     path('verify-otp/', verify_otp),
+    path('login/', login),
+    path('resend-otp/', resend_otp),
+    
     
     path('login/',TokenObtainPairView.as_view(),name = 'login'),
     path('refresh_token/',TokenRefreshView.as_view(),name = 'refresh_token'),
