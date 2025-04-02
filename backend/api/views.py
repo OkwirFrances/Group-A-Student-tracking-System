@@ -138,8 +138,12 @@ class UserView(viewsets.ModelViewSet):
     serializer_class = CustomUserSerializer 
     
 class DepartmentView(viewsets.ModelViewSet):
-    queryset = Department.objects.all()
+    permission_classes = [IsAuthenticated, IsRegistrar]
     serializer_class = DepartmentSerializer
+    
+    def get_queryset(self):
+        return Department.objects.all()
+    
 
 class IssueView(viewsets.ModelViewSet):
     queryset = Issue.objects.all()
