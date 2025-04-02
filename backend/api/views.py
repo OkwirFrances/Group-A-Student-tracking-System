@@ -220,6 +220,10 @@ def resolve_issue(request, issue_id):
         return JsonResponse({'message': 'Issue resolved successfully'})
     
     return JsonResponse({'error': 'Unauthorized'}, status=status.HTTP_403_FORBIDDEN)
+
+# User Info View (Accessible by authenticated users)
+class UserInfoView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
     
 
 
