@@ -8,7 +8,7 @@ from .views import (signup, verify_otp, login, resend_otp, DepartmentView, Cours
 
 urlpatterns = [
     path('signup/', signup),
-     path('verify-otp/', verify_otp),
+    path('verify-otp/', verify_otp),
     path('login/', login),
     path('resend-otp/', resend_otp),
     path('departments/', DepartmentView.as_view(), name='department-list-create'),
