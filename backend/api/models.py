@@ -174,3 +174,6 @@ class Issue(models.Model):
         self.resolved_at = timezone.now()
         self.status = 'resolved'
         self.save()
+        
+    class Meta:
+        ordering = ['-created_at']
