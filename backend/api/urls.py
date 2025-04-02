@@ -1,7 +1,11 @@
-from django.urls import path,include
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
-from .views import *
+from .views import (signup, verify_otp, login, resend_otp, DepartmentView, CourseView, 
+    IssueView, assign_issue, resolve_issue, UserInfoView, UserEditView,
+    LecturerView, LecturerIssuesView, CourseDetailView, CustomTokenRefreshView  # Add these new views
+)
+
+
 
 router = DefaultRouter()
 router.register(r'users',UserView)
