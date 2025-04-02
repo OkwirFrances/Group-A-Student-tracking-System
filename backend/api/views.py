@@ -104,6 +104,13 @@ def verify_otp(request):
         
         user.is_verified = True
         user.save()
+        
+        cache.delete(f'otp_{email}')  # Clear OTP data
+
+        refresh = RefreshToken.for_user(user)
+        return JsonResponse({'token': str(refresh.access_token), 'message': 'User created successfully!'}, status=status.HTTP_201_CREATED)
+
+    return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
 
 
     
