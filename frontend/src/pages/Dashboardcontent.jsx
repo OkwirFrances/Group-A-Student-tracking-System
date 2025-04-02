@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 
 import './Dashboardcontent.css';
-import search from '../../assets/search.png';
-import add from '../../assets/add.png';
-import emptybox from '../../assets/emptybox.png';
-import { Link, useNavigate } from 'react-router-dom';
+import search from '../assets/search.png';
+import add from '../assets/add.png';
+import emptybox from '../assets/emptybox.png';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import { IssuesContext } from '../context/IssueContext';
 
 const DashboardContent = () => {
