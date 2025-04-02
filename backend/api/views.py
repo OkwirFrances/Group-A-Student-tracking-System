@@ -72,6 +72,15 @@ def login(request):
         )
         
     refresh = RefreshToken.for_user(user)
+    
+    return JsonResponse({
+        'access': str(refresh.access_token),
+        'refresh': str(refresh),
+        'role': user.role,
+        'fullname': user.fullname,
+        'email': user.email
+    }, status=status.HTTP_200_OK)
+    
 
 
 
