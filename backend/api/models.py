@@ -168,3 +168,9 @@ class Issue(models.Model):
         self.assigned_at = timezone.now()
         self.status = 'assigned'
         self.save()
+        
+    def resolve_issue(self, registrar):
+        self.resolved_by = registrar
+        self.resolved_at = timezone.now()
+        self.status = 'resolved'
+        self.save()
