@@ -161,3 +161,10 @@ class Issue(models.Model):
         
         def __str__(self):
          return f"Issue #{self.id} - {self.title}"
+
+    def assign_to_lecturer(self, registrar, lecturer):
+        self.assigned_to = lecturer
+        self.assigned_by = registrar
+        self.assigned_at = timezone.now()
+        self.status = 'assigned'
+        self.save()
