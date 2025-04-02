@@ -219,6 +219,8 @@ def resolve_issue(request, issue_id):
         issue.save()
         return JsonResponse({'message': 'Issue resolved successfully'})
     
+    return JsonResponse({'error': 'Unauthorized'}, status=status.HTTP_403_FORBIDDEN)
+    
 
 
 
