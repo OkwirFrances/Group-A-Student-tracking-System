@@ -81,6 +81,15 @@ def login(request):
         'email': user.email
     }, status=status.HTTP_200_OK)
     
+    @api_view(['POST'])
+def verify_otp(request):
+    email = request.data.get('email')
+    otp = request.data.get('otp')
+
+    if not email or not otp:
+        return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+    
 
 
 
