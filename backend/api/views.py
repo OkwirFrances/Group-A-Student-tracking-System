@@ -101,6 +101,10 @@ def verify_otp(request):
             password=cached_data['password'], 
             role=cached_data['role']
         )
+        
+        user.is_verified = True
+        user.save()
+
 
     
 
