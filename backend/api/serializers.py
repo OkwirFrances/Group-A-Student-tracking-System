@@ -98,10 +98,11 @@ class IssueSerializer(serializers.ModelSerializer):
             'status', 'created_at', 'updated_at', 'assigned_to', 'assigned_by', 
             'assigned_at', 'resolved_by', 'resolved_at'
         ]
-class CourseUnitSerializer(ModelSerializer):
-    class Meta:
-        model = CourseUnit
-        fields = '__all__' 
+
+    def create(self, validated_data):
+        student = self.context['request'].user
+        validated_data['student'] = student
+        return super().create(validated_data)
 
 class ProgramSerializer(ModelSerializer):
     class Meta:
