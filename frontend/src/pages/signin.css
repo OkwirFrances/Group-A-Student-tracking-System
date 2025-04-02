@@ -39,6 +39,19 @@
     padding-right: 0%;
 }
 
+
+.emailaddress:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.pass-word:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
 .input-container {
     position: relative;
 }

@@ -35,7 +35,7 @@ const SignIn = () => {
             const userRole = localStorage.getItem('userRole');
 
             if (userRole === 'registrar') {
-                navigate('/registrar-dashboard');
+                navigate('/registrar-dashboard/dashboard');
             } else if (userRole === 'student') {
                 navigate('/app/dashboard');
             } else if (userRole === 'lecturer') {

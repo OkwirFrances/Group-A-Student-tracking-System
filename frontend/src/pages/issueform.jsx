@@ -73,7 +73,7 @@ const IssueForm = () => {
             <div className='issue-form-header'>
                 <h1>Create a new isssue</h1>
             </div>
-        <div className='issue-form-content'>
+            <div className='issue-form-content'>
             <label className='registrar-select-label'>
                 Registrar's Name
                 <select
