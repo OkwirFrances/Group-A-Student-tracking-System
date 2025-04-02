@@ -253,6 +253,11 @@ class LecturerView(generics.ListCreateAPIView):
     serializer_class = LecturerSerializer
     permission_classes = [IsAuthenticated, IsRegistrar]
     
+    def get_queryset(self):
+        # Only show issues assigned to the current lecturer
+        return Issue.objects.filter(assigned_to=self.request.user)
+
+    
 
 
     
