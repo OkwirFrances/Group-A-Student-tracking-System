@@ -151,6 +151,13 @@ class Issue(models.Model):
     assigned_to = models.ForeignKey(Lecturer, on_delete=models.SET_NULL,  null=True,  blank=True, related_name='assigned_issues')
     registrar = models.ForeignKey(CustomUser,on_delete=models.SET_NULL,null=True,related_name='registrar_issues',limit_choices_to={'Role':'Academic_registrar'})
     assigned_by = models.ForeignKey(Registrar, on_delete=models.SET_NULL,  null=True, blank=True,related_name='assigned_issues')
-    
+    resolved_by = models.ForeignKey(Registrar,on_delete=models.SET_NULL,null=True,blank=True,related_name='resolved_issues')
+    assigned_at = models.DateTimeField(null=True, blank=True)
+    resolved_at = models.DateTimeField(null=True, blank=True)
+
     class Meta:
         ordering = ['-created_at']
+        
+        
+        def __str__(self):
+         return f"Issue #{self.id} - {self.title}"
