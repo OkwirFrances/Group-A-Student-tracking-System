@@ -54,6 +54,17 @@ def login(request):
             {'error': 'Email and password are required'}, 
             status=status.HTTP_400_BAD_REQUEST
         )
+        
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return JsonResponse(
+            {'error': 'Invalid email or password'}, 
+            status=status.HTTP_400_BAD_REQUEST
+        )
+        
+    
+
 
 
 # Create your views here.
