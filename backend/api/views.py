@@ -36,6 +36,9 @@ def signup(request):
     
     if User.objects.filter(email=email).exists():
         return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    otp = generate_otp()
+    cache.set(f'otp_{email}', {'otp': otp, 'fullname': fullname, 'password': password, 'role': role}, timeout=600)  # Store OTP for 10 minutes
 
 
 # Create your views here.
