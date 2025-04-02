@@ -61,6 +61,8 @@ const App = () => {
             <Route path='openissues' element={<OpenIssues />}/>
             <Route path='notifications' element={<NotificationScreen />}/>
             <Route path='profile' element={<Profile />}/>
+            <Route path='support' element={<HelpSupport />}/>
+            <Route path='settings' element={<Settings />}/>
             <Route path='messages' element={<Messages />}/>
             <Route path='courses' element={<CourseManagement />}/>
             <Route path='departments' element={<DepartmentManagement />}/>

@@ -42,11 +42,18 @@ const IssueForm = () => {
         const newIssue = {
             id: uuidv4(),
             ...formData,
-            status: 'pending',
+            status: 'Pending',
             date: new Date().toLocaleDateString(),
             time: new Date().toLocaleTimeString(),
         };
+
         addIssue(newIssue);
+
+        const existingIssues = JSON.parse(localStorage.getItem('issues')) || [];
+
+        const updatedIssues = [...existingIssues, newIssue];
+
+        localStorage.setItem('issues', JSON.stringify(updatedIssues));
 
         setNotificationMessage({
             message: 'Your issue has been submitted successfully!',

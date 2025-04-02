@@ -1,6 +1,4 @@
-html, body {
-    overflow-y: hidden;
-}
+
 .department-content {
     display: flex;
     padding: 0px;
@@ -17,8 +15,9 @@ html, body {
     color: black;
     margin-bottom: 20px;
     text-align: center;
-    margin-left: 130px;
-    
+    margin-right: 130px;
+    position: absolute;
+    margin-left: 220px;   
 }
 
 .management-container {
@@ -37,7 +36,7 @@ html, body {
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-right: 500px;
-    margin-left: -820px;
+    margin-left: 240px;
     margin-top: 104px;
     background-color: white;
     
@@ -108,7 +107,7 @@ html, body {
     height: 445px;
     position: absolute;
     margin-top: 100px;
-    margin-left: -225px;
+    margin-left: 900px;
 }
 
 .list-section h2 {

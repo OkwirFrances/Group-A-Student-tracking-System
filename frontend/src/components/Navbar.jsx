@@ -20,7 +20,7 @@ const Navbar = ({ badgeCount }) => {
 
     const handleNotificationClick = () => {
         const userRole = localStorage.getItem('userRole');
-        const basePath = userRvole === 'registrar' ? '/registrar-dashboard' : '/app';
+        const basePath = userRole === 'registrar' ? '/registrar-dashboard' : '/app';
         navigate(`${basePath}/notifications`);
     };
 

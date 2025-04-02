@@ -1,14 +1,12 @@
-html, body {
-    overflow-x: hidden;
-}
+
 .registrar-dashboard-content {
     padding: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-color: white;
-    width: 130%;
-    margin-right: 80px;
+    width: 125%;
+    margin-left: 70px;
 }
 
 .registrar-dashboard-content h1 {
@@ -98,7 +96,7 @@ html, body {
     padding: 10px 30px;
     border-radius: 5px;
     background-color: rgb(28, 184, 28);
-    right: 70px;
+    right: 20px;
     margin-bottom: 30px;
     margin-top: -50px;
     font-weight: bold;
@@ -116,7 +114,7 @@ html, body {
     text-align: center;
     font-weight: bold;
     position: absolute;
-    right: 50px;
+    right: 5px;
     margin-top: 10px;
     margin-right: 20px;
 }
