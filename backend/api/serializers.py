@@ -8,13 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'email', 'fullname', 'role', 'is_verified', 'first_name', 'last_name', 'phone_number', 'profile_picture', 'termsAccepted']
 
-  
-
-class DepartmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Department
-        fields = '__all__'
-
+ 
 class LecturerSerializer(UserSerializer):
         department = serializers.PrimaryKeyRelatedField(queryset=Department.objects.all())
         courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True, required=False)
