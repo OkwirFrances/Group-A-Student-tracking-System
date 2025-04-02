@@ -24,7 +24,11 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('email', 'fullname')
     
     
-admin.site.register(CustomUser)
+admin.site.register(CustomUser,CustomUserAdmin)
 admin.site.register(Department)
 admin.site.register(Issue)
+admin.site.register(Course)
+admin.site.register(Lecturer)
+admin.site.register(Student)
+admin.site.register(Registrar)
 
