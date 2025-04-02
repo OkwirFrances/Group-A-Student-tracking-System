@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from django.core.mail import send_mail
 from rest_framework.response import Response
 from .models import *   
 from .serializers import *
@@ -39,6 +40,9 @@ def signup(request):
     
     otp = generate_otp()
     cache.set(f'otp_{email}', {'otp': otp, 'fullname': fullname, 'password': password, 'role': role}, timeout=600)  # Store OTP for 10 minutes
+
+    send_mail('Your OTP Code', f'Your OTP is {otp}', 'Group-A-AITS@mail.com', [email])
+    return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
 
 # Create your views here.
