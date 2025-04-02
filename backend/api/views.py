@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from .models import *   
 from .serializers import *
 from django.http import JsonResponse
-from rest_framework.decorators import APIView
+from rest_framework.decorators import APIView, api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import get_user_model
@@ -19,6 +19,17 @@ User = get_user_model()
 
 def generate_otp():
     return str(random.randint(100000, 999999))
+
+
+# Signup View
+from django.core.cache import cache  # Import Django cache
+
+@api_view(['POST'])
+def signup(request):
+    email = request.data.get('email')
+    fullname = request.data.get('fullname')
+    password = request.data.get('password')
+    role = request.data.get('role', 'student')
 
 
 # Create your views here.
