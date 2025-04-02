@@ -241,6 +241,10 @@ class UserEditView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = UserUpdateSerializer
     
+    def get_object(self):
+        return self.request.user
+
+    
     
 
     
