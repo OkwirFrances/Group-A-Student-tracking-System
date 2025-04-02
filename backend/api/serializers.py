@@ -111,5 +111,16 @@ class IssueSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     
+class UserUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['fullname', 'phone_number', 'profile_picture'] 
     
+    def update(self, instance, validated_data):
+        instance.fullname = validated_data.get('fullname', instance.fullname)
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        return instance
 
