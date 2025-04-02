@@ -113,11 +113,15 @@ def verify_otp(request):
     return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
 
 
+# Resend OTP View
+@api_view(['POST'])
+def resend_otp(request):
+    email = request.data.get('email')
+    if not email:
+        return JsonResponse({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+
     
-
-
-
-
 # Create your views here.
 class UserView(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
