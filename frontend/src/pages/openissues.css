@@ -143,6 +143,42 @@
     opacity: 1;
 }
 
+.lecturer-dropdown-menu {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 10px;
+    width: 150px;
+}
+
+.lecturer-dropdown-menu p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: black;
+    padding-bottom: 1px solid black;
+}
+
+.lecturer-dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lecturer-dropdown-menu ul li {
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.lecturer-dropdown-menu ul li:hover {
+    background-color: rgb(176, 176, 174);
+}
+
 .table {
     border: 1px solid black;
     border-top-right-radius: 5px;

@@ -10,6 +10,11 @@ import './openissues.css';
 const OpenIssues = () => {
     const [issues, setIssues] = useState([]);
     const [selectedTab, setSelectedTab] = useState('pending');
+    const [dropdownVisible, setDropdownVisible] = useState(null);
+
+    const toggleDropdown = (index)=> {
+        setDropdownVisible(dropdownVisible === index ? null : index);
+    };
 
     useEffect(() => {
         const loadIssues = () => {
@@ -96,7 +101,21 @@ const OpenIssues = () => {
                                     <div className='issue-item'>{issue.category}</div>
                                     <div className='issue-item'>{issue.date}</div>
                                     <div className='issue-more-icon'>
-                                        <img src={more} alt='more' className='more-icon' />
+                                        <img 
+                                        src={more} 
+                                        alt='more' 
+                                        className='more-icon'
+                                        onClick={() => toggleDropdown(index)} />
+                                        {dropdownVisible === index && (
+                                            <div className='lecturer-dropdown-menu'>
+                                                <p>Send To</p>
+                                                <ul>
+                                                    <li>Mrs.Aloi</li>
+                                                    <li>Mr.Lule</li>
+                                                    <li>Dr.Ngobirir</li>
+                                                </ul>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             ))
