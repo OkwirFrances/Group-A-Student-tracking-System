@@ -189,6 +189,13 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
             serializer.save(student=self.request.user)
         else:
             raise PermissionDenied('Only students can create issues.')
+        
+# Assign Issue View (Only accessible by registrars)
+@api_view(['POST'])
+@permission_classes([IsAuthenticated, IsRegistrar])  # Only registrars can assign issues
+def assign_issue(request, issue_id, lecturer_id):
+    issue = get_object_or_404(Issue, id=issue_id)
+    lecturer = get_object_or_404(Lecturer, id=lecturer_id)
 
 
 
