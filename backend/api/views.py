@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from django.core.mail import send_mail
+from rest_framework import status, generics
 from rest_framework.response import Response
 from .models import *   
 from .serializers import *
 from django.http import JsonResponse
+from .permissions import IsRegistrar, IsLecturer, IsStudent 
 from rest_framework.decorators import APIView, api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
@@ -68,6 +70,8 @@ def login(request):
             {'error': 'Invalid email or password'}, 
             status=status.HTTP_400_BAD_REQUEST
         )
+        
+    refresh = RefreshToken.for_user(user)
 
 
 
