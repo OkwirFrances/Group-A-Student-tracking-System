@@ -104,9 +104,12 @@ class IssueSerializer(serializers.ModelSerializer):
         validated_data['student'] = student
         return super().create(validated_data)
 
-class ProgramSerializer(ModelSerializer):
-    class Meta:
-        model = Program
-        fields = '__all__'
-
+def update(self, instance, validated_data):
+    for attr, value in validated_data.items():
+        if attr not in ['assigned_to', 'assigned_by', 'resolved_by']:
+            setattr(instance, attr, value)
+    instance.save()
+    return instance
+    
+    
 
