@@ -32,6 +32,11 @@ class Meta:
             'role': {'read_only': True}
         }
 
+    def create(self, validated_data):
+        # This will be handled in the view's perform_create
+        pass
+
+
 class IssueSerializer(serializers.ModelSerializer):
     student = StudentSerializer(read_only=True)
     course = CourseSerializer(read_only=True)
