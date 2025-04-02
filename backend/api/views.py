@@ -119,6 +119,12 @@ def resend_otp(request):
     email = request.data.get('email')
     if not email:
         return JsonResponse({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    user = User.objects.filter(email=email).first()
+    if not user:
+        return JsonResponse({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    
 
 
     
