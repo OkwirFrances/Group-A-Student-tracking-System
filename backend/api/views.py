@@ -256,6 +256,15 @@ class LecturerView(generics.ListCreateAPIView):
     def get_queryset(self):
         # Only show issues assigned to the current lecturer
         return Issue.objects.filter(assigned_to=self.request.user)
+    
+class CustomTokenRefreshView(TokenRefreshView):
+    def post(self, request, *args, **kwargs):
+        # Ensure the refresh token is properly formatted
+        if 'refresh' not in request.data:
+            return Response(
+                {'error': 'Refresh token is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )  
 
     
 
