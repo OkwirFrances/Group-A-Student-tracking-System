@@ -52,7 +52,10 @@ class RegistrarSerializer(UserSerializer):
         model = Registrar
         fields = UserSerializer.Meta.fields + ['staff_id', 'office_number']
 
-
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
+        fields = ['id', 'name', 'code']
 
 class IssueSerializer(serializers.ModelSerializer):
     student = StudentSerializer(read_only=True)
