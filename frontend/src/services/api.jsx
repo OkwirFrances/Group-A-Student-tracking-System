@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getToken, clearToken, storeToken} from '../pages/auth'; // Adjust the import path as necessary
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'http://localhost:8000/api/';
 
 // Create an axios instance with default config
 const api = axios.create({

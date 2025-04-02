@@ -51,20 +51,6 @@ class DepartmentSerializer(serializers.ModelSerializer):
         model = Department
         fields = ['id', 'name', 'code']
 
-#serializers.py
-# class CourseSerializer(serializers.ModelSerializer):
-#     department = DepartmentSerializer(read_only=True)
-#     department_id = serializers.PrimaryKeyRelatedField(
-#         queryset=Department.objects.all(),
-#         source='department',
-#         write_only=True
-#     )
-
-#     class Meta:
-#         model = Course
-#         fields = ['id', 'name', 'code', 'department', 'department_id']
-
-
 class CourseSerializer(serializers.ModelSerializer):
      class Meta:
         model = Course
