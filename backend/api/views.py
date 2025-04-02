@@ -225,6 +225,19 @@ def resolve_issue(request, issue_id):
 class UserInfoView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
     
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        user_data = {
+            "id": user.id,
+            "email": user.email,
+            "fullname": user.fullname,
+            "role": user.role,
+            "phone_number": user.phone_number,
+            "profile_picture": user.profile_picture.url if user.profile_picture else None
+        }
+        return JsonResponse(user_data, status=status.HTTP_200_OK)
+
+    
 
 
 
