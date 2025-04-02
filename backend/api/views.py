@@ -236,6 +236,12 @@ class UserInfoView(generics.RetrieveAPIView):
             "profile_picture": user.profile_picture.url if user.profile_picture else None
         }
         return JsonResponse(user_data, status=status.HTTP_200_OK)
+# User Edit View (Accessible by authenticated users)
+class UserEditView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserUpdateSerializer
+    
+    
 
     
 
