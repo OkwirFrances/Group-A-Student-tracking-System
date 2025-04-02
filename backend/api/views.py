@@ -152,9 +152,11 @@ class IssueView(viewsets.ModelViewSet):
     queryset = Issue.objects.all()
     serializer_class = IssueSerializer
 
-class CourseUnitView(viewsets.ModelViewSet):
-    queryset = CourseUnit.objects.all()
-    serializer_class = CourseUnitSerializer
+class CourseView(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated, IsRegistrar]
+    serializer_class = CourseSerializer
+    
+    
 
 class ProgramView(viewsets.ModelViewSet):
     queryset = Program.objects.all()
