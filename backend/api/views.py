@@ -180,6 +180,15 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
         if self.request.user.role == 'student':
             return Issue.objects.filter(student=self.request.user, course__students=self.request.user)
         return Issue.objects.all()
+    
+    def perform_create(self, serializer):
+        if self.request.user.role == 'student':
+            course = serializer.validated_data.get('course')
+            if course and self.request.user not in course.students.all():
+                raise PermissionDenied('You can only report issues for courses you are enrolled in.')
+            serializer.save(student=self.request.user)
+        else:
+            raise PermissionDenied('Only students can create issues.')
 
 
 
