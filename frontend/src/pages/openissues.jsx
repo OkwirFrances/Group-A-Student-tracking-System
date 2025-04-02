@@ -110,9 +110,9 @@ const OpenIssues = () => {
                                             <div className='lecturer-dropdown-menu'>
                                                 <p>Send To</p>
                                                 <ul>
-                                                    <li>Mrs.Aloi</li>
-                                                    <li>Mr.Lule</li>
-                                                    <li>Dr.Ngobirir</li>
+                                                    <li onClick={() => alert('Issue has been successfully escalated to Mrs. Aloi')}>Mrs.Aloi</li>
+                                                    <li onClick={() => alert('Issue has been successfully escalated to Mr. Lule')}>Mr.Lule</li>
+                                                    <li onClick={() => alert('Issue has been successfully escalated to Dr. Ngobiri')}>Dr.Ngobirir</li>
                                                 </ul>
                                             </div>
                                         )}
