@@ -17,6 +17,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.permissions import AllowAny,IsAuthenticated
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenRefreshView
 from django.shortcuts import  get_object_or_404
 import random
 
@@ -274,20 +275,4 @@ class CustomTokenRefreshView(TokenRefreshView):
             
         return response
 
-    
-
-
-    
-    
-
-    
-
-
-
-
-class ProgramView(viewsets.ModelViewSet):
-    queryset = Program.objects.all()
-    serializer_class = ProgramSerializer
-
-                
                
