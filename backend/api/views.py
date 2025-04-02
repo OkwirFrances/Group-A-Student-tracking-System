@@ -196,6 +196,15 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
 def assign_issue(request, issue_id, lecturer_id):
     issue = get_object_or_404(Issue, id=issue_id)
     lecturer = get_object_or_404(Lecturer, id=lecturer_id)
+    
+    if issue.course and lecturer.department != issue.course.department:
+        return JsonResponse({'error': 'Lecturer must belong to the same department as the course'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    issue.assign_to_lecturer(request.user, lecturer)
+    issue.assigned_at = timezone.now()
+    issue.save()
+    return JsonResponse({'message': 'Issue assigned successfully'})
+
 
 
 
