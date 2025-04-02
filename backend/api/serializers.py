@@ -22,6 +22,15 @@ class LecturerSerializer(UserSerializer):
         staff_id = serializers.CharField(max_length=20)
         office_location = serializers.CharField(max_length=100)
 
+class Meta:
+    model = Lecturer
+    fields = UserSerializer.Meta.fields + [
+    'staff_id', 'department', 'courses', 'office_location', 'password'
+        ]
+    extra_kwargs = {
+            'password': {'write_only': True},
+            'role': {'read_only': True}
+        }
 
 class IssueSerializer(serializers.ModelSerializer):
     student = StudentSerializer(read_only=True)
