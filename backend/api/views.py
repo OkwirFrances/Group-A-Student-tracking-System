@@ -92,6 +92,15 @@ def verify_otp(request):
     cached_data = cache.get(f'otp_{email}')
     if not cached_data:
         return JsonResponse({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    if cached_data['otp'] == otp:
+        # Create user after OTP verification
+        user = User.objects.create_user(
+            fullname=cached_data['fullname'], 
+            email=email, 
+            password=cached_data['password'], 
+            role=cached_data['role']
+        )
 
     
 
