@@ -5,9 +5,6 @@ from .views import (signup, verify_otp, login, resend_otp, DepartmentView, Cours
     LecturerView, LecturerIssuesView, CourseDetailView, CustomTokenRefreshView  # Add these new views
 )
 
-router.register(r'course_units',CourseUnitView)
-
-router.register(r'programs',ProgramView)
 
 urlpatterns = [
     path('signup/', signup),
@@ -23,10 +20,8 @@ urlpatterns = [
     path('issues/<int:issue_id>/assign/<int:lecturer_id>/', assign_issue, name='assign-issue'),
     path('issues/<int:issue_id>/resolve/', resolve_issue, name='resolve-issue'),
     path('user-info/', UserInfoView.as_view(), name='user-info'),
-    
-    
-    
-    path('login/',TokenObtainPairView.as_view(),name = 'login'),
-    path('refresh_token/',TokenRefreshView.as_view(),name = 'refresh_token'),
-    
+    path('user-info/edit/', UserEditView.as_view(), name='user-edit'),
+    path('courses/<int:pk>/', CourseDetailView.as_view(), name='course-detail'),
+    path('token/refresh/', CustomTokenRefreshView.as_view(), name='token_refresh'),
+
 ]
