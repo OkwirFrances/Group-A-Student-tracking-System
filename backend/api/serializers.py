@@ -57,6 +57,28 @@ class DepartmentSerializer(serializers.ModelSerializer):
         model = Department
         fields = ['id', 'name', 'code']
 
+#serializers.py
+# class CourseSerializer(serializers.ModelSerializer):
+#     department = DepartmentSerializer(read_only=True)
+#     department_id = serializers.PrimaryKeyRelatedField(
+#         queryset=Department.objects.all(),
+#         source='department',
+#         write_only=True
+#     )
+
+#     class Meta:
+#         model = Course
+#         fields = ['id', 'name', 'code', 'department', 'department_id']
+
+
+class CourseSerializer(serializers.ModelSerializer):
+     class Meta:
+        model = Course
+        fields = ['id', 'name', 'code', 'department', 'description']
+        extra_kwargs = {
+            'department': {'required': True}
+        }
+
 class IssueSerializer(serializers.ModelSerializer):
     student = StudentSerializer(read_only=True)
     course = CourseSerializer(read_only=True)
