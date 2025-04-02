@@ -4,7 +4,8 @@ from rest_framework import status, generics
 from rest_framework.response import Response
 from django.utils import timezone
 from .models import *   
-from .serializers import *
+from .serializers import *  # Import all serializers
+from .serializers import CourseSerializer  # Explicitly import CourseSerializer
 from rest_framework.exceptions import PermissionDenied
 from django.http import JsonResponse
 from .permissions import IsRegistrar, IsLecturer, IsStudent 
@@ -15,7 +16,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.permissions import AllowAny,IsAuthenticated
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.shortcuts import get_list_or_404
+from django.shortcuts import  get_object_or_404
 import random
 
 
@@ -204,6 +205,12 @@ def assign_issue(request, issue_id, lecturer_id):
     issue.assigned_at = timezone.now()
     issue.save()
     return JsonResponse({'message': 'Issue assigned successfully'})
+
+# Resolve Issue View (Accessible by lecturers and registrars)
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def resolve_issue(request, issue_id):
+    issue = get_object_or_404(Issue, id=issue_id)
 
 
 
