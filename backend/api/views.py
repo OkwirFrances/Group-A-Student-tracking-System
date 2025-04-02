@@ -33,6 +33,9 @@ def signup(request):
     
     if not email or not password:
         return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    if User.objects.filter(email=email).exists():
+        return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 # Create your views here.
