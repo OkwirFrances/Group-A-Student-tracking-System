@@ -159,7 +159,11 @@ class CourseView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Course.objects.all().select_related('department')
     
-    
+    def perform_create(self, serializer):
+        department = serializer.validated_data.get('department')
+        if not Department.objects.filter(id=department.id).exists():
+            raise serializer.ValidationError("Department does not exist")
+        serializer.save()
     
     
 
