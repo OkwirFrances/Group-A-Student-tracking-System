@@ -36,6 +36,16 @@ class Meta:
         # This will be handled in the view's perform_create
         pass
 
+class StudentSerializer(UserSerializer):
+    department = serializers.StringRelatedField()
+    enrolled_courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True)
+ 
+    class Meta:
+        model = Student
+        fields = UserSerializer.Meta.fields + ['student_id', 'department', 'enrolled_courses', 'enrollment_date']
+
+
+
 
 class IssueSerializer(serializers.ModelSerializer):
     student = StudentSerializer(read_only=True)
