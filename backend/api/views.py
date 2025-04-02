@@ -144,6 +144,9 @@ class DepartmentView(viewsets.ModelViewSet):
     def get_queryset(self):
         return Department.objects.all()
     
+    def perform_create(self, serializer):
+        serializer.save()
+    
 
 class IssueView(viewsets.ModelViewSet):
     queryset = Issue.objects.all()
