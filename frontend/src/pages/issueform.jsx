@@ -47,6 +47,7 @@ const IssueForm = () => {
             time: new Date().toLocaleTimeString(),
         };
 
+
         addIssue(newIssue);
 
         const existingIssues = JSON.parse(localStorage.getItem('issues')) || [];

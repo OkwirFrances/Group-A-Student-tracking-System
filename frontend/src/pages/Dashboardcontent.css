@@ -216,11 +216,13 @@
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid black;
+    gap: 20px;
 }
 
 .table-row-item {
     flex: 1;
     text-align: center;
+    
 }
 
 @media (max-width: 768px) {

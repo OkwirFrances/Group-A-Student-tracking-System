@@ -1,14 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Dashboardcontent.css';
 import search from '../assets/search.png';
 import add from '../assets/add.png';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
 import { Link, useNavigate } from 'react-router-dom';
-import { IssuesContext } from '../context/IssueContext';
 
 const DashboardContent = () => {
-    const { issues } = useContext(IssuesContext);
+    const [issues, setIssues ] = useState([]);
     const [filterStatus, setFilterStatus] = useState('all');
     const navigate = useNavigate();
     
@@ -20,6 +19,21 @@ const DashboardContent = () => {
     const handleIssueClick = (id) => {
         navigate(`/app/issue/${id}`);
     };
+
+    useEffect(() => {
+        const loadIssues = () => {
+            const storedIssues = JSON.parse(localStorage.getItem('issues')) || [];
+            setIssues(storedIssues);
+        };
+
+        loadIssues();
+
+        window.addEventListener('storage', loadIssues);
+
+        return () => {
+            window.removeEventListener('storage', loadIssues);
+        };
+    }, []);
 
     const filteredIssues = issues.filter(issue => filterStatus === 'all' || issue.status === filterStatus);
  

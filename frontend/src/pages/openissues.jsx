@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { IssuesContext } from '../context/IssueContext';
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import search from '../assets/search.png';
+import more from '../assets/more.png';
 import emptybox from '../assets/emptybox.png';
 import './openissues.css';
 
@@ -10,14 +12,26 @@ const OpenIssues = () => {
     const [selectedTab, setSelectedTab] = useState('pending');
 
     useEffect(() => {
-        const storedIssues = JSON.parse(localStorage.getItem('issues')) || [];
-        setIssues(storedIssues);
-    }, []);
+        const loadIssues = () => {
+            const storedIssues = JSON.parse(localStorage.getItem('issues')) || [];
+            setIssues(storedIssues);
+    };
+
+    loadIssues();
+
+    window.addEventListener('storage', loadIssues);
+
+    return ()   => {
+        window.removeEventListener('storage', loadIssues);
+    };
+}, []);
 
     const filteredIssues = issues.filter(issue => {
         if (selectedTab === 'all') return true;
         return issue.status.toLowerCase() === selectedTab;
     });
+
+    const pendingCount = issues.filter(issue => issue.status.toLowerCase() === 'pending').length;
 
     return (
         <div className='open-issues-container'>
@@ -30,7 +44,7 @@ const OpenIssues = () => {
                         className={`nav-button ${selectedTab === 'pending' ? 'active' : ''}`}
                         onClick={() => setSelectedTab('pending')}
                     >
-                        Pending
+                        Pending ({pendingCount})
                     </button>
                     <button
                         className={`nav-button ${selectedTab === 'in-progress' ? 'active' : ''}`}
@@ -57,7 +71,9 @@ const OpenIssues = () => {
                     </div>
                 </div>
                 <div className='filter-issues-container'>
-                    <select className='filter-issues'>
+                    <select 
+                    className='filter-issues'
+                    onChange={(e) => setSelectedTab(e.target.value)}>
                         <option value='all'>All</option>
                         <option value='pending'>Pending</option>
                         <option value='in-progress'>In-progress</option>
@@ -79,6 +95,9 @@ const OpenIssues = () => {
                                     <div className='issue-item'>{issue.status}</div>
                                     <div className='issue-item'>{issue.category}</div>
                                     <div className='issue-item'>{issue.date}</div>
+                                    <div className='issue-more-icon'>
+                                        <img src={more} alt='more' className='more-icon' />
+                                    </div>
                                 </div>
                             ))
                         ) : (
