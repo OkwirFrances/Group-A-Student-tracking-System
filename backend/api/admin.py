@@ -15,6 +15,15 @@ class CustomUserAdmin(UserAdmin):
         ('Verification', {'fields': ('otp', 'is_verified')}),
     )
     
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'fullname', 'password1', 'password2', 'role', 'is_verified')
+        }),
+    )
+    search_fields = ('email', 'fullname')
+    
+    
 admin.site.register(CustomUser)
 admin.site.register(Department)
 admin.site.register(Issue)
