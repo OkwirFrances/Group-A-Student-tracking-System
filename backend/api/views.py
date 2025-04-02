@@ -1,10 +1,11 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from django.core.mail import send_mail
 from rest_framework import status, generics
 from rest_framework.response import Response
+from django.utils import timezone
 from .models import *   
 from .serializers import *
+from rest_framework.exceptions import PermissionDenied
 from django.http import JsonResponse
 from .permissions import IsRegistrar, IsLecturer, IsStudent 
 from rest_framework.decorators import APIView, api_view, permission_classes
@@ -165,7 +166,10 @@ class CourseView(generics.ListCreateAPIView):
             raise serializer.ValidationError("Department does not exist")
         serializer.save()
     
-    
+class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated, IsRegistrar]
 
 class ProgramView(viewsets.ModelViewSet):
     queryset = Program.objects.all()
