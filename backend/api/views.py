@@ -124,7 +124,11 @@ def resend_otp(request):
     if not user:
         return JsonResponse({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
     
-    
+    user.otp = generate_otp()
+    user.otp_created_at = timezone.now()  # Reset the OTP timestamp
+    user.save()
+    send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'AITS@mail.com', [email])
+    return JsonResponse({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
 
     
