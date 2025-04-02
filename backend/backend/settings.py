@@ -163,3 +163,5 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_HTTPONLY = False
 CSRF_USE_SESSIONS = False
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
