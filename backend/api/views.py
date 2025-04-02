@@ -243,6 +243,12 @@ class UserEditView(generics.UpdateAPIView):
     
     def get_object(self):
         return self.request.user
+    
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+        return response
+    
+
 
     
     
