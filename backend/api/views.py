@@ -156,6 +156,11 @@ class CourseView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, IsRegistrar]
     serializer_class = CourseSerializer
     
+    def get_queryset(self):
+        return Course.objects.all().select_related('department')
+    
+    
+    
     
 
 class ProgramView(viewsets.ModelViewSet):
