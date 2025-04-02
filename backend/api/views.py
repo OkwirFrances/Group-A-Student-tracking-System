@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+#from rest_framework import viewsets
 from django.core.mail import send_mail
 from rest_framework import status, generics
 from rest_framework.response import Response
@@ -20,6 +20,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenRefreshView
 from django.shortcuts import  get_object_or_404
 import random
+from django.core.cache import cache 
 
 
 User = get_user_model()
@@ -137,11 +138,9 @@ def resend_otp(request):
 
     
 # Create your views here.
-class UserView(viewsets.ModelViewSet):
-    queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer 
+
     
-class DepartmentView(viewsets.ModelViewSet):
+class DepartmentView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, IsRegistrar]
     serializer_class = DepartmentSerializer
     
@@ -151,10 +150,6 @@ class DepartmentView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save()
     
-
-class IssueView(viewsets.ModelViewSet):
-    queryset = Issue.objects.all()
-    serializer_class = IssueSerializer
 
 class CourseView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, IsRegistrar]
@@ -238,6 +233,7 @@ class UserInfoView(generics.RetrieveAPIView):
             "profile_picture": user.profile_picture.url if user.profile_picture else None
         }
         return JsonResponse(user_data, status=status.HTTP_200_OK)
+
 # User Edit View (Accessible by authenticated users)
 class UserEditView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
@@ -250,14 +246,54 @@ class UserEditView(generics.UpdateAPIView):
         response = super().update(request, *args, **kwargs)
         return response
     
+from django.db import transaction
+
 class LecturerView(generics.ListCreateAPIView):
     serializer_class = LecturerSerializer
     permission_classes = [IsAuthenticated, IsRegistrar]
     
     def get_queryset(self):
+        return Lecturer.objects.all()
+    
+    @transaction.atomic
+    def perform_create(self, serializer):
+        # Create the base user first
+        user_data = {
+            'email': serializer.validated_data['email'],
+            'fullname': serializer.validated_data['fullname'],
+            'password': serializer.validated_data['password'],
+            'role': 'lecturer'
+        }
+       
+        user = User.objects.create_user(**user_data)
+        
+        # Create the lecturer profile
+        lecturer = Lecturer.objects.create(
+            id=user.id,
+            email=user.email,
+            fullname=user.fullname,
+            role=user.role,
+            staff_id=serializer.validated_data['staff_id'],
+            department=serializer.validated_data['department'],
+            office_location=serializer.validated_data['office_location']
+        )
+
+        # Set courses if provided
+        if 'courses' in serializer.validated_data:
+            lecturer.courses.set(serializer.validated_data['courses'])
+        
+        return lecturer
+
+class LecturerIssuesView(generics.ListAPIView):
+    serializer_class = IssueSerializer
+    permission_classes = [IsAuthenticated, IsLecturer]
+
+    def get_queryset(self):
         # Only show issues assigned to the current lecturer
         return Issue.objects.filter(assigned_to=self.request.user)
-    
+
+
+
 class CustomTokenRefreshView(TokenRefreshView):
     def post(self, request, *args, **kwargs):
         # Ensure the refresh token is properly formatted
