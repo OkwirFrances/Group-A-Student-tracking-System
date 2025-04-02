@@ -92,9 +92,12 @@ class IssueSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Issue
-        fields = '__all__'
-        #fields = ['student','issue_type','issue_status','course_unit','issue_description','Image','date_created','update','lecturer','registrar']
-
+        
+        fields = [
+            'id', 'student', 'issue_type', 'semester', 'course', 'title', 'description', 
+            'status', 'created_at', 'updated_at', 'assigned_to', 'assigned_by', 
+            'assigned_at', 'resolved_by', 'resolved_at'
+        ]
 class CourseUnitSerializer(ModelSerializer):
     class Meta:
         model = CourseUnit
