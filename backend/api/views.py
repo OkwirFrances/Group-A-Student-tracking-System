@@ -265,6 +265,14 @@ class CustomTokenRefreshView(TokenRefreshView):
                 {'error': 'Refresh token is required'},
                 status=status.HTTP_400_BAD_REQUEST
             )  
+            
+        response = super().post(request, *args, **kwargs)
+        
+        if response.status_code == 200:
+            # Add any additional processing here if needed
+            pass
+            
+        return response
 
     
 
