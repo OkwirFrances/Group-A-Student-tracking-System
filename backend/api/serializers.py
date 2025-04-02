@@ -15,6 +15,14 @@ class DepartmentSerializer(serializers.ModelSerializer):
         model = Department
         fields = '__all__'
 
+class LecturerSerializer(UserSerializer):
+        department = serializers.PrimaryKeyRelatedField(queryset=Department.objects.all())
+        courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True, required=False)
+        password = serializers.CharField(write_only=True)
+        staff_id = serializers.CharField(max_length=20)
+        office_location = serializers.CharField(max_length=100)
+
+
 class IssueSerializer(serializers.ModelSerializer):
     student = StudentSerializer(read_only=True)
     course = CourseSerializer(read_only=True)
