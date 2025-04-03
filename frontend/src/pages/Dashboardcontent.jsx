@@ -1,10 +1,9 @@
 import React, { useState, useContext } from 'react';
-
 import './Dashboardcontent.css';
-import search from '../../assets/search.png';
-import add from '../../assets/add.png';
-import emptybox from '../../assets/emptybox.png';
-import { Link, useNavigate } from 'react-router-dom';
+import search from '../assets/search.png';
+import add from '../assets/add.png';
+import emptybox from '../assets/emptybox.png';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import { IssuesContext } from '../context/IssueContext';
 
 const DashboardContent = () => {
@@ -43,7 +42,7 @@ const DashboardContent = () => {
             <div className='cards-container'>
                 <div className='card pending'>
                     <h2>Pending</h2>
-                    <p>{(displayIssues || []).filter(i => i.status === 'pending').length}</p>
+                    <p className='issue-count'>{(displayIssues || []).filter(i => i.status === 'pending').length}</p>
                 </div>
                 <div className='card in-progress'>
                     <h2>In Progress</h2>
@@ -55,9 +54,9 @@ const DashboardContent = () => {
                 </div>
             </div>
 
-            <div className='issues-section'>
+            <div  className='my-issues'>
                 <div className='section-header'>
-                    <h2>{userRole === 'student' ? 'My Issues' : 
+                    <h2 className='my-issues-title'>{userRole === 'student' ? 'My Issues' : 
                         userRole === 'lecturer' ? 'Assigned Issues' : 'All Issues'}</h2>
                     
                     <div className='header-actions'>
@@ -87,7 +86,7 @@ const DashboardContent = () => {
                             <option value='resolved'>Resolved</option>
                         </select>
 
-                        <div className='search-container'>
+                        <div className='my-issues-search-container'>
                             <input 
                                 type='text' 
                                 placeholder='Search...'
@@ -97,6 +96,7 @@ const DashboardContent = () => {
                             <img 
                                 src={search}
                                 alt='search' 
+                                className='my-issues-search-icon'
                                 loading="lazy"
                             />
                         </div>
@@ -105,7 +105,7 @@ const DashboardContent = () => {
 
                 <div className='issues-table'>
                     <div className='table-header'>
-                        <div>Title</div>
+                        <div className='table-header-item'>Title</div>
                         <div>Status</div>
                         {userRole === 'registrar' && <div>Assigned To</div>}
                         <div>Date</div>
@@ -114,6 +114,7 @@ const DashboardContent = () => {
                        
                     {filteredIssues.length > 0 ? (
                         filteredIssues.map(issue => (
+                            
                             <div key={issue.id} className='table-row'>
                                 <div onClick={() => navigate(`/${userRole}/issue/${issue.id}`)}>
                                     {issue.title}

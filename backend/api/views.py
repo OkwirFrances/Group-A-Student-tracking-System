@@ -137,17 +137,17 @@ def resend_otp(request):
 
     
 # Create your views here.
-class UserView(viewsets.ModelViewSet):
-    queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer 
+# class UserView(viewsets.ModelViewSet):
+#     queryset = CustomUser.objects.all()
+#     serializer_class = CustomUserSerializer 
     
-class DepartmentView(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsRegistrar]
+class DepartmentView(generics.ListCreateAPIView):
     serializer_class = DepartmentSerializer
-    
+    permission_classes = [IsAuthenticated, IsRegistrar]
+
     def get_queryset(self):
         return Department.objects.all()
-    
+
     def perform_create(self, serializer):
         serializer.save()
     
@@ -257,6 +257,15 @@ class LecturerView(generics.ListCreateAPIView):
     def get_queryset(self):
         # Only show issues assigned to the current lecturer
         return Issue.objects.filter(assigned_to=self.request.user)
+
+class LecturerIssuesView(generics.ListAPIView):
+    serializer_class = IssueSerializer
+    permission_classes = [IsAuthenticated, IsLecturer]
+
+    def get_queryset(self):
+        # Only show issues assigned to the current lecturer
+        return Issue.objects.filter(assigned_to=self.request.user)
+
     
 class CustomTokenRefreshView(TokenRefreshView):
     def post(self, request, *args, **kwargs):
