@@ -152,10 +152,34 @@
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    padding: 10px;
+    padding: 5px;
     width: 150px;
 }
 
+.sub-dropdown-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 40px; /* Adjust based on the position of the first dropdown */
+    right: 0;
+    z-index: 20;
+    width: 150px;
+}
+
+.sub-dropdown-menu li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sub-dropdown-menu li:hover {
+    background-color: #f0f0f0;
+}
 .lecturer-dropdown-menu p {
     font-weight: bold;
     margin-bottom: 10px;

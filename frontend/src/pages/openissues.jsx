@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { IssuesContext } from '../context/IssueContext';
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import search from '../assets/search.png';
@@ -11,9 +10,15 @@ const OpenIssues = () => {
     const [issues, setIssues] = useState([]);
     const [selectedTab, setSelectedTab] = useState('pending');
     const [dropdownVisible, setDropdownVisible] = useState(null);
+    const [subDropdownVisible, setSubDropdownVisible] = useState(null);
 
     const toggleDropdown = (index)=> {
         setDropdownVisible(dropdownVisible === index ? null : index);
+        setSubDropdownVisible(null);
+    };
+
+    const toggleSubDropdown = (index) => {
+        setSubDropdownVisible(subDropdownVisible === index ? null : index);
     };
 
     useEffect(() => {
@@ -108,12 +113,20 @@ const OpenIssues = () => {
                                         onClick={() => toggleDropdown(index)} />
                                         {dropdownVisible === index && (
                                             <div className='lecturer-dropdown-menu'>
-                                                <p>Send To</p>
-                                                <ul>
-                                                    <li onClick={() => alert('Issue has been successfully escalated to Mrs. Aloi')}>Mrs.Aloi</li>
-                                                    <li onClick={() => alert('Issue has been successfully escalated to Mr. Lule')}>Mr.Lule</li>
-                                                    <li onClick={() => alert('Issue has been successfully escalated to Dr. Ngobiri')}>Dr.Ngobirir</li>
-                                                </ul>
+                                                <p onClick={() => toggleSubDropdown(index)}>Send To</p>
+                                                {subDropdownVisible === index && (
+                                                    <ul className='sub-dropdown-menu'>
+                                                        <li onClick={() => alert('Issue has been successfully escalated to Mrs. Aloi')}>
+                                                            Mrs. Aloi
+                                                        </li>
+                                                        <li onClick={() => alert('Issue has been successfully escalated to Mr. Lule')}>
+                                                            Mr. Lule
+                                                        </li>
+                                                        <li onClick={() => alert('Issue has been successfully escalated to Dr. Ngobiri')}>
+                                                            Dr. Ngobiri
+                                                        </li>
+                                                    </ul>
+                                                )}
                                             </div>
                                         )}
                                     </div>
