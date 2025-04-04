@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-(gee@d34)!iwlkj5b(tg3e(h%e@j03yyzk645i1q0w5=v*tw5w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['groupaaits.onrender.com']
+ALLOWED_HOSTS = [
+    'localhost:5173',
+    'localhost',
+    'groupaaits.onrender.com'
+    ]
 
 # Application definition
 
@@ -63,13 +67,13 @@ ROOT_URLCONF = 'backend.urls'
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collecting static files in production
 STATICFILES_DIRS = [
-    os.path.join(STATIC_ROOT, 'frontend'),
+    os.path.join(STATIC_ROOT, 'reactapp'),  # This is where your React build files will be located
 ]
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(STATIC_ROOT, 'frontend') ],
+        'DIRS': [ os.path.join(STATIC_ROOT, 'reactapp') ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
