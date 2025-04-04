@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(gee@d34)!iwlkj5b(tg3e(h%e@j03yyzk645i1q0w5=v*tw5w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['groupaaits.onrender.com']
 
 # Application definition
 
@@ -157,9 +157,10 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    'https://groupaaits.onrender.com'
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_COOKIE_SECURE = False
