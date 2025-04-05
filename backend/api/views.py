@@ -110,6 +110,15 @@ def verify_otp(request):
         user.is_verified = True
         user.save()
         
+         # Create role-specific profile
+        role = cached_data['role'].lower()
+        if role == 'student':
+            Student.objects.create(id=user.id)
+        elif role == 'lecturer':
+            Lecturer.objects.create(id=user.id)
+        elif role == 'registrar':
+            Registrar.objects.create(id=user.id)
+            
         cache.delete(f'otp_{email}')  # Clear OTP data
 
         refresh = RefreshToken.for_user(user)
