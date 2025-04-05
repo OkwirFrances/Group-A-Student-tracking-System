@@ -172,16 +172,21 @@ class Issue(models.Model):
         return f"Issue #{self.id} - {self.title}"
 
     def assign_to_lecturer(self, registrar, lecturer):
+        if self.status != self.ISSUE_STATUS.Open:
+            raise ValueError("Only 'open' issues can be assigned.")
         self.assigned_to = lecturer
         self.assigned_by = registrar
         self.assigned_at = timezone.now()
-        self.status = 'assigned'
+        self.status = self.ISSUE_STATUS.Assigned             
         self.save()
 
     def resolve_issue(self, registrar):
+        if self.status != self.ISSUE_STATUS.Assigned:
+            raise ValueError("Only 'assigned' issues can be resolved.")
+        
         self.resolved_by = registrar
         self.resolved_at = timezone.now()
-        self.status = 'resolved'
+        self.status = self.ISSUE_STATUS.Resolved  # Set status to 'resolved'
         self.save()
 
     class Meta:
