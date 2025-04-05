@@ -6,11 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 dj-rest-auth = "*"
-pillow = "*"
 django-cors-headers = "*"
-djangorestframework-simplejwt = "*"
 django-otp = "*"
-djangorestframework = "*"
 
 [dev-packages]
 
