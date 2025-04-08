@@ -31,91 +31,6 @@ def generate_otp():
 # Signup View
 from django.core.cache import cache  # Import Django cache
 
-# @api_view(['POST'])
-# def signup(request):
-#     email = request.data.get('email')
-#     fullname = request.data.get('fullname')
-#     password = request.data.get('password')
-#     role = request.data.get('role', 'student')
-    
-#     if not email or not password:
-#         return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     if User.objects.filter(email=email).exists():
-#         return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     otp = generate_otp()
-#     cache.set(f'otp_{email}', {'otp': otp, 'fullname': fullname, 'password': password, 'role': role}, timeout=600)  # Store OTP for 10 minutes
-
-#     send_mail('Your OTP Code', f'Your OTP is {otp}', 'Group-A-AITS@mail.com', [email])
-#     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
-
-# @api_view(['POST'])
-# def login(request):
-#     email = request.data.get('email')
-#     password = request.data.get('password')
-    
-#     if not email or not password:
-#         return JsonResponse(
-#             {'error': 'Email and password are required'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
-        
-#     try:
-#         user = User.objects.get(email=email)
-#     except User.DoesNotExist:
-#         return JsonResponse(
-#             {'error': 'Invalid email or password'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
-        
-#     if not user.check_password(password):
-#         return JsonResponse(
-#             {'error': 'Invalid email or password'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
-        
-#     refresh = RefreshToken.for_user(user)
-    
-#     return JsonResponse({
-#         'access': str(refresh.access_token),
-#         'refresh': str(refresh),
-#         'role': user.role,
-#         'fullname': user.fullname,
-#         'email': user.email
-#     }, status=status.HTTP_200_OK)
-    
-# @api_view(['POST'])
-# def verify_otp(request):
-#     email = request.data.get('email')
-#     otp = request.data.get('otp')
-
-#     if not email or not otp:
-#         return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     cached_data = cache.get(f'otp_{email}')
-#     if not cached_data:
-#         return JsonResponse({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     if cached_data['otp'] == otp:
-#         # Create user after OTP verification
-#         user = User.objects.create_user(
-#             fullname=cached_data['fullname'], 
-#             email=email, 
-#             password=cached_data['password'], 
-#             role=cached_data['role']
-#         )
-        
-#         user.is_verified = True
-#         user.save()
-        
-#         cache.delete(f'otp_{email}')  # Clear OTP data
-
-#         refresh = RefreshToken.for_user(user)
-#         return JsonResponse({'token': str(refresh.access_token), 'message': 'User created successfully!'}, status=status.HTTP_201_CREATED)
-
-#     return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
-
 @api_view(['POST'])
 def signup(request):
     email = request.data.get('email')
@@ -188,7 +103,8 @@ def verify_otp(request):
             fullname=cached_data['fullname'], 
             email=email, 
             password=cached_data['password'], 
-            role=cached_data['role']
+            role=cached_data['role'],
+            termsAccepted=cached_data.get('termsAccepted', False)
         )
         user.is_verified = True
         user.save()
@@ -264,13 +180,20 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
     
     def get_queryset(self):
         if self.request.user.role == 'student':
-            return Issue.objects.filter(student=self.request.user, course__students=self.request.user)
-        return Issue.objects.all()
+            # Get all issues where the student is the current user
+            return Issue.objects.filter(student=self.request.user)
+        elif self.request.user.role == 'lecturer':
+            # Get all issues assigned to the current lecturer
+            return Issue.objects.filter(assigned_to=self.request.user)
+        elif self.request.user.role == 'registrar':
+            # Registrars can see all issues
+            return Issue.objects.all()
+        return Issue.objects.none()
     
     def perform_create(self, serializer):
         if self.request.user.role == 'student':
             course = serializer.validated_data.get('course')
-            if course and self.request.user not in course.students.all():
+            if course and course not in self.request.user.enrolled_courses.all():
                 raise PermissionDenied('You can only report issues for courses you are enrolled in.')
             serializer.save(student=self.request.user)
         else:

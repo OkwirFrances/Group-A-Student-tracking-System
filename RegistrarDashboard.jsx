@@ -1,10 +1,39 @@
+// import React from "react";
+// import { Outlet } from "react-router-dom";
+// import './registrardashboard.css';
+// import Navbar from "../components/Navbar";
+// import Sidebar from "../components/Sidebar";
+
+
+
+// const RegistrarDashboard = () => {
+//     const userRole = localStorage.getItem('userRole');
+//     return (
+//             <div className="dashboard-container">
+//                 <Navbar />
+//                 <Sidebar />
+//                 <div className="dashboard-content">
+//                     <Outlet content = {{
+//                        allIssues,
+//                        lecturers,
+//                        loading,
+//                        onAssignIssue: handleAssign
+//                    }} />
+//                 </div>
+//             </div>
+       
+//     );
+// };
+
+// export default RegistrarDashboard;
+
 import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import './registrardashboard.css';
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+import './studentdashboard.css';
+import Navbar from "../../Components/Navbar/Navbar";
+import Sidebar from "../../Components/Sidebar/Sidebar";
 import { toast } from 'react-toastify';
-import { issueAPI, lecturerAPI } from '../services/api'; 
+import { issueAPI, lecturerAPI } from '../../services/api'; // Adjust import path as needed
 
 const RegistrarDashboard = () => {
     const [allIssues, setAllIssues] = useState([]);

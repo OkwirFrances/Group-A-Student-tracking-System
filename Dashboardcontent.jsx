@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom';
-import { IssuesContext } from '../context/IssueContext';
+import { IssuesContext } from '../../context/IssueContext';
 import './Dashboardcontent.css';
-// import './registrardashboardcontent.css';
-import search from '../assets/search.png';
-import add from '../assets/add.png';
-import emptybox from '../assets/emptybox.png';
-import filter from '../assets/filter.png';
+import search from '../../assets/search.png';
+import add from '../../assets/add.png';
+import emptybox from '../../assets/emptybox.png';
+import filter from '../../assets/filter.png';
 
 const DashboardContent = () => {
     const { issues: contextIssues } = useContext(IssuesContext);

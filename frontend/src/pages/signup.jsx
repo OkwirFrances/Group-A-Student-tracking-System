@@ -13,7 +13,7 @@ const SignUp = () => {
     
 
     const [formData, setFormData] = useState({
-        fullName:'',
+        fullname:'',
         email:'',
         password:'',
         role:'',
@@ -32,9 +32,9 @@ const SignUp = () => {
     };
 
     const isFormValid = () => {
-        const { fullName, email, password, role, termsAccepted } = formData;
+        const { fullname, email, password, role, termsAccepted } = formData;
        
-        if (!fullName) return 'Full Name is required';
+        if (!fullname) return 'Full Name is required';
         if (!email) return 'Email is required';
         if (!password || password.length < 8) return 'Password is required and should be at least 8 characters';
         if (!role) return 'Role is required';
@@ -59,7 +59,7 @@ const SignUp = () => {
         try {
             const data = await authAPI.signup(
                 formData.email, 
-                formData.fullName, 
+                formData.fullname, 
                 formData.password,
                 formData.role
             );
@@ -95,9 +95,9 @@ const SignUp = () => {
                             <input 
                             className='full-name'
                             type='text'
-                            name='fullName' 
+                            name='fullname' 
                             placeholder='Enter your Full Name' 
-                            value={formData.fullName} 
+                            value={formData.fullname} 
                             onChange={handleChange}/>
                             <img src={person} alt='person' className='person-icon' />
                         </div>

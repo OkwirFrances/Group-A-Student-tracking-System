@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { getToken, clearToken, storeToken} from '../pages/auth'; // Adjust the import path as necessary
 
-// const API_BASE_URL = 'http://localhost:8000/api/';
-const API_BASE_URL = 'https://groupaaits.onrender.com/api/';
+const API_BASE_URL = 'http://localhost:8000/api/';
+// const API_BASE_URL = 'https://groupaaits.onrender.com/api/';
 
 // Create an axios instance with default config
 const api = axios.create({
