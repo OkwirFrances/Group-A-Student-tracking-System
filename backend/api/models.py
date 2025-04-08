@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
 import datetime
+from django.core.validators import MaxLengthValidator
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -88,7 +89,7 @@ class Lecturer(CustomUser):
     office_location = models.CharField(max_length=100)
 
     def save(self, *args, **kwargs):
-        self.role = 'lecturer'  
+        self.role = CustomUser.ROLE_CHOICES.Lecturer # Set role to 'lecturer'  
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -101,7 +102,7 @@ class Student(CustomUser):
     enrollment_date = models.DateField()
 
     def save(self, *args, **kwargs):
-        self.role = 'student'
+        self.role = CustomUser.ROLE_CHOICES.Student # Set role to 'student'
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -112,7 +113,7 @@ class Registrar(CustomUser):
     office_number = models.CharField(max_length=20)
 
     def save(self, *args, **kwargs):
-        self.role = 'registrar' 
+        self.role = CustomUser.ROLE_CHOICES.Registrar # Set role to 'registrar'
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -138,7 +139,7 @@ class Issue(models.Model):
     semester = models.CharField(max_length=50,choices=SEMESTER_CHOICES)
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True)
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField( validators=[MaxLengthValidator(500)], null=True, blank=True)
     image = models.ImageField(upload_to='issue_images/', null=True, blank=True)
     status = models.CharField(max_length=20, choices=ISSUE_STATUS, default='open')
     created_at = models.DateTimeField(default=datetime.datetime.now)
@@ -171,16 +172,21 @@ class Issue(models.Model):
         return f"Issue #{self.id} - {self.title}"
 
     def assign_to_lecturer(self, registrar, lecturer):
+        if self.status != self.ISSUE_STATUS.Open:
+            raise ValueError("Only 'open' issues can be assigned.")
         self.assigned_to = lecturer
         self.assigned_by = registrar
         self.assigned_at = timezone.now()
-        self.status = 'assigned'
+        self.status = self.ISSUE_STATUS.Assigned             
         self.save()
 
     def resolve_issue(self, registrar):
+        if self.status != self.ISSUE_STATUS.Assigned:
+            raise ValueError("Only 'assigned' issues can be resolved.")
+        
         self.resolved_by = registrar
         self.resolved_at = timezone.now()
-        self.status = 'resolved'
+        self.status = self.ISSUE_STATUS.Resolved  # Set status to 'resolved'
         self.save()
 
     class Meta:

@@ -238,6 +238,8 @@ class DepartmentView(generics.ListCreateAPIView):
 class IssueView(viewsets.ModelViewSet):
     queryset = Issue.objects.all()
     serializer_class = IssueSerializer
+    permission_classes = [IsAuthenticated]
+    
 
 class CourseView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, IsRegistrar]
