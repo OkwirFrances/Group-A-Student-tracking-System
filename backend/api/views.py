@@ -217,12 +217,6 @@ def resend_otp(request):
     send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'AITS@mail.com', [email])
     return JsonResponse({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
-
-    
-# Create your views here.
-# class UserView(viewsets.ModelViewSet):
-#     queryset = CustomUser.objects.all()
-#     serializer_class = CustomUserSerializer 
     
 class DepartmentView(generics.ListCreateAPIView):
     serializer_class = DepartmentSerializer
