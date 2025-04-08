@@ -22,6 +22,7 @@ import RegistrarDashboardContent from './pages/registrardashboardcontent';
 import OpenIssues from './pages/openissues';
 import CourseManagement from './pages/CourseManagement';
 import DepartmentManagement from './pages/DepartmentManagement';
+import ForgotPassword from './pages/forgotpassword';
 import { IssuesProvider } from './context/IssueContext';
 import RoleBasedRoute from './components/rolebassedroute';
 
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="landing" element={<LandingPage/>}/>
           <Route path="signup" element={<SignUp/>}/>
           <Route path="signin" element={<SignIn/>}/>
+          <Route path='forgotpassword' element={<ForgotPassword/>} />
           <Route path="otp" element={<Otp/>}/>
           <Route path="congs" element={<Congratulations/>}/>
           <Route path="app" element={<RoleBasedRoute allowedRoles={['student']}>
