@@ -134,3 +134,121 @@
     margin-bottom: 350px;
 }
 
+.phone-number {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 2.5px;
+    margin-left: 200px;
+}
+.phone {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: -450px;
+    margin-left: -1px;
+}
+
+.gender {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: -395px;
+    margin-left: -1px;
+}
+
+.personal-information-editbutton {
+    padding: 15px 30px;
+    position: absolute;
+    border-radius: 15px;
+    color: black;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-left: 1170px;
+    margin-bottom: -50px;
+    margin-top: -250px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.personal-information-editbutton:hover {
+    background-color: #51d53a;
+    color: white;
+}
+
+.academic-information {
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 1500px;
+    margin-left: 165px;
+    width: 77%;
+    height: 40%;
+    border-radius: 10px;
+    margin-bottom: 350px;
+    background-color: #f9f9f9;
+}
+
+.academic-information h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 550px;
+    margin-right: 900px;
+}
+
+
+.registration {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: -500px;
+    margin-left: 200px;
+}
+
+.student {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: -400px;
+    margin-left: 200px;
+}
+
+.course {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: -750px;
+    margin-left: 400px;
+}
+
+.semester {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: -80px;
+    margin-right: 50px 
+}
+
+.academic-information-editbutton {
+    padding: 15px 30px;
+    position: absolute;
+    border-radius: 15px;
+    color: black;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-left: 1170px;
+    margin-bottom: -50px;
+    margin-top: 300px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.academic-information-editbutton:hover {
+    background-color: #51d53a;
+    color: white;
+}
+
+.academic-information-edit {
+    width: 20px;
+}
+
+.academic-information-edit:hover {
+    background-color: #51d53a;
+    color: white;
+}
