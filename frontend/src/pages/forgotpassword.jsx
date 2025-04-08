@@ -101,7 +101,7 @@ const ForgotPassword = ({ email, onResendOtp }) => {
                 <button 
                 className='reset-resend-button'
                 onClick={handleResendClick}>
-                    <img className='refresh-icon'src={refresh} alt='refresh icon' /> 
+                    <img className='reset-refresh-icon'src={refresh} alt='refresh icon' /> 
                     Resend Code
                 </button>
                 </div>   
