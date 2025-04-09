@@ -92,7 +92,7 @@ const ForgotPassword = ({ email, onResendOtp }) => {
                         />
                     ))}
                 </div>
-            <Link to="/congs" onClick={handleVerifyClick}>
+            <Link to="/signin" onClick={handleVerifyClick}>
             
             <button className='reset-verify-button' 
                disabled={!isOtpComplete}>
