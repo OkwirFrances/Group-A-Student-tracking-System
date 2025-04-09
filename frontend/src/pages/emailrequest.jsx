@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './emailrequest.css';
 import help from '../assets/help.png';
 import mail from '../assets/mail.png';
 import doorkey from '../assets/doorkey.png';
 
 const EmailRequest = () => {
+    const [email, setEmail] = useState('');
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
 
     return (
         <div className='emailrequest-container'>
@@ -22,7 +27,9 @@ const EmailRequest = () => {
                 <p>Don't worry! Enter your registered Email Address<br />to reset your password.</p>
                     <input type='email' className='emailrequest-email' placeholder='Enter Your Email Address' required />
                     <img src={mail} alt='mailicons' className='emailrequest-mail' />    
-                    <button className='emailrequest-nextbutton'>Next</button>
+                    <button 
+                    className='emailrequest-nextbutton'
+                    disabled={!email.trim()}>Next</button>
             </div>
         </div>
         
