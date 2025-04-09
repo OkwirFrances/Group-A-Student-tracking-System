@@ -19,7 +19,7 @@ const EmailRequest = () => {
                 <img src={doorkey} alt='door' className='emailrequest-door' />
                 <h1>Reset Password</h1>
                 <p>Don't worry! Enter your registered Email Address<br />to reset your password.</p>
-                <input type='email' className='emailrequest-email' placeholder='Email Address' required />
+                <input type='email' className='emailrequest-email' placeholder='Enter Your Email Address' required />
             </div>
         </div>
         

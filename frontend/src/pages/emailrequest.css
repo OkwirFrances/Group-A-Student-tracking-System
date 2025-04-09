@@ -83,3 +83,11 @@
     text-align: center;
     position: absolute;
 }
+
+.emailrequest-email {
+    width: 400px;
+    border: 1px solid black;
+    font-size: 1rem;
+    position: absolute;
+    margin-top: 10px;
+}
