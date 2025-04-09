@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './forgotpassword.css';
-import doorkey from '../assets/doorkey.png';
+import mail from '../assets/mail.png';
 import refresh from '../assets/refresh.png';
 import help from '../assets/help.png';
 import Congratulations from './congratulations';
@@ -76,9 +76,9 @@ const ForgotPassword = ({ email, onResendOtp }) => {
                 </div>
             </div>
             <div className='forgotpassword-content'>
-                <img  className='doorkey'src={doorkey} alt='doorkey' />
-                <h2 className='reset-title'>Reset Password</h2>
-                <p className='reset-sub-title'>Don't worry! Enter your registered Email Address below to reset your password.</p>
+                <img  className='doorkey'src={mail} alt='mail' />
+                <h2 className='reset-title'>Email Verification</h2>
+                <p className='reset-sub-title'>Enter the verification code we sent to you on {email}</p>
                 <div className='reset-inputs'>
                     {otp.map((digit, index) => (
                         <input
@@ -96,7 +96,7 @@ const ForgotPassword = ({ email, onResendOtp }) => {
             
             <button className='reset-verify-button' 
                disabled={!isOtpComplete}>
-                   Verify
+                   Next
                </button></Link>
                 <button 
                 className='reset-resend-button'
