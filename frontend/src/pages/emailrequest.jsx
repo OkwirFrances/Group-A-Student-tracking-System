@@ -1,6 +1,7 @@
 import React from 'react';
 import './emailrequest.css';
 import help from '../assets/help.png';
+import mail from '../assets/mail.png';
 import doorkey from '../assets/doorkey.png';
 
 const EmailRequest = () => {
@@ -20,6 +21,8 @@ const EmailRequest = () => {
                 <h1>Reset Password</h1>
                 <p>Don't worry! Enter your registered Email Address<br />to reset your password.</p>
                 <input type='email' className='emailrequest-email' placeholder='Enter Your Email Address' required />
+                <img src={mail} alt='mailicons' className='emailrequest-mail' />
+                
             </div>
         </div>
         
