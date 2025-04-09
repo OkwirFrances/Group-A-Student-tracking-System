@@ -19,6 +19,7 @@ import NewMessage from './pages/newmessage';
 import Profile from './pages/profile';
 import RegistrarDashboard from './pages/RegistrarDashboard';
 import EmailRequest from './pages/emailrequest';
+import ForgotPassword from './pages/forgotpassword';
 import RegistrarDashboardContent from './pages/registrardashboardcontent';
 import OpenIssues from './pages/openissues';
 import CourseManagement from './pages/CourseManagement';
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="signup" element={<SignUp/>}/>
           <Route path="signin" element={<SignIn/>}/>
           <Route path="emailrequest" element={<EmailRequest/>}/>
+          <Route path="forgotpassword" element={<ForgotPassword/>}/>
           <Route path="otp" element={<Otp/>}/>
           <Route path="congs" element={<Congratulations/>}/>
           <Route path="app" element={<RoleBasedRoute allowedRoles={['student']}>
