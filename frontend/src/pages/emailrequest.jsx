@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import './emailrequest.css';
 import help from '../assets/help.png';
 import mail from '../assets/mail.png';
@@ -25,11 +26,20 @@ const EmailRequest = () => {
                 <img src={doorkey} alt='door' className='emailrequest-door' />
                 <h1>Reset Password</h1>
                 <p>Don't worry! Enter your registered Email Address<br />to reset your password.</p>
-                    <input type='email' className='emailrequest-email' placeholder='Enter Your Email Address' required />
+                    <input 
+                    type='email' 
+                    className='emailrequest-email' 
+                    placeholder='Enter Your Email Address'
+                    value={email}
+                    onChange={handleEmailChange}
+                    required />
                     <img src={mail} alt='mailicons' className='emailrequest-mail' />    
                     <button 
                     className='emailrequest-nextbutton'
                     disabled={!email.trim()}>Next</button>
+                    <Link to="/signin" className='emailrequest-signin-link'>
+                        Sign In
+                    </Link>
             </div>
         </div>
         
