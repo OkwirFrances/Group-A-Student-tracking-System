@@ -108,9 +108,13 @@
 }
 
 .emailrequest-nextbutton {
-    width: 400px;
-    border: 1px solid black;
+    width: 422px;
+    border: 1px solid rgb(27, 172, 8);
     font-size: 1rem;
     position: absolute;
-    margin-top: 70px;
+    margin-top: 180px;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: bold;
+
 }
