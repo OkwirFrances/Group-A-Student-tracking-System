@@ -20,9 +20,9 @@ const EmailRequest = () => {
                 <img src={doorkey} alt='door' className='emailrequest-door' />
                 <h1>Reset Password</h1>
                 <p>Don't worry! Enter your registered Email Address<br />to reset your password.</p>
-                <input type='email' className='emailrequest-email' placeholder='Enter Your Email Address' required />
-                <img src={mail} alt='mailicons' className='emailrequest-mail' />
-                
+                    <input type='email' className='emailrequest-email' placeholder='Enter Your Email Address' required />
+                    <img src={mail} alt='mailicons' className='emailrequest-mail' />    
+                    <button className='emailrequest-nextbutton'>Next</button>
             </div>
         </div>
         
