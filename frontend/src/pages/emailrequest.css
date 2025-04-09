@@ -1,0 +1,85 @@
+.emailrequest-container {
+    background-color: rgb(23, 184, 33);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.emailrequest-container h1 {
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.emailrequest-help {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+
+}
+
+.emailrequest-help-logo {
+    width: 20px;
+    height: 20px;
+    margin-bottom: -4px;
+    gap: 3px;
+}
+.emailrequest-help .tooltip {
+    visibility: hidden;
+    width: 200px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    top: 30px;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.emailrequest-help:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.emailrequest-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 20px;
+    width: 830px;
+    margin: auto;
+    height: 490px;
+    border-radius: 15px;
+    margin-bottom: 100px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.emailrequest-door {
+    width: 140px;
+    margin-bottom: 390px;
+}
+
+.emailrequest-content h1 {
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 200px;
+    position: absolute;
+    text-align: center;
+}
+
+.emailrequest-content p {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: -20px;
+    text-align: center;
+    position: absolute;
+}

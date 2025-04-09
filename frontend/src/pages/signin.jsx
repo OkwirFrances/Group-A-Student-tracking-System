@@ -89,7 +89,7 @@ const SignIn = () => {
                             </div>
                     </label>
                     <p className='forgot-password'>
-                        <Link to="/forgotpassword" className='forgot-password-link'>Forgot Password?</Link>
+                        <Link to="/emailrequest" className='forgot-password-link'>Forgot Password?</Link>
                     </p>
                     <label className='aits-terms'>
                         <input 
