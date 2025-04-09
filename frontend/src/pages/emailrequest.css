@@ -130,3 +130,20 @@
     background-color: rgb(16, 146, 16);
     color: white;
 }
+
+.emailrequest-signin-link {
+    display: block;
+    margin-top: 300px;
+    text-align: center;
+    font-size: 1.3rem;
+    color: rgb(18, 174, 18);
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    position: absolute;
+}
+
+.emailrequest-signin-link:hover {
+    text-decoration: underline;
+    color: rgb(15, 177, 15);
+}
