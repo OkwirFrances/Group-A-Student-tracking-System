@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import './emailrequest.css';
 import help from '../assets/help.png';
@@ -7,9 +8,16 @@ import doorkey from '../assets/doorkey.png';
 
 const EmailRequest = () => {
     const [email, setEmail] = useState('');
+    const navigate = useNavigate();
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
+    };
+
+    const handleNextClick = () => {
+        if (email.trim()) {
+            navigate('/forgotpassword');
+        };
     };
 
     return (
@@ -36,7 +44,10 @@ const EmailRequest = () => {
                     <img src={mail} alt='mailicons' className='emailrequest-mail' />    
                     <button 
                     className='emailrequest-nextbutton'
-                    disabled={!email.trim()}>Next</button>
+                    disabled={!email.trim()}
+                    onClick={handleNextClick}
+                    >Next
+                    </button>
                     <Link to="/signin" className='emailrequest-signin-link'>
                         Sign In
                     </Link>
