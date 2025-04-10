@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import './profile.css';
 import edit from '../assets/edit.png';
 
 const Profile = () => {
+    const navigate = useNavigate();
     const [user] = useState({
         fullName: '',
         phoneNumber: '',
@@ -42,7 +44,11 @@ const Profile = () => {
                             <h2 className='name'>{user.fullName}</h2>
                         </div>
                     </div>
-                    <button className='editbutton'>Edit
+                    <button 
+                         className='editbutton'
+                          onClick={() => navigate('/editprofilepicture')}
+                    >
+                        Edit
                         <img src={edit} alt='edit' className='edit' />
                     </button>
                 </div>
@@ -52,7 +58,11 @@ const Profile = () => {
                     <h2 className='phone-number'>{user.phone}</h2>
                     <label className='gender'>Gender:</label>
                     <h2>{user.gender}</h2>
-                    <button className='personal-information-editbutton'>Edit
+                    <button 
+                         className='personal-information-editbutton'
+                            onClick={() => navigate('/editpersonalinfo')}
+                    >
+                        Edit
                         <img src={edit} alt='edit' className='edit' />
                     </button>
                 </div>
@@ -66,7 +76,12 @@ const Profile = () => {
                     <h2 className='course-name'>{user.course}</h2>
                     <label className='semester'>Semester:</label>
                     <h2 className='semester-name'>{user.semester}</h2>
-                    <button className='academic-information-editbutton'>Edit
+                    <button 
+                         className='academic-information-editbutton'
+                            onClick={() => navigate('/editacademicinfo')}
+                    
+                    >
+                        Edit
                         <img src={edit} alt='edit' className='edit' />
                     </button>
                 </div>    

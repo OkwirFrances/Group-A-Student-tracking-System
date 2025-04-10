@@ -17,6 +17,9 @@ import Settings from './pages/settings';
 import Messages from './pages/messages';
 import NewMessage from './pages/newmessage';
 import Profile from './pages/profile';
+import EditPersonalInfo from './pages/EditPersonalInfo';
+import EditAcademicInfo from './pages/EditAcademicInfo';
+import EditProfilePicture from './pages/EditProfilePicture';
 import RegistrarDashboard from './pages/RegistrarDashboard';
 import RegistrarDashboardContent from './pages/registrardashboardcontent';
 import OpenIssues from './pages/openissues';
@@ -24,6 +27,7 @@ import CourseManagement from './pages/CourseManagement';
 import DepartmentManagement from './pages/DepartmentManagement';
 import { IssuesProvider } from './context/IssueContext';
 import RoleBasedRoute from './components/rolebassedroute';
+
 
 
 
@@ -50,6 +54,9 @@ const App = () => {
             <Route path="settings" element={<Settings />} />
             <Route path='messages' element={<Messages />}/>
             <Route path='profile' element={<Profile />}/>
+            <Route path='editpersonalinfo' element={<EditPersonalInfo />}/>
+            <Route path='editacademicinfo' element={<EditAcademicInfo />}/>
+            <Route path='editprofilepicture' element={<EditProfilePicture />}/>
             <Route path='issues' element={<Issuemanagement />}/>
           </Route>
 

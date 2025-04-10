@@ -1,13 +1,18 @@
-/* General container styling */
+
 .profile-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
     min-height: 100vh;
     background-color: #f9f9f9;
     font-family: Arial, sans-serif;
+    padding: 20px
 }
 
 .profile-content {
+    width: 100%;
+    max-width: 800px;
     flex: 1;
     padding: 20px;
     background-color: #fff;
@@ -15,7 +20,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Profile section styling */
+
 .profile {
     display: flex;
     align-items: center;
@@ -32,6 +37,7 @@
     align-items: center;
     justify-content: center;
     margin-right: 20px;
+        
 }
 
 .profile-picture {
@@ -39,15 +45,15 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #ccc;
+    border: 2px solid black;
 }
 
 .profile-initials {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #0b0b0b;
-    color: white;
+    background-color:white;
+    color:white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,7 +77,7 @@
     color: #555;
 }
 
-/* Personal and Academic Information sections */
+
 .personal-information, .academic-information {
     margin-bottom: 30px;
     padding: 20px;
@@ -101,7 +107,7 @@ h2 {
     margin-bottom: 15px;
 }
 
-/* Buttons */
+
 button {
     display: flex;
     align-items: center;
