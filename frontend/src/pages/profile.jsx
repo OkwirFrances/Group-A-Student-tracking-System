@@ -20,6 +20,7 @@ const Profile = () => {
     });
 
     const getInitials =(name) => {
+        if (!name) return 'N/A';
         return name.charAt(0).toUpperCase();
     };
 
@@ -32,16 +33,15 @@ const Profile = () => {
                 <h1>Profile</h1>
                 <div className='profile-section'></div>
                 <div className='profile'>
-                    <div className="profile-picture-container">
-                        {user.profilePic ? (
-                            <img src={user.profilePic} alt="Profile" className="profile-picture" />
-                        ) : (
-                                <div className="profile-initials">
-                                    {getInitials(user.fullName)}
-                                </div>
-                        )}
-                        
-                    </div>
+                <div className="profile-picture-container">
+    {user.profilePic ? (
+        <img src={user.profilePic} alt="Profile" className="profile-picture" />
+    ) : (
+        <div className="profile-initials">
+            {user.fullName ? getInitials(user.fullName) : "N/A"}
+        </div>
+    )}
+</div>
                     <button 
                          className='editbutton'
                           onClick={() => navigate('/editprofilepicture')}
