@@ -63,7 +63,7 @@ const Profile = () => {
                     <h2>{user.gender}</h2>
                     <button 
                          className='personal-information-editbutton'
-                            onClick={() => navigate('/editpersonalinfo')}
+                        onClick={() => navigate('/editpersonalinfo')}
                     >
                         Edit
                         <img src={edit} alt='edit' className='edit' />
