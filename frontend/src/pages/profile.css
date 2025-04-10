@@ -61,21 +61,6 @@
     font-weight: bold;
 }
 
-.profile-details {
-    display: flex;
-    flex-direction: column;
-}
-
-.profile-details label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.profile-details h2 {
-    font-size: 18px;
-    color: #555;
-}
 
 
 .personal-information, .academic-information {
