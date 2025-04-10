@@ -47,6 +47,7 @@ const IssueForm = () => {
             time: new Date().toLocaleTimeString(),
         };
 
+        
 
         addIssue(newIssue);
 
@@ -74,6 +75,8 @@ const IssueForm = () => {
             coursename: '',
             attachment: null,
         });
+        setBadgeCount(prevCount => prevCount + 1);
+
     };
 
     return (

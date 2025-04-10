@@ -6,7 +6,7 @@ import './issuedetails.css';
 const IssueDetails = () => {
     const { id } = useParams();
     const { issues } = useContext(IssuesContext);
-    const issue = issues.find(issue => issue.id === id);
+    const issue = issues.find(issue => issue.id === id || issue.id === Number(id));
 
     if (!issue) {
         return <div>Issue not found</div>;
@@ -28,7 +28,9 @@ const IssueDetails = () => {
                 {issue.attachment && (
                     <div>
                         <strong>Attachment:</strong>
-                        <img src={URL.createObjectURL(issue.attachment)} alt='attachment' className='issue-attachment' />
+                        <img src={URL.createObjectURL(issue.attachment)} 
+                        alt='attachment' 
+                        className='issue-attachment' />
                     </div>
                 )}
             </div>
