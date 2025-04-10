@@ -3,6 +3,8 @@ import LandingPage from './pages/landingpage';
 import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 import IssueForm from './pages/issueform';
+import LecturerDashboard from './pages/LecturerDashboard';
+import LecturerManagement from './pages/LecturerManagement';
 import Congratulations from './pages/congratulations';
 import StudentDashboard from './pages/StudentDashboard';
 import './App.css';
@@ -23,34 +25,12 @@ import EditProfilePicture from './pages/EditProfilePicture';
 import RegistrarDashboard from './pages/registrardashboard.jsx';
 import RegistrarDashboardContent from './pages/registrardashboardcontent';
 import OpenIssues from './pages/openissues';
+import RoleBasedRoute from './components/rolebassedroute.jsx';
 import CourseManagement from './pages/CourseManagement';
 import DepartmentManagement from './pages/DepartmentManagement';
 import { IssuesProvider } from './context/IssueContext';
 import ProtectedRoute from './pages/ProectectedRoute';
 import './App.css';
-
-// Simple fallback component instead of LoadingSpinner
-const Fallback = () => <div>Loading...</div>;
-
-// Lazy load components for better performance
-const LandingPage = React.lazy(() => import('./pages/landingpage'));
-const SignUp = React.lazy(() => import('./pages/signup'));
-const SignIn = React.lazy(() => import('./pages/signin'));
-const Otp = React.lazy(() => import('./pages/otp'));
-const Congratulations = React.lazy(() => import('./pages/congratulations'));
-const StudentDashboard = React.lazy(() => import('./pages/StudentDashboard'));
-const LecturerDashboard = React.lazy(() => import('./pages/LecturerDashboard'));
-const RegistrarDashboard = React.lazy(() => import('./pages/registrardashboard'));
-const DashboardContent = React.lazy(() => import('./pages/Dashboardcontent'));
-const IssueForm = React.lazy(() => import('./pages/issueform'));
-const IssueDetails = React.lazy(() => import('./pages/issuedetails'));
-const NotificationScreen = React.lazy(() => import('./pages/notificationscreen'));
-const HelpSupport = React.lazy(() => import('./pages/helpsupport'));
-const Settings = React.lazy(() => import('./pages/settings'));
-const DepartmentManagement = React.lazy(() => import('./pages/DepartmentManagement'));
-const CourseManagement = React.lazy(() => import('./pages/CourseManagement'));
-import LecturerManagement from './pages/LecturerManagement';
-// const LecturerIssues = React.lazy(() => import('./pages/LecturerIssues'));
 
 
 const App = () => {

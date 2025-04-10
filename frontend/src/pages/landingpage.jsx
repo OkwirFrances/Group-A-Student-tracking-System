@@ -5,14 +5,17 @@ import { useNavigate } from 'react-router-dom';
 
 
 const LandingPage = () => {
-    const navigate = useNavigate()
-    function handlenextroute(){
-navigate("/signup")
+    const navigate = useNavigate();
+
+    function handlenextroute() {
+    navigate("/signup");
     };
 
-    const move = useNavigate()
-    function handlesignin(){
-        move("/signin")
+    const move = useNavigate();
+
+    function handlesignin() {
+    move("/signin");
+    
     };
     
     return (

@@ -285,9 +285,4 @@ export const issueAPI = {
     export default api;
     
     
-<<<<<<< HEAD
   
-
-=======
-  
->>>>>>> MartinaBranch
