@@ -34,7 +34,7 @@
     position: relative;
     width: 350px;
 }
-//* Placeholder text color */
+/* Placeholder text color */
 .search-bar input {
     padding: 10px 10px;
     border: 1px solid green;
@@ -44,7 +44,7 @@
     flex-grow: 1;
     width: 350px;
 }
-
+/* Search icon */
 .new-issue-btn {
     background:green;
     color: white;
