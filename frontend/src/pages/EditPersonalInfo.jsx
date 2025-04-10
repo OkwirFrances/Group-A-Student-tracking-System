@@ -5,15 +5,15 @@ import './EditPersonalInfo.css';
 const EditPersonalInfo = () => {
     const navigate = useNavigate();
 
-    
+    // Initialize state for personal information
     const [formData, setFormData] = useState({
         fullName: localStorage.getItem('userFullName') || '',
         email: localStorage.getItem('userEmail') || '',
-        phoneNumber: '',
-        gender: '',
+        phoneNumber: localStorage.getItem('userPhoneNumber') || '',
+        gender: localStorage.getItem('userGender') || '',
     });
 
-    
+    // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -22,15 +22,15 @@ const EditPersonalInfo = () => {
         });
     };
 
-
+    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        // Save updated personal information to local storage
         localStorage.setItem('userFullName', formData.fullName);
         localStorage.setItem('userEmail', formData.email);
         localStorage.setItem('userPhoneNumber', formData.phoneNumber);
         localStorage.setItem('userGender', formData.gender);
-        
+        // Navigate back to the profile page
         navigate('/profile');
     };
 

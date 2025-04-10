@@ -54,7 +54,7 @@ const Profile = () => {
                 <div className='personal-information'>
                     <h1>Personal Information </h1>
                     <label className='name'>Full Name:</label>
-                    <h2 className='fullname'>{user.name}</h2>
+                    <h2 className='fullname'>{user.fullname}</h2>
                     <label className='address'>Email Address:</label>
                     <h2 className='address'>{user.email}</h2>
                     <label className='phone'>Phone Number:</label>
