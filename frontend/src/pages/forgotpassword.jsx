@@ -37,6 +37,8 @@ const ForgotPassword = ({ email, onResendOtp }) => {
             console.log('OTP verified successfully');
             setShowCongratulations(true);
 
+            alert('Your Password Has Been Successfully Reset');
+
             const userRole = localStorage.getItem('userRole');
 
             if (userRole === 'registrar') {
@@ -92,15 +94,16 @@ const ForgotPassword = ({ email, onResendOtp }) => {
                         />
                     ))}
                 </div>
-            <Link to="/signin" onClick={handleVerifyClick}>
+            <Link to="/signin">
             
-            <button className='reset-verify-button' 
+            <button 
+                onClick={handleVerifyClick}
+                className='reset-verify-button' 
                disabled={!isOtpComplete}>
                    Next
-               </button></Link>
+            </button></Link>
                 <button 
-                className='reset-resend-button'
-                onClick={handleResendClick}>
+                className='reset-resend-button'>
                     <img className='reset-refresh-icon'src={refresh} alt='refresh icon' /> 
                     Resend Code
                 </button>
