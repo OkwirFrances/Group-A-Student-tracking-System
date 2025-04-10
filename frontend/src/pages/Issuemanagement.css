@@ -63,7 +63,7 @@
     border-radius: 0.5rem;
     transition: background-color 0.2s;
 }
-
+/* Search icon */
 .new-issue-btn:hover {
     background-color: #1d4ed8;
 }
