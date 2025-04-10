@@ -36,13 +36,13 @@ const Sidebar = () => {
                 {userRole === 'registrar' && (
                     <>
                         <li className='sidebar-item'>
-                            <Link to={`${basePath}/department`}>
+                            <Link to={`${basePath}/departments`}>
                                 <img src={department} alt='department' className='sidebar-icon' />
                                 Departments
                             </Link>
                         </li>
                         <li className='sidebar-item'>
-                            <Link to={`${basePath}/course`}>
+                            <Link to={`${basePath}/courses`}>
                                 <img src={course} alt='course' className='sidebar-icon' />
                                 Courses
                             </Link>

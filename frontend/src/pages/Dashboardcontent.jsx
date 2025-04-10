@@ -1,14 +1,11 @@
-import React, { useState, useContext } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import './Dashboardcontent.css';
 import search from '../../assets/search.png';
 import add from '../../assets/add.png';
 import emptybox from '../../assets/emptybox.png';
 import { Link, useNavigate } from 'react-router-dom';
-import { IssuesContext } from '../context/IssueContext';
 
 const DashboardContent = () => {
-    const { issues:contextIssues } = useContext(IssuesContext);
     const [filterStatus, setFilterStatus] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
@@ -36,6 +33,22 @@ const DashboardContent = () => {
         return statusMatch && searchMatch;
     });
 
+    useEffect(() => {
+        const loadIssues = () => {
+            const storedIssues = JSON.parse(localStorage.getItem('issues')) || [];
+            setIssues(storedIssues);
+        };
+
+        loadIssues();
+
+        window.addEventListener('storage', loadIssues);
+
+        return () => {
+            window.removeEventListener('storage', loadIssues);
+        };
+    }, []);
+
+ 
     return (
         <div className='dashboard-content'>
             <h1>{`${userRole.charAt(0).toUpperCase() + userRole.slice(1)} Dashboard`}</h1>

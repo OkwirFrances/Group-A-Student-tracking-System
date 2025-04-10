@@ -2,9 +2,11 @@
     padding: 0px;
     display: flex;
     flex-direction: column;
-    margin-left: 198px;
+    margin-left: 120px;
     height: 100vh;
-    width: 85%;
+    width: 90%;
+    margin-left: 120px;
+    margin-top: 40px;
     
 }
 
@@ -113,7 +115,7 @@
 .new-issue-button {
     position: absolute;
     top: 10px;
-    right: 20px;
+    right: 30px;
     padding: 10px 30px;
     background-color: green;
     color: black;
@@ -214,11 +216,13 @@
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid black;
+    gap: 20px;
 }
 
 .table-row-item {
     flex: 1;
     text-align: center;
+    
 }
 
 @media (max-width: 768px) {

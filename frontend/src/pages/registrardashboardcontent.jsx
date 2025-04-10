@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './registrardashboardcontent.css';
 import filter from '../assets/filter.png';
@@ -6,6 +6,7 @@ import emptybox from '../assets/emptybox.png';
 import search from '../assets/search.png';
 
 const RegistrarDashboardContent = () => {
+    const [issues, setIssues] = useState([]);
     const [assignedIssues, setAssignedIssues] = useState(0);
     const [pendingIssues, setPendingIssues] = useState(0);
     const [inProgressIssues, setInProgressIssues] = useState(0);
@@ -13,6 +14,32 @@ const RegistrarDashboardContent = () => {
 
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const loadIssues = () => {
+            const storedIssues = JSON.parse(localStorage.getItem('issues')) || [];
+            setIssues(storedIssues);
+
+            const assignedCount = storedIssues.length;
+            const pendingCount = storedIssues.filter(issue => issue.status.toLowerCase() === 'pending').length;
+            const inProgressCount = storedIssues.filter(issue => issue.status.toLowerCase() === 'in-progress').length;
+            const resolvedCount = storedIssues.filter(issue => issue.status.toLowerCase() === 'resolved').length;   
+
+            setAssignedIssues(assignedCount);
+            setPendingIssues(pendingCount); 
+            setInProgressIssues(inProgressCount);
+            setResolvedIssues(resolvedCount);
+
+        };
+
+        loadIssues();
+
+        window.addEventListener('storage', loadIssues);
+
+        return () => {
+            window.removeEventListener('storage', loadIssues);
+        };
+    }, []);
 
     const handleOpenIssuesClick = () => {
         navigate('/registrar-dashboard/openissues');

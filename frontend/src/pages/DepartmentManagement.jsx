@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
+import './DepartmentManagement.css';
 import { useNavigate } from 'react-router-dom';
 import { departmentAPI, userAPI} from '../services/api';
 
@@ -71,11 +70,10 @@ const DepartmentManagement = () => {
     if (loading) return <div className="loading">Loading departments...</div>;
 
     return (
-        <div className="dashboard-content">
+        <div className="department-content">
             <h1>Department Management</h1>
-            
             <div className="management-container">
-                <div className="form-section">
+                <div className="department-form-section">
                     <h2>Create New Department</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
@@ -107,7 +105,7 @@ const DepartmentManagement = () => {
                                 className="uppercase-input"
                             />
                         </div>
-                        <button type="submit" className="submit-button">
+                        <button type="submit" className="department-submit-button">
                             Create Department
                         </button>
                     </form>
@@ -132,7 +130,7 @@ const DepartmentManagement = () => {
                                             <td>
                                                 <button 
                                                     onClick={() => handleDelete(dept.id)}
-                                                    className="delete-button"
+                                                    className="department-delete-button"
                                                 >
                                                     Delete
                                                 </button>
@@ -152,6 +150,3 @@ const DepartmentManagement = () => {
 };
 
 export default DepartmentManagement;
-
-
-

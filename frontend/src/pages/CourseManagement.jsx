@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, use } from 'react';
+import './CourseManagement.css';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { courseAPI, departmentAPI, userAPI} from '../services/api';
@@ -11,7 +12,7 @@ const CourseManagement = () => {
     const[formData, setFormData] = useState({
         name: '',
         code: '',
-        department_id: '' //changed from department to match the model
+        department_id: '' 
 });
 const navigate = useNavigate();
 
@@ -90,14 +91,14 @@ useEffect(() => {
     if (loading) return <div className="loading">Loading courses...</div>;
 
     return (
-        <div className="dashboard-content">
+        <div className="course-content">
             <h1>Course Management</h1>
 
-            <div className="management-container">
-                <div className="form-section">
+            <div className="course-management-container">
+                <div className="course-form-section">
                     <h2>Create New Course</h2>
                     <form onSubmit={handleSubmit}>
-                        <div className="form-group">
+                        <div className="course-form-group">
                             <label>Course Name</label>
                             <input
                                 type="text"
@@ -108,7 +109,7 @@ useEffect(() => {
                                 placeholder="E.g. Data Structures"
                             />
                             </div>
-                        <div className="form-group">
+                        <div className="course-form-group">
                             <label>Course Code</label>
                             <input
                                 type="text"
@@ -119,7 +120,7 @@ useEffect(() => {
                                 placeholder="E.g. CS201"
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="course-form-group">
                             <label>Department</label>
                             <select
                                 name="department_id"  // Changed to match state
@@ -135,17 +136,17 @@ useEffect(() => {
                                 ))}
                             </select>
                         </div>
-                        <button type="submit" className="submit-button">
+                        <button type="submit" className="course-submit-button">
                             Create Course
                         </button>
                     </form>
                 </div>
 
-                <div className="list-section">
+                <div className="course-list-section">
                     <h2>Existing Courses</h2>
                     {courses.length > 0 ? (
-                        <div className="table-container">
-                            <table className="management-table">
+                        <div className="course-table-container">
+                            <table className="course-management-table">
                                 <thead>
                                     <tr>
                                     <th>Name</th>
@@ -163,7 +164,7 @@ useEffect(() => {
                                             <td>
                                                 <button 
                                                     onClick={() => handleDelete(course.id)}
-                                                    className="delete-button"
+                                                    className="course-delete-button"
                                                 >
                                                     Delete
                                                 </button>
@@ -174,7 +175,7 @@ useEffect(() => {
                             </table>
                         </div>
                     ) : (
-                        <p className="no-data">No courses found</p>
+                        <p className="course-no-data">No courses found</p>
                     )}
                 </div>
             </div>

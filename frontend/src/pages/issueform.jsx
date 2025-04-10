@@ -42,11 +42,19 @@ const IssueForm = () => {
         const newIssue = {
             id: uuidv4(),
             ...formData,
-            status: 'pending',
+            status: 'Pending',
             date: new Date().toLocaleDateString(),
             time: new Date().toLocaleTimeString(),
         };
+
+
         addIssue(newIssue);
+
+        const existingIssues = JSON.parse(localStorage.getItem('issues')) || [];
+
+        const updatedIssues = [...existingIssues, newIssue];
+
+        localStorage.setItem('issues', JSON.stringify(updatedIssues));
 
         setNotificationMessage({
             message: 'Your issue has been submitted successfully!',
@@ -73,7 +81,7 @@ const IssueForm = () => {
             <div className='issue-form-header'>
                 <h1>Create a new isssue</h1>
             </div>
-        <div className='issue-form-content'>
+            <div className='issue-form-content'>
             <label className='registrar-select-label'>
                 Registrar's Name
                 <select

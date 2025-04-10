@@ -10,6 +10,8 @@ import { authAPI } from '../services/api';
 
 
 const SignUp = () => {
+
+
     
 
     const [formData, setFormData] = useState({
@@ -50,7 +52,10 @@ const SignUp = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
+        if (isFormValid()){
+            localStorage.setItem('userfullName', formData.fullName);
+            generateOtp();
+            setShowOtpScreen(true);
 
         if (error) {
             return;
@@ -182,5 +187,5 @@ const SignUp = () => {
         </div>
     );
 };
-
+};
 export default SignUp;

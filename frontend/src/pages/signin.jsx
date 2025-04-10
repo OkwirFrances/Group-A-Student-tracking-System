@@ -33,38 +33,15 @@ const SignIn = () => {
             setError('Please fill in all fields.');
             return;
         }
-
-        if (formData.password.length < 8) {
-            setError('Password must be at least 8 characters long.');
-            return;
-
-        }
-
         try {
-            const data = await authAPI.login(formData.email, formData.password);
-            
-            // Store user data in localStorage
-            localStorage.setItem('authToken', data.access);
-            localStorage.setItem('refreshToken', data.refresh);
-            localStorage.setItem('userRole', data.role);
-            localStorage.setItem('userEmail', data.email);
-            localStorage.setItem('userFullname', data.fullname);
-
-
-            // Redirect to the appropriate dashboard based on the user's role
-            switch (data.role) {
-                case 'lecturer':
-                    navigate('/lecturer/dashboard');
-                    break;
-                case 'student':
-                    navigate('/student/dashboard');
-                    break;
-                case 'registrar':
-                    navigate('/registrar/dashboard');
-                    break;
-                default:
-                    setError('Unknown user role.');
-                    break;
+            if (userRole === 'registrar') {
+                navigate('/registrar-dashboard/dashboard');
+            } else if (userRole === 'student') {
+                navigate('/app/dashboard');
+            } else if (userRole === 'lecturer') {
+                navigate('/lecturer-dashboard');
+            } else {
+                console.log('Invalid user role');
             }
         
         } catch (error) {

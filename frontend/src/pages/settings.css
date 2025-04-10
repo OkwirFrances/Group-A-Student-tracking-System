@@ -227,6 +227,23 @@
     margin-top: 220px;
 }
 
+.old-password:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.new-password:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+.confirm-password {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
 .delete-buttons {
     display: flex;
     justify-content: space-between;
