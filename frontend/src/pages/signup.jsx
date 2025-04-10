@@ -134,7 +134,7 @@ const SignUp = () => {
                             <img src={padlock} alt='padlock' className='padlockicon' />
                         </div>
                     </label>
-                    <label>
+                    {/* <label>
                         Confirm Password
                         <div className='input-container'>
                         <input 
@@ -147,7 +147,7 @@ const SignUp = () => {
                             minLength={8} />
                             <img src={padlock} alt='padlock' className='padlockicon' />
                         </div>
-                    </label>
+                    </label> */}
                     <label>
                         Role
                         <div className='dropdown' >
@@ -175,7 +175,7 @@ const SignUp = () => {
                     <button 
                         onClick={handleSubmit}
                         className='signup-button' 
-                        disabled={!isFormValid()}
+                        disabled={isFormValid()}
                         >
                         SIGN UP
                     </button>
