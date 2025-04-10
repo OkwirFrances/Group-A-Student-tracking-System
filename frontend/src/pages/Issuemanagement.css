@@ -34,7 +34,7 @@
     position: relative;
     width: 350px;
 }
-
+//* Placeholder text color */
 .search-bar input {
     padding: 10px 10px;
     border: 1px solid green;
