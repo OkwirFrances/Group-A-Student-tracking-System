@@ -9,6 +9,8 @@ import padlock from '../assets/padlock.png';
 
 
 const SignUp = () => {
+
+
     
 
     const [formData, setFormData] = useState({
@@ -56,6 +58,7 @@ const SignUp = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isFormValid()){
+            localStorage.setItem('userfullName', formData.fullName);
             generateOtp();
             setShowOtpScreen(true);
 

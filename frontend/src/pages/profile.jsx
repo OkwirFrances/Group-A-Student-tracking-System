@@ -7,8 +7,10 @@ import edit from '../assets/edit.png';
 
 const Profile = () => {
     const navigate = useNavigate();
+    const fullName = localStorage.getItem('fullName') || '';
+
     const [user] = useState({
-        fullName: '',
+        fullName: fullName || '',
         address: '',
         phoneNumber: '',
         gender: '',
@@ -20,7 +22,6 @@ const Profile = () => {
     });
 
     const getInitials =(name) => {
-        if (!name) return 'N/A';
         return name.charAt(0).toUpperCase();
     };
 
