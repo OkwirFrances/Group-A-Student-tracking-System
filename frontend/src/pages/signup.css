@@ -232,8 +232,6 @@ input:hover, .role-select:hover {
     margin-left: 50px;
 }
 
-
-
 .signup-button:disabled {
     background-color: grey;
     cursor: not-allowed;
