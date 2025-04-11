@@ -36,6 +36,7 @@
 .congratulations-container p {
     font-size: 1.2rem;
     color: black;
+    font-weight: bold;
     margin-bottom: 30px;
 }
 
