@@ -121,6 +121,7 @@
     width: 330px;
     height: 50px;
     display: flex;
+    justify-content: center;
 }
 
 .verify-button:disabled {
