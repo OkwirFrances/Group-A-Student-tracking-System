@@ -18,6 +18,13 @@ const Navbar = ({ badgeCount }) => {
 
     
 
+
+
+
+
+
+    
+
     const getInitials = (name) => {
         return name.charAt(0).toUpperCase();
     };
