@@ -99,7 +99,10 @@ const Otp = ({ email, onResendOtp }) => {
                         />
                     ))}
                 </div>
-                <button className='verify-button' onClick={handleVerifyClick} disabled={!isOtpComplete}>
+                <button 
+                    className='verify-button' 
+                    onClick={handleVerifyClick} 
+                    disabled={!isOtpComplete}>
                     Verify
                 </button>
                 <button className='resend-button' onClick={handleResendClick}>
