@@ -8,7 +8,7 @@ const LandingPage = () => {
     const navigate = useNavigate();
 
     function handlenextroute() {
-    navigate("/signup");
+        navigate("/signup");
     };
 
     const move = useNavigate();

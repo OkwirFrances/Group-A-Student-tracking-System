@@ -3,8 +3,6 @@ import LandingPage from './pages/landingpage';
 import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 import IssueForm from './pages/issueform';
-import LecturerDashboard from './pages/LecturerDashboard';
-import LecturerManagement from './pages/LecturerManagement';
 import Congratulations from './pages/congratulations';
 import StudentDashboard from './pages/StudentDashboard';
 import './App.css';
@@ -19,21 +17,16 @@ import Settings from './pages/settings';
 import Messages from './pages/messages';
 import NewMessage from './pages/newmessage';
 import Profile from './pages/profile';
-import EditPersonalInfo from './pages/EditPersonalInfo';
-import EditAcademicInfo from './pages/EditAcademicInfo';
-import EditProfilePicture from './pages/EditProfilePicture';
-import RegistrarDashboard from './pages/registrardashboard.jsx';
-import RegistrarDashboard from './pages/registrardashboard';
+import RegistrarDashboard from './pages/RegistrarDashboard';
 import EmailRequest from './pages/emailrequest';
 import ForgotPassword from './pages/forgotpassword';
 import RegistrarDashboardContent from './pages/registrardashboardcontent';
 import OpenIssues from './pages/openissues';
-import RoleBasedRoute from './components/rolebassedroute.jsx';
 import CourseManagement from './pages/CourseManagement';
 import DepartmentManagement from './pages/DepartmentManagement';
 import { IssuesProvider } from './context/IssueContext';
-import ProtectedRoute from './pages/ProectectedRoute';
-import './App.css';
+import RoleBasedRoute from './components/rolebassedroute';
+
 
 
 const App = () => {
@@ -43,8 +36,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" index element={<Navigate to="landing"/>}/>
-          <Route path="landing" element={<LandingPage/>}/>
           <Route path="signup" element={<SignUp/>}/>
+          <Route path="landing" element={<LandingPage/>}/>
           <Route path="signin" element={<SignIn/>}/>
           <Route path="emailrequest" element={<EmailRequest/>}/>
           <Route path="forgotpassword" element={<ForgotPassword/>}/>
@@ -61,68 +54,9 @@ const App = () => {
             <Route path="settings" element={<Settings />} />
             <Route path='messages' element={<Messages />}/>
             <Route path='profile' element={<Profile />}/>
-            <Route path='editpersonalinfo' element={<EditPersonalInfo />}/>
-            <Route path='editacademicinfo' element={<EditAcademicInfo />}/>
-            <Route path='editprofilepicture' element={<EditProfilePicture />}/>
             <Route path='issues' element={<Issuemanagement />}/>
           </Route>
 
-              {/* Protected Routes */}
-              <Route
-                path="/student/*"
-                element={
-                  <ProtectedRoute allowedRoles={["student"]}>
-                    <StudentDashboard />
-                  </ProtectedRoute>
-                }
-            > 
-                <Route index element={<Navigate to="dashboard" replace />} />
-                <Route path="dashboard" element={<DashboardContent />} />
-                <Route path="issueform" element={<IssueForm />} />
-                <Route path="issues" element={<DashboardContent />} />
-                <Route path="issue/:id" element={<IssueDetails />} />
-                <Route path="notifications" element={<NotificationScreen />} />
-                <Route path="support" element={<HelpSupport />} />
-                <Route path="settings" element={<Settings />} />
-              </Route>
-            
-              {/* Protected Lecturer Routes */}
-              <Route
-                path="/lecturer/*"
-                element={
-                  <ProtectedRoute allowedRoles={["lecturer"]}>
-                    <LecturerDashboard />
-                  </ProtectedRoute>
-                }
-              >
-                <Route index element={<Navigate to="dashboard" replace />} />
-                  <Route path="dashboard" element={<DashboardContent />} />
-                  <Route path="issue/:id" element={<IssueDetails />} />
-                  {/* <Route path="issues" element={<LecturerIssues />} /> */}
-                  <Route path="notifications" element={<NotificationScreen />} />
-                  <Route path="support" element={<HelpSupport />} />
-                  <Route path="settings" element={<Settings />} />
-                </Route>
-                
-                {/* Protected Registrar Routes */}
-                <Route
-                  path="/registrar/*"
-                  element={
-                    <ProtectedRoute allowedRoles={["registrar"]}>
-                      <RegistrarDashboard />
-                    </ProtectedRoute>
-                  }
-              >
-                <Route index element={<Navigate to="dashboard" replace />} />
-                  <Route path="dashboard" element={<DashboardContent />} />
-                  <Route path="issue/:id" element={<IssueDetails />} />
-                  <Route path="notifications" element={<NotificationScreen />} />
-                  <Route path="support" element={<HelpSupport />} />
-                  <Route path="settings" element={<Settings />} />
-                  <Route path="lecturers" element={<LecturerManagement />} />
-                  <Route path="departments" element={<DepartmentManagement />} />
-                  <Route path="courses" element={<CourseManagement />} />
-                </Route>
 
           <Route path='registrar-dashboard' element={<RoleBasedRoute allowedRoles={['registrar']}>
             <RegistrarDashboard />
