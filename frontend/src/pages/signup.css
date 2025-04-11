@@ -219,10 +219,14 @@ input:hover, .role-select:hover {
     margin-top: 20px;
     background-color: black;
     color: white;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     transition: background-color 0.3s;
     width: 112%;
     margin-left: 50px;
