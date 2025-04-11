@@ -7,8 +7,7 @@ import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
  
 
-const Navbar = ({ badgeCount }) => {
-
+const Navbar = ({ badgeCount, setBadgeCount }) => {
     const [user] = useState({
         fullName: 'Alvin David',
         profilePic: null,
@@ -33,6 +32,10 @@ const Navbar = ({ badgeCount }) => {
         const userRole = localStorage.getItem('userRole');
         const basePath = userRole === 'registrar' ? '/registrar-dashboard' : '/app';
         navigate(`${basePath}/notifications`);
+
+        if (userRole === 'registrar') {
+            setBadgeCount(0);
+        }
     };
 
     const handleMailClick = () => {
@@ -44,7 +47,9 @@ const Navbar = ({ badgeCount }) => {
     return (
             <nav className='navbar'>
                 <div className='navbar-logo'>
-                    <img src={logo} alt='muk-logo' className='makerere-logo' />
+                    <img 
+                    src={logo} alt='muk-logo' 
+                    className='makerere-logo' />
                     <span className='navbar-logo-text'>Academic Issue Tracking System</span>
                     <div className='search-container'>
                         <input
@@ -54,13 +59,20 @@ const Navbar = ({ badgeCount }) => {
                         />
                     <img src={search} alt='search' className='search-icon' />
                     </div>
-                    <img src={notification} alt='notification' className='notification-icon' onClick={handleNotificationClick} />
-                    {badgeCount > 0 && <span className='notification-badge'>{badgeCount}</span>}
+                    <div className='notifications-container'>
+                        <img 
+                            src={notification} 
+                            alt='notification' 
+                            className='notification-icon' 
+                            onClick={handleNotificationClick}
+                        />
+                        {badgeCount > 0 && <span className='notification-badge'></span>}
+                    </div>
                     <img 
-                    src={mail} 
-                    alt='mail' 
-                    className='mail-icon'
-                    onClick={handleMailClick}
+                        src={mail} 
+                        alt='mail' 
+                        className='mail-icon'
+                        onClick={handleMailClick}
                     />
                         {user.profilePic ? (
                             <img src={user.profilePic} alt='user' className='user-icon' />

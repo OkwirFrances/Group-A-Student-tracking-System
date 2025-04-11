@@ -4,6 +4,7 @@ import './signin.css';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import padlock from '../assets/padlock.png';
 import { authAPI } from '../services/api.jsx';
 
@@ -96,7 +97,7 @@ const SignIn = () => {
                         </div>
                     </label>
                     <p className='forgot-password'>
-                        <a href='forgot-password' className='forgot-password-link'>Forgot Password?</a>
+                        <Link to="/emailrequest" className='forgot-password-link'>Forgot Password?</Link>
                     </p>
                     <button
                         className='signinbutton'

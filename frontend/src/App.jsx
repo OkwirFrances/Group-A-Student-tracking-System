@@ -23,6 +23,9 @@ import EditPersonalInfo from './pages/EditPersonalInfo';
 import EditAcademicInfo from './pages/EditAcademicInfo';
 import EditProfilePicture from './pages/EditProfilePicture';
 import RegistrarDashboard from './pages/registrardashboard.jsx';
+import RegistrarDashboard from './pages/registrardashboard';
+import EmailRequest from './pages/emailrequest';
+import ForgotPassword from './pages/forgotpassword';
 import RegistrarDashboardContent from './pages/registrardashboardcontent';
 import OpenIssues from './pages/openissues';
 import RoleBasedRoute from './components/rolebassedroute.jsx';
@@ -43,6 +46,8 @@ const App = () => {
           <Route path="landing" element={<LandingPage/>}/>
           <Route path="signup" element={<SignUp/>}/>
           <Route path="signin" element={<SignIn/>}/>
+          <Route path="emailrequest" element={<EmailRequest/>}/>
+          <Route path="forgotpassword" element={<ForgotPassword/>}/>
           <Route path="otp" element={<Otp/>}/>
           <Route path="congs" element={<Congratulations/>}/>
           <Route path="app" element={<RoleBasedRoute allowedRoles={['student']}>
