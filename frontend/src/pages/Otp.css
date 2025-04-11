@@ -120,6 +120,7 @@
     transition: background-color 0.3s;
     width: 330px;
     height: 50px;
+    display: flex;
 }
 
 .verify-button:disabled {
