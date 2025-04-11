@@ -22,8 +22,10 @@ const Congratulations = () => {
                 <h1>Congratulations!</h1>
                 <p>Your account has been successfully created and verified.<br/>Sign In to access your account.</p>
                <Link to="/signin">
-               <button className='signin-button' >
-               SIGN IN</button>
+               <button 
+                className='signin-button' >
+                SIGN IN
+               </button>
                </Link>
             </div>
         </div>
