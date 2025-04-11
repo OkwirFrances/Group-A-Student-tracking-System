@@ -3,6 +3,7 @@ import './issueform.css';
 import upload from '../assets/upload.png';
 import { IssuesContext } from '../context/IssueContext';
 import { v4 as uuidv4 } from 'uuid';
+import { issueAPI } from '../services/api'; // Import your API service
 
 const IssueForm = () => {
     const { addIssue, setNotificationMessage } = useContext(IssuesContext);
@@ -17,6 +18,8 @@ const IssueForm = () => {
         attachment: null,
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState(null);
 
     const fileInputRef = useRef(null);
 
@@ -37,16 +40,50 @@ const IssueForm = () => {
         return Object.values(formData).every(value => value !== '' && value !== null);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!isFormComplete()) 
+            
+            return;
+        
+        setIsSubmitting(true);
+        setError(null);
+
+        try {
+            // Prepare form data for backend
+            const formDataToSend = new FormData();
+            formDataToSend.append('title', formData.title);
+            formDataToSend.append('description', formData.description);
+            formDataToSend.append('category', formData.category);
+            formDataToSend.append('registrar', formData.registrar);
+            formDataToSend.append('lecturer', formData.lecturer);
+            formDataToSend.append('coursecode', formData.coursecode);
+            formDataToSend.append('coursename', formData.coursename);
+            if (formData.attachment) {
+                formDataToSend.append('attachment', formData.attachment);
+            }
+
+            // Send to backend
+            const response = await issueAPI.createIssue(formDataToSend);
+
+
+             // If successful, update local state
         const newIssue = {
             id: uuidv4(),
             ...formData,
-            status: 'pending',
+            status: 'Pending',
             date: new Date().toLocaleDateString(),
             time: new Date().toLocaleTimeString(),
         };
+
+
         addIssue(newIssue);
+
+        const existingIssues = JSON.parse(localStorage.getItem('issues')) || [];
+
+        const updatedIssues = [...existingIssues, newIssue];
+
+        localStorage.setItem('issues', JSON.stringify(updatedIssues));
 
         setNotificationMessage({
             message: 'Your issue has been submitted successfully!',
@@ -55,7 +92,7 @@ const IssueForm = () => {
         });
 
         console.log('Form submitted successfully', formData);
-        alert("Issue submitted successfully!");
+        
         setFormData({
             title: '',
             description: '',
@@ -66,14 +103,22 @@ const IssueForm = () => {
             coursename: '',
             attachment: null,
         });
-    };
+        alert("Issue submitted successfully!");
+    } catch (err) {
+        console.error('Error submitting issue:', err);
+        setError(err.message || 'Failed to submit issue. Please try again.');
+        alert("Failed to submit issue. Please try again.");
+    } finally {
+        setIsSubmitting(false);
+    }
+};
 
     return (
         <div className='issue-form-container'>
             <div className='issue-form-header'>
                 <h1>Create a new isssue</h1>
             </div>
-        <div className='issue-form-content'>
+            <div className='issue-form-content'>
             <label className='registrar-select-label'>
                 Registrar's Name
                 <select
@@ -186,7 +231,9 @@ const IssueForm = () => {
             <button
                 className='issue-submit-button'
                 onClick={handleSubmit}
-                disabled={!isFormComplete()}>
+                disabled={!isFormComplete() || isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+            
                     Submit
             </button>
             </div>

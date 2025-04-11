@@ -1,6 +1,5 @@
 .issue-form-container {
-    padding: 0px;
-    padding-top: 70px;
+    padding-top: 20px;
     margin: 0;
     margin-left: -160px;
     margin-bottom: 10px;
@@ -54,6 +53,12 @@
     font-size: 0.9rem;
 }
 
+.registrar-select:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
 .issue-select {
     width: 40%;
     margin-top: 10px;
@@ -61,6 +66,12 @@
     border: 1px solid black;
     border-radius: 10px;
     font-size: 0.9rem;
+}
+
+.issue-select:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
 }
 
 .issue-label {
@@ -98,7 +109,7 @@
     color: black;
     font-size: 1.2rem;
     font-weight: bold;
-    right: 180px;
+    right: 199px;
     width: 36%;
     height: 200vh;
 }
@@ -139,6 +150,41 @@
     border: none;
 }
 
+.course-code-input:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.lecturer-select:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.upload-section:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.issue-title-input:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.issue-description-input:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.course-name-input:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
 .selected-image {
     max-width: 300px;
     max-height: 200px;
@@ -206,7 +252,7 @@
     padding: 10px;
     border-radius: 10px;
     background-color: green;
-    margin-left: 890px;
+    margin-left: 830px;
     margin-top: 40px;
     cursor: pointer;
 }
