@@ -43,9 +43,7 @@ const App = () => {
           <Route path="forgotpassword" element={<ForgotPassword/>}/>
           <Route path="otp" element={<Otp/>}/>
           <Route path="congs" element={<Congratulations/>}/>
-          <Route path="app" element={<RoleBasedRoute allowedRoles={['student']}>
-            <StudentDashboard />
-          </RoleBasedRoute>}>
+          <Route path="app" element={<StudentDashboard />}>
             <Route path="dashboard" element={ <DashboardContent />}/>
             <Route path='notifications' element={<NotificationScreen />}/>
             <Route path='issueform' element={<IssueForm />}/>

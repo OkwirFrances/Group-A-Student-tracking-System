@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost:5173',
+    '*',
     'localhost',
     'groupaaits.onrender.com'
     ]
