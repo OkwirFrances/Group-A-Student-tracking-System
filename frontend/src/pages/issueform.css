@@ -1,3 +1,4 @@
+
 .issue-form-container {
     padding-top: 20px;
     margin: 0;
@@ -19,20 +20,20 @@
     margin-left: 360px;
     position: absolute;
     color: black;
-    margin-top: 6px;
+    margin-top: 7px;
 }
 
 .issue-form-content {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 40px;
     padding: 20px;
     margin-left: 360px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
-    height: 200vh;
+    height: 100vh;
     border: 1px solid black;
     width: 74%;
 }
