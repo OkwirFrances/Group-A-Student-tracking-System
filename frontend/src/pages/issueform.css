@@ -258,6 +258,8 @@
     background-color: green;
     margin-left: 830px;
     margin-top: 70px;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
 }
 
