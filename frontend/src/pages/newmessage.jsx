@@ -86,7 +86,10 @@ const NewMessage = () => {
                 </div>
                 {!showUserList ? (
                     <>
-                        <img src={emptybox} alt='emptybox' className='newmessage-emptybox' />
+                        <img 
+                            src={emptybox} 
+                            alt='emptybox' 
+                            className='newmessage-emptybox' />
                         <p>Click the button below to start a new chat.</p>
                         <img 
                         src={newmessage} 
