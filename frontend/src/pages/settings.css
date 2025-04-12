@@ -179,8 +179,10 @@
 .change-password {
     margin-top: 60px;
     padding: 10px 60px;
+    border: 1px solid black;
     border-radius: 10px;
     font-size: 1rem;
+    justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
