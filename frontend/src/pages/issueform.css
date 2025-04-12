@@ -17,8 +17,9 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-left: 360px;
+    position: absolute;
     color: black;
-    margin-top: -26px;
+    margin-top: 6px;
 }
 
 .issue-form-content {
