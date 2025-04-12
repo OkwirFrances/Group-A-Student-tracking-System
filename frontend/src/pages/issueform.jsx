@@ -3,7 +3,7 @@ import './issueform.css';
 import upload from '../assets/upload.png';
 import { IssuesContext } from '../context/IssueContext';
 import { v4 as uuidv4 } from 'uuid';
-import { issueAPI } from '../services/api'; // Import your API service
+import { issueAPI } from '../services/api'; 
 
 const IssueForm = ({ setBadgeCount }) => {
     const { addIssue, setNotificationMessage } = useContext(IssuesContext);
