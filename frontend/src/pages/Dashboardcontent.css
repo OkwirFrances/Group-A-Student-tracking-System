@@ -40,6 +40,10 @@
     color: black;
 }
 
+.card.resolved h2 {
+    color: black;
+}
+
 .card.in-progress {
     background-color: rgb(216, 150, 27);
 }
