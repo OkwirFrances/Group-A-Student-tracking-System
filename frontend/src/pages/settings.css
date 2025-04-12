@@ -102,7 +102,7 @@
 }
 
 .save-changes {
-    margin-top: 100px;
+    margin-top: 110px;
     padding: 10px 20px;
     font-size: 1rem;
     background-color: green;
@@ -110,7 +110,7 @@
     cursor: pointer;
     transition: background-color 0.3 ease;
     width: 55%;
-    margin-left: 390px;
+    margin-left: 385px;
     font-weight: bold;
 }
 
