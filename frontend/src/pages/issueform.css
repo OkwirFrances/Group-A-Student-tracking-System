@@ -90,7 +90,7 @@
 .course-code-label {
     position: absolute;
     top: 29px;
-    right: 400px;
+    right: 250px;
     font-weight: bold;
     font-size: 1.2rem;
     color: black;
@@ -99,7 +99,7 @@
 .lecturer-label {
     position: absolute;
     top: 111px;
-    right: 440px;
+    right: 300px;
     font-weight: bold;
     font-size: 1.2rem;
     color: black;
