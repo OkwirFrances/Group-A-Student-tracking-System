@@ -142,9 +142,9 @@ const Settings = () => {
                             minLength={8}/>
                         </label>
                         <button 
-                        className='save-changes'
-                        disabled={!isFormComplete()}
-                        onClick={handleSaveChanges}
+                            className='save-changes'
+                            disabled={!isFormComplete()}
+                            onClick={handleSaveChanges}
                         >Save Changes
                         </button>
                     </div>
