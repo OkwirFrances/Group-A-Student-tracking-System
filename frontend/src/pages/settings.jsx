@@ -164,12 +164,12 @@ const Settings = () => {
                         <h2>Are you sure your want to delete your account?</h2>
                         <div className='delete-buttons'>
                             <button
-                            className='delete-no'
-                            onClick={handleCancelDelete}
+                                className='delete-no'
+                                onClick={handleCancelDelete}
                             >No</button>
                             <button
-                            className='delete-yes'
-                            onClick={handleDeleteAccount}
+                                className='delete-yes'
+                                onClick={handleDeleteAccount}
                             >Yes
                             </button>
                         </div>
