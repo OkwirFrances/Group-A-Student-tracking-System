@@ -5,7 +5,6 @@ import search from '../assets/search.png';
 import notification from '../assets/notification.png';
 import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
- 
 
 const Navbar = ({ badgeCount, setBadgeCount }) => {
     const [user] = useState({
@@ -14,15 +13,6 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
     });
 
     const navigate = useNavigate();
-
-    
-
-
-
-
-
-
-    
 
     const getInitials = (name) => {
         return name.charAt(0).toUpperCase();
