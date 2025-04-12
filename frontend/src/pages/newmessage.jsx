@@ -26,7 +26,7 @@ const NewMessage = () => {
     const fileInputRef = useRef(null);
 
     const handleBackMessageClick = () => {
-        navigate('/messages');
+        navigate('/app/messages');
     };
 
     const handleNewMessageClick = () => {
