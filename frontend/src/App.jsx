@@ -56,8 +56,7 @@ const App = () => {
           </Route>
 
 
-          <Route path='registrar-dashboard' element={
-              <RegistrarDashboard />}>
+          <Route path='registrar-dashboard' element={<RegistrarDashboard />}>
             <Route path="dashboard" element={<RegistrarDashboardContent />} />
             <Route path='openissues' element={<OpenIssues />}/>
             <Route path='notifications' element={<NotificationScreen />}/>
