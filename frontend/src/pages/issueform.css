@@ -205,7 +205,7 @@
 }
 
 .lecturer-select {
-    width: 323%;
+    width: 180%;
     margin-top: 5px;
     border: 1px solid black;
     border-radius: 10px;
@@ -215,7 +215,7 @@
 }
 
 .course-code-input {
-    width: 250%;
+    width: 140%;
     margin-top: 5px;
     border: 1px solid black;
     border-radius: 10px;
