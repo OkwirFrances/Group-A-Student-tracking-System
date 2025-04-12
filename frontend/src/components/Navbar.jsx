@@ -71,7 +71,6 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
                                 {getInitials(user.fullName)}
                             </div>
                         )}
-                    
                 </div>
                 <span className='user-greeting'>Hi, {user.fullName}</span>
             </nav>
