@@ -4,6 +4,7 @@ import search from '../assets/search.png';
 import add from '../assets/add.png';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
+import { IssuesContext } from '../context/IssueContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 const DashboardContent = () => {
