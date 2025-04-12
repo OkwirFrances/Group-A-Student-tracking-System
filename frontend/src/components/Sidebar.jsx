@@ -74,7 +74,7 @@ const Sidebar = () => {
                 </li>
                 <li className='sidebar-item'>
                     <button onClick={handleLogout} className='logout-button'>
-                        <img src={logout} alt='logout' className='sidebar-icon' />
+                        <img src={logout} alt='logout' className='sidebaricon' />
                         Logout
                     </button>
                 </li>
