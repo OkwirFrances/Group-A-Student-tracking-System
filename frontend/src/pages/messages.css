@@ -39,7 +39,8 @@
     height: 100vh;
     position: absolute;
     margin-top: 300px;
-    width: 95%;
+    margin-left: 130px;
+    width: 80%;
     background-color: white;
     gap: 20px;
 }
