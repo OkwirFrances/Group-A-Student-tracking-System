@@ -112,6 +112,7 @@
     width: 55%;
     margin-left: 385px;
     font-weight: bold;
+    display: flex;
 }
 
 .save-changes:hover {
