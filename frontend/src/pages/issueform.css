@@ -258,6 +258,7 @@
     background-color: green;
     margin-left: 865px;
     margin-top: 70px;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     cursor: pointer;
