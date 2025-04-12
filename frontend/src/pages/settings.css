@@ -238,6 +238,10 @@
     margin-top: 220px;
 }
 
+.delete-confirmation h2 {
+    color: black;
+}
+
 .old-password:focus {
     border-color: rgb(38, 160, 10);
     outline: none;
