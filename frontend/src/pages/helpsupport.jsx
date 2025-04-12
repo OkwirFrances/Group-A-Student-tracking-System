@@ -17,7 +17,11 @@ const HelpSupport = () => {
             <Sidebar />
             <div className='helpsupport-content'>
                 <Navbar />
-                <img src={backarrow} alt="backarrow" className='help-backarrow-icon' onClick={handleBackClick}/>
+                <img 
+                    src={backarrow} 
+                    alt="backarrow" 
+                    className='help-backarrow-icon' 
+                    onClick={handleBackClick}/>
                 <h1>Help/Support</h1>
                 <div className='helpsupport-box'>
                     <h2>Kindly reach us via Email or Phone<br /> for any help </h2>
