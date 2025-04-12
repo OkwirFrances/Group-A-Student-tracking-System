@@ -132,6 +132,12 @@
     margin-top: 130px;
 }
 
+.chatarea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
 .chatmessage {
     text-align: center;
     margin-left: 10px;

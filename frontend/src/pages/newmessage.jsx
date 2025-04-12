@@ -92,10 +92,10 @@ const NewMessage = () => {
                             className='newmessage-emptybox' />
                         <p>Click the button below to start a new chat.</p>
                         <img 
-                        src={newmessage} 
-                        alt='newmessage' 
-                        className='newmessage'
-                        onClick={handleNewMessageClick} />
+                            src={newmessage} 
+                            alt='newmessage' 
+                            className='newmessage'
+                            onClick={handleNewMessageClick} />
                     </>
                 ) : (
                     <div className='user-list'>
@@ -160,7 +160,7 @@ const NewMessage = () => {
                 </div>
             ) : (
                 <div>
-                    <nav>Chat Area</nav>
+                    <nav className='chatarea'>Chat Area</nav>
                     <div className='chat-box'>
                         <h2 className='chatmessage'>Select a chat for it to appear here by clicking on it.</h2>
                     </div>
