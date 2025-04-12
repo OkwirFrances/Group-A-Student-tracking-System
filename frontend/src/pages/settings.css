@@ -172,6 +172,9 @@
     border: 1px solid black;
 }
 
+.settingsright h2 {
+    color: black;
+}
 
 .settings {
     width: 100px;
