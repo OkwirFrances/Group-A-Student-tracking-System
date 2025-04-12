@@ -69,18 +69,18 @@ const NewMessage = () => {
             <Navbar />
             <div className='newmessage-content'>
                 <img 
-                src={backarrow} 
-                alt='backarrow' 
-                className='back-arrow'
-                onClick={handleBackMessageClick} />
+                    src={backarrow} 
+                    alt='backarrow' 
+                    className='back-arrow'
+                    onClick={handleBackMessageClick} />
                 <h1>New Message</h1>
             </div>
             <div className='newmessage-left'>
                 <div className='searchcontainer'>
                     <input 
-                    type='text'
-                    className='searchinput'
-                    placeholder='Search for anything...'
+                        type='text'
+                        className='searchinput'
+                        placeholder='Search for anything...'
                     />
                     <img src={search} alt='search' className='search' />
                 </div>
