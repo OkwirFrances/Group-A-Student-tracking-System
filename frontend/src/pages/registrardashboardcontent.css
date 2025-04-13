@@ -223,6 +223,9 @@
     transition: transform 0.3s ease-in-out;
 }
 
+.myissuessearchicon:hover {
+    animation: pulse 1s infinite ease-in-out;
+}
 
 @keyframes pulse {
     0% {
