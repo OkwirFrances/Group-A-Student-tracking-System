@@ -227,6 +227,10 @@
     animation: pulse 1s infinite ease-in-out;
 }
 
+.myissuessearchicon.animate {
+    animation: rotate 2s linear infinite;
+}
+
 @keyframes pulse {
     0% {
         transform: scale(1);
