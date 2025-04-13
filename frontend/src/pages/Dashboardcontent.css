@@ -143,6 +143,7 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 1.2rem;
+    animation: hologram 0.3s ease-in-out;
 }
 
 .new-issue-button:hover {
