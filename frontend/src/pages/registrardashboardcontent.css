@@ -66,6 +66,7 @@
 
 .in-progress-card p {
     color: black;
+    font-weight: bold;
 }
 .pending-card {
     color: black;
