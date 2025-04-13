@@ -9,7 +9,7 @@ Navigate to frontend
 
 ### npm install
 Install  frontend dependencies
-### npm start
+### npm run dev
 Start frontend server
 
 ### cd backend
