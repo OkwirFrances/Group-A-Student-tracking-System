@@ -5,12 +5,9 @@ import logo from '../assets/logo.png';
 import person from '../assets/person.png';
 import mail from '../assets/mail.png';
 import padlock from '../assets/padlock.png';
-
-
+import {authAPI} from '../services/api';
 
 const SignUp = () => {
-    
-
     const [formData, setFormData] = useState({
         fullName:'',
         email:'',
@@ -22,6 +19,7 @@ const SignUp = () => {
 
     const [showOtpScreen, setShowOtpScreen] = useState(false);
     const [generatedOtp, setGeneratedOtp] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -53,14 +51,26 @@ const SignUp = () => {
         console.log('Sending OTP to:', formData.email);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (isFormValid()){
+            console.log('Signup successful:', response);
             generateOtp();
             setShowOtpScreen(true);
-
-            if (formData.role === 'registrar' || formData.role === 'student') {
-                localStorage.setItem('userRole', formData.role);
+            try {
+                const response = await authAPI.signup({
+                    email: formData.email,
+                    fullName: formData.fullName,
+                    password: formData.password,
+                    role: formData.role
+                });
+                
+                
+                if (formData.role === 'registrar' || formData.role === 'student') {
+                    localStorage.setItem('userRole', formData.role);
+                }
+            } catch (error) {
+                setErrorMessage(error.response?.data?.message || 'Signup failed. Please try again.');
             }
         } else {
             console.log('Form is not valid');
@@ -71,27 +81,27 @@ const SignUp = () => {
         return <Otp email={formData.email} generatedOtp={generatedOtp} />;
     }
 
-  
     return (
         <div className='signup-container'>
             <div className='signup-left'>
-                    <img className='muk'src={logo} alt='muk logo' />
-                    <h1 className='system-title'>Welcome to the<br /> Academic Issue Tracking System<br /> AITS</h1>
+                <img className='muk' src={logo} alt='muk logo' />
+                <h1 className='system-title'>Welcome to the<br /> Academic Issue Tracking System<br /> AITS</h1>
             </div>
             <div className='sigup-right'>
                 <form className='signup-right-form' onSubmit={handleSubmit}>
                     <h2 className='title'>Create An Account</h2>
                     <p className='sub-title'>Please fill in all the fields below</p>
+                    {errorMessage && <p className='error-message'>{errorMessage}</p>}
                     <label>
                         Full Name
                         <div className='input-container'>
                             <input 
-                            className='full-name'
-                            type='text'
-                            name='fullName' 
-                            placeholder='Enter your Full Name' 
-                            value={formData.fullName} 
-                            onChange={handleChange}/>
+                                className='full-name'
+                                type='text'
+                                name='fullName' 
+                                placeholder='Enter your Full Name' 
+                                value={formData.fullName} 
+                                onChange={handleChange}/>
                             <img src={person} alt='person' className='person-icon' />
                         </div>
                     </label>
@@ -99,40 +109,40 @@ const SignUp = () => {
                         Email Address
                         <div className='input-container'>
                             <input 
-                            className='email-address'
-                            type='email' 
-                            name='email' 
-                            placeholder='Enter your Email Address' 
-                            value={formData.email} 
-                            onChange={handleChange} />
+                                className='email-address'
+                                type='email' 
+                                name='email' 
+                                placeholder='Enter your Email Address' 
+                                value={formData.email} 
+                                onChange={handleChange} />
                             <img src={mail} alt='mail' className='mailicon' />
                         </div>
                     </label>
                     <label>
                         Password
                         <div className='input-container'>
-                        <input 
-                            className='password'
-                            type='password' 
-                            name='password' 
-                            placeholder='Enter your Password (min - 8 characters)' 
-                            value={formData.password} 
-                            onChange={handleChange}
-                            minLength={8} />
+                            <input 
+                                className='password'
+                                type='password' 
+                                name='password' 
+                                placeholder='Enter your Password (min - 8 characters)' 
+                                value={formData.password} 
+                                onChange={handleChange}
+                                minLength={8} />
                             <img src={padlock} alt='padlock' className='padlockicon' />
                         </div>
                     </label>
                     <label>
                         Confirm Password
                         <div className='input-container'>
-                        <input 
-                            className='confirpassword'
-                            type='password' 
-                            name='confirmPassword' 
-                            placeholder='Confirm your Password (min -8 characters)' 
-                            value={formData.confirmPassword} 
-                            onChange={handleChange}
-                            minLength={8} />
+                            <input 
+                                className='confirpassword'
+                                type='password' 
+                                name='confirmPassword' 
+                                placeholder='Confirm your Password (min -8 characters)' 
+                                value={formData.confirmPassword} 
+                                onChange={handleChange}
+                                minLength={8} />
                             <img src={padlock} alt='padlock' className='padlockicon' />
                         </div>
                     </label>
@@ -140,10 +150,10 @@ const SignUp = () => {
                         Role
                         <div className='dropdown' >
                             <select 
-                            className='role-select' 
-                            name='role' 
-                            value={formData.role} 
-                            onChange={handleChange} >
+                                className='role-select' 
+                                name='role' 
+                                value={formData.role} 
+                                onChange={handleChange} >
                                 <option value=''>Select Role</option>
                                 <option value="student">Student</option>
                                 <option value="lecturer">Lecturer</option>
@@ -161,10 +171,8 @@ const SignUp = () => {
                         I have read and accepted all the AITS terms and conditions.
                     </label>
                     <button 
-                        onClick={handleSubmit}
                         className='signup-button' 
-                        disabled={!isFormValid()}
-                        >
+                        disabled={!isFormValid()}>
                         SIGN UP
                     </button>
                     <p className='signin-text'>

@@ -220,7 +220,7 @@
     position: absolute;
     left: 550px;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .myissuessearchicon:hover {
