@@ -34,7 +34,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 90%;
-    transition: border-color 0.33;
+    transition: all border-color 0.33s ease;
     margin-bottom: 20px;
     padding-right: 0%;
 }

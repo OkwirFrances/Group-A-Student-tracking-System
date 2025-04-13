@@ -25,7 +25,7 @@ import OpenIssues from './pages/openissues';
 import CourseManagement from './pages/CourseManagement';
 import DepartmentManagement from './pages/DepartmentManagement';
 import { IssuesProvider } from './context/IssueContext';
-
+import RoleBasedRoute from './components/rolebassedroute';
 
 
 
@@ -36,14 +36,16 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" index element={<Navigate to="landing"/>}/>
-          <Route path="signup" element={<SignUp/>}/>
           <Route path="landing" element={<LandingPage/>}/>
+          <Route path="signup" element={<SignUp/>}/>
           <Route path="signin" element={<SignIn/>}/>
           <Route path="emailrequest" element={<EmailRequest/>}/>
           <Route path="forgotpassword" element={<ForgotPassword/>}/>
           <Route path="otp" element={<Otp/>}/>
           <Route path="congs" element={<Congratulations/>}/>
-          <Route path="app" element={<StudentDashboard />}>
+          <Route path="app" element={<RoleBasedRoute allowedRoles={['student']}>
+            <StudentDashboard />
+          </RoleBasedRoute>}>
             <Route path="dashboard" element={ <DashboardContent />}/>
             <Route path='notifications' element={<NotificationScreen />}/>
             <Route path='issueform' element={<IssueForm />}/>
@@ -56,7 +58,9 @@ const App = () => {
           </Route>
 
 
-          <Route path='registrar-dashboard' element={<RegistrarDashboard />}>
+          <Route path='registrar-dashboard' element={<RoleBasedRoute allowedRoles={['registrar']}>
+            <RegistrarDashboard />
+          </RoleBasedRoute>} >
             <Route path="dashboard" element={<RegistrarDashboardContent />} />
             <Route path='openissues' element={<OpenIssues />}/>
             <Route path='notifications' element={<NotificationScreen />}/>
