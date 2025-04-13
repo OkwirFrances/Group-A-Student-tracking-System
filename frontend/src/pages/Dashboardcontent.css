@@ -148,7 +148,7 @@
 }
 
 .new-issue-button:hover {
-    background-color: rgb(21, 176, 21);
+    transform: scale(1.1);
 }
 
 .add-icon {
