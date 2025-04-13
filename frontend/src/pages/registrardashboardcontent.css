@@ -36,6 +36,9 @@
     background-color: white;
 }
 
+.assigned-card h2 {
+    color: black;
+}
 .pending-card {
     color: black;
     background-color: rgb(205, 133, 39);
