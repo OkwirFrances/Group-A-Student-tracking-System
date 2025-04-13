@@ -106,7 +106,7 @@ const RegistrarDashboardContent = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 
