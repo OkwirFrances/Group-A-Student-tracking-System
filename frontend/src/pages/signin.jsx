@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import './signin.css';
 import logo from '../assets/logo.png';
@@ -6,18 +5,17 @@ import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import padlock from '../assets/padlock.png';
-import { authAPI } from '../services/api.jsx';
-
-
 
 const SignIn = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
-        password: '',
+        password:'',
     });
 
-    const [error, setError] = useState('');
+    
+
+    const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,15 +25,16 @@ const SignIn = () => {
         });
     };
 
-    const handleSignInClick = async (e) => {
-        e.preventDefault(); 
+    const handleCheckboxChange = (e) => {
+        setIsTermsAccepted(e.target.checked);
+    };
 
-        // Validate form data
-        if (!formData.email || !formData.password) {
-            setError('Please fill in all fields.');
-            return;
-        }
-        try {
+    const handleSignInClick = (e) => {
+        console.log('Sign In:', formData);
+        e.preventDefault();
+        if (isFormValid) {
+            const userRole = localStorage.getItem('userRole');
+
             if (userRole === 'registrar') {
                 navigate('/registrar-dashboard/dashboard');
             } else if (userRole === 'student') {
@@ -45,14 +44,12 @@ const SignIn = () => {
             } else {
                 console.log('Invalid user role');
             }
-        
-        } catch (error) {
-            console.error('Sign-in failed:', error);
-            setError('Unable to connect to the server. Please try again later.');
+        } else {
+            console.log('Form is  not valid');
         }
     };
 
-    const isFormValid = formData.email && formData.password.length >= 8;
+    const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
 
     return (
         <div className='signin-container'>
@@ -61,50 +58,52 @@ const SignIn = () => {
                 <h1 className='system-title'>Welcome to the<br /> Academic Issue Tracking System<br />AITS</h1>
             </div>
             <div className='signin-right'>
-                <form className='signin-right-form' onSubmit={handleSignInClick}>
+                <form className='signin-right-form'    onSubmit={(e)=>handleSignInClick(e)}>
                     <h2 className='title'>Sign In Into Your Account</h2>
                     <p className='sub-title'>Please fill in all the fields below</p>
-                    {error && <p className='error-message'>{error}</p>}
                     <label>
                         Email Address
                         <div className='input-container'>
-                            <input
+                            <input 
                                 className='emailaddress'
                                 type='email'
                                 name='email'
                                 placeholder='Enter Your Email Address'
                                 value={formData.email}
-                                onChange={handleChange}
-                                required
-                            />
+                                onChange={handleChange}/>
                             <img src={mail} alt='mail logo' className='input-icon' />
                         </div>
                     </label>
                     <label>
                         Password
                         <div className='input-container'>
-                            <input
-                                className='pass-word'
-                                type='password'
-                                name='password'
-                                placeholder='Enter Your Password'
-                                value={formData.password}
-                                onChange={handleChange}
-                                minLength={8}
-                                required
-                            />
+                            <input 
+                            className='pass-word'
+                            type='password'
+                            name='password'
+                            placeholder='Enter Your Password'
+                            value={formData.password}
+                            onChange={handleChange}
+                            minLength={8}/>
                             <img src={padlock} alt='padlock' className='padlock-icon' />
-                        </div>
+                            </div>
                     </label>
                     <p className='forgot-password'>
                         <Link to="/emailrequest" className='forgot-password-link'>Forgot Password?</Link>
                     </p>
-                    <button
-                        className='signinbutton'
-                        type='submit'
-                        onClick={handleSignInClick}
-                        disabled={!isFormValid}
-                    >
+                    <label className='aits-terms'>
+                        <input 
+                            type='checkbox'
+                            className='termscheckbox'
+                            checked={isTermsAccepted}
+                            onChange={handleCheckboxChange}/>
+                        I have read and accepted all the AITS terms and conditions 
+                    </label>
+                    <button 
+                  
+                    className='signinbutton'
+                 
+                    disabled={!isFormValid}>
                         SIGN IN
                     </button>
                     <p className='link'>Don't have an account? <a href='signup' className='signup-link'>Sign Up</a></p>
