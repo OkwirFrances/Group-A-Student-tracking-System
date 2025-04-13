@@ -38,6 +38,7 @@
 
 .assigned-card h2 {
     color: black;
+    font-weight: bold;
 }
 .pending-card {
     color: black;
