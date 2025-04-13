@@ -143,7 +143,7 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 1.2rem;
-    animation: hologram 0.3s ease-in-out;
+    animation: hologram 2s infinite ease-in-out;
     transition: transform 0.3s ease-in-out;
 }
 
