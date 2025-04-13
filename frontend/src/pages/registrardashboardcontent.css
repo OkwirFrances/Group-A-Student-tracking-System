@@ -234,3 +234,10 @@
     75% { transform: translateX(-5px); }
     100% { transform: translateX(0); }
 }
+
+.assigned-card:hover,
+.pending-card:hover,
+.in-progress-card:hover,
+.resolved-card:hover {
+    animation: shake 0.5s ease-in-out;
+}
