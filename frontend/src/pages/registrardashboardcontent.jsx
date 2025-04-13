@@ -72,9 +72,12 @@ const RegistrarDashboardContent = () => {
             </div>
             <p className="recent">Recent Actions</p>
             <div className="registrar-recent">
-                <p className="assigned">Assigned Issues</p>
-                <button className="open-issues-button" onClick={handleOpenIssuesClick}>
-                    Open Issues
+                <p 
+                className="assigned">Assigned Issues</p>
+                <button 
+                    className="open-issues-button" 
+                    onClick={handleOpenIssuesClick}>
+                        Open Issues
                 </button>
                 <div className='filter-issue-container'>
                     <select className='filter-issue' >
