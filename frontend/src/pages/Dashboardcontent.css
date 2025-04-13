@@ -123,6 +123,12 @@
     border-radius: 10px;
 }
 
+.my-issues-search-input:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
 .my-issues-search-icon {
     width: 20px;
     height: 20px;
