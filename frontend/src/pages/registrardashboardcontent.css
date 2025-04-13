@@ -64,7 +64,9 @@
     font-size: 1.5rem;
 }
 
-
+.in-progress-card p {
+    color: black;
+}
 .pending-card {
     color: black;
     background-color: rgb(205, 133, 39);
