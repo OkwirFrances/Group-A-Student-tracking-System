@@ -53,7 +53,9 @@
     font-size: 1.5rem;
 }
 
-
+.pending-card p {
+    color: black;
+}
 .pending-card {
     color: black;
     background-color: rgb(205, 133, 39);
