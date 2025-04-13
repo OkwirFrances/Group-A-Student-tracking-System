@@ -5,7 +5,7 @@ const Issuemanagement = () => {
   const mockIssues = [
     { id: 1, title: "Course Registration Issue", category: "Registration", status: "Open", date: "2024-01-15" },
     { id: 2, title: "Missing Grades", category: "Academic", status: "In Progress", date: "2024-01-14" },
-    { id: 3, title: "Login Problem", category: "Technical", status: "Resolved", date: "2024-01-13" },
+    { id: 3, title: "Signin Problem", category: "Technical", status: "Resolved", date: "2024-01-13" },
   ];
 
   const getStatusStyle = (status) => {

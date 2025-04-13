@@ -41,7 +41,7 @@ api.interceptors.response.use(
           const refreshToken = localStorage.getItem('refreshToken');
           if (!refreshToken) {
             clearToken();
-            window.location.href = '/login';
+            window.location.href = '/signin';
             return Promise.reject(error);
           }
           
@@ -54,7 +54,7 @@ api.interceptors.response.use(
           return api(originalRequest);
         } catch (refreshError) {
           clearToken();
-          window.location.href = '/login';
+          window.location.href = '/signin';
           return Promise.reject(refreshError);
         }
       }
@@ -82,9 +82,9 @@ export const authAPI = {
         throw error.response?.data || error.message;
         }
     },
-    login: async (email, password) => {
+    signin: async (email, password) => {
         try {
-          const response = await api.post('/login/', { email, password });
+          const response = await api.post('/signin/', { email, password });
           // Store tokens
           storeToken(response.data.access);
           localStorage.setItem('refreshToken', response.data.refresh);

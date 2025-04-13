@@ -17,11 +17,11 @@ const ProtectedRoute = ({ allowedRoles, children }) => {
         // If not authorized, redirect to appropriate dashboard or signin
         switch (userRole) {
             case 'student':
-                return <Navigate to="/student/dashboard" replace />;
+                return <Navigate to="/app/dashboard" replace />;
             case 'lecturer':
                 return <Navigate to="/lecturer/dashboard" replace />;
             case 'registrar':
-                return <Navigate to="/registrar/dashboard" replace />;
+                return <Navigate to="/registrar-dashboard/dashboard" replace />;
             default:
                 return <Navigate to="/signin" replace />;
             }
