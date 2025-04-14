@@ -321,7 +321,9 @@
 }
 
 @keyframes hologram-hover {
-    
+    0% {
+        background: linear-gradient(90deg, rgba(0, 255, 0, 0.8), rgba(255, 255, 255, 0.2));
+    }
 }
 
 @media (max-width: 768px) {
