@@ -30,7 +30,7 @@ const SignIn = () => {
         setIsTermsAccepted(e.target.checked);
     };
 
-    const handleSignInClick = (e) => {
+    const handleSignInClick = async (e) => {
         e.preventDefault();
 
          // Validate form data
