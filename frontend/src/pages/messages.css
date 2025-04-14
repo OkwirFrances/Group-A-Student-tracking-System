@@ -83,9 +83,14 @@
 
 .new-message:hover {
     color: white;
-    
+
 }
 
+@keyframes hologram {
+    0% {
+        background: linear-gradient(90deg, rgba(0, 255, 0, 0.5), rgba(255, 255, 255, 0.2));
+    }
+}
 @media (max-width: 768px) {
     .messages-content {
         padding: 15px;
