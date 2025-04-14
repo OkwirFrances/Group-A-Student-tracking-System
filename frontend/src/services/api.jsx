@@ -84,7 +84,7 @@ export const authAPI = {
     },
     signin: async (email, password) => {
         try {
-          const response = await api.post('/signin/', { email, password });
+          const response = await api.post('/login/', { email, password });
           // Store tokens
           storeToken(response.data.access);
           localStorage.setItem('refreshToken', response.data.refresh);
