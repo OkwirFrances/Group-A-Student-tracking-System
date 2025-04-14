@@ -79,7 +79,7 @@
     font-weight: bold;
     font-size: 1rem;
     animation: hologram 2s infinite ease-in-out;
-    
+    transition: transform 0.3s ease-in-out;
     cursor: pointer;
 }
 
