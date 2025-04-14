@@ -35,6 +35,7 @@
 
 .back-arrow:hover {
     animation: hologram-hover 2s infinite ease-in-out;
+    transform: scale(1.1);
 }
 
 .newmessage-left {
