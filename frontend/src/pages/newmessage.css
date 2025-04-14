@@ -123,6 +123,9 @@
     cursor: pointer;
 }
 
+.newmessage:hover {
+    transform: scale(1.1);
+}
 .chat-box {
     display: flex;
     background-color: rgb(16, 166, 16);
