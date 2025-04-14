@@ -27,6 +27,11 @@ class LecturerSerializer(UserSerializer):
         }
 
     def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        Lecturer = super().create(validated_data)
+        if password:
+            Lecturer.set_password(password)
+            Lecturer.save()
         
         return super().create(validated_data)
 
