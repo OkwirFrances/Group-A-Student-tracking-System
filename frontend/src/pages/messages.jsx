@@ -29,9 +29,9 @@ const Messages = () => {
                     onClick={handleBackClick}/>
                 <div className='content'>
                     <button 
-                    className='new-message'
-                    onClick={handleNewMessageClick}
-                    >New Message
+                        className='new-message'
+                        onClick={handleNewMessageClick}>
+                        New Message
                     </button>
                     <img src={emptybox} alt='emptybox' className='empty-box'/>
                     <h2>There are no messages here.</h2>

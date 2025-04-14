@@ -30,10 +30,17 @@ const SignIn = () => {
     };
 
     const handleSignInClick = (e) => {
-        console.log('Sign In:', formData);
         e.preventDefault();
+        console.log('Sign In:', formData);
+        
         if (isFormValid) {
             const userRole = localStorage.getItem('userRole');
+            const userFullname = localStorage.getItem('userFullname');
+            const userEmail = localStorage.getItem('userEmail');
+
+            console.log('User Fullname:', userFullname);
+            console.log('User Email:', userEmail);
+            console.log('User Role:', userRole);
 
             if (userRole === 'registrar') {
                 navigate('/registrar-dashboard/dashboard');
@@ -43,6 +50,7 @@ const SignIn = () => {
                 navigate('/lecturer-dashboard');
             } else {
                 console.log('Invalid user role');
+                navigate('/signup');
             }
         } else {
             console.log('Form is  not valid');
@@ -67,6 +75,7 @@ const SignIn = () => {
                             <input 
                                 className='emailaddress'
                                 type='email'
+                                autoComplete='email'
                                 name='email'
                                 placeholder='Enter Your Email Address'
                                 value={formData.email}
@@ -78,13 +87,14 @@ const SignIn = () => {
                         Password
                         <div className='input-container'>
                             <input 
-                            className='pass-word'
-                            type='password'
-                            name='password'
-                            placeholder='Enter Your Password'
-                            value={formData.password}
-                            onChange={handleChange}
-                            minLength={8}/>
+                                className='pass-word'
+                                type='password'
+                                autoComplete="current-password"
+                                name='password'
+                                placeholder='Enter Your Password'
+                                value={formData.password}
+                                onChange={handleChange}
+                                minLength={8}/>
                             <img src={padlock} alt='padlock' className='padlock-icon' />
                             </div>
                     </label>

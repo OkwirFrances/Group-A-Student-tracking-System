@@ -10,7 +10,7 @@ const ProtectedRoute = ({ allowedRoles, children }) => {
     // If no token or role, redirect to signin
     if (!authToken || !userRole) {
         return <Navigate to="/signin" replace />;
-    }
+    };
 
     // Check if user's role is in the allowedRoles array
     if (!allowedRoles.includes(userRole)) {
@@ -22,10 +22,8 @@ const ProtectedRoute = ({ allowedRoles, children }) => {
                 return <Navigate to="/lecturer/dashboard" replace />;
             case 'registrar':
                 return <Navigate to="/registrar-dashboard/dashboard" replace />;
-            default:
-                return <Navigate to="/signin" replace />;
-            }
-        }
+            };
+        };
     
         // If authorized, render the child routes
     return children ? children : <Outlet />;
