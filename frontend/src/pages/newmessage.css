@@ -286,6 +286,9 @@
     margin-top: 10px;
 }
 
+@keyframes hologram {
+    
+}
 @media (max-width: 768px) {
     .newmessage-content h1 {
         font-size: 1.5rem;
