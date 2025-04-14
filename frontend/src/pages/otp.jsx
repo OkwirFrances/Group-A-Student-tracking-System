@@ -29,35 +29,59 @@ const Otp = ({ email, onResendOtp }) => {
         }
     };
 
-    const handleVerifyClick = () => {
+    // const handleVerifyClick = () => {
+    //     const enteredOtp = otp.join('');
+    //     const fixedOtp = '1234';
+    //     if (enteredOtp === fixedOtp) {
+    //         setSuccess(true);
+    //         setError('Please enter  the correct OTP');;
+    //         console.log('OTP verified successfully');
+    //         setShowCongratulations(true);
+
+    //         const userRole = localStorage.getItem('userRole');
+
+    //         if (userRole === 'registrar') {
+    //             navigate('/signin');
+    //         } else if (userRole === 'student') {
+    //             navigate('/signin');
+    //         } else if (userRole === 'lecturer') {
+    //             navigate('/signin');
+    //         }
+    //     } else {
+    //         setError('Invalid OTP. Please try again.');
+    //         setSuccess(false);
+    //     }
+    // };
+
+    const handleVerifyClick = async () => {
         const enteredOtp = otp.join('');
-        const fixedOtp = '1234';
-        if (enteredOtp === fixedOtp) {
-            setSuccess(true);
-            setError('');
-            console.log('OTP verified successfully');
-            setShowCongratulations(true);
-
-            const userRole = localStorage.getItem('userRole');
-
-            if (userRole === 'registrar') {
-                navigate('/signin');
-            } else if (userRole === 'student') {
-                navigate('/signin');
-            } else if (userRole === 'lecturer') {
-                navigate('/signin');
-            }
-        } else {
-            setError('Invalid OTP. Please try again.');
-            setSuccess(false);
+        if (!enteredOtp) {
+            setError('Please enter the OTP.');
+            return;
         }
-    };
+
+        try {
+            const data = await authAPI.verifyOTP(email, enteredOtp);
+                setSuccess(true);
+                setError('');
+                console.log('OTP verified successfully:', data);
+                setShowCongratulations(true);
+                console.log('showCongratulations:', true);
+                navigate('/congratulations'); // Redirect to congratulations page
+            } catch (error) {
+                console.error('OTP verification failed:', error);
+                setError(data.error || 'Invalid OTP. Please try again.');
+                setSuccess(false);
+            }
+        };
 
     const handleResendClick = () => {
         setOtp(['','','','']);
         setError('');
         setSuccess(false);
         onResendOtp();
+
+        
     };
 
     const isOtpComplete = otp.every(digit => digit !== '');
