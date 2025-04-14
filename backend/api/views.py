@@ -117,7 +117,10 @@ def generate_otp():
 
 #     return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
 
+    
+
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def signup(request):
     email = request.data.get('email')
     fullname = request.data.get('fullname')
@@ -170,6 +173,7 @@ def login(request):
         'fullname': user.fullname,
         'email': user.email
     }, status=status.HTTP_200_OK)
+
 
 @api_view(['POST'])
 def verify_otp(request):
