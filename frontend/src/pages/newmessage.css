@@ -96,6 +96,7 @@
 .searchinput:focus {
     border-color: rgb(38, 160, 10);
     outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
 }
 .search {
     position: absolute;
