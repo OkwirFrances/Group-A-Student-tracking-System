@@ -140,6 +140,7 @@ def signup(request):
     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def login(request):
     email = request.data.get('email')
     password = request.data.get('password')
@@ -176,6 +177,7 @@ def login(request):
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def verify_otp(request):
     email = request.data.get('email')
     otp = request.data.get('otp')
@@ -207,6 +209,7 @@ def verify_otp(request):
 
 # Resend OTP View
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def resend_otp(request):
     email = request.data.get('email')
     if not email:
