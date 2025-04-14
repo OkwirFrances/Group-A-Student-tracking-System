@@ -30,6 +30,7 @@
     margin-bottom: 510px;
     margin-right: 1400px;
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
 .newmessage-left {
