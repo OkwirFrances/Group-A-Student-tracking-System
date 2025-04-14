@@ -98,6 +98,8 @@
     outline: none;
     box-shadow: 0 0 5px rgb(38, 160, 10);
 }
+
+
 .search {
     position: absolute;
     right: 10px;
