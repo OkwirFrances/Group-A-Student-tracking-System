@@ -75,14 +75,21 @@ const Otp = ({ email, onResendOtp }) => {
             }
         };
 
-    const handleResendClick = () => {
+    const handleResendClick = async () => {
         setOtp(['','','','']);
         setError('');
         setSuccess(false);
         onResendOtp();
 
         
-    };
+        try {
+            const data = await authAPI.resendOTP(email);
+            console.log('OTP resent successfully:', data);
+        } catch (error) {
+            console.error('Failed to resend OTP:', error); 
+            setError(error.message || 'Failed to resend OTP.');  
+        }
+    };  
 
     const isOtpComplete = otp.every(digit => digit !== '');
 
