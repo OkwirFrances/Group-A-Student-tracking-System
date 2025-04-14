@@ -33,6 +33,10 @@
     transition: transform 0.3s ease-in-out;
 }
 
+.back-arrow:hover {
+    animation: hologram-hover 2s infinite ease-in-out;
+}
+
 .newmessage-left {
     border: 1px solid black;
     position: absolute;
