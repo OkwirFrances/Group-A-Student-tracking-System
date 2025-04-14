@@ -100,7 +100,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.fullname = validated_data.get('fullname', instance.fullname)
         instance.phone_number = validated_data.get('phone_number', instance.phone_number)
-        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
-        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        instance.profile_picture = validated_data.get('profile_picture', instance.profile_picture)
+        instance.save()
         return instance
 
