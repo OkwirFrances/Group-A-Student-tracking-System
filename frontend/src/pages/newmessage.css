@@ -93,6 +93,9 @@
     color: black;
 }
 
+.searchinput:focus {
+    border-color: rgb(38, 160, 10);
+}
 .search {
     position: absolute;
     right: 10px;
@@ -126,6 +129,7 @@
 .newmessage:hover {
     transform: scale(1.1);
 }
+
 .chat-box {
     display: flex;
     background-color: rgb(16, 166, 16);
