@@ -29,7 +29,8 @@ ALLOWED_HOSTS = [
     'localhost:5173',
     '*',
     'localhost',
-    'groupaaits.onrender.com'
+    'groupaaits.onrender.com',
+    
     ]
 
 # Application definition
@@ -163,6 +164,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     #'https://groupaaits.onrender.com'
+    
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -172,7 +174,7 @@ CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_HTTPONLY = False
 CSRF_USE_SESSIONS = False
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  
