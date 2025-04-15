@@ -59,6 +59,7 @@ const SignUp = () => {
 
             if (formData.role === 'registrar' || formData.role === 'student' || formData.role === 'lecturer') {
                 localStorage.setItem('userRole', formData.role);
+                console.log('User Role:', formData.role);
             }
         } else {
             console.log('Form is not valid');
