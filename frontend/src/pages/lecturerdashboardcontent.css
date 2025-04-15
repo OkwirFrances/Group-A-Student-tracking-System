@@ -137,3 +137,16 @@
     margin-left: 8px;
     margin-top: 8px;
 }
+
+.open-issues-button {
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: rgb(28, 184, 28);
+    right: -40px;
+    animation: hologram 2s infinite ease-in-out;
+    margin-bottom: 30px;
+    margin-top: -50px;
+    font-weight: bold;
+    font-size: 1rem;
+    position: absolute;
+}
