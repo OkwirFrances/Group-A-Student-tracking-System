@@ -41,7 +41,7 @@ const SignIn = () => {
             } else if (userRole === 'student') {
                 navigate('/app/dashboard');
             } else if (userRole === 'lecturer') {
-                navigate('/lecturer');
+                navigate('/lecturer/dashboard');
             } else {
                 console.log('Invalid user role');
             }
