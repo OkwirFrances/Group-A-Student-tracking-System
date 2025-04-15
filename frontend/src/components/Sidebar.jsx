@@ -49,7 +49,11 @@ const Sidebar = () => {
                     </>
                 )}
                 {userRole === 'lecturer' && (
-                    <></>
+                    <>
+                        <li className='sidebar-item'>
+                            <Link to={`${basePath}/assigned-issues`}></Link>
+                        </li>
+                    </>
                 )}
                 <li className='sidebar-item'>
                     <Link to={`${basePath}/issues`}>
