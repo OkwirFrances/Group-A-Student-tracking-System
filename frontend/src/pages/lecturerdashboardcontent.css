@@ -150,3 +150,38 @@
     font-size: 1rem;
     position: absolute;
 }
+
+
+.open-issues-button:hover {
+    color: rgb(11, 7, 7);
+    transform: scale(1.1);
+}
+
+.filter-issue {
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    right: -60px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.issuestable {
+    margin-top: 90px;
+    border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    overflow: hidden;
+    background-color: rgb(186, 185, 184);
+}
+
+.tableheader {
+    display: flex;
+    background-color: rgb(176, 176, 174);
+    padding: 10px;
+    border-bottom: 1px solid black;
+    gap: 320px;
+    font-weight: bold;
+}
