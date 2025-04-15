@@ -25,15 +25,52 @@ const SignIn = () => {
         });
     };
 
+    // SignIn.jsx
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+  
+    try {
+      const response = await loginUser(formData);
+      
+      if (response.token) {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('userRole', response.user.role);
+        
+        // Redirect based on role
+        const dashboardPaths = {
+          registrar: '/registrar-dashboard',
+          lecturer: '/lecturer-dashboard',
+          student: '/student-dashboard'
+        };
+        
+        navigate(dashboardPaths[response.user.role] || '/');
+      } else {
+        setError(response.message || 'Login failed');
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
     const handleCheckboxChange = (e) => {
         setIsTermsAccepted(e.target.checked);
     };
 
     const handleSignInClick = (e) => {
-        console.log('Sign In:', formData);
         e.preventDefault();
+        console.log('Sign In:', formData);
+        
         if (isFormValid) {
             const userRole = localStorage.getItem('userRole');
+            const userFullname = localStorage.getItem('userFullname');
+            const userEmail = localStorage.getItem('userEmail');
+
+            console.log('User Fullname:', userFullname);
+            console.log('User Email:', userEmail);
             console.log('User Role:', userRole);
 
             if (userRole === 'registrar') {
@@ -41,9 +78,10 @@ const SignIn = () => {
             } else if (userRole === 'student') {
                 navigate('/app/dashboard');
             } else if (userRole === 'lecturer') {
-                navigate('/lecturer/dashboard');
+                navigate('/lecturer-dashboard');
             } else {
                 console.log('Invalid user role');
+                navigate('/signup');
             }
         } else {
             console.log('Form is  not valid');
