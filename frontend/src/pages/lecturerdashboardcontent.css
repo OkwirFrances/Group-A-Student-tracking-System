@@ -185,3 +185,9 @@
     gap: 320px;
     font-weight: bold;
 }
+
+.lecturer-issues-container {
+    text-align: center;
+    color: black;
+    margin-top: 20px;
+}

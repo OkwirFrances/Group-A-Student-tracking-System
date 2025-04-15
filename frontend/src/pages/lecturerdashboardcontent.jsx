@@ -131,7 +131,7 @@ const LecturerDashboardContent = () => {
                                 </div>
                             ))
                         ) : (
-                            <div className="registrar-issues-container">
+                            <div className="lecturer-issues-container">
                                 <img src={emptybox} alt="emptybox" className="emptyboxicon" />
                                 <p>There are no recent issues worked upon.<br />Kindly click <b>Open Issues</b> to get started.</p>
                             </div>
