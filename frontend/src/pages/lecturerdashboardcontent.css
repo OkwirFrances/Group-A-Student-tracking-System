@@ -1,0 +1,115 @@
+.lecturer-dashboard-contnent {
+    display: flex;
+    flex-direction: column;
+}
+
+.lecturer-dashboard-content {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: white;
+    width: 130%;
+}
+
+.lecturer-dashboard-content h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    margin-right: 1250px;
+    color: black;
+}
+
+.lecturer-card-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -9px;
+    flex-direction: row;
+    margin-left: 160px;
+    flex: row;
+    max-width: 1200px;
+}
+
+.assigned-card {
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 260px;
+    color: black;
+    background-color: white;
+}
+
+.assigned-card h2 {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.assigned-card p {
+    color: black;
+    font-weight: bold;
+}
+
+.pending-card h2 {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.pending-card p {
+    color: black;
+    font-weight: bold;
+}
+
+.in-progress-card h2 {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.in-progress-card p {
+    color: white;
+    font-weight: bold;
+}
+
+.resolved-card h2 {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.resolved-card p {
+    color: black;
+    font-weight: bold;
+}
+
+
+.pending-card {
+    color: black;
+    background-color: rgb(205, 133, 39);
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid black;
+    width: 260px;
+}
+
+.in-progress-card {
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 260px;
+    text-align: center;
+    color: rgb(253, 253, 253);
+    background-color: rgb(0, 0, 0);
+}
+
+.resolved-card {
+    color: black;
+    background-color: rgb(59, 181, 25);
+    text-align: center;
+    border: 1px solid black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 260px;
+    border-radius: 10px;
+}
