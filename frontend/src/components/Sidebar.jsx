@@ -21,7 +21,7 @@ const Sidebar = () => {
     };
 
     
-    const basePath = userRole === 'registrar' ? '/registrar-dashboard' : '/app';
+    const basePath = userRole === 'registrar' ? '/registrar-dashboard' : userRole === 'lecturer' ? '/lecturer' : '/app';
 
     return (
         <div className='sidebar'>
