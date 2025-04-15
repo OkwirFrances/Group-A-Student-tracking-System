@@ -192,6 +192,9 @@
     margin-top: 20px;
 }
 
+.lecturer-issues-container p {
+    font-size: 1.5rem;
+}
 .emptyboxicon {
     height: auto;
 }
