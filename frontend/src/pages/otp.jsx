@@ -66,12 +66,15 @@ const Otp = ({ email, onResendOtp }) => {
                 setError('');
                 console.log('OTP verified successfully:', data);
                 setShowCongratulations(true);
-                console.log('showCongratulations:', true);
+               // console.log('showCongratulations:', true);
                 navigate('/congratulations'); // Redirect to congratulations page
             } catch (error) {
-                console.error('OTP verification failed:', error);
-                setError(data.error || 'Invalid OTP. Please try again.');
-                setSuccess(false);
+                 console.error('OTP verification failed:', error);
+                 const backendError = error.response?.data?.error;
+                 setError(backendError || 'Invalid OTP. Please try again.');
+                 setSuccess(false);
+                // setError(data.error || 'Invalid OTP. Please try again.');
+                // setSuccess(false);
             }
         };
 
