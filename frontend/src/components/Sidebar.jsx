@@ -51,7 +51,9 @@ const Sidebar = () => {
                 {userRole === 'lecturer' && (
                     <>
                         <li className='sidebar-item'>
-                            <Link to={`${basePath}/assigned-issues`}></Link>
+                            <Link to={`${basePath}/assigned-issues`}>
+                                <img src={issue} alt='assigned-issues' className='sidebar-icon' />
+                            </Link>
                         </li>
                     </>
                 )}
