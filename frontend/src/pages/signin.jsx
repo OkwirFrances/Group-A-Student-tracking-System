@@ -34,6 +34,7 @@ const SignIn = () => {
         e.preventDefault();
         if (isFormValid) {
             const userRole = localStorage.getItem('userRole');
+            console.log('User Role:', userRole);
 
             if (userRole === 'registrar') {
                 navigate('/registrar-dashboard/dashboard');

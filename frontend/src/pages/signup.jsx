@@ -9,8 +9,6 @@ import padlock from '../assets/padlock.png';
 
 
 const SignUp = () => {
-    
-
     const [formData, setFormData] = useState({
         fullName:'',
         email:'',
