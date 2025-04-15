@@ -48,6 +48,9 @@ const Sidebar = () => {
                         </li>
                     </>
                 )}
+                {userRole === 'lecturer' && (
+                    <></>
+                )}
                 <li className='sidebar-item'>
                     <Link to={`${basePath}/issues`}>
                         <img src={issue} alt='issue' className='sidebar-icon' />
