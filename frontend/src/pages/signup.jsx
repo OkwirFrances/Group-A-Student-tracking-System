@@ -1,12 +1,10 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import './signup.css';
 import Otp from './otp';
 import logo from '../assets/logo.png';
 import person from '../assets/person.png';
 import mail from '../assets/mail.png';
 import padlock from '../assets/padlock.png';
-import {authAPI} from '../services/api';
-
 
 
 
@@ -47,11 +45,6 @@ const SignUp = () => {
             confirmPassword.length >=8
         );
     };
-    useEffect(() => {
-        const formError = isFormValid();
-        setError(formError);
-    }, [formData]);
-
 
     const generateOtp = () => {
         const otp = Math.floor(1000 + Math.random() * 9000).toString();

@@ -13,9 +13,8 @@ const SignIn = () => {
         password:'',
     });
 
-    const [error, setError] = useState('');
+    
 
-   
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
     const handleChange = (e) => {
@@ -30,83 +29,27 @@ const SignIn = () => {
         setIsTermsAccepted(e.target.checked);
     };
 
-    const handleSignInClick = async (e) => {
+    const handleSignInClick = (e) => {
+        console.log('Sign In:', formData);
         e.preventDefault();
+        if (isFormValid) {
+            const userRole = localStorage.getItem('userRole');
 
-         // Validate form data
-         if (!formData.email || !formData.password) {
-            setError('Please fill in all fields.');
-            return;
-        }
-
-        if (formData.password.length < 8) {
-            setError('Password must be at least 8 characters long.');
-            return;
-
-        }
-
-        try {
-            const data = await authAPI.login(formData.email, formData.password);
-            
-            // Store user data in localStorage
-            localStorage.setItem('authToken', data.access);
-            localStorage.setItem('refreshToken', data.refresh);
-            localStorage.setItem('userRole', data.role);
-            localStorage.setItem('userEmail', data.email);
-            localStorage.setItem('userFullname', data.fullname);
-
-
-            // Redirect to the appropriate dashboard based on the user's role
-            switch (data.role) {
-                case 'lecturer':
-                    navigate('/lecturer/dashboard');
-                    break;
-                case 'student':
-                    navigate('/student/dashboard');
-                    break;
-                case 'registrar':
-                    navigate('/registrar/dashboard');
-                    break;
-                default:
-                    setError('Unknown user role.');
-                    break;
+            if (userRole === 'registrar') {
+                navigate('/registrar-dashboard/dashboard');
+            } else if (userRole === 'student') {
+                navigate('/app/dashboard');
+            } else if (userRole === 'lecturer') {
+                navigate('/lecturer');
+            } else {
+                console.log('Invalid user role');
             }
-        
-        } catch (error) {
-            console.error('Sign-in failed:', error);
-            setError('Unable to connect to the server. Please try again later.');
+        } else {
+            console.log('Form is  not valid');
         }
     };
 
-    const isFormValid = formData.email && formData.password.length >= 8;
-
-    //     console.log('Sign In:', formData);
-        
-    //     if (isFormValid) {
-    //         const userRole = localStorage.getItem('userRole');
-    //         const userFullname = localStorage.getItem('userFullname');
-    //         const userEmail = localStorage.getItem('userEmail');
-
-    //         console.log('User Fullname:', userFullname);
-    //         console.log('User Email:', userEmail);
-    //         console.log('User Role:', userRole);
-
-    //         if (userRole === 'registrar') {
-    //             navigate('/registrar-dashboard/dashboard');
-    //         } else if (userRole === 'student') {
-    //             navigate('/app/dashboard');
-    //         } else if (userRole === 'lecturer') {
-    //             navigate('/lecturer-dashboard');
-    //         } else {
-    //             console.log('Invalid user role');
-    //             navigate('/signup');
-    //         }
-    //     } else {
-    //         console.log('Form is  not valid');
-    //     }
-    // };
-
-    // const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
+    const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
 
     return (
         <div className='signin-container'>
@@ -124,7 +67,6 @@ const SignIn = () => {
                             <input 
                                 className='emailaddress'
                                 type='email'
-                                autoComplete='email'
                                 name='email'
                                 placeholder='Enter Your Email Address'
                                 value={formData.email}
@@ -136,14 +78,13 @@ const SignIn = () => {
                         Password
                         <div className='input-container'>
                             <input 
-                                className='pass-word'
-                                type='password'
-                                autoComplete="current-password"
-                                name='password'
-                                placeholder='Enter Your Password'
-                                value={formData.password}
-                                onChange={handleChange}
-                                minLength={8}/>
+                            className='pass-word'
+                            type='password'
+                            name='password'
+                            placeholder='Enter Your Password'
+                            value={formData.password}
+                            onChange={handleChange}
+                            minLength={8}/>
                             <img src={padlock} alt='padlock' className='padlock-icon' />
                             </div>
                     </label>
