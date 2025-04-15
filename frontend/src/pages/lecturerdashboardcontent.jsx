@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './lecturerdashboardcontent.css';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
-import filter from '../assets/filter.png';
 import search from '../assets/search.png';
 import emptybox from '../assets/emptybox.png';
 
@@ -56,7 +55,6 @@ const LecturerDashboardContent = () => {
 
     const handleOpenIssuesClick = () => {
         console.log('Open Issues button clicked');
-        // Add logic to navigate or handle open issues
     };
 
     return (
@@ -105,7 +103,6 @@ const LecturerDashboardContent = () => {
                             <option value='in-progress'>In-progress</option>
                             <option value='resolved'>Resolved</option>
                         </select>
-                        <img src={filter} alt='filter' className='issuefiltericon' />
                     </div>
                     <div className='myissuessearchcontainer'>
                         <input
