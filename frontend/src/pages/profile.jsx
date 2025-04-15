@@ -7,7 +7,7 @@ import edit from '../assets/edit.png';
 
 const Profile = () => {
     const navigate = useNavigate();
-    const fullName = localStorage.getItem('fullName') || '';
+    const fullName = localStorage.getItem('userFullName') || '';
 
     const [user] = useState({
         fullName: fullName || '',
@@ -22,6 +22,7 @@ const Profile = () => {
     });
 
     const getInitials =(name) => {
+        if (!name) return 'N/A';
         return name.charAt(0).toUpperCase();
     };
 
@@ -39,7 +40,7 @@ const Profile = () => {
         <img src={user.profilePic} alt="Profile" className="profile-picture" />
     ) : (
         <div className="profile-initials">
-            {user.fullName ? getInitials(user.fullName) : "N/A"}
+            {getInitials(user.fullName)}
         </div>
     )}
 </div>
