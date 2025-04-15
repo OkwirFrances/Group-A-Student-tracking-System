@@ -6,6 +6,7 @@ import help from '../assets/help.png';
 import Congratulations from './congratulations';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { authAPI } from '../services/api';
 
 const Otp = ({ email, onResendOtp }) => {
     const [otp, setOtp] = useState(['','','','']);
@@ -28,36 +29,67 @@ const Otp = ({ email, onResendOtp }) => {
         }
     };
 
-    const handleVerifyClick = () => {
+    // const handleVerifyClick = () => {
+    //     const enteredOtp = otp.join('');
+    //     const fixedOtp = '1234';
+    //     if (enteredOtp === fixedOtp) {
+    //         setSuccess(true);
+    //         setError('Please enter  the correct OTP');;
+    //         console.log('OTP verified successfully');
+    //         setShowCongratulations(true);
+
+    //         const userRole = localStorage.getItem('userRole');
+
+    //         if (userRole === 'registrar') {
+    //             navigate('/signin');
+    //         } else if (userRole === 'student') {
+    //             navigate('/signin');
+    //         } else if (userRole === 'lecturer') {
+    //             navigate('/signin');
+    //         }
+    //     } else {
+    //         setError('Invalid OTP. Please try again.');
+    //         setSuccess(false);
+    //     }
+    // };
+
+    const handleVerifyClick = async () => {
         const enteredOtp = otp.join('');
-        const fixedOtp = '1234';
-        if (enteredOtp === fixedOtp) {
-            setSuccess(true);
-            setError('');
-            console.log('OTP verified successfully');
-            setShowCongratulations(true);
-
-            const userRole = localStorage.getItem('userRole');
-
-            if (userRole === 'registrar') {
-                navigate('/signin');
-            } else if (userRole === 'student') {
-                navigate('/signin');
-            } else if (userRole === 'lecturer') {
-                navigate('/signin');
-            }
-        } else {
-            setError('Invalid OTP. Please try again.');
-            setSuccess(false);
+        if (!enteredOtp) {
+            setError('Please enter the OTP.');
+            return;
         }
-    };
 
-    const handleResendClick = () => {
+        try {
+            const data = await authAPI.verifyOTP(email, enteredOtp);
+                setSuccess(true);
+                setError('');
+                console.log('OTP verified successfully:', data);
+                setShowCongratulations(true);
+                console.log('showCongratulations:', true);
+                navigate('/congratulations'); // Redirect to congratulations page
+            } catch (error) {
+                console.error('OTP verification failed:', error);
+                setError(data.error || 'Invalid OTP. Please try again.');
+                setSuccess(false);
+            }
+        };
+
+    const handleResendClick = async () => {
         setOtp(['','','','']);
         setError('');
         setSuccess(false);
         onResendOtp();
-    };
+
+        
+        try {
+            const data = await authAPI.resendOTP(email);
+            console.log('OTP resent successfully:', data);
+        } catch (error) {
+            console.error('Failed to resend OTP:', error); 
+            setError(error.message || 'Failed to resend OTP.');  
+        }
+    };  
 
     const isOtpComplete = otp.every(digit => digit !== '');
 

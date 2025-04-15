@@ -10,25 +10,30 @@ class UserSerializer(serializers.ModelSerializer):
 
  
 class LecturerSerializer(UserSerializer):
-        department = serializers.PrimaryKeyRelatedField(queryset=Department.objects.all())
-        courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True, required=False)
-        password = serializers.CharField(write_only=True)
-        staff_id = serializers.CharField(max_length=20)
-        office_location = serializers.CharField(max_length=100)
+    department = serializers.PrimaryKeyRelatedField(queryset=Department.objects.all())
+    courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True, required=False)
+    password = serializers.CharField(write_only=True)
+    staff_id = serializers.CharField(max_length=20)
+    office_location = serializers.CharField(max_length=100)
 
-class Meta:
-    model = Lecturer
-    fields = UserSerializer.Meta.fields + [
-    'staff_id', 'department', 'courses', 'office_location', 'password'
+    class Meta:
+        model = Lecturer
+        fields = UserSerializer.Meta.fields + [
+            'staff_id', 'department', 'courses', 'office_location', 'password'
         ]
-    extra_kwargs = {
+        extra_kwargs = {
             'password': {'write_only': True},
             'role': {'read_only': True}
         }
 
     def create(self, validated_data):
-        # This will be handled in the view's perform_create
-        pass
+        password = validated_data.pop('password', None)
+        Lecturer = super().create(validated_data)
+        if password:
+            Lecturer.set_password(password)
+            Lecturer.save()
+        
+        return super().create(validated_data)
 
 class StudentSerializer(UserSerializer):
     department = serializers.StringRelatedField()
@@ -100,7 +105,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.fullname = validated_data.get('fullname', instance.fullname)
         instance.phone_number = validated_data.get('phone_number', instance.phone_number)
-        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
-        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        instance.profile_picture = validated_data.get('profile_picture', instance.profile_picture)
+        instance.save()
         return instance
 

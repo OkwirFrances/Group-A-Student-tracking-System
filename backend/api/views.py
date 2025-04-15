@@ -20,6 +20,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenRefreshView
 from django.shortcuts import  get_object_or_404
 import random
+from django.core.cache import cache  # Import Django cache
 
 
 User = get_user_model()
@@ -29,7 +30,7 @@ def generate_otp():
 
 
 # Signup View
-from django.core.cache import cache  # Import Django cache
+
 
 # @api_view(['POST'])
 # def signup(request):
@@ -116,7 +117,10 @@ from django.core.cache import cache  # Import Django cache
 
 #     return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
 
+    
+
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def signup(request):
     email = request.data.get('email')
     fullname = request.data.get('fullname')
@@ -136,6 +140,7 @@ def signup(request):
     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def login(request):
     email = request.data.get('email')
     password = request.data.get('password')
@@ -170,7 +175,9 @@ def login(request):
         'email': user.email
     }, status=status.HTTP_200_OK)
 
+
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def verify_otp(request):
     email = request.data.get('email')
     otp = request.data.get('otp')
@@ -202,6 +209,7 @@ def verify_otp(request):
 
 # Resend OTP View
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def resend_otp(request):
     email = request.data.get('email')
     if not email:
@@ -210,11 +218,16 @@ def resend_otp(request):
     user = User.objects.filter(email=email).first()
     if not user:
         return JsonResponse({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+    cached_data = cache.get(f'otp_{email}')
+    if not cached_data:
+        return JsonResponse({'error': 'No signup request found. Please signup again.'}, status=404)
     
-    user.otp = generate_otp()
-    user.otp_created_at = timezone.now()  # Reset the OTP timestamp
-    user.save()
-    send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'AITS@mail.com', [email])
+    new_otp = generate_otp()
+    cached_data['otp'] = new_otp
+    cache.set(f'otp_{email}', cached_data, timeout=600)
+    # user.otp_created_at = timezone.now()  # Reset the OTP timestamp
+    # user.save()
+    send_mail('Your OTP Code', f'Your OTP is {new_otp}', 'AITS@mail.com', [email])
     return JsonResponse({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
     

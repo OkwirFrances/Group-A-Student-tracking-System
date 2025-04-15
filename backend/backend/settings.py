@@ -162,7 +162,7 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    'https://groupaaits.onrender.com'
+    #'https://groupaaits.onrender.com'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
