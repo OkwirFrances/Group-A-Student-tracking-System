@@ -12,7 +12,7 @@ import {authAPI} from '../services/api';
 
 const SignUp = () => {
     
-
+    const [error,setError] = useState(null);
     const [formData, setFormData] = useState({
         fullName:'',
         email:'',
@@ -48,10 +48,13 @@ const SignUp = () => {
         );
     };
     useEffect(() => {
-        const formError = isFormValid();
-        setError(formError);
+        if (!isFormValid()) {
+            setError('Please fill out the form correctly.');
+        } else {
+            setError(null);
+        }
     }, [formData]);
-
+    
 
     const generateOtp = () => {
         const otp = Math.floor(1000 + Math.random() * 9000).toString();

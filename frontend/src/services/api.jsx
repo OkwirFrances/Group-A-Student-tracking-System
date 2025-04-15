@@ -75,14 +75,14 @@ api.interceptors.response.use(
   // Authentication API
 export const authAPI = {
     signup: async (email, fullname, password, role) => {
-
-    //   try {
-    //     const response = await api.post('/signup/', { email, fullname, password, role });
-    //     return response.data;
-    //   } catch (error) {
-    //     throw error.response?.data || error.message;
-    //   }
-    // },
+      // Uncomment and implement this method if needed
+      // try {
+      //   const response = await api.post('/signup/', { email, fullname, password, role });
+      //   return response.data;
+      // } catch (error) {
+      //   throw error.response?.data || error.message;
+      // }
+    },
 
     verifyOTP: async (email, otp) => {
         try {

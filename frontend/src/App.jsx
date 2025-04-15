@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <IssuesProvider >
-      <BrowserRouter>
+      
         <Routes>
           <Route path="/" index element={<Navigate to="landing"/>}/>
           <Route path="landing" element={<LandingPage/>}/>
@@ -73,7 +73,7 @@ const App = () => {
           </Route>
           <Route path='newmessage' element={<NewMessage />}/>
         </Routes>
-      </BrowserRouter>
+      
     </IssuesProvider>
   );
 };
