@@ -12,7 +12,7 @@ import course from '../assets/course.png';
 
 const Sidebar = () => {
     const navigate = useNavigate();
-    const userRole = localStorage.getItem('userRole'); // Get the user role from localStorage
+    const userRole = localStorage.getItem('userRole'); 
 
     const handleLogout = () => {
         localStorage.removeItem('authToken');
