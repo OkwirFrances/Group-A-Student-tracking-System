@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import './Navbar.css';
 import logo from '../assets/logo.png';
 import search from '../assets/search.png';
@@ -7,14 +7,23 @@ import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ badgeCount, setBadgeCount }) => {
-    const [user] = useState({
-        fullName: 'Alvin David',
-        profilePic: null,
-    });
-
     const navigate = useNavigate();
 
+    const [user, setUser] = useState({
+        fullName: '',
+        profilePic: null,
+    });
+    
+    useEffect(() => {
+        const userFullName = localStorage.getItem('userFullName') || 'Guest User';
+        setUser((prevUser) => ({
+            ...prevUser,
+            fullName: userFullName,
+        }));
+    }, []);
+
     const getInitials = (name) => {
+        if (!name) return '';
         return name.charAt(0).toUpperCase();
     };
 

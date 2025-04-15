@@ -54,6 +54,8 @@ const SignUp = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isFormValid()){
+            localStorage.setItem('userFullName', formData.fullName);
+            
             generateOtp();
             setShowOtpScreen(true);
 
