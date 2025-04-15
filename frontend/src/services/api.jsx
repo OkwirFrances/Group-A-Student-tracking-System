@@ -12,6 +12,15 @@ const api = axios.create({
   },
 });
 
+const refreshAccessToken = async (refreshToken) => {
+  try {
+    const response = await api.post('/token/refresh/', { refresh: refreshToken });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
 
 // Add request interceptor to include the token in headers
 api.interceptors.request.use(
@@ -66,13 +75,14 @@ api.interceptors.response.use(
   // Authentication API
 export const authAPI = {
     signup: async (email, fullname, password, role) => {
-      try {
-        const response = await api.post('/signup/', { email, fullname, password, role });
-        return response.data;
-      } catch (error) {
-        throw error.response?.data || error.message;
-      }
-    },
+
+    //   try {
+    //     const response = await api.post('/signup/', { email, fullname, password, role });
+    //     return response.data;
+    //   } catch (error) {
+    //     throw error.response?.data || error.message;
+    //   }
+    // },
 
     verifyOTP: async (email, otp) => {
         try {
