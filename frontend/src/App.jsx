@@ -20,6 +20,7 @@ import Profile from './pages/profile';
 import RegistrarDashboard from './pages/RegistrarDashboard';
 import EmailRequest from './pages/emailrequest';
 import ForgotPassword from './pages/forgotpassword';
+import LecturerDashboard from './pages/LecturerDashboard';
 import RegistrarDashboardContent from './pages/registrardashboardcontent';
 import OpenIssues from './pages/openissues';
 import CourseManagement from './pages/CourseManagement';
@@ -72,6 +73,11 @@ const App = () => {
             <Route path='departments' element={<DepartmentManagement />}/>
           </Route>
           <Route path='newmessage' element={<NewMessage />}/>
+
+          <Route path='lecturer' element={<RoleBasedRoute allowedRoles={['lecturer']}>
+            <LecturerDashboard />
+          </RoleBasedRoute>} >
+          </Route>
         </Routes>
       </BrowserRouter>
     </IssuesProvider>
