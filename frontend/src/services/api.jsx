@@ -12,15 +12,6 @@ const api = axios.create({
   },
 });
 
-const refreshAccessToken = async (refreshToken) => {
-  try {
-    const response = await api.post('/token/refresh/', { refresh: refreshToken });
-    return response.data;
-  } catch (error) {
-    throw error.response?.data || error.message;
-  }
-};
-
 
 // Add request interceptor to include the token in headers
 api.interceptors.request.use(
@@ -50,7 +41,7 @@ api.interceptors.response.use(
           const refreshToken = localStorage.getItem('refreshToken');
           if (!refreshToken) {
             clearToken();
-            window.location.href = '/signin';
+            window.location.href = '/login';
             return Promise.reject(error);
           }
           
@@ -63,7 +54,7 @@ api.interceptors.response.use(
           return api(originalRequest);
         } catch (refreshError) {
           clearToken();
-          window.location.href = '/signin';
+          window.location.href = '/login';
           return Promise.reject(refreshError);
         }
       }
@@ -75,14 +66,13 @@ api.interceptors.response.use(
   // Authentication API
 export const authAPI = {
     signup: async (email, fullname, password, role) => {
-
-    //   try {
-    //     const response = await api.post('/signup/', { email, fullname, password, role });
-    //     return response.data;
-    //   } catch (error) {
-    //     throw error.response?.data || error.message;
-    //   }
-    // },
+      try {
+        const response = await api.post('/signup/', { email, fullname, password, role });
+        return response.data;
+      } catch (error) {
+        throw error.response?.data || error.message;
+      }
+    },
 
     verifyOTP: async (email, otp) => {
         try {
@@ -92,7 +82,7 @@ export const authAPI = {
         throw error.response?.data || error.message;
         }
     },
-    signin: async (email, password) => {
+    login: async (email, password) => {
         try {
           const response = await api.post('/login/', { email, password });
           // Store tokens
@@ -250,11 +240,28 @@ export const issueAPI = {
           throw error.response?.data || error.message;
         }
       },
+      // createIssue: async (issueData) => {
+      //   try {
+      //     const response = await api.post('/issues/', issueData);
+      //     return response.data;
+      //   } catch (error) {
+      //     throw error.response?.data || error.message;
+      //   }
+      // },
+
       createIssue: async (issueData) => {
         try {
-          const response = await api.post('/issues/', issueData);
+          // Important: Don't set Content-Type header when sending FormData
+          // Axios will automatically set the correct multipart/form-data header
+          const response = await api.post('/issues/', issueData, {
+            headers: {
+              'Content-Type': undefined // Let browser set the content type with boundary
+            }
+          });
+          console.log('API Response:', response);
           return response.data;
         } catch (error) {
+          console.error('API Error:', error.response || error);
           throw error.response?.data || error.message;
         }
       },
@@ -296,3 +303,4 @@ export const issueAPI = {
     
     
   
+
