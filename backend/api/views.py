@@ -21,6 +21,10 @@ from rest_framework_simplejwt.views import TokenRefreshView
 from django.shortcuts import  get_object_or_404
 import random
 from django.core.cache import cache  # Import Django cache
+import logging  # Import logging module
+
+# Configure logger
+logger = logging.getLogger(__name__)
 
 
 User = get_user_model()
