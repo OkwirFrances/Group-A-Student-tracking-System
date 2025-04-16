@@ -407,21 +407,31 @@ class LecturerIssuesView(generics.ListAPIView):
         return Issue.objects.filter(assigned_to=self.request.user)
 
     
+# class CustomTokenRefreshView(TokenRefreshView):
+#     def post(self, request, *args, **kwargs):
+#         # Ensure the refresh token is properly formatted
+#         if 'refresh' not in request.data:
+#             return Response(
+#                 {'error': 'Refresh token is required'},
+#                 status=status.HTTP_400_BAD_REQUEST
+#             )  
+            
+#         response = super().post(request, *args, **kwargs)
+        
+#         if response.status_code == 200:
+#             # Add any additional processing here if needed
+#             pass
+            
+#         return response
+
 class CustomTokenRefreshView(TokenRefreshView):
     def post(self, request, *args, **kwargs):
-        # Ensure the refresh token is properly formatted
-        if 'refresh' not in request.data:
+        try:
+            return super().post(request, *args, **kwargs)
+        except Exception as e:
             return Response(
-                {'error': 'Refresh token is required'},
-                status=status.HTTP_400_BAD_REQUEST
-            )  
-            
-        response = super().post(request, *args, **kwargs)
-        
-        if response.status_code == 200:
-            # Add any additional processing here if needed
-            pass
-            
-        return response
+                {"error": "Session expired. Please login again."},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
 
                
