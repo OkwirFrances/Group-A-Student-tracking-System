@@ -15,7 +15,7 @@ import NotificationScreen from './pages/notificationscreen';
 import HelpSupport from './pages/helpsupport';
 import Settings from './pages/settings';
 import Messages from './pages/messages';
-import NewMessage from './pages/newmessage';
+import NewMessage from './pages/newmessages';
 import Profile from './pages/profile';
 import RegistrarDashboard from './pages/RegistrarDashboard';
 import EmailRequest from './pages/emailrequest';

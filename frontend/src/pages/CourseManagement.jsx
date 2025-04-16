@@ -1,94 +1,54 @@
-
-import React, { useState, useEffect, use } from 'react';
+import React, { useState } from 'react';
 import './CourseManagement.css';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import { courseAPI, departmentAPI, userAPI} from '../services/api';
 
 const CourseManagement = () => {
     const [courses, setCourses] = useState([]);
-    const [departments, setDepartments] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const[formData, setFormData] = useState({
+    const [departments, setDepartments] = useState([
+        { id: 1, name: 'Computer Science' },
+        { id: 2, name: 'Information Technology' },
+        { id: 3, name: 'Software Engineering' },
+    ]);
+    const [formData, setFormData] = useState({
         name: '',
         code: '',
-        department_id: '' 
-});
-const navigate = useNavigate();
-
-useEffect(() => {
-    const verifyAccess = async () => {
-        try {
-            const userInfo = await userAPI.getUserInfo();
-            if (userInfo.role !== 'registrar') {
-                toast.error('Unauthorized access');
-                navigate('/dashboard');
-            }
-        } catch (error) {
-            console.error('Role verification failed:', error);
-        }
-    };
-    verifyAccess();
-        fetchData();
-    }, [navigate]);
-
-    const fetchData = async () => {
-        try {
-            setLoading(true);
-            const [coursesData, departmentsData] = await Promise.all([
-                courseAPI.getCourses(),
-                departmentAPI.getDepartments()
-            ]);
-            setCourses(coursesData);
-            setDepartments(departmentsData);
-        } catch (error) {
-            toast.error(error.message || 'Failed to fetch data');
-            console.error('Fetch error:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+        department_id: '',
+    });
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         try {
-            // Prepare data according to your model
-            const courseData = {
+            const newCourse = {
+                id: courses.length + 1, // Generate a unique ID
                 name: formData.name,
                 code: formData.code,
-                department: formData.department_id  // Changed to match model's ForeignKey field
+                department: departments.find(dept => dept.id === parseInt(formData.department_id)),
             };
-            await courseAPI.createCourse(courseData);
+            setCourses([...courses, newCourse]);
             toast.success('Course created successfully');
             setFormData({ name: '', code: '', department_id: '' });
-            await fetchData();
-
         } catch (error) {
             console.error('Error creating course:', error);
-            toast.error(error.response?.data?.message || 
-                       error.message || 
-                       'Failed to create course. Please check your inputs.');
+            toast.error('Failed to create course. Please check your inputs.');
         }
     };
 
-    const handleDelete = async (courseId) => {
+    const handleDelete = (courseId) => {
         try {
-            await courseAPI.deleteCourse(courseId);
+            setCourses(courses.filter(course => course.id !== courseId));
             toast.success('Course deleted successfully');
-            await fetchData();
         } catch (error) {
-            toast.error(error.message || 'Failed to delete course');
+            console.error('Error deleting course:', error);
+            toast.error('Failed to delete course');
         }
     };
-
-    if (loading) return <div className="loading">Loading courses...</div>;
 
     return (
         <div className="course-content">
@@ -108,7 +68,7 @@ useEffect(() => {
                                 required
                                 placeholder="E.g. Data Structures"
                             />
-                            </div>
+                        </div>
                         <div className="course-form-group">
                             <label>Course Code</label>
                             <input
@@ -123,7 +83,7 @@ useEffect(() => {
                         <div className="course-form-group">
                             <label>Department</label>
                             <select
-                                name="department_id"  // Changed to match state
+                                name="department_id"
                                 value={formData.department_id}
                                 onChange={handleChange}
                                 required
@@ -149,20 +109,20 @@ useEffect(() => {
                             <table className="course-management-table">
                                 <thead>
                                     <tr>
-                                    <th>Name</th>
+                                        <th>Name</th>
                                         <th>Code</th>
                                         <th>Department</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {courses.map(course => (
+                                    {courses.map(course => (
                                         <tr key={course.id}>
                                             <td>{course.name}</td>
                                             <td>{course.code}</td>
                                             <td>{course.department?.name || 'N/A'}</td>
                                             <td>
-                                                <button 
+                                                <button
                                                     onClick={() => handleDelete(course.id)}
                                                     className="course-delete-button"
                                                 >
@@ -185,6 +145,5 @@ useEffect(() => {
 
 export default CourseManagement;
 
-                        
 
-                
+
