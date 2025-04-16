@@ -7,7 +7,7 @@ import edit from '../assets/edit.png';
 
 const Profile = () => {
     const navigate = useNavigate();
-    const fullName = localStorage.getItem('userFullName') || '';
+    const fullName = localStorage.getItem('userfullName') || '';
 
     const [user] = useState({
         fullName: fullName || '',
