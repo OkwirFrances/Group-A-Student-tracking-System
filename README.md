@@ -4,7 +4,7 @@
 Git clone the Project repo
 
 ### cd frontend
-Navigate to frontend
+Navigate to frontend.
 
 ### npm install
 Install  frontend dependencies
