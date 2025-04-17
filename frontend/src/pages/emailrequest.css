@@ -109,6 +109,7 @@
 
 .emailrequest-nextbutton {
     width: 422px;
+    display: flex;
     border: 1px solid rgb(27, 172, 8);
     font-size: 1rem;
     position: absolute;

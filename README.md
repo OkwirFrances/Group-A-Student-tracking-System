@@ -1,26 +1,20 @@
-# STEPS TO RUN THE PROJECT LOCALLY
+# STEPS TO RUN THE PROJECT LOCALY
 
 ### git clone git@github.com:OkwirFrances/Group-A-Student-tracking-System.git 
-Git clone the Project repo
-Navigate into the cloned project repo
+Git clone the Project repo.
 
 ### cd frontend
-Navigate to frontend
+Navigate to frontend.
 
 ### npm install
-Install  frontend dependencies
+Install  frontend dependencies.
 ### npm run dev
-Start frontend server
+Start frontend server.
 
 ### cd backend
-Navigate to backend folder
+Navigate to backend folder.
 
 ### pipenv install
-To install backend dependencies
-
-### pipenv shell
-Activate virtualenv
-
- Make sure you have installed pipenv
-
-## READ THE FOLDER STRUCTURE in folderStructure.txt TO UNDERSTAND IT
+To install backend dependencies.
+## pipenv shell
+Activate virtualenv.

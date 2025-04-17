@@ -35,17 +35,17 @@ const EmailRequest = () => {
                 <h1>Reset Password</h1>
                 <p>Don't worry! Enter your registered Email Address<br />to reset your password.</p>
                     <input 
-                    type='email' 
-                    className='emailrequest-email' 
-                    placeholder='Enter Your Email Address'
-                    value={email}
-                    onChange={handleEmailChange}
-                    required />
+                        type='email' 
+                        className='emailrequest-email' 
+                        placeholder='Enter Your Email Address'
+                        value={email}
+                        onChange={handleEmailChange}
+                        required />
                     <img src={mail} alt='mailicons' className='emailrequest-mail' />    
                     <button 
-                    className='emailrequest-nextbutton'
-                    disabled={!email.trim()}
-                    onClick={handleNextClick}
+                        className='emailrequest-nextbutton'
+                        disabled={!email.trim()}
+                        onClick={handleNextClick}
                     >Next
                     </button>
                     <Link to="/signin" className='emailrequest-signin-link'>
