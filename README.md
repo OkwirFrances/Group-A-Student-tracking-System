@@ -19,4 +19,4 @@ To install backend dependencies
 ## pipenv shell
 Activate virtualenv
 
-CTURE in folderStructure.txt 
+rStructure.txt 
