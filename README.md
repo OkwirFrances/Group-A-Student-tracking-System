@@ -15,6 +15,6 @@ Start frontend server.
 Navigate to backend folder.
 
 ### pipenv install
-To install backend dependencies
+To install backend dependencies.
 ## pipenv shell
 Activate virtualenv
