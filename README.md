@@ -7,7 +7,7 @@ Git clone the Project repo
 Navigate to frontend.
 
 ### npm install
-Install  frontend dependencies
+Install  frontend dependencies.
 ### npm run dev
 Start frontend server
 
