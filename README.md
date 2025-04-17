@@ -2,8 +2,6 @@
 
 ### git clone git@github.com:OkwirFrances/Group-A-Student-tracking-System.git 
 Git clone the Project repo
-Navigate into the cloned project 
-
 ### cd frontend
 Navigate to frontend
 
