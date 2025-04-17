@@ -18,5 +18,3 @@ Navigate to backend folder
 To install backend dependencies
 ## pipenv shell
 Activate virtualenv
-
- 
