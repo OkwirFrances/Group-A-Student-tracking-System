@@ -3,6 +3,7 @@ body {
     background-image: radial-gradient(rgb(0, 0, 0) 1px, transparent 1px);
     background-size: 100px 100px;
 }
+
 .landing-page {
     position: relative;
     height: 100vh;

@@ -26,7 +26,6 @@ const SignIn = () => {
             ...formData,
             [name]: value,
         });
-    };
 
 //     // SignIn.jsx
 // const handleSubmit = async (e) => {
@@ -47,6 +46,12 @@ const SignIn = () => {
 //           lecturer: '/lecturer-dashboard',
 //           student: '/student-dashboard'
 //         };
+        // Redirect based on role
+        const dashboardPaths = {
+          registrar: '/registrar-dashboard',
+          lecturer: '/lecturer/dashboard',
+          student: '/student-dashboard'
+        };
         
 //         navigate(dashboardPaths[response.user.role] || '/');
 //       } else {
@@ -137,6 +142,18 @@ const SignIn = () => {
     //         console.log('Form is  not valid');
     //     }
     // };
+            if (userRole === 'registrar') {
+                navigate('/registrar-dashboard/dashboard');
+            } else if (userRole === 'student') {
+                navigate('/app/dashboard');
+            } else if (userRole === 'lecturer') {
+                navigate('/lecturer/dashboard');
+            } else {
+                console.log('Invalid user role');
+                navigate('/signup');
+            }
+        console.log('Form is  not valid');
+    };
 
     // const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
 
