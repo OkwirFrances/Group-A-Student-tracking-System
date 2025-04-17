@@ -149,3 +149,42 @@
     background-color: #D1D5DB; /* Equivalent to bg-gray-300 */
     border-radius: 9999px; /* Equivalent to rounded-full */
 }
+.card {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .search-bar {
+    position: relative;
+    width: 300px;
+  }
+  
+  .new-issue-btn {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .filter-btn {
+    border: 1px solid #e5e7eb;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .table-head {
+    font-weight: 600;
+    color: #4b5563;
+  }
