@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './message.css';
+import './messages.css';
 import Navbar from '../components/Navbar';
 import backarrow from '../assets/backarrow.png';
 import emptybox from '../assets/emptybox.png';
