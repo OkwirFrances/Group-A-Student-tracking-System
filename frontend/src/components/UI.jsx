@@ -35,3 +35,14 @@ export const Card = ({ children, className }) => (
   export const TableRow = ({ children, className }) => (
     <tr className={`table-row ${className}`}>{children}</tr>
   );
+  export default {
+    Card,
+    CardContent,
+    Button,
+    Input,
+    Table,
+    TableHeader,
+    TableBody,
+    TableHead,
+    TableRow
+  };
