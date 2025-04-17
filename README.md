@@ -12,7 +12,7 @@ Install  frontend dependencies.
 Start frontend server.
 
 ### cd backend
-Navigate to backend folder
+Navigate to backend folder.
 
 ### pipenv install
 To install backend dependencies
