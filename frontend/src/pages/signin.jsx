@@ -13,10 +13,12 @@ const SignIn = () => {
         email: '',
         password:'',
     });
-
     
 
+   
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
