@@ -9,12 +9,26 @@ import { useNavigate } from 'react-router-dom';
 import { authAPI } from '../services/api';
 
 const Otp = ({ email, onResendOtp }) => {
-    const [otp, setOtp] = useState(['','','','']);
+    // const [otp, setOtp] = useState(['','','','']);
+    const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const [showCongratulations, setShowCongratulations] = useState(false);
     const inputRefs = useRef([]);
     const navigate = useNavigate();
+
+    // const handleChange = (e, index) => {
+    //     const value = e.target.value;
+    //     if (/^\d$/.test(value) || value === '') {
+    //         const newOtp = [...otp];
+    //         newOtp[index] = value;
+    //         setOtp(newOtp);
+
+    //         if (value !== '' && index < 3) {
+    //             inputRefs.current[index + 1].focus();
+    //         }
+    //     }
+    // };
 
     const handleChange = (e, index) => {
         const value = e.target.value;
@@ -23,7 +37,7 @@ const Otp = ({ email, onResendOtp }) => {
             newOtp[index] = value;
             setOtp(newOtp);
 
-            if (value !== '' && index < 3) {
+            if (value !== '' && index < 5) {
                 inputRefs.current[index + 1].focus();
             }
         }
@@ -66,12 +80,12 @@ const Otp = ({ email, onResendOtp }) => {
                 setError('');
                 console.log('OTP verified successfully:', data);
                 setShowCongratulations(true);
-               // console.log('showCongratulations:', true);
+                console.log('showCongratulations:', true);
                 navigate('/congratulations'); // Redirect to congratulations page
             } catch (error) {
                  console.error('OTP verification failed:', error);
-                 const backendError = error.response?.data?.error;
-                 setError(backendError || 'Invalid OTP. Please try again.');
+                //  const backendError = error.response?.data?.error;
+                 setError(error.message || 'Invalid OTP. Please try again.');
                  setSuccess(false);
                 // setError(data.error || 'Invalid OTP. Please try again.');
                 // setSuccess(false);

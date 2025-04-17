@@ -12,7 +12,7 @@ import {authAPI} from '../services/api';
 
 const SignUp = () => {
     
-    const [error,setError] = useState(null);
+    
     const [formData, setFormData] = useState({
         fullName:'',
         email:'',
@@ -23,7 +23,9 @@ const SignUp = () => {
     });
 
     const [showOtpScreen, setShowOtpScreen] = useState(false);
-    const [generatedOtp, setGeneratedOtp] = useState('');
+    const [error,setError] = useState(null);
+    // const [generatedOtp, setGeneratedOtp] = useState('');
+    
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -35,18 +37,33 @@ const SignUp = () => {
 
     const isFormValid = () => {
         const { fullName, email, password, confirmPassword, role, termsAccepted } = formData;
-        return (
-            fullName &&
-            email &&
-            password &&
-            confirmPassword &&
-            role &&
-            termsAccepted &&
-            password === confirmPassword &&
-            password.length >= 8 &&
-            confirmPassword.length >=8
-        );
+    
+        if (!fullName.trim()) return false;
+        if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false; // Email format check
+        if (!password || password.length < 8) return false;
+        if (password !== confirmPassword) return false;
+        if (!role) return false;
+        if (!termsAccepted) return false;
+    
+        return true;
     };
+
+    
+
+    // const isFormValid = () => {
+    //     const { fullName, email, password, confirmPassword, role, termsAccepted } = formData;
+    //     return (
+    //         fullName &&
+    //         email &&
+    //         password &&
+    //         confirmPassword &&
+    //         role &&
+    //         termsAccepted &&
+    //         password === confirmPassword &&
+    //         password.length >= 8 &&
+    //         confirmPassword.length >=8
+    //     );
+    // };
     useEffect(() => {
         if (!isFormValid()) {
             setError('Please fill out the form correctly.');
@@ -56,29 +73,57 @@ const SignUp = () => {
     }, [formData]);
     
 
-    const generateOtp = () => {
-        const otp = Math.floor(1000 + Math.random() * 9000).toString();
-        setGeneratedOtp(otp);
-        console.log('Generated OTP:', otp);
-        console.log('Sending OTP to:', formData.email);
-    };
+    // const generateOtp = () => {
+    //     const otp = Math.floor(1000 + Math.random() * 9000).toString();
+    //     setGeneratedOtp(otp);
+    //     console.log('Generated OTP:', otp);
+    //     console.log('Sending OTP to:', formData.email);
+    // };
 
-    const handleSubmit = (e) => {
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (isFormValid()){
+    //         generateOtp();
+    //         setShowOtpScreen(true);
+
+    //         if (formData.role === 'registrar' || formData.role === 'student') {
+    //             localStorage.setItem('userRole', formData.role);
+    //         }
+    //     } else {
+    //         console.log('Form is not valid');
+    //     }   
+    // };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (isFormValid()){
-            generateOtp();
-            setShowOtpScreen(true);
+        console.log('Form Data:', formData);
 
-            if (formData.role === 'registrar' || formData.role === 'student') {
-                localStorage.setItem('userRole', formData.role);
-            }
-        } else {
-            console.log('Form is not valid');
-        }   
+        if (error) {
+            return;
+        }
+
+        try {
+            const data = await authAPI.signup(
+                formData.email,
+                formData.fullname,
+                formData.password,
+                formData.role
+            );
+            
+            console.log('Signup Successful:', data);
+            setShowOtpScreen(true);
+        } catch (error) {
+            console.error('Signup Failed:', error);
+            setError(error.message || 'Unable to connect to the server. Please try again later.');
+        }
     };
+
+    // if (showOtpScreen) {
+    //     return <Otp email={formData.email} generatedOtp={generatedOtp} />;
+    // }
 
     if (showOtpScreen) {
-        return <Otp email={formData.email} generatedOtp={generatedOtp} />;
+        return <Otp email={formData.email} onResendOtp={() => {}} />;
     }
 
   
