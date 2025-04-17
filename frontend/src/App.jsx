@@ -80,10 +80,9 @@ const App = () => {
         </Route>
         <Route path="newmessage" element={<NewMessage />} />
 
-        <Route path="lecturer-dashboard" element={<RoleBasedRoute allowedRoles={['lecturer']}>
+        <Route path="lecturer" element={<RoleBasedRoute allowedRoles={['lecturer']}>
               <LecturerDashboard />
-            </RoleBasedRoute>}
-        >
+            </RoleBasedRoute>}>
           <Route path="dashboard" element={<LecturerDashboardContent />} />
         </Route>
       </Routes>
