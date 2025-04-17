@@ -17,4 +17,4 @@ Navigate to backend folder.
 ### pipenv install
 To install backend dependencies.
 ## pipenv shell
-Activate virtualenv
+Activate virtualenv.
