@@ -12,7 +12,7 @@ import {
   TableBody,
   TableHead,
   TableRow
-} from '../components/ui';
+} from '../components/UI'; // Make sure this path matches your UI components file
 
 const Issuemanagement = () => {
   const mockIssues = [
@@ -22,80 +22,70 @@ const Issuemanagement = () => {
   ];
 
   const getStatusStyle = (status) => {
-    switch(status.toLowerCase()) {
+    switch (status.toLowerCase()) {
       case 'open':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        return 'text-green-600 bg-green-100';
       case 'in progress':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+        return 'text-yellow-600 bg-yellow-100';
       case 'resolved':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'text-gray-600 bg-gray-100';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return '';
     }
   };
 
   return (
-    <div className="p-8 pl-12 pr-12 bg-gray-50 min-h-screen">
-      <div className="max-w-[1200px] mx-auto space-y-8">
-        <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-gray-800">Issue Management</h1>
-          <Button className="new-issue-btn">
-            <FiPlus size={20} />
-            New Issue
-          </Button>
-        </div>
-
-        <Card className="rounded-xl shadow-lg border border-gray-200 bg-white overflow-hidden">
-          <CardContent className="p-8">
-            <div className="flex justify-between items-center mb-8">
-              <div className="search-bar input">
+    <div className="p-4">
+      <Card>
+        <CardContent>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold">Issues</h2>
+            <div className="flex gap-4">
+              <div className="search-bar">
                 <Input
+                  type="text"
                   placeholder="Search issues..."
-                  className="pl-10 pr-4 py-2.5 w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                  className="pl-10"
                 />
-                <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               </div>
-              <div className="flex gap-3">
-                <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400">
-                  <Filter className="w-4 h-4 mr-2" />
-                  Filter
-                </Button>
-              </div>
+              <Button variant="outline" className="filter-btn">
+                <Filter size={16} />
+                Filter
+              </Button>
+              <Button className="new-issue-btn">
+                <FiPlus />
+                New Issue
+              </Button>
             </div>
+          </div>
 
-            <div className="border rounded-lg overflow-hidden">
-              <Table>
-                <TableHeader>
-                  <TableRow className="bg-gray-50 border-b border-gray-200">
-                    <TableHead className="font-semibold text-gray-700 py-4">Issue</TableHead>
-                    <TableHead className="font-semibold text-gray-700">Category</TableHead>
-                    <TableHead className="font-semibold text-gray-700">Status</TableHead>
-                    <TableHead className="font-semibold text-gray-700 text-right">Date</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {mockIssues.map((issue) => (
-                    <TableRow key={issue.id} className="hover:bg-gray-50 border-b border-gray-200">
-                      <td className="py-4 px-6">
-                        <div className="font-medium text-gray-900">{issue.title}</div>
-                      </td>
-                      <td className="py-4 px-6">
-                        <span className="text-gray-600">{issue.category}</span>
-                      </td>
-                      <td className="py-4 px-6">
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusStyle(issue.status)}`}>
-                          {issue.status}
-                        </span>
-                      </td>
-                      <td className="py-4 px-6 text-right text-gray-600">{issue.date}</td>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Title</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Date</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {mockIssues.map((issue) => (
+                <TableRow key={issue.id}>
+                  <td>{issue.title}</td>
+                  <td>{issue.category}</td>
+                  <td>
+                    <span className={`px-2 py-1 rounded-full ${getStatusStyle(issue.status)}`}>
+                      {issue.status}
+                    </span>
+                  </td>
+                  <td>{issue.date}</td>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
     </div>
   );
 };
