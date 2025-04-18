@@ -87,6 +87,7 @@ const App = () => {
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
           <Route path="support" element={<HelpSupport />} />
+          <Route path="messages" element={<Messages />} />
         </Route>
       </Routes>
     </IssuesProvider>
