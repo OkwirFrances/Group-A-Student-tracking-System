@@ -115,5 +115,16 @@ class AuthTests(APITestCase):
         
         self.assertEqual(response.status_code, 200)
         self.assertIn("message", response.json())
+        
+    def test_resend_otp_overwrites_previous(self):
+        """OTP should change after resend"""
+        self.client.post(self.signup_url, self.test_data)
+        old_otp = cache.get(f"otp_{self.test_email}")['otp']
+
+        response = self.client.post(self.resend_url, {"email": self.test_email})
+        self.assertEqual(response.status_code, 200)
+
+        new_otp = cache.get(f"otp_{self.test_email}")['otp']
+        self.assertNotEqual(old_otp, new_otp, msg="New OTP should be different from old one")    
 
             
