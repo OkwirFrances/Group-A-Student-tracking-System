@@ -34,10 +34,14 @@
 }
 
 .issues-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
+  color: #000;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 0px; /* 0% */
+  letter-spacing: 2.8px;
 }
 
 .issues-header h1 {

@@ -55,7 +55,7 @@ const Issuemanagement = () => {
         <Navbar />
         <div className="issues-container">
           <div className="issues-header">
-            <h1 className="Issues">Issues</h1>
+            <h1>Issues</h1>
             <div className="header-actions">
               <div className="search-bar">
                 <FiSearch className="search-icon" />
