@@ -86,3 +86,7 @@ class AuthTests(APITestCase):
         
         self.assertEqual(response.status_code, 400)
         self.assertIn("error", response.json())
+        
+    def test_resend_otp(self):
+        """Test OTP is regenerated and sent"""
+            
