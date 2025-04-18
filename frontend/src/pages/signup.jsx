@@ -5,6 +5,7 @@ import logo from '../assets/logo.png';
 import person from '../assets/person.png';
 import mail from '../assets/mail.png';
 import padlock from '../assets/padlock.png';
+import { authAPI } from '../services/api';
 
 
 
@@ -62,12 +63,17 @@ const SignUp = () => {
     //         confirmPassword.length >=8
     //     );
     // };
+    // useEffect(() => {
+    //     if (!isFormValid()) {
+    //         setError('Please fill out the form correctly.');
+    //     } else {
+    //         setError(null);
+    //     }
+    // }, [formData]);
+
     useEffect(() => {
-        if (!isFormValid()) {
-            setError('Please fill out the form correctly.');
-        } else {
-            setError(null);
-        }
+        const formError = isFormValid();
+        setError(formError);
     }, [formData]);
     
 
@@ -103,8 +109,9 @@ const SignUp = () => {
         try {
             const data = await authAPI.signup(
                 formData.email,
-                formData.fullname,
+                formData.fullName,
                 formData.password,
+                formData.confirmPassword,
                 formData.role
             );
             

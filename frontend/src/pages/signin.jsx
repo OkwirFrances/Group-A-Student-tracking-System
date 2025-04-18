@@ -3,7 +3,6 @@ import './signin.css';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import padlock from '../assets/padlock.png';
 import { authAPI } from '../services/api';
 
@@ -12,7 +11,8 @@ const SignIn = () => {
     const [formData, setFormData] = useState({
         email: '',
         password:'',
-    });
+        });
+    };
     
 
    
@@ -47,11 +47,11 @@ const SignIn = () => {
 //           student: '/student-dashboard'
 //         };
         // Redirect based on role
-        const dashboardPaths = {
-          registrar: '/registrar-dashboard',
-          lecturer: '/lecturer/dashboard',
-          student: '/student-dashboard'
-        };
+        // const dashboardPaths = {
+        //   registrar: '/registrar-dashboard',
+        //   lecturer: '/lecturer/dashboard',
+        //   student: '/student-dashboard'
+        // };
         
 //         navigate(dashboardPaths[response.user.role] || '/');
 //       } else {
@@ -142,18 +142,18 @@ const SignIn = () => {
     //         console.log('Form is  not valid');
     //     }
     // };
-            if (userRole === 'registrar') {
-                navigate('/registrar-dashboard/dashboard');
-            } else if (userRole === 'student') {
-                navigate('/app/dashboard');
-            } else if (userRole === 'lecturer') {
-                navigate('/lecturer/dashboard');
-            } else {
-                console.log('Invalid user role');
-                navigate('/signup');
-            }
-        console.log('Form is  not valid');
-    };
+    //         if (userRole === 'registrar') {
+    //             navigate('/registrar-dashboard/dashboard');
+    //         } else if (userRole === 'student') {
+    //             navigate('/app/dashboard');
+    //         } else if (userRole === 'lecturer') {
+    //             navigate('/lecturer/dashboard');
+    //         } else {
+    //             console.log('Invalid user role');
+    //             navigate('/signup');
+    //         }
+    //     console.log('Form is  not valid');
+    // };
 
     // const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
 
