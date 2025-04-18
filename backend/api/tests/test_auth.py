@@ -39,3 +39,6 @@ class AuthTests(APITestCase):
             "email": self.test_email,
             "otp": otp
         })
+        
+        self.assertEqual(response.status_code, 201)
+        self.assertIn("token", response.json())
