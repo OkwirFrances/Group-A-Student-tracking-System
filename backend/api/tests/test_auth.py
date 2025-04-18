@@ -9,3 +9,5 @@ User = get_user_model()
 class AuthTests(APITestCase):
     def setUp(self):
         self.signup_url = '/signup/'
+        self.verify_url = '/verify-otp/'
+        self.login_url = '/login/'
