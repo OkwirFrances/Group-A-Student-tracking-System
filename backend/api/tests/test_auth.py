@@ -83,3 +83,6 @@ class AuthTests(APITestCase):
             "email": self.test_email,
             "password": "WrongPassword123"
         }) 
+        
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("error", response.json())
