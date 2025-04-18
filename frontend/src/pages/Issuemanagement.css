@@ -172,5 +172,8 @@ td {
   color: #166534;
 }
 .section-title {
-  
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
 }
