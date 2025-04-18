@@ -31,3 +31,6 @@ class AuthTests(APITestCase):
         
     def test_verify_otp_creates_user(self):
         """Test OTP verification creates user and returns token"""
+        self.client.post(self.signup_url, self.test_data)
+        otp_info = cache.get(f"otp_{self.test_email}")
+        otp = otp_info['otp']
