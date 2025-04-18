@@ -28,3 +28,6 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, 201)
         self.assertIn("message", response.json())
         self.assertIsNotNone(cache.get(f"otp_{self.test_email}"))
+        
+    def test_verify_otp_creates_user(self):
+        """Test OTP verification creates user and returns token"""
