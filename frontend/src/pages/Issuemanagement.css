@@ -94,12 +94,12 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  background: #3B82F6;
+  background: #14a707;
   color: white;
   border: none;
   border-radius: 8px;
   font-weight: 500;
-  
+  cursor: pointer;
 }
 
 .issues-table {
