@@ -24,3 +24,5 @@ class AuthTests(APITestCase):
         
     def test_signup_sends_otp(self):
         """Test user signup and OTP is cached"""
+        response = self.client.post(self.signup_url, self.test_data)
+        self.assertEqual(response.status_code, 201)
