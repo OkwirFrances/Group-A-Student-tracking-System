@@ -20,3 +20,7 @@ class AuthTests(APITestCase):
             "password": "StrongPass123!",
             "role": "student"
         }
+        
+        
+    def test_signup_sends_otp(self):
+        """Test user signup and OTP is cached"""
