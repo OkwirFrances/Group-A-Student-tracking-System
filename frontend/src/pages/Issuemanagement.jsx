@@ -48,6 +48,31 @@ const Issuemanagement = () => {
     navigate('/app/issueform');
   };
 
+  const renderTableContent = () => {
+    if (issues.length === 0) {
+      return (
+        <tr className="no-issues-row">
+          <td colSpan="4">
+            <div className="no-issues-message">No issues yet</div>
+          </td>
+        </tr>
+      );
+    }
+
+    return issues.map((issue) => (
+      <tr key={issue.id}>
+        <td>{issue.title}</td>
+        <td>
+          <span className={`status-badge ${getStatusColor(issue.status)}`}>
+            {issue.status}
+          </span>
+        </td>
+        <td>{issue.category}</td>
+        <td>{issue.date}</td>
+      </tr>
+    ));
+  };
+
   return (
     <div className="layout">
       <Sidebar />
@@ -91,18 +116,7 @@ const Issuemanagement = () => {
                 </tr>
               </thead>
               <tbody>
-                {issues.map((issue) => (
-                  <tr key={issue.id}>
-                    <td>{issue.title}</td>
-                    <td>
-                      <span className={`status-badge ${getStatusColor(issue.status)}`}>
-                        {issue.status}
-                      </span>
-                    </td>
-                    <td>{issue.category}</td>
-                    <td>{issue.date}</td>
-                  </tr>
-                ))}
+                {renderTableContent()}
               </tbody>
             </table>
           </div>
