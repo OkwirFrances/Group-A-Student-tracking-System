@@ -55,7 +55,7 @@
 .search-bar {
   position: relative;
   width: 320px;
-  align-self: ;
+  align-content: center;
 }
 
 .search-icon {
