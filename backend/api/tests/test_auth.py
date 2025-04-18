@@ -74,4 +74,6 @@ class AuthTests(APITestCase):
         self.assertIn("refresh", response.json())  
         
     def test_login_with_wrong_password_fails(self):
-        """Login should fail with wrong password"""    
+        """Login should fail with wrong password"""  
+        self.client.post(self.signup_url, self.test_data)
+        otp = cache.get(f"otp_{self.test_email}")['otp']  
