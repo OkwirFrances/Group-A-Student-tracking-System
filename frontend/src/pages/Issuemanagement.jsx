@@ -53,9 +53,15 @@ const Issuemanagement = () => {
       <Sidebar />
       <div className="main-content">
         <Navbar />
+        <div className="page-header">
+          <h1 className="page-title">Issues</h1>
+          <button className="new-issue-btn" onClick={handleNewIssue}>
+            <FiPlus />
+            New Issue
+          </button>
+        </div>
         <div className="issues-container">
           <div className="issues-header">
-            <h1>Issues</h1>
             <div className="header-actions">
               <div className="search-bar">
                 <FiSearch className="search-icon" />
@@ -69,10 +75,6 @@ const Issuemanagement = () => {
               <button className="filter-btn">
                 <FiFilter />
                 Filter
-              </button>
-              <button className="new-issue-btn" onClick={handleNewIssue}>
-                <FiPlus />
-                New Issue
               </button>
             </div>
           </div>
