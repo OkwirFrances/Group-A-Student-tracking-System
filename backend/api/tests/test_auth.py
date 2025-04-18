@@ -42,3 +42,4 @@ class AuthTests(APITestCase):
         
         self.assertEqual(response.status_code, 201)
         self.assertIn("token", response.json())
+        self.assertTrue(User.objects.filter(email=self.test_email).exists())
