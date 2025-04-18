@@ -72,3 +72,6 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("access", response.json())
         self.assertIn("refresh", response.json())  
+        
+    def test_login_with_wrong_password_fails(self):
+        """Login should fail with wrong password"""    
