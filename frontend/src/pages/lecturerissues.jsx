@@ -16,5 +16,7 @@ const LecturerIssues = () => {
         setIssues(storedIssues);
     }, []);
 
-    
+    const handleFilterChange = (e) => {
+        setFilterStatus(e.target.value);
+    };
 };
