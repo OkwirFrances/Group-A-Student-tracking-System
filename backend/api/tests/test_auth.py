@@ -12,3 +12,11 @@ class AuthTests(APITestCase):
         self.verify_url = '/verify-otp/'
         self.login_url = '/login/'
         self.resend_url = '/resend-otp/'
+        
+        self.test_email = "testuser@example.com"
+        self.test_data = {
+            "email": self.test_email,
+            "fullname": "Test User",
+            "password": "StrongPass123!",
+            "role": "student"
+        }
