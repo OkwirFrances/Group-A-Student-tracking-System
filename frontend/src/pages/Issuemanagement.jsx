@@ -1,98 +1,116 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Issuemanagement.css';
-import { FiPlus } from 'react-icons/fi';
+import Sidebar from '../components/Sidebar';
+import Navbar from '../components/Navbar';
+import { FiPlus, FiSearch, FiFilter } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 const Issuemanagement = () => {
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    category: '',
-    registrar: '',
-    lecturer: '',
-    coursecode: '',
-    coursename: '',
-    attachment: null
-  });
+  const [issues, setIssues] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
+  // Mock data - Replace with your API call
+  const mockIssues = [
+    {
+      id: 1,
+      title: "Course Registration Problem",
+      category: "Academic",
+      status: "Open",
+      date: "2024-04-18",
+      priority: "High"
+    },
+    {
+      id: 2,
+      title: "Missing Grades",
+      category: "Academic",
+      status: "In Progress",
+      date: "2024-04-17",
+      priority: "Medium"
+    }
+  ];
+
+  useEffect(() => {
+    // Replace with your API call
+    setIssues(mockIssues);
+  }, []);
+
+  const getStatusColor = (status) => {
+    switch (status.toLowerCase()) {
+      case 'open': return 'status-open';
+      case 'in progress': return 'status-progress';
+      case 'resolved': return 'status-resolved';
+      default: return '';
+    }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+  const handleNewIssue = () => {
+    navigate('/app/issueform');
   };
 
   return (
-    <div className="issue-management-container">
-      <div className="header">
-        <h1>New Issue</h1>
+    <div className="layout">
+      <Sidebar />
+      <div className="main-content">
+        <Navbar />
+        <div className="issues-container">
+          <div className="issues-header">
+            <h1 className="Issues">Issues</h1>
+            <div className="header-actions">
+              <div className="search-bar">
+                <FiSearch className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search issues..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
+              <button className="filter-btn">
+                <FiFilter />
+                Filter
+              </button>
+              <button className="new-issue-btn" onClick={handleNewIssue}>
+                <FiPlus />
+                New Issue
+              </button>
+            </div>
+          </div>
+
+          <div className="issues-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Priority</th>
+                </tr>
+              </thead>
+              <tbody>
+                {issues.map((issue) => (
+                  <tr key={issue.id}>
+                    <td>{issue.title}</td>
+                    <td>{issue.category}</td>
+                    <td>
+                      <span className={`status-badge ${getStatusColor(issue.status)}`}>
+                        {issue.status}
+                      </span>
+                    </td>
+                    <td>{issue.date}</td>
+                    <td>
+                      <span className={`priority-badge priority-${issue.priority.toLowerCase()}`}>
+                        {issue.priority}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      
-      <form onSubmit={handleSubmit} className="issue-form">
-        <div className="form-group">
-          <label htmlFor="title">Issue Title</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            placeholder="Enter issue title"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Describe your issue"
-            rows="4"
-          />
-        </div>
-
-        <div className="form-row">
-          <div className="form-group half-width">
-            <label htmlFor="category">Category</label>
-            <select
-              id="category"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-            >
-              <option value="">Select category</option>
-              <option value="academic">Academic</option>
-              <option value="technical">Technical</option>
-              <option value="administrative">Administrative</option>
-            </select>
-          </div>
-
-          <div className="form-group half-width">
-            <label htmlFor="registrar">Registrar</label>
-            <select
-              id="registrar"
-              name="registrar"
-              value={formData.registrar}
-              onChange={handleChange}
-            >
-              <option value="">Select registrar</option>
-              {/* Add registrar options */}
-            </select>
-          </div>
-        </div>
-
-        <div className="form-actions">
-          <button type="button" className="btn-cancel">Cancel</button>
-          <button type="submit" className="btn-submit">Submit Issue</button>
-        </div>
-      </form>
     </div>
   );
 };
