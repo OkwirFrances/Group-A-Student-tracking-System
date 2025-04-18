@@ -89,6 +89,7 @@ const App = () => {
           <Route path="support" element={<HelpSupport />} />
           <Route path="messages" element={<Messages />} />
           <Route path="newmessage" element={<NewMessage />} />
+          <Route path="notifications" element={<NotificationScreen />} />
         </Route>
       </Routes>
     </IssuesProvider>
