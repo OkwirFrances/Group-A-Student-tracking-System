@@ -46,3 +46,5 @@ class AuthTests(APITestCase):
     
     def test_verify_otp_with_wrong_code_fails(self):
         """Test that wrong OTP fails"""
+        self.client.post(self.signup_url, self.test_data)
+        wrong_otp = '000000'
