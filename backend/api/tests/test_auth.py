@@ -91,5 +91,8 @@ class AuthTests(APITestCase):
         """Test OTP is regenerated and sent"""
         self.client.post(self.signup_url, self.test_data)
         response = self.client.post(self.resend_url, {"email": self.test_email})
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("message", response.json())
 
             
