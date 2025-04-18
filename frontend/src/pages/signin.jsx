@@ -5,6 +5,7 @@ import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import padlock from '../assets/padlock.png';
+import { authAPI } from '../services/api';
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -12,10 +13,12 @@ const SignIn = () => {
         email: '',
         password:'',
     });
-
     
 
+   
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,21 +26,26 @@ const SignIn = () => {
             ...formData,
             [name]: value,
         });
-    };
 
-    // SignIn.jsx
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+//     // SignIn.jsx
+// const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setLoading(true);
+//     setError('');
   
-    try {
-      const response = await loginUser(formData);
+//     try {
+//       const response = await loginUser(formData);
       
-      if (response.token) {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('userRole', response.user.role);
+//       if (response.token) {
+//         localStorage.setItem('token', response.token);
+//         localStorage.setItem('userRole', response.user.role);
         
+//         // Redirect based on role
+//         const dashboardPaths = {
+//           registrar: '/registrar-dashboard',
+//           lecturer: '/lecturer-dashboard',
+//           student: '/student-dashboard'
+//         };
         // Redirect based on role
         const dashboardPaths = {
           registrar: '/registrar-dashboard',
@@ -45,34 +53,95 @@ const handleSubmit = async (e) => {
           student: '/student-dashboard'
         };
         
-        navigate(dashboardPaths[response.user.role] || '/');
-      } else {
-        setError(response.message || 'Login failed');
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+//         navigate(dashboardPaths[response.user.role] || '/');
+//       } else {
+//         setError(response.message || 'Login failed');
+//       }
+//     } catch (err) {
+//       setError(err.response?.data?.message || 'Login failed. Please try again.');
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
     const handleCheckboxChange = (e) => {
         setIsTermsAccepted(e.target.checked);
     };
 
-    const handleSignInClick = (e) => {
-        e.preventDefault();
-        console.log('Sign In:', formData);
+    const handleSignInClick = async (e) => {
+        e.preventDefault(); 
+
+        if (!formData.email || !formData.password) {
+            setError('Please fill in all fields.');
+            return;
+        }
+
+        if (formData.password.length < 8) {
+            setError('Password must be at least 8 characters long.');
+            return;
+        }
+
+        try {
+            const data = await authAPI.login(formData.email, formData.password);
+            
+            // Store user data in localStorage
+            localStorage.setItem('authToken', data.access);
+            localStorage.setItem('refreshToken', data.refresh);
+            localStorage.setItem('userRole', data.role);
+            localStorage.setItem('userEmail', data.email);
+            localStorage.setItem('userFullname', data.fullname);
+
+            // Redirect to the appropriate dashboard based on the user's role
+            switch (data.role) {
+                case 'lecturer':
+                    navigate('/lecturer/dashboard');
+                    break;
+                case 'student':
+                    navigate('/student/dashboard');
+                    break;
+                case 'registrar':
+                    navigate('/registrar/dashboard');
+                    break;
+                default:
+                    setError('Unknown user role.');
+                    break;
+            }
+        } catch (error) {
+            console.error('Sign-in failed:', error);
+            setError(error.message || 'Unable to connect to the server. Please try again later.');
+        }
+    };
+
+    const isFormValid = formData.email && formData.password.length >= 8;
+
+
+    // const handleSignInClick = (e) => {
+    //     e.preventDefault();
+    //     console.log('Sign In:', formData);
         
-        if (isFormValid) {
-            const userRole = localStorage.getItem('userRole');
-            const userFullname = localStorage.getItem('userFullname');
-            const userEmail = localStorage.getItem('userEmail');
+    //     if (isFormValid) {
+    //         const userRole = localStorage.getItem('userRole');
+    //         const userFullname = localStorage.getItem('userFullname');
+    //         const userEmail = localStorage.getItem('userEmail');
 
-            console.log('User Fullname:', userFullname);
-            console.log('User Email:', userEmail);
-            console.log('User Role:', userRole);
+    //         console.log('User Fullname:', userFullname);
+    //         console.log('User Email:', userEmail);
+    //         console.log('User Role:', userRole);
 
+    //         if (userRole === 'registrar') {
+    //             navigate('/registrar-dashboard/dashboard');
+    //         } else if (userRole === 'student') {
+    //             navigate('/app/dashboard');
+    //         } else if (userRole === 'lecturer') {
+    //             navigate('/lecturer-dashboard');
+    //         } else {
+    //             console.log('Invalid user role');
+    //             navigate('/signup');
+    //         }
+    //     } else {
+    //         console.log('Form is  not valid');
+    //     }
+    // };
             if (userRole === 'registrar') {
                 navigate('/registrar-dashboard/dashboard');
             } else if (userRole === 'student') {
@@ -83,12 +152,10 @@ const handleSubmit = async (e) => {
                 console.log('Invalid user role');
                 navigate('/signup');
             }
-        } else {
-            console.log('Form is  not valid');
-        }
+        console.log('Form is  not valid');
     };
 
-    const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
+    // const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
 
     return (
         <div className='signin-container'>
