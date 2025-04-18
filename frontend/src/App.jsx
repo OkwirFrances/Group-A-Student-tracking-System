@@ -58,6 +58,7 @@ const App = () => {
           </Route>
 
 
+<<<<<<< Updated upstream
           <Route path='registrar-dashboard' element={<RoleBasedRoute allowedRoles={['registrar']}>
             <RegistrarDashboard />
           </RoleBasedRoute>} >
@@ -74,6 +75,20 @@ const App = () => {
           <Route path='newmessage' element={<NewMessage />}/>
         </Routes>
       </BrowserRouter>
+=======
+        <Route path="lecturer" element={<RoleBasedRoute allowedRoles={['lecturer']}>
+              <LecturerDashboard />
+            </RoleBasedRoute>}>
+          <Route path="dashboard" element={<LecturerDashboardContent />} />
+          <Route path="openissues" element={<OpenIssues />} />
+          <Route path="notifications" element={<NotificationScreen />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="support" element={<HelpSupport />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="messages" element={<Messages />} />
+        </Route>
+      </Routes>
+>>>>>>> Stashed changes
     </IssuesProvider>
   );
 };
