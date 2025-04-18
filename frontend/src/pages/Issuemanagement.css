@@ -35,8 +35,8 @@
 
 .issues-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 24px; /* Adds space between elements */
   margin-bottom: 24px;
 }
 
@@ -44,18 +44,21 @@
   font-size: 24px;
   font-weight: 600;
   color: #111827;
+  white-space: nowrap; /* Prevents title from wrapping */
 }
 
 .header-actions {
   display: flex;
   gap: 12px;
   align-items: center;
+  width: 100%; /* Takes full remaining width */
+  justify-content: space-between; /* Spreads out the search bar and buttons */
 }
 
 .search-bar {
   position: relative;
   width: 320px;
-  
+  margin-right: auto; /* Pushes other elements to the right */
 }
 
 .search-icon {
