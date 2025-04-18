@@ -63,4 +63,8 @@ class AuthTests(APITestCase):
         self.client.post(self.signup_url, self.test_data)
         otp = cache.get(f"otp_{self.test_email}")['otp'] 
         self.client.post(self.verify_url, {"email": self.test_email, "otp": otp})
-   
+
+        response = self.client.post(self.login_url, {
+            "email": self.test_email,
+            "password": self.test_data['password']
+        })   
