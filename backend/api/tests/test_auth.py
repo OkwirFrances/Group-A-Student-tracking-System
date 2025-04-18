@@ -43,3 +43,6 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, 201)
         self.assertIn("token", response.json())
         self.assertTrue(User.objects.filter(email=self.test_email).exists())
+    
+    def test_verify_otp_with_wrong_code_fails(self):
+        """Test that wrong OTP fails"""
