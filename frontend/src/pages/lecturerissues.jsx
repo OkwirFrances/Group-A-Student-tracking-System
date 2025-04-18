@@ -54,6 +54,7 @@ const LecturerIssues = () => {
                             value={searchQuery}
                             onChange={handleSearchChange}
                         />
+                        <img src={search} alt='search' className='search-icon' />
                     </div>
                 </div>
             </div>
