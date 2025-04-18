@@ -57,6 +57,29 @@ const LecturerIssues = () => {
                         <img src={search} alt='search' className='search-icon' />
                     </div>
                 </div>
+                <div className="issues-table">
+                    <div className="table-header">
+                        <div className="table-header-item">Issue</div>
+                        <div className="table-header-item">Status</div>
+                        <div className="table-header-item">Category</div>
+                        <div className="table-header-item">Date</div>
+                    </div>
+                    {filteredIssues.length > 0 ? (
+                        filteredIssues.map((issue, index) => (
+                            <div key={index} className="table-row">
+                                <div className="table-row-item">{issue.title}</div>
+                                <div className="table-row-item">{issue.status}</div>
+                                <div className="table-row-item">{issue.category}</div>
+                                <div className="table-row-item">{issue.date}</div>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="no-issues-container">
+                            <img src={emptybox} alt="No issues" className="no-issues-icon" />
+                            <p>No issues found. Try adjusting your filters or search query.</p>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     )
