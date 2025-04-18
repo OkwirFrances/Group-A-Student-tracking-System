@@ -19,4 +19,8 @@ const LecturerIssues = () => {
     const handleFilterChange = (e) => {
         setFilterStatus(e.target.value);
     };
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
 };
