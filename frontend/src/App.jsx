@@ -86,6 +86,7 @@ const App = () => {
           <Route path="dashboard" element={<LecturerDashboardContent />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="support" element={<HelpSupport />} />
         </Route>
       </Routes>
     </IssuesProvider>
