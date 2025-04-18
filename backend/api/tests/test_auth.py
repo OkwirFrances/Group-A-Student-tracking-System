@@ -60,4 +60,5 @@ class AuthTests(APITestCase):
         
     def test_login_with_correct_credentials(self):
         """Test successful login after signup and OTP verification"""
-            
+        self.client.post(self.signup_url, self.test_data)
+        otp = cache.get(f"otp_{self.test_email}")['otp']    
