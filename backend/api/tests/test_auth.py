@@ -56,3 +56,8 @@ class AuthTests(APITestCase):
         
         self.assertEqual(response.status_code, 400)
         self.assertIn("error", response.json())
+        
+        
+    def test_login_with_correct_credentials(self):
+        """Test successful login after signup and OTP verification"""
+            
