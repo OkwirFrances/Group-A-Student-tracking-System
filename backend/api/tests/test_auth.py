@@ -1,5 +1,5 @@
 from rest_framework.test import APITestCase
-from django.urls import reverse
+#from django.urls import reverse
 from django.core.cache import cache
 from django.contrib.auth import get_user_model
 from rest_framework import status
@@ -57,6 +57,18 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn("error", response.json())
         
+    def test_verify_expired_otp_fails(self):
+        """simulate expired OTP by clearing cache"""
+        self.client.post(self.signup_url, self.test_data)
+        cache.delete(f"otp_{self.test_email}")  # Simulate OTP expiration
+        
+        response = self.client.post(self.verify_url, {
+            "email": self.test_email,
+            "otp": "123456"
+        })
+        
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("error", response.json())
         
     def test_login_with_correct_credentials(self):
         """Test successful login after signup and OTP verification"""
