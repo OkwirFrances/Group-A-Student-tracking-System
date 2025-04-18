@@ -84,6 +84,7 @@ const App = () => {
               <LecturerDashboard />
             </RoleBasedRoute>}>
           <Route path="dashboard" element={<LecturerDashboardContent />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </IssuesProvider>
