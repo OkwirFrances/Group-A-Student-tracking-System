@@ -84,29 +84,23 @@ const Issuemanagement = () => {
             <table>
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Category</th>
+                  <th>Issue</th>
                   <th>Status</th>
+                  <th>Category</th>
                   <th>Date</th>
-                  <th>Priority</th>
                 </tr>
               </thead>
               <tbody>
                 {issues.map((issue) => (
                   <tr key={issue.id}>
                     <td>{issue.title}</td>
-                    <td>{issue.category}</td>
                     <td>
                       <span className={`status-badge ${getStatusColor(issue.status)}`}>
                         {issue.status}
                       </span>
                     </td>
+                    <td>{issue.category}</td>
                     <td>{issue.date}</td>
-                    <td>
-                      <span className={`priority-badge priority-${issue.priority.toLowerCase()}`}>
-                        {issue.priority}
-                      </span>
-                    </td>
                   </tr>
                 ))}
               </tbody>
