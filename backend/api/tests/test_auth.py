@@ -48,3 +48,8 @@ class AuthTests(APITestCase):
         """Test that wrong OTP fails"""
         self.client.post(self.signup_url, self.test_data)
         wrong_otp = '000000'
+        
+        response = self.client.post(self.verify_url, {
+            "email": self.test_email,
+            "otp": wrong_otp
+        })
