@@ -84,6 +84,13 @@ const App = () => {
               <LecturerDashboard />
             </RoleBasedRoute>}>
           <Route path="dashboard" element={<LecturerDashboardContent />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="support" element={<HelpSupport />} />
+          <Route path="messages" element={<Messages />} />
+          <Route path="newmessage" element={<NewMessage />} />
+          <Route path="notifications" element={<NotificationScreen />} />
+          <Route path="openissues" element={<OpenIssues />} />
         </Route>
       </Routes>
     </IssuesProvider>
