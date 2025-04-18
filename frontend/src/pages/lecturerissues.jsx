@@ -46,6 +46,15 @@ const LecturerIssues = () => {
                             <option value={"in-progress"}>In-progress</option>
                             <option value={"resolved"}>Resolved</option>
                     </select>
+                    <div className='lecturer-search-container'>
+                        <input
+                            type='text'
+                            placeholder='Search Issues...'
+                            className='lecturer-search-input'
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
