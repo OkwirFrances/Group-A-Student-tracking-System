@@ -49,7 +49,7 @@
 
 .header-actions {
   display: flex;
-  gap: 12px;
+  gap: 1px;
   align-items: center;
   width: 100%; /* Takes full remaining width */
   justify-content: space-between; /* Spreads out the search bar and buttons */
