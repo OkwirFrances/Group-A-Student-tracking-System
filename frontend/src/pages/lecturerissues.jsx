@@ -10,4 +10,11 @@ const LecturerIssues = () => {
     const [issues, setIssues] = useState([]);
     const [filterstatus, setFilterStatus] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
+
+    useEffect(() => {
+        const storedIssues = JSON.parse(localStorage.getItem('issues')) || [];
+        setIssues(storedIssues);
+    }, []);
+
+    
 };
