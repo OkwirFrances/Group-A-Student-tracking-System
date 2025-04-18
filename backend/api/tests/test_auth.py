@@ -70,6 +70,15 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn("error", response.json())
         
+    def test_login_before_otp_verification_fails(self):
+        """Unverified users should not be able to log in"""
+        self.client.post(self.signup_url, self.test_data)
+
+        response = self.client.post(self.login_url, {
+            "email": self.test_email,
+            "password": self.test_data['password']
+        })    
+        
     def test_login_with_correct_credentials(self):
         """Test successful login after signup and OTP verification"""
         self.client.post(self.signup_url, self.test_data)
