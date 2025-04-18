@@ -11,3 +11,4 @@ class AuthTests(APITestCase):
         self.signup_url = '/signup/'
         self.verify_url = '/verify-otp/'
         self.login_url = '/login/'
+        self.resend_url = '/resend-otp/'
