@@ -67,4 +67,8 @@ class AuthTests(APITestCase):
         response = self.client.post(self.login_url, {
             "email": self.test_email,
             "password": self.test_data['password']
-        })   
+        }) 
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("access", response.json())
+        self.assertIn("refresh", response.json())  
