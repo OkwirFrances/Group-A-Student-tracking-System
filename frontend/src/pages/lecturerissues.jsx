@@ -84,3 +84,5 @@ const LecturerIssues = () => {
         </div>
     )
 };
+
+export default LecturerIssues;
