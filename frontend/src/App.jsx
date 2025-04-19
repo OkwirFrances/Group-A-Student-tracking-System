@@ -26,6 +26,7 @@ import LecturerDashboardContent from './pages/lecturerdashboardcontent';
 import OpenIssues from './pages/openissues';
 import CourseManagement from './pages/CourseManagement';
 import DepartmentManagement from './pages/DepartmentManagement';
+import LecturerIssues from './pages/lecturerissues';
 import { IssuesProvider } from './context/IssueContext';
 import RoleBasedRoute from './components/rolebassedroute';
 
