@@ -54,6 +54,11 @@
     padding: 20px;
 }
 
+.no-issues-container p {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 .no-issues-icon {
     width: 300px;
     height: 300px;
