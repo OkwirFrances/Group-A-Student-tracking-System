@@ -9,3 +9,9 @@
     padding: 20px;
     background-color: white;
 }
+
+.filter-search-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
