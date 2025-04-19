@@ -48,6 +48,7 @@
     border-radius: 15px;
     font-weight: bold;
     text-align: center;
+    color: black;
 }
 
 .lecturer-search-input:focus {
