@@ -78,7 +78,7 @@ const handleSubmit = async (e) => {
             } else if (userRole === 'student') {
                 navigate('/app/dashboard');
             } else if (userRole === 'lecturer') {
-                navigate('/lecturer-dashboard');
+                navigate('/lecturer/dashboard');
             } else {
                 console.log('Invalid user role');
                 navigate('/signup');

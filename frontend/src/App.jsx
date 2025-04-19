@@ -42,14 +42,9 @@ const App = () => {
         <Route path="forgotpassword" element={<ForgotPassword />} />
         <Route path="otp" element={<Otp />} />
         <Route path="congs" element={<Congratulations />} />
-        <Route
-          path="app"
-          element={
-            <RoleBasedRoute allowedRoles={['student']}>
+        <Route path="app" element={<RoleBasedRoute allowedRoles={['student']}>
               <StudentDashboard />
-            </RoleBasedRoute>
-          }
-        >
+            </RoleBasedRoute>}>
           <Route path="dashboard" element={<DashboardContent />} />
           <Route path="notifications" element={<NotificationScreen />} />
           <Route path="issueform" element={<IssueForm />} />
@@ -61,14 +56,9 @@ const App = () => {
           <Route path="issues" element={<Issuemanagement />} />
         </Route>
 
-        <Route
-          path="registrar-dashboard"
-          element={
-            <RoleBasedRoute allowedRoles={['registrar']}>
+        <Route path="registrar-dashboard" element={<RoleBasedRoute allowedRoles={['registrar']}>
               <RegistrarDashboard />
-            </RoleBasedRoute>
-          }
-        >
+            </RoleBasedRoute>}>
           <Route path="dashboard" element={<RegistrarDashboardContent />} />
           <Route path="openissues" element={<OpenIssues />} />
           <Route path="notifications" element={<NotificationScreen />} />
@@ -81,14 +71,11 @@ const App = () => {
         </Route>
         <Route path="newmessage" element={<NewMessage />} />
 
-        <Route
-          path="lecturer"
-          element={<RoleBasedRoute allowedRoles={['lecturer']}>
+        <Route path="lecturer" element={<RoleBasedRoute allowedRoles={['lecturer']}>
               <LecturerDashboard />
-            </RoleBasedRoute>
-          }
-        >
+            </RoleBasedRoute>}>
           <Route path="dashboard" element={<LecturerDashboardContent />} />
+          <Route path='lecturerissue' element={<LecturerIssues />} />
         </Route>
       </Routes>
     </IssuesProvider>
