@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { IssuesContext } from '../context/IssueContext';
 import './issuedetails.css';
@@ -12,9 +12,23 @@ const IssueDetails = () => {
     const [comment, setComment] = useState('');
     const [status, setStatus] = useState(issue?.status || '');
 
-    if (!issue) {
-        return <div>Issue not found</div>;
-    }
+    useEffect(() => {
+        if (issue && issue.status === 'pending') {
+            
+            const updatedIssues = issues.map(i => {
+                if (i.id === issue.id) {
+                    return { ...i, status: 'in-progress' };
+                }
+                return i;
+            });
+
+            setIssues(updatedIssues);
+            localStorage.setItem('issues', JSON.stringify(updatedIssues));
+
+        
+            sendNotification(issue.studentId, 'Your issue is now in progress.');
+        }
+    }, [issue, issues, setIssues]);
 
     const handleStatusUpdate = () => {
         const updatedIssues = issues.map(i => {
@@ -26,8 +40,28 @@ const IssueDetails = () => {
 
         setIssues(updatedIssues);
         localStorage.setItem('issues', JSON.stringify(updatedIssues));
+
+        
+        sendNotification(issue.studentId, 'Your issue has been resolved.');
+
         navigate('/lecturer/lecturerissue'); 
     };
+
+    const sendNotification = (studentId, message) => {
+        const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+        const newNotification = {
+            id: notifications.length + 1,
+            studentId,
+            message,
+            date: new Date().toLocaleString(),
+        };
+        const updatedNotifications = [...notifications, newNotification];
+        localStorage.setItem('notifications', JSON.stringify(updatedNotifications));
+    };
+
+    if (!issue) {
+        return <div>Issue not found</div>;
+    }
 
     return (
         <div className='issue-detail-container'>
