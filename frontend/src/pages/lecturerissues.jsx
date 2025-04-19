@@ -54,7 +54,7 @@ const LecturerIssues = () => {
                             value={searchQuery}
                             onChange={handleSearchChange}
                         />
-                        <img src={search} alt='search' className='search-icon' />
+                        <img src={search} alt='search' className='lecturer-search-icon' />
                     </div>
                 </div>
                 <div className="issues-table">

@@ -47,3 +47,9 @@
     height: 50px;
     margin-bottom: 10px;
 }
+
+.lecturer-search-icon {
+    margin-left: 190px;
+    position: absolute;
+    width: 20px;
+}
