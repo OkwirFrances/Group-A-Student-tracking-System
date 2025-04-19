@@ -11,6 +11,8 @@ const LecturerIssues = () => {
     const [issues, setIssues] = useState([]);
     const [filterstatus, setFilterStatus] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedIssue, setSelectedIssue] = useState(null);
+    const [comment, setComment] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
