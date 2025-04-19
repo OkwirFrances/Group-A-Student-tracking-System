@@ -4,12 +4,14 @@ import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import search from '../assets/search.png';
 import emptybox from '../assets/emptybox.png';
+import { useNavigate } from 'react-router-dom';
 
 
 const LecturerIssues = () => {
     const [issues, setIssues] = useState([]);
     const [filterstatus, setFilterStatus] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const storedIssues = JSON.parse(localStorage.getItem('issues')) || [];
@@ -22,6 +24,10 @@ const LecturerIssues = () => {
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value);
+    };
+
+    const handleIssueClick = (id) => {
+        navigate(`/lecturer/issue/${id}`);
     };
 
     const filteredIssues = issues.filter(issue => {
