@@ -216,6 +216,9 @@ input:hover, .role-select:hover {
 
 .signup-button {
     padding: 10px;
+    position: relative;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden;
     margin-top: 20px;
     background-color: black;
     color: white;
@@ -239,6 +242,7 @@ input:hover, .role-select:hover {
 
 .signup-button:hover:enabled {
     background-color: #333;
+    transform: scale(1.01);
 }
 
 .signin-text {

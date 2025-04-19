@@ -60,8 +60,9 @@ const DashboardContent = () => {
                             <option value='pending'>Pending</option>
                             <option value='in-progress'>In-progress</option>
                             <option value='resolved'>Resolved</option>
+                            </select>
                             <img src={filter} alt='filter' className='filter-icon' /> 
-                    </select>
+                    
                </div>
                <div className='my-issues-search-container'>
                     <input 
