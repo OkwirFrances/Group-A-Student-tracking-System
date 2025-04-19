@@ -56,6 +56,9 @@
     background-color: orange;
 }
 
+.status-in-progress {
+    background-color: yellow;
+}
 .lecturer-search-input:focus {
     border-color: rgb(38, 160, 10);
     outline: none;
