@@ -15,3 +15,7 @@
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
+.filter-dropdown {
+    padding: 10px;
+}
