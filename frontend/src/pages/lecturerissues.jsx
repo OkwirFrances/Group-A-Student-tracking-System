@@ -72,7 +72,10 @@ const LecturerIssues = () => {
                     </div>
                     {filteredIssues.length > 0 ? (
                         filteredIssues.map((issue, index) => (
-                            <div key={index} className="table-rows">
+                            <div 
+                                key={index} 
+                                className="table-rows" 
+                                onClick={() => handleIssueClick(issue.id)}>
                                 <div className="table-row-items">{issue.title}</div>
                                 <div className="table-row-items">{issue.status}</div>
                                 <div className="table-row-items">{issue.category}</div>
