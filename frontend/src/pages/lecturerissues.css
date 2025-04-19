@@ -18,4 +18,12 @@
 
 .filter-dropdown {
     padding: 10px;
+    font-size: irem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.lecturer-search-container {
+    display: flex;
+    align-items: center;
 }
