@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './lecturerdashboardcontent.css';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
@@ -13,6 +14,8 @@ const LecturerDashboardContent = () => {
     const [resolvedIssues, setResolvedIssues] = useState(0);
     const [filterStatus, setFilterStatus] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadIssues = () => {
@@ -54,7 +57,7 @@ const LecturerDashboardContent = () => {
     });
 
     const handleOpenIssuesClick = () => {
-        console.log('Open Issues button clicked');
+        navigate('/lecturer/lecturerissue');
     };
 
     return (

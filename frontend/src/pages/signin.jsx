@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './signin.css';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
-import { useNavigate } from 'react-router-dom';
 import padlock from '../assets/padlock.png';
+import { useNavigate, Link } from 'react-router-dom';
 import { authAPI } from '../services/api';
 
 const SignIn = () => {
@@ -12,9 +12,9 @@ const SignIn = () => {
         email: '',
         password: '',
     });
-
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,43 +22,6 @@ const SignIn = () => {
             ...formData,
             [name]: value,
         });
-
-//     // SignIn.jsx
-// const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setLoading(true);
-//     setError('');
-  
-//     try {
-//       const response = await loginUser(formData);
-      
-//       if (response.token) {
-//         localStorage.setItem('token', response.token);
-//         localStorage.setItem('userRole', response.user.role);
-        
-//         // Redirect based on role
-//         const dashboardPaths = {
-//           registrar: '/registrar-dashboard',
-//           lecturer: '/lecturer-dashboard',
-//           student: '/student-dashboard'
-//         };
-        // Redirect based on role
-        // const dashboardPaths = {
-        //   registrar: '/registrar-dashboard',
-        //   lecturer: '/lecturer/dashboard',
-        //   student: '/student-dashboard'
-        // };
-        
-//         navigate(dashboardPaths[response.user.role] || '/');
-//       } else {
-//         setError(response.message || 'Login failed');
-//       }
-//     } catch (err) {
-//       setError(err.response?.data?.message || 'Login failed. Please try again.');
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
     };
 
     const handleCheckboxChange = (e) => {
@@ -67,14 +30,18 @@ const SignIn = () => {
 
     const handleSignInClick = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setError('');
 
         if (!formData.email || !formData.password) {
             setError('Please fill in all fields.');
+            setLoading(false);
             return;
         }
 
         if (formData.password.length < 8) {
             setError('Password must be at least 8 characters long.');
+            setLoading(false);
             return;
         }
 
@@ -89,70 +56,21 @@ const SignIn = () => {
             localStorage.setItem('userFullname', data.fullname);
 
             // Redirect to the appropriate dashboard based on the user's role
-            switch (data.role) {
-                case 'lecturer':
-                    navigate('/lecturer/dashboard');
-                    break;
-                case 'student':
-                    navigate('/app/dashboard');
-                    break;
-                case 'registrar':
-                    navigate('/registrar/dashboard');
-                    break;
-                default:
-                    setError('Unknown user role.');
-                    break;
-            }
+            const dashboardPaths = {
+                registrar: '/registrar-dashboard/dashboard',
+                lecturer: '/lecturer/dashboard',
+                student: '/app/dashboard',
+            };
+
+            navigate(dashboardPaths[data.role] || '/');
         } catch (error) {
             console.error('Sign-in failed:', error);
-            setError(error.message || 'Unable to connect to the server. Please try again later.');
+            setError(error.response?.data?.message || 'Unable to connect to the server. Please try again later.');
+        } finally {
+            setLoading(false);
         }
     };
 
-    // Removed duplicate declaration of isFormValid
-
-
-    // const handleSignInClick = (e) => {
-    //     e.preventDefault();
-    //     console.log('Sign In:', formData);
-        
-    //     if (isFormValid) {
-    //         const userRole = localStorage.getItem('userRole');
-    //         const userFullname = localStorage.getItem('userFullname');
-    //         const userEmail = localStorage.getItem('userEmail');
-
-    //         console.log('User Fullname:', userFullname);
-    //         console.log('User Email:', userEmail);
-    //         console.log('User Role:', userRole);
-
-    //         if (userRole === 'registrar') {
-    //             navigate('/registrar-dashboard/dashboard');
-    //         } else if (userRole === 'student') {
-    //             navigate('/app/dashboard');
-    //         } else if (userRole === 'lecturer') {
-    //             navigate('/lecturer-dashboard');
-    //         } else {
-    //             console.log('Invalid user role');
-    //             navigate('/signup');
-    //         }
-    //     } else {
-    //         console.log('Form is  not valid');
-    //     }
-    // };
-    //         if (userRole === 'registrar') {
-    //             navigate('/registrar-dashboard/dashboard');
-    //         } else if (userRole === 'student') {
-    //             navigate('/app/dashboard');
-    //         } else if (userRole === 'lecturer') {
-    //             navigate('/lecturer/dashboard');
-    //         } else {
-    //             console.log('Invalid user role');
-    //             navigate('/signup');
-    //         }
-    //     console.log('Form is  not valid');
-    // };
-
-    // const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
     const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
 
     return (
@@ -205,10 +123,11 @@ const SignIn = () => {
                     </label>
                     <button
                         className='signinbutton'
-                        disabled={!isFormValid}>
-                        SIGN IN
+                        disabled={!isFormValid || loading}>
+                        {loading ? 'Signing In...' : 'SIGN IN'}
                     </button>
-                    <p className='link'>Don't have an account? <a href='signup' className='signup-link'>Sign Up</a></p>
+                    {error && <p className='error-message'>{error}</p>}
+                    <p className='link'>Don't have an account? <Link to='/signup' className='signup-link'>Sign Up</Link></p>
                 </form>
             </div>
         </div>

@@ -4,12 +4,16 @@ import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import search from '../assets/search.png';
 import emptybox from '../assets/emptybox.png';
+import { useNavigate } from 'react-router-dom';
 
 
 const LecturerIssues = () => {
     const [issues, setIssues] = useState([]);
     const [filterstatus, setFilterStatus] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedIssue, setSelectedIssue] = useState(null);
+    const [comment, setComment] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const storedIssues = JSON.parse(localStorage.getItem('issues')) || [];
@@ -22,6 +26,23 @@ const LecturerIssues = () => {
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value);
+    };
+
+    const handleIssueClick = (id) => {
+        navigate(`/lecturer/issue/${id}`);
+    };
+
+    const getStatusClass = (status) => {
+        switch (status.toLowerCase()) {
+            case 'pending':
+                return 'status-pending';
+            case 'in-progress':
+                return 'status-in-progress';
+            case 'resolved':
+                return 'status-resolved';
+            default:
+                return '';
+        }
     };
 
     const filteredIssues = issues.filter(issue => {
@@ -54,23 +75,28 @@ const LecturerIssues = () => {
                             value={searchQuery}
                             onChange={handleSearchChange}
                         />
-                        <img src={search} alt='search' className='search-icon' />
+                        <img src={search} alt='search' className='lecturer-search-icon' />
                     </div>
                 </div>
                 <div className="issues-table">
                     <div className="table-header">
-                        <div className="table-header-item">Issue</div>
-                        <div className="table-header-item">Status</div>
-                        <div className="table-header-item">Category</div>
-                        <div className="table-header-item">Date</div>
+                        <div className="table-header-items">Issue</div>
+                        <div className="table-header-items">Status</div>
+                        <div className="table-header-items">Category</div>
+                        <div className="table-header-items">Date</div>
                     </div>
                     {filteredIssues.length > 0 ? (
                         filteredIssues.map((issue, index) => (
-                            <div key={index} className="table-row">
-                                <div className="table-row-item">{issue.title}</div>
-                                <div className="table-row-item">{issue.status}</div>
-                                <div className="table-row-item">{issue.category}</div>
-                                <div className="table-row-item">{issue.date}</div>
+                            <div 
+                                key={index} 
+                                className="table-rows" 
+                                onClick={() => handleIssueClick(issue.id)}>
+                                <div className="table-row-items">{issue.title}</div>
+                                <div className={`table-row-items status ${getStatusClass(issue.status)}`}>
+                                    {issue.status}
+                                </div>
+                                <div className="table-row-items">{issue.category}</div>
+                                <div className="table-row-items">{issue.date}</div>
                             </div>
                         ))
                     ) : (

@@ -26,6 +26,7 @@ import LecturerDashboardContent from './pages/lecturerdashboardcontent';
 import OpenIssues from './pages/openissues';
 import CourseManagement from './pages/CourseManagement';
 import DepartmentManagement from './pages/DepartmentManagement';
+import LecturerIssues from './pages/lecturerissues';
 import { IssuesProvider } from './context/IssueContext';
 import RoleBasedRoute from './components/rolebassedroute';
 
@@ -41,14 +42,9 @@ const App = () => {
         <Route path="forgotpassword" element={<ForgotPassword />} />
         <Route path="otp" element={<Otp />} />
         <Route path="congs" element={<Congratulations />} />
-        <Route
-          path="app"
-          element={
-            <RoleBasedRoute allowedRoles={['student']}>
+        <Route path="app" element={<RoleBasedRoute allowedRoles={['student']}>
               <StudentDashboard />
-            </RoleBasedRoute>
-          }
-        >
+            </RoleBasedRoute>}>
           <Route path="dashboard" element={<DashboardContent />} />
           <Route path="notifications" element={<NotificationScreen />} />
           <Route path="issueform" element={<IssueForm />} />
@@ -60,14 +56,9 @@ const App = () => {
           <Route path="issues" element={<Issuemanagement />} />
         </Route>
 
-        <Route
-          path="registrar-dashboard"
-          element={
-            <RoleBasedRoute allowedRoles={['registrar']}>
+        <Route path="registrar-dashboard" element={<RoleBasedRoute allowedRoles={['registrar']}>
               <RegistrarDashboard />
-            </RoleBasedRoute>
-          }
-        >
+            </RoleBasedRoute>}>
           <Route path="dashboard" element={<RegistrarDashboardContent />} />
           <Route path="openissues" element={<OpenIssues />} />
           <Route path="notifications" element={<NotificationScreen />} />
@@ -84,13 +75,14 @@ const App = () => {
               <LecturerDashboard />
             </RoleBasedRoute>}>
           <Route path="dashboard" element={<LecturerDashboardContent />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="support" element={<HelpSupport />} />
-          <Route path="messages" element={<Messages />} />
-          <Route path="newmessage" element={<NewMessage />} />
+          <Route path='lecturerissue' element={<LecturerIssues />} />
+          <Route path="issue/:id" element={<IssueDetails />} />
           <Route path="notifications" element={<NotificationScreen />} />
-          <Route path="openissues" element={<OpenIssues />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="support" element={<HelpSupport />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="newmessage" element={<NewMessage />} />
+          <Route path="messages" element={<Messages />} />
         </Route>
       </Routes>
     </IssuesProvider>
