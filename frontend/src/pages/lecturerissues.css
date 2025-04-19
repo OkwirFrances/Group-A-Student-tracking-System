@@ -18,10 +18,16 @@
 }
 
 .filter-dropdown {
-    padding: 10px;
+    padding: 8px;
     font-size: irem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.filter-dropdown:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
 }
 
 .lecturer-search-container {
