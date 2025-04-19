@@ -49,6 +49,7 @@
     font-weight: bold;
     text-align: center;
     color: black;
+    display: inline-block;
 }
 
 .lecturer-search-input:focus {
