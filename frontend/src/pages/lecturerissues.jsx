@@ -59,18 +59,18 @@ const LecturerIssues = () => {
                 </div>
                 <div className="issues-table">
                     <div className="table-header">
-                        <div className="table-header-item">Issue</div>
-                        <div className="table-header-item">Status</div>
-                        <div className="table-header-item">Category</div>
-                        <div className="table-header-item">Date</div>
+                        <div className="table-header-items">Issue</div>
+                        <div className="table-header-items">Status</div>
+                        <div className="table-header-items">Category</div>
+                        <div className="table-header-items">Date</div>
                     </div>
                     {filteredIssues.length > 0 ? (
                         filteredIssues.map((issue, index) => (
-                            <div key={index} className="table-row">
-                                <div className="table-row-item">{issue.title}</div>
-                                <div className="table-row-item">{issue.status}</div>
-                                <div className="table-row-item">{issue.category}</div>
-                                <div className="table-row-item">{issue.date}</div>
+                            <div key={index} className="table-rows">
+                                <div className="table-row-items">{issue.title}</div>
+                                <div className="table-row-items">{issue.status}</div>
+                                <div className="table-row-items">{issue.category}</div>
+                                <div className="table-row-items">{issue.date}</div>
                             </div>
                         ))
                     ) : (
