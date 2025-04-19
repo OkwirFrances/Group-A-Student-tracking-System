@@ -77,6 +77,12 @@ const App = () => {
           <Route path="dashboard" element={<LecturerDashboardContent />} />
           <Route path='lecturerissue' element={<LecturerIssues />} />
           <Route path="issue/:id" element={<IssueDetails />} />
+          <Route path="notifications" element={<NotificationScreen />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="support" element={<HelpSupport />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="newmessage" element={<NewMessage />} />
+          <Route path="messages" element={<Messages />} />
         </Route>
       </Routes>
     </IssuesProvider>
