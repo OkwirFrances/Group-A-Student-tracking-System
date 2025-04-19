@@ -61,6 +61,12 @@
     background-color: yellow;
     color: black;
 }
+
+.status-resolved {
+    background-color: rgb(12, 159, 12);
+    color: white;
+}
+
 .lecturer-search-input:focus {
     border-color: rgb(38, 160, 10);
     outline: none;
