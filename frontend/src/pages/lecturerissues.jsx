@@ -30,6 +30,19 @@ const LecturerIssues = () => {
         navigate(`/lecturer/issue/${id}`);
     };
 
+    const getStatusClass = (status) => {
+        switch (status.toLowerCase()) {
+            case 'pending':
+                return 'status-pending';
+            case 'in-progress':
+                return 'status-in-progress';
+            case 'resolved':
+                return 'status-resolved';
+            default:
+                return '';
+        }
+    };
+    
     const filteredIssues = issues.filter(issue => {
         const matchesStatus = filterstatus === 'all' || issue.status.toLowerCase() === filterstatus;
         const matchesSearch = issue.title.toLowerCase().includes(searchQuery.toLowerCase());
