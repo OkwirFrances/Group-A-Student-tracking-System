@@ -42,7 +42,7 @@ const LecturerIssues = () => {
                 return '';
         }
     };
-    
+
     const filteredIssues = issues.filter(issue => {
         const matchesStatus = filterstatus === 'all' || issue.status.toLowerCase() === filterstatus;
         const matchesSearch = issue.title.toLowerCase().includes(searchQuery.toLowerCase());
@@ -90,7 +90,9 @@ const LecturerIssues = () => {
                                 className="table-rows" 
                                 onClick={() => handleIssueClick(issue.id)}>
                                 <div className="table-row-items">{issue.title}</div>
-                                <div className="table-row-items">{issue.status}</div>
+                                <div className={`table-row-items status ${getStatusClass(issue.status)}`}>
+                                    {issue.status}
+                                </div>
                                 <div className="table-row-items">{issue.category}</div>
                                 <div className="table-row-items">{issue.date}</div>
                             </div>
