@@ -43,6 +43,12 @@
     margin-right: 10px;
 }
 
+.status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    
+}
+
 .lecturer-search-input:focus {
     border-color: rgb(38, 160, 10);
     outline: none;
