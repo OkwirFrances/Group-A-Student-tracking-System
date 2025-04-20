@@ -15,3 +15,7 @@ class UserSerializerTest(APITestCase):
         }
         serializer = UserSerializer(data=data)
         self.assertTrue(serializer.is_valid())
+        
+        
+class IssueSerializerTest(APITestCase):
+    def setUp(self):        
