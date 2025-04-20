@@ -18,4 +18,8 @@ class UserSerializerTest(APITestCase):
         
         
 class IssueSerializerTest(APITestCase):
-    def setUp(self):        
+    def setUp(self):
+        self.department = Department.objects.create(code='CS', name='Comp Sci')
+        self.course = Course.objects.create(code='CSC101', name='Intro', department=self.department)
+        self.student = CustomUser.objects.create_user(email='s@x.com', password='testpass', fullname='Stu', role='student')
+        
