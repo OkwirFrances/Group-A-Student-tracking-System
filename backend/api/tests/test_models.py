@@ -13,3 +13,10 @@ class CustomUserModelTest(TestCase):
         )
         self.assertEqual(user.email, 'test@example.com')
         self.assertTrue(user.check_password('TestPassword123!'))
+        
+
+class DepartmentModelTest(TestCase):
+    def test_department_str(self):
+        dept = Department.objects.create(code='CS', name='Computer Science')
+        self.assertEqual(str(dept), 'CS - Computer Science')
+        
