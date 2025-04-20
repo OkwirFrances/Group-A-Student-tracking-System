@@ -23,3 +23,6 @@ class IssueSerializerTest(APITestCase):
         self.course = Course.objects.create(code='CSC101', name='Intro', department=self.department)
         self.student = CustomUser.objects.create_user(email='s@x.com', password='testpass', fullname='Stu', role='student')
         
+    def test_create_issue_serialization(self):
+        issue_data = {    
+        
