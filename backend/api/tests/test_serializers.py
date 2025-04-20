@@ -13,3 +13,5 @@ class UserSerializerTest(APITestCase):
             "role": "student",
             "termsAccepted": True
         }
+        serializer = UserSerializer(data=data)
+        self.assertTrue(serializer.is_valid())
