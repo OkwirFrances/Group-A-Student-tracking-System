@@ -2,3 +2,5 @@
 
 from rest_framework.test import APITestCase
 from django.urls import reverse
+from api.models import Department, CustomUser
+from rest_framework import status
