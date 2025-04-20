@@ -17,4 +17,8 @@ class DepartmentViewTests(APITestCase):
         self.client.force_authenticate(user=self.user)
         
         
-    def test_create_department(self):    
+    def test_create_department(self): 
+        response = self.client.post('/departments/', {
+            'name': 'Engineering',
+            'code': 'ENG'
+        })   
