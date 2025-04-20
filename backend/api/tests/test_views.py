@@ -14,3 +14,4 @@ class DepartmentViewTests(APITestCase):
             role='registrar',
             is_verified=True
         )
+        self.client.force_authenticate(user=self.user)
