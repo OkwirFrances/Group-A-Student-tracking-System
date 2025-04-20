@@ -3,3 +3,11 @@
 from django.test import TestCase
 from api.models import CustomUser, Department, Course, Issue, Student
 
+class CustomUserModelTest(TestCase):
+    def test_user_creation(self):
+        user = CustomUser.objects.create_user(
+            email='test@example.com',
+            password='TestPassword123!',
+            fullname='Test User',
+            role='student'
+        )
