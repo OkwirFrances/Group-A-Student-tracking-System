@@ -21,4 +21,6 @@ class DepartmentViewTests(APITestCase):
         response = self.client.post('/departments/', {
             'name': 'Engineering',
             'code': 'ENG'
-        })   
+        })
+        self.assertEqual(response.status_code, 201)
+   
