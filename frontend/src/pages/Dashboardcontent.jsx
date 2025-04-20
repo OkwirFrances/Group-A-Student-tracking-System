@@ -65,10 +65,10 @@ const DashboardContent = () => {
                     
                </div>
                <div className='my-issues-search-container'>
-                    <input 
-                    type='text' 
-                    placeholder='Search for anything...' 
-                    className='my-issues-search-input' />
+                    <input
+                        type='text' 
+                        placeholder='Search for anything...' 
+                        className='my-issues-search-input' />
                     <img src={search} alt='search' className='my-issues-search-icon' />
                 </div>
                <div className='issues-table'>
