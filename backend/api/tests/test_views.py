@@ -7,3 +7,5 @@ from rest_framework import status
 
 class DepartmentViewTests(APITestCase):
     def setUp(self):
+        self.user = CustomUser.objects.create_user(
+            email='registrar@example.com',
