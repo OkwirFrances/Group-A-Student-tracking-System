@@ -11,3 +11,6 @@ class DepartmentViewTests(APITestCase):
             email='registrar@example.com',
             password='StrongPass123!',
             fullname='Registrar',
+            role='registrar',
+            is_verified=True
+        )
