@@ -24,5 +24,13 @@ class IssueSerializerTest(APITestCase):
         self.student = CustomUser.objects.create_user(email='s@x.com', password='testpass', fullname='Stu', role='student')
         
     def test_create_issue_serialization(self):
-        issue_data = {    
+        issue_data = {
+            "issue_type": "appeal",
+            "semester": "Semester 1",
+            "course": self.course.id,
+            "title": "Test issue",
+            "description": "Something is wrong",
+            "status": "open"
+        }    
+                      
         
