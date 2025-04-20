@@ -31,6 +31,9 @@ class IssueSerializerTest(APITestCase):
             "title": "Test issue",
             "description": "Something is wrong",
             "status": "open"
-        }    
+        } 
+        context = {"request": None}
+        serializer = IssueSerializer(data=issue_data, context=context)
+        self.assertTrue(serializer.is_valid())   
                       
         
