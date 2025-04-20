@@ -24,5 +24,7 @@ class DepartmentViewTests(APITestCase):
         })
         self.assertEqual(response.status_code, 201)
         
-    def test_get_departments(self):    
+    def test_get_departments(self):
+        Department.objects.create(name='Test', code='TST')
+        response = self.client.get('/departments/')    
    
