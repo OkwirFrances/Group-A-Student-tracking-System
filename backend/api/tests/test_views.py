@@ -23,4 +23,6 @@ class DepartmentViewTests(APITestCase):
             'code': 'ENG'
         })
         self.assertEqual(response.status_code, 201)
+        
+    def test_get_departments(self):    
    
