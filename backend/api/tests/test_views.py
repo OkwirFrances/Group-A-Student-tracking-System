@@ -15,3 +15,6 @@ class DepartmentViewTests(APITestCase):
             is_verified=True
         )
         self.client.force_authenticate(user=self.user)
+        
+        
+    def test_create_department(self):    
