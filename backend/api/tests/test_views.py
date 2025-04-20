@@ -9,3 +9,5 @@ class DepartmentViewTests(APITestCase):
     def setUp(self):
         self.user = CustomUser.objects.create_user(
             email='registrar@example.com',
+            password='StrongPass123!',
+            fullname='Registrar',
