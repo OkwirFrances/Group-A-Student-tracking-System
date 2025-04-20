@@ -6,3 +6,10 @@ from api.models import CustomUser, Department, Course, Issue
 
 class UserSerializerTest(APITestCase):
     def test_user_serializer_valid(self):
+        data = {
+            "email": "student@example.com",
+            "fullname": "Student User",
+            "password": "StrongPass123!",
+            "role": "student",
+            "termsAccepted": True
+        }
