@@ -29,6 +29,7 @@ const OpenIssues = () => {
                 time: new Date().toLocaleTimeString(),
             };
             const updatedNotifications = [...notifications, newNotification];
+            localStorage.setItem('notifications', JSON.stringify(updatedNotifications));
         }
     };
 
