@@ -8,6 +8,7 @@ export const IssuesProvider = ({ children }) => {
 
     const addIssue = (newissue) => {
         setIssues((prevIssues) => [...prevIssues, newissue]);
+        localStorage.setItem('issues', JSON.stringify([...issues, newissue]));
     };
 
     return (
