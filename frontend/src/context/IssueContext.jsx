@@ -6,8 +6,8 @@ export const IssuesProvider = ({ children }) => {
     const [issues, setIssues] = useState([]);
     const [notificationMessage, setNotificationMessage] = useState(null);
 
-    const addIssue = (issue) => {
-        setIssues([...issues, issue]);
+    const addIssue = (newissue) => {
+        setIssues();
     };
 
     return (

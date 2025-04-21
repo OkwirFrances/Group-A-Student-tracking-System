@@ -4,7 +4,6 @@ import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import padlock from '../assets/padlock.png';
 import { useNavigate, Link } from 'react-router-dom';
-import { authAPI } from '../services/api';
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -28,7 +27,7 @@ const SignIn = () => {
         setIsTermsAccepted(e.target.checked);
     };
 
-    const handleSignInClick = async (e) => {
+    const handleSignInClick = (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
@@ -45,30 +44,38 @@ const SignIn = () => {
             return;
         }
 
-        try {
-            const data = await authAPI.login(formData.email, formData.password);
+        // Mock login logic
+        setTimeout(() => {
+            const mockUsers = [
+                { email: 'registrar@example.com', password: 'password123', role: 'registrar' },
+                { email: 'lecturer@example.com', password: 'password123', role: 'lecturer' },
+                { email: 'student@example.com', password: 'password123', role: 'student' },
+            ];
 
-            // Store user data in localStorage
-            localStorage.setItem('authToken', data.access);
-            localStorage.setItem('refreshToken', data.refresh);
-            localStorage.setItem('userRole', data.role);
-            localStorage.setItem('userEmail', data.email);
-            localStorage.setItem('userFullname', data.fullname);
+            const user = mockUsers.find(
+                (u) => u.email === formData.email && u.password === formData.password
+            );
 
-            // Redirect to the appropriate dashboard based on the user's role
-            const dashboardPaths = {
-                registrar: '/registrar-dashboard/dashboard',
-                lecturer: '/lecturer/dashboard',
-                student: '/app/dashboard',
-            };
+            if (user) {
+                // Store user data in localStorage
+                localStorage.setItem('authToken', 'mockAuthToken');
+                localStorage.setItem('userRole', user.role);
+                localStorage.setItem('userEmail', user.email);
 
-            navigate(dashboardPaths[data.role] || '/');
-        } catch (error) {
-            console.error('Sign-in failed:', error);
-            setError(error.response?.data?.message || 'Unable to connect to the server. Please try again later.');
-        } finally {
+                // Redirect to the appropriate dashboard based on the user's role
+                const dashboardPaths = {
+                    registrar: '/registrar-dashboard/dashboard',
+                    lecturer: '/lecturer/dashboard',
+                    student: '/app/dashboard',
+                };
+
+                navigate(dashboardPaths[user.role] || '/');
+            } else {
+                setError('Invalid email or password.');
+            }
+
             setLoading(false);
-        }
+        }, 1000); // Simulate network delay
     };
 
     const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;

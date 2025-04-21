@@ -1,11 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import './studentdashboard.css';
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { toast } from 'react-toastify';
-import { issueAPI, lecturerAPI } from '../services/api'; 
 
 const RegistrarDashboard = () => {
     const [allIssues, setAllIssues] = useState([]);
@@ -18,34 +16,40 @@ const RegistrarDashboard = () => {
         localStorage.setItem('userRole', 'registrar');
     }, []);
 
-    const fetchData = async () => {
-        try {
-            setLoading(true);
-            const [issuesResponse, lecturersResponse] = await Promise.all([
-                issueAPI.getIssues(),
-                lecturerAPI.getLecturers()
-            ]);
-            setAllIssues(issuesResponse);
-            setLecturers(lecturersResponse);
-        } catch (error) {
-            if (error === 'Unauthorized') {
-                handleLogout();
-            } else {
-                toast.error(error || 'Failed to fetch data');
-            }
-        } finally {
+    const fetchData = () => {
+        // Mock data fetching
+        setLoading(true);
+
+        const mockIssues = [
+            { id: 1, title: 'Missing Marks', status: 'Pending', assignedTo: null },
+            { id: 2, title: 'Appeal for Grade', status: 'In-progress', assignedTo: 'Dr. Lule Bosco' },
+        ];
+
+        const mockLecturers = [
+            { id: 1, name: 'Dr. Lule Bosco' },
+            { id: 2, name: 'Dr. Waswa Shafick' },
+            { id: 3, name: 'Mrs. Aloi' },
+        ];
+
+        setTimeout(() => {
+            setAllIssues(mockIssues);
+            setLecturers(mockLecturers);
             setLoading(false);
-        }
+        }, 1000); // Simulate network delay
     };
 
-    const handleAssign = async (issueId, lecturerId) => {
-        try {
-            await issueAPI.assignIssue(issueId, lecturerId);
-            await fetchData(); // Refresh data after assignment
-            toast.success('Issue assigned successfully');
-        } catch (error) {
-            toast.error(error || 'Failed to assign issue');
-        }
+    const handleAssign = (issueId, lecturerId) => {
+        // Mock issue assignment
+        const updatedIssues = allIssues.map(issue => {
+            if (issue.id === issueId) {
+                const assignedLecturer = lecturers.find(lecturer => lecturer.id === lecturerId);
+                return { ...issue, status: 'In-progress', assignedTo: assignedLecturer.name };
+            }
+            return issue;
+        });
+
+        setAllIssues(updatedIssues);
+        toast.success('Issue assigned successfully');
     };
 
     const handleLogout = () => {
@@ -55,8 +59,8 @@ const RegistrarDashboard = () => {
         navigate('/signin');
     };
 
-    useEffect(() => { 
-        fetchData(); 
+    useEffect(() => {
+        fetchData();
     }, []);
 
     return (

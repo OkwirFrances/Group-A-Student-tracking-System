@@ -3,7 +3,6 @@ import './issueform.css';
 import upload from '../assets/upload.png';
 import { IssuesContext } from '../context/IssueContext';
 import { v4 as uuidv4 } from 'uuid';
-import { issueAPI } from '../services/api'; 
 
 const IssueForm = ({ setBadgeCount }) => {
     const { addIssue, setNotificationMessage } = useContext(IssuesContext);
@@ -40,7 +39,7 @@ const IssueForm = ({ setBadgeCount }) => {
         return Object.values(formData).every(value => value !== '' && value !== null);
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (!isFormComplete()) {
             setError('Please fill in all the required fields.');
@@ -51,23 +50,7 @@ const IssueForm = ({ setBadgeCount }) => {
         setError(null);
 
         try {
-            // Prepare form data for backend
-            const formDataToSend = new FormData();
-            formDataToSend.append('title', formData.title);
-            formDataToSend.append('description', formData.description);
-            formDataToSend.append('category', formData.category);
-            formDataToSend.append('registrar', formData.registrar);
-            formDataToSend.append('lecturer', formData.lecturer);
-            formDataToSend.append('coursecode', formData.coursecode);
-            formDataToSend.append('coursename', formData.coursename);
-            if (formData.attachment) {
-                formDataToSend.append('attachment', formData.attachment);
-            }
-
-            // Send to backend
-            const response = await issueAPI.createIssue(formDataToSend);
-
-            // If successful, update local state
+            // Mock issue creation
             const newIssue = {
                 id: uuidv4(),
                 ...formData,
@@ -76,6 +59,7 @@ const IssueForm = ({ setBadgeCount }) => {
                 time: new Date().toLocaleTimeString(),
             };
 
+            // Add issue to context
             addIssue(newIssue);
 
             // Update localStorage
