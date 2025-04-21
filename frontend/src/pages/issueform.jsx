@@ -45,7 +45,7 @@ const IssueForm = ({ setBadgeCount }) => {
             setError('Please fill in all the required fields.');
             return;
         }
-        addIssue(newIssue);
+        
         setIsSubmitting(true);
         setError(null);
 
@@ -59,7 +59,7 @@ const IssueForm = ({ setBadgeCount }) => {
                 time: new Date().toLocaleTimeString(),
             };
 
-
+            addIssue(newIssue);
             // Update localStorage
             const existingIssues = JSON.parse(localStorage.getItem('issues')) || [];
             const updatedIssues = [...existingIssues, newIssue];
