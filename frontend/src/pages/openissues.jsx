@@ -24,6 +24,7 @@ const OpenIssues = () => {
             const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
             const newNotification = {
                 id: notifications.length + 1,
+                message: `A new issue has benn assigned to you.`
             }
         }
     };
