@@ -22,6 +22,9 @@ const OpenIssues = () => {
 
         if (lecturerName) {
             const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+            const newNotification = {
+                id: notifications.length + 1,
+            }
         }
     };
 
