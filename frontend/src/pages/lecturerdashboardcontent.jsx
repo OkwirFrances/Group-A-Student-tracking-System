@@ -65,8 +65,8 @@ const LecturerDashboardContent = () => {
 
         useEffect(() => {
             const storedNotifications = JSON.parse(localStorage.getItem('notifications')) || [];
-            setNotifications(storedNotifications.filter(notification))
-        })
+            setNotifications(storedNotifications.filter(notification => notification.lecturer === "Dr. Ngobiri"));
+        }, []);
         
       } 
 
