@@ -19,6 +19,10 @@ const OpenIssues = () => {
 
     const toggleSubDropdown = (index) => {
         setSubDropdownVisible(subDropdownVisible === index ? null : index);
+
+        if (lecturerName) {
+            const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+        }
     };
 
     useEffect(() => {
