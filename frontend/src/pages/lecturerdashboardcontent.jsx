@@ -62,6 +62,12 @@ const LecturerDashboardContent = () => {
 
     const LecturerNotifications = () => {
         const [notifications, setNotifications] = useState([]);
+
+        useEffect(() => {
+            const storedNotifications = JSON.parse(localStorage.getItem('notifications')) || [];
+            setNotifications(storedNotifications.filter(notification))
+        })
+        
       } 
 
     return (
