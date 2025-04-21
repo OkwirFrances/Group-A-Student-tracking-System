@@ -17,19 +17,21 @@ const OpenIssues = () => {
         setSubDropdownVisible(null);
     };
 
-    const toggleSubDropdown = (index) => {
+    const toggleSubDropdown = (index, lecturerName) => {
         setSubDropdownVisible(subDropdownVisible === index ? null : index);
 
         if (lecturerName) {
             const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
             const newNotification = {
                 id: notifications.length + 1,
-                message: `A new issue has benn assigned to you.`,
+                message: `A new issue has been assigned to you.`,
                 date: new Date().toLocaleDateString(),
                 time: new Date().toLocaleTimeString(),
             };
             const updatedNotifications = [...notifications, newNotification];
             localStorage.setItem('notifications', JSON.stringify(updatedNotifications));
+
+            alert(`Issue has been successfully escalated to ${lecturerName}`);
         }
     };
 

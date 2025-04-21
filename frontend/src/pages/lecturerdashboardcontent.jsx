@@ -60,6 +60,10 @@ const LecturerDashboardContent = () => {
         navigate('/lecturer/lecturerissue');
     };
 
+    const LecturerNotifications = () => {
+        const [notifications, setNotifications] = useState([]);
+      } 
+
     return (
         <div className='lecturer-dashboard-container'>
             <Navbar />
