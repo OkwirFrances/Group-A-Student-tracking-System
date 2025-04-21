@@ -26,6 +26,7 @@ const OpenIssues = () => {
                 id: notifications.length + 1,
                 message: `A new issue has benn assigned to you.`,
                 date: new Date().toLocaleDateString(),
+                time: new Date().toLocaleTimeString(),
             }
         }
     };
