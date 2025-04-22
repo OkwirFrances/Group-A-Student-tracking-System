@@ -17,5 +17,15 @@ test('renders the DashboardContent component with correct issue counts', () => {
                 <DashboardContent />
             </IssuesContext.Provider>
         </MemoryRouter>
-    )
-})
+    );
+
+    // Check if the pending issues count is correct
+    expect(screen.getByText(/You have 1 pending issues./i)).toBeInTheDocument();
+
+    // Check if the in-progress issues count is correct
+    expect(screen.getByText(/You have 1 in-progress issues./i)).toBeInTheDocument();
+
+    // Check if the resolved issues count is correct
+    expect(screen.getByText(/You have 1 resolved issues./i)).toBeInTheDocument();
+    
+});
