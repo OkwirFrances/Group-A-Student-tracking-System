@@ -1,53 +1,47 @@
-
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CourseManagement.css';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { courseAPI, departmentAPI, userAPI} from '../services/api';
 
 const CourseManagement = () => {
     const [courses, setCourses] = useState([]);
     const [departments, setDepartments] = useState([]);
     const [loading, setLoading] = useState(true);
-    const[formData, setFormData] = useState({
+    const [formData, setFormData] = useState({
         name: '',
         code: '',
-        department_id: '' 
-});
-const navigate = useNavigate();
+        department_id: ''
+    });
+    const navigate = useNavigate();
 
-useEffect(() => {
-    const verifyAccess = async () => {
-        try {
-            const userInfo = await userAPI.getUserInfo();
+    useEffect(() => {
+        const verifyAccess = () => {
+            
+            const userInfo = { role: 'registrar' }; 
             if (userInfo.role !== 'registrar') {
                 toast.error('Unauthorized access');
                 navigate('/dashboard');
             }
-        } catch (error) {
-            console.error('Role verification failed:', error);
-        }
-    };
-    verifyAccess();
+        };
+
+        const fetchData = () => {
+            const mockCourses = [
+                { id: 1, name: 'Data Structures', code: 'CS201', department: { name: 'Computer Science' } },
+                { id: 2, name: 'Linear Algebra', code: 'MATH101', department: { name: 'Mathematics' } }
+            ];
+            const mockDepartments = [
+                { id: 1, name: 'Computer Science' },
+                { id: 2, name: 'Mathematics' }
+            ];
+
+            setCourses(mockCourses);
+            setDepartments(mockDepartments);
+            setLoading(false);
+        };
+
+        verifyAccess();
         fetchData();
     }, [navigate]);
-
-    const fetchData = async () => {
-        try {
-            setLoading(true);
-            const [coursesData, departmentsData] = await Promise.all([
-                courseAPI.getCourses(),
-                departmentAPI.getDepartments()
-            ]);
-            setCourses(coursesData);
-            setDepartments(departmentsData);
-        } catch (error) {
-            toast.error(error.message || 'Failed to fetch data');
-            console.error('Fetch error:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const handleChange = (e) => {
         setFormData({
@@ -56,36 +50,23 @@ useEffect(() => {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            // Prepare data according to your model
-            const courseData = {
-                name: formData.name,
-                code: formData.code,
-                department: formData.department_id  // Changed to match model's ForeignKey field
-            };
-            await courseAPI.createCourse(courseData);
-            toast.success('Course created successfully');
-            setFormData({ name: '', code: '', department_id: '' });
-            await fetchData();
-
-        } catch (error) {
-            console.error('Error creating course:', error);
-            toast.error(error.response?.data?.message || 
-                       error.message || 
-                       'Failed to create course. Please check your inputs.');
-        }
+        const newCourse = {
+            id: courses.length + 1,
+            name: formData.name,
+            code: formData.code,
+            department: departments.find(dept => dept.id === parseInt(formData.department_id))
+        };
+        setCourses([...courses, newCourse]);
+        toast.success('Course created successfully');
+        setFormData({ name: '', code: '', department_id: '' });
     };
 
-    const handleDelete = async (courseId) => {
-        try {
-            await courseAPI.deleteCourse(courseId);
-            toast.success('Course deleted successfully');
-            await fetchData();
-        } catch (error) {
-            toast.error(error.message || 'Failed to delete course');
-        }
+    const handleDelete = (courseId) => {
+        const updatedCourses = courses.filter(course => course.id !== courseId);
+        setCourses(updatedCourses);
+        toast.success('Course deleted successfully');
     };
 
     if (loading) return <div className="loading">Loading courses...</div>;
@@ -108,7 +89,7 @@ useEffect(() => {
                                 required
                                 placeholder="E.g. Data Structures"
                             />
-                            </div>
+                        </div>
                         <div className="course-form-group">
                             <label>Course Code</label>
                             <input
@@ -123,7 +104,7 @@ useEffect(() => {
                         <div className="course-form-group">
                             <label>Department</label>
                             <select
-                                name="department_id"  // Changed to match state
+                                name="department_id"
                                 value={formData.department_id}
                                 onChange={handleChange}
                                 required
@@ -149,20 +130,20 @@ useEffect(() => {
                             <table className="course-management-table">
                                 <thead>
                                     <tr>
-                                    <th>Name</th>
+                                        <th>Name</th>
                                         <th>Code</th>
                                         <th>Department</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {courses.map(course => (
+                                    {courses.map(course => (
                                         <tr key={course.id}>
                                             <td>{course.name}</td>
                                             <td>{course.code}</td>
                                             <td>{course.department?.name || 'N/A'}</td>
                                             <td>
-                                                <button 
+                                                <button
                                                     onClick={() => handleDelete(course.id)}
                                                     className="course-delete-button"
                                                 >
@@ -185,6 +166,6 @@ useEffect(() => {
 
 export default CourseManagement;
 
-                        
 
-                
+
+

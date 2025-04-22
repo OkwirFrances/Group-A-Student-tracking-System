@@ -60,6 +60,16 @@ const LecturerDashboardContent = () => {
         navigate('/lecturer/lecturerissue');
     };
 
+    const LecturerNotifications = () => {
+        const [notifications, setNotifications] = useState([]);
+
+        useEffect(() => {
+            const storedNotifications = JSON.parse(localStorage.getItem('notifications')) || [];
+            setNotifications(storedNotifications.filter(notification => notification.lecturer === "Dr. Ngobiri"));
+        }, []);
+        
+      } 
+
     return (
         <div className='lecturer-dashboard-container'>
             <Navbar />
