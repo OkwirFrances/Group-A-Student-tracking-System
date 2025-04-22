@@ -79,7 +79,7 @@ const Issuemanagement = () => {
       <div className="main-content">
         <Navbar />
         <div className="page-header">
-          <h1 className="page-title">Issues</h1>
+          <h1 className="page-title"></h1>
           <button className="new-issue-btn" onClick={handleNewIssue}>
             <FiPlus />
             New Issue
