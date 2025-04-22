@@ -44,7 +44,7 @@ const App = () => {
         <Route path="congs" element={<Congratulations />} />
         <Route path="app" element={<RoleBasedRoute allowedRoles={['student']}>
               <StudentDashboard />
-            </RoleBasedRoute>}>
+        </RoleBasedRoute>}>
           <Route path="dashboard" element={<DashboardContent />} />
           <Route path="notifications" element={<NotificationScreen />} />
           <Route path="issueform" element={<IssueForm />} />
@@ -73,7 +73,7 @@ const App = () => {
 
         <Route path="lecturer" element={<RoleBasedRoute allowedRoles={['lecturer']}>
               <LecturerDashboard />
-            </RoleBasedRoute>}>
+        </RoleBasedRoute>}>
           <Route path="dashboard" element={<LecturerDashboardContent />} />
           <Route path='lecturerissue' element={<LecturerIssues />} />
           <Route path="issue/:id" element={<IssueDetails />} />
@@ -88,5 +88,7 @@ const App = () => {
     </IssuesProvider>
   );
 };
+
+
 
 export default App;
