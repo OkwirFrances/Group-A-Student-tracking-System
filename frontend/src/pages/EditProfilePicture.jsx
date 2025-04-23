@@ -10,8 +10,8 @@ const EditProfilePicture = () => {
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                setProfilePic(reader.result); // Save the image as a base64 string
-                localStorage.setItem('profilePic', reader.result); // Save to localStorage
+                setProfilePic(reader.result); 
+                localStorage.setItem('profilePic', reader.result); 
             };
             reader.readAsDataURL(file);
         }

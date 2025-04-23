@@ -33,8 +33,8 @@ const EditPersonalInfo = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h1>Edit Personal Information</h1>
+        <div className='edit-personal-info-container'>
+            <h1 className='edit-peersonal-info-h1'>Edit Personal Information</h1>
             <form>
                 <label>
                     Full Name:
@@ -43,6 +43,7 @@ const EditPersonalInfo = () => {
                         name="fullName"
                         value={personalInfo.fullName}
                         onChange={handleChange}
+                        className='full-name-info'
                     />
                 </label>
                 <br />
@@ -53,6 +54,7 @@ const EditPersonalInfo = () => {
                         name="address"
                         value={personalInfo.address}
                         onChange={handleChange}
+                        className='address-info'
                     />
                 </label>
                 <br />
@@ -63,6 +65,7 @@ const EditPersonalInfo = () => {
                         name="phoneNumber"
                         value={personalInfo.phoneNumber}
                         onChange={handleChange}
+                        className='phone-number-info'
                     />
                 </label>
                 <br />
@@ -72,6 +75,7 @@ const EditPersonalInfo = () => {
                         name="gender"
                         value={personalInfo.gender}
                         onChange={handleChange}
+                        className='gender-info'
                     >
                         <option value="">Select</option>
                         <option value="Male">Male</option>
@@ -79,7 +83,7 @@ const EditPersonalInfo = () => {
                     </select>
                 </label>
                 <br />
-                <button type="button" onClick={handleSave}>
+                <button type="button" onClick={handleSave} className='personal-info-button'>
                     Save
                 </button>
             </form>
