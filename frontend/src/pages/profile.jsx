@@ -26,7 +26,7 @@ const Profile = () => {
         return name.charAt(0).toUpperCase();
     };
 
-
+    useEffecct
     return (
         <div className='profile-container'>
             <Sidebar />

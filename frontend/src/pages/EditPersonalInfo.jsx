@@ -6,86 +6,81 @@ const EditPersonalInfo = () => {
     const navigate = useNavigate();
 
     
-    const [formData, setFormData] = useState({
-        fullName: localStorage.getItem('userFullName') || '',
-        email: localStorage.getItem('userEmail') || '',
-        phoneNumber: localStorage.getItem('userPhoneNumber') || '',
-        gender: localStorage.getItem('userGender') || '',
+    const [personalInfo, setPersonalInfo] = useState({
+        fullName: localStorage.getItem('fullName') || '',
+        address: localStorage.getItem('address') || '',
+        phoneNumber: localStorage.getItem('phoneNumber') || '',
+        gender: localStorage.getItem('gender') || '',
     });
 
-    
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setPersonalInfo((prevInfo) => ({
+            ...prevInfo,
             [name]: value,
-        });
+        }));
     };
 
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSave = () => {
         
-        localStorage.setItem('userFullName', formData.fullName);
-        localStorage.setItem('userEmail', formData.email);
-        localStorage.setItem('userPhoneNumber', formData.phoneNumber);
-        localStorage.setItem('userGender', formData.gender);
-    
-        navigate('/profile');
+        localStorage.setItem('fullName', personalInfo.fullName);
+        localStorage.setItem('address', personalInfo.address);
+        localStorage.setItem('phoneNumber', personalInfo.phoneNumber);
+        localStorage.setItem('gender', personalInfo.gender);
+
+        alert('Personal information updated successfully!');
+        navigate('/profile'); 
     };
 
     return (
-        <div className="edit-personal-info-container">
-            <h1>Profile &gt; Personal Information</h1>
-            <form className="edit-personal-info-form" onSubmit={handleSubmit}>
-                <h2>Personal Information</h2>
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+            <h1>Edit Personal Information</h1>
+            <form>
                 <label>
-                    Full Name
+                    Full Name:
                     <input
                         type="text"
                         name="fullName"
-                        value={formData.fullName}
+                        value={personalInfo.fullName}
                         onChange={handleChange}
-                        placeholder="Enter your full name"
-                        required
                     />
                 </label>
+                <br />
                 <label>
-                    Email Address
+                    Address:
                     <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
+                        type="text"
+                        name="address"
+                        value={personalInfo.address}
                         onChange={handleChange}
-                        placeholder="Enter your email address"
-                        required
                     />
                 </label>
+                <br />
                 <label>
-                    Phone Number
+                    Phone Number:
                     <input
                         type="text"
                         name="phoneNumber"
-                        value={formData.phoneNumber}
+                        value={personalInfo.phoneNumber}
                         onChange={handleChange}
-                        placeholder="Enter your phone number"
                     />
                 </label>
+                <br />
                 <label>
-                    Gender
+                    Gender:
                     <select
                         name="gender"
-                        value={formData.gender}
+                        value={personalInfo.gender}
                         onChange={handleChange}
                     >
-                        <option value="">Select your gender</option>
+                        <option value="">Select</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
-                        <option value="Other">Other</option>
                     </select>
                 </label>
-                <button type="submit" className="save-changes-button">
-                    Save Changes
+                <br />
+                <button type="button" onClick={handleSave}>
+                    Save
                 </button>
             </form>
         </div>
