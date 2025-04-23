@@ -57,7 +57,7 @@ const Profile = () => {
                     </div>
                     <button
                         className='editbutton'
-                        onClick={() => navigate('/editprofilepicture')}
+                        onClick={() => navigate('/app/editprofilepicture')}
                     >
                         Edit
                         <img src={edit} alt='edit' className='edit' />
