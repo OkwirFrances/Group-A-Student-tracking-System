@@ -140,10 +140,16 @@
 
 .notification-badge {
     position: absolute;
-    top: -5px;
-    width: 10px;
-    height: 10px;
-    right: -5px;
+    top: -2px;
+    width: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    height: 8px;
+    right: -2px;
+    color: white;
+    font-size: 12px;
     background-color: red;
     color: white;
     border-radius: 50%;

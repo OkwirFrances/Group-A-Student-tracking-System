@@ -1,13 +1,15 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState , useEffect, useContext } from 'react';
 import './Navbar.css';
 import logo from '../assets/logo.png';
 import search from '../assets/search.png';
 import notification from '../assets/notification.png';
 import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
+import { IssuesContext } from '../context/IssueContext';
 
-const Navbar = ({ badgeCount, setBadgeCount }) => {
+const Navbar = () => {
     const navigate = useNavigate();
+    const { badgeCount, setBadgeCount } = useContext(IssuesContext);
 
     const [user, setUser] = useState({
         fullName: '',
@@ -31,6 +33,8 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
         const userRole = localStorage.getItem('userRole');
         const basePath = userRole === 'registrar' ? '/registrar-dashboard' : '/app';
         navigate(`${basePath}/notifications`);
+
+        setBadgeCount(0);
 
         if (userRole === 'registrar') {
             setBadgeCount(0);
@@ -65,7 +69,8 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
                             className='notification-icon' 
                             onClick={handleNotificationClick}
                         />
-                        {badgeCount > 0 && <span className='notification-badge'></span>}
+                        {badgeCount > 0 && (
+                            <span className='notification-badge'></span>)}
                     </div>
                     <img 
                         src={mail} 
