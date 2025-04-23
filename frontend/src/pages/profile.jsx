@@ -9,7 +9,7 @@ const Profile = () => {
     const navigate = useNavigate();
     const fullName = localStorage.getItem('userfullName') || '';
 
-    const [user] = useState({
+    const [user, setUser] = useState({
         fullName: fullName || '',
         address: '',
         phoneNumber: '',
@@ -26,7 +26,31 @@ const Profile = () => {
         return name.charAt(0).toUpperCase();
     };
 
-    useEffecct
+    useEffecct(() => {
+        const savedProfilePic = localStorage.getItem('profilePic');
+        const savedFullName = localStorage.getItem('userfullName');
+        const savedAddress = localStorage.getItem('address');
+        const savedPhoneNumber = localStorage.getItem('phoneNumber');
+        const savedGender = localStorage.getItem('gender');
+        const savedRegistrationNumber = localStorage.getItem('registrationNumber');
+        const savedStudentNumber = localStorage.getItem('studentNumber');
+        const savedCourse = localStorage.getItem('course');
+        const savedSemester = localStorage.getItem('semester');
+
+        if (savedProfilePic) setProfilePic(savedProfilePic); 
+        setUser((prevUser) => ({
+            ...prevUser,
+            fullName: savedFullName || prevUser.fullName,
+            address: savedAddress || prevUser.address,
+            phoneNumber: savedPhoneNumber || prevUser.phoneNumber,
+            gender: savedGender || prevUser.gender,
+            registrationNumber: savedRegistrationNumber || prevUser.registrationNumber,
+            studentNumber: savedStudentNumber || prevUser.studentNumber,
+            course: savedCourse || prevUser.course,
+            semester: savedSemester || prevUser.semester,
+        }));
+    }, []);
+
     return (
         <div className='profile-container'>
             <Sidebar />
