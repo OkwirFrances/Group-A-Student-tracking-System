@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "jest",
     "build": "vite build --base=/static/",
     "lint": "eslint .",
     "preview": "vite preview"

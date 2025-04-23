@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './signup.css';
 import Otp from './otp';
 import logo from '../assets/logo.png';
 import person from '../assets/person.png';
 import mail from '../assets/mail.png';
 import padlock from '../assets/padlock.png';
+import { authAPI } from '../services/api'; // Make sure this path is correct
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const SignUp = () => {
 
     const [showOtpScreen, setShowOtpScreen] = useState(false);
     const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -24,48 +26,49 @@ const SignUp = () => {
             ...formData,
             [name]: type === 'checkbox' ? checked : value,
         });
+        // Clear error when form changes
+        if (error) setError(null);
     };
 
-    const isFormValid = () => {
-        const { fullName, email, password, role, termsAccepted } = formData;
-
-        if (!fullName.trim()) return false;
-        if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false; // Email format check
-        if (!password || password.length < 8) return false;
-        if (!role) return false;
-        if (!termsAccepted) return false;
-
-        return true;
-    };
-
-    useEffect(() => {
-        const formError = isFormValid();
-        setError(formError);
-    }, [formData]);
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Data:', formData);
-
-        if (!isFormValid()) {
-            setError('Please fill out the form correctly.');
-            return;
+        
+        try {
+            setIsLoading(true);
+            setError(null);
+            
+            // Call the signup API endpoint
+            await authAPI.signup(
+                formData.email, 
+                formData.fullName, 
+                formData.password, 
+                formData.role
+            );
+            
+            // Store basic info in localStorage
+            localStorage.setItem('userEmail', formData.email);
+            
+            // Show OTP verification screen
+            setShowOtpScreen(true);
+        } catch (err) {
+            console.error('Signup failed:', err);
+            setError(typeof err === 'string' ? err : 'Signup failed. Please try again.');
+        } finally {
+            setIsLoading(false);
         }
+    };
 
-        
-        console.log('Signup Successful:', formData);
-
-        
-        localStorage.setItem('userFullName', formData.fullName);
-        localStorage.setItem('userEmail', formData.email);
-        localStorage.setItem('userRole', formData.role);
-
-       
-        setShowOtpScreen(true);
+    const handleResendOtp = async () => {
+        try {
+            await authAPI.resendOTP(formData.email);
+            alert('OTP has been resent to your email');
+        } catch (err) {
+            alert('Failed to resend OTP. Please try again.');
+        }
     };
 
     if (showOtpScreen) {
-        return <Otp email={formData.email} onResendOtp={() => {}} />;
+        return <Otp email={formData.email} onResendOtp={handleResendOtp} />;
     }
 
     return (
@@ -78,6 +81,9 @@ const SignUp = () => {
                 <form className='signup-right-form' onSubmit={handleSubmit}>
                     <h2 className='title'>Create An Account</h2>
                     <p className='sub-title'>Please fill in all the fields below</p>
+                    
+                    {error && <div className="error-message">{error}</div>}
+                    
                     <label>
                         Full Name
                         <div className='input-container'>
@@ -88,6 +94,7 @@ const SignUp = () => {
                                 placeholder='Enter your Full Name'
                                 value={formData.fullName}
                                 onChange={handleChange}
+                                required
                             />
                             <img src={person} alt='person' className='person-icon' />
                         </div>
@@ -102,6 +109,7 @@ const SignUp = () => {
                                 placeholder='Enter your Email Address'
                                 value={formData.email}
                                 onChange={handleChange}
+                                required
                             />
                             <img src={mail} alt='mail' className='mailicon' />
                         </div>
@@ -117,6 +125,7 @@ const SignUp = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                                 minLength={8}
+                                required
                             />
                             <img src={padlock} alt='padlock' className='padlockicon' />
                         </div>
@@ -129,6 +138,7 @@ const SignUp = () => {
                                 name='role'
                                 value={formData.role}
                                 onChange={handleChange}
+                                required
                             >
                                 <option value=''>Select Role</option>
                                 <option value="student">Student</option>
@@ -144,14 +154,16 @@ const SignUp = () => {
                             name='termsAccepted'
                             checked={formData.termsAccepted}
                             onChange={handleChange}
+                            required
                         />
                         I have read and accepted all the AITS terms and conditions.
                     </label>
                     <button
                         className='signup-button'
-                        disabled={!isFormValid()}
+                        type="submit"
+                        disabled={isLoading}
                     >
-                        SIGN UP
+                        {isLoading ? 'PROCESSING...' : 'SIGN UP'}
                     </button>
                     <p className='signin-text'>
                         Already have an account? <a href='signin' className='signin-link'>Sign In</a>
