@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
@@ -7,48 +7,30 @@ import edit from '../assets/edit.png';
 
 const Profile = () => {
     const navigate = useNavigate();
-    const fullName = localStorage.getItem('userfullName') || '';
+    const [profilePic, setProfilePic] = useState(null);
 
     const [user, setUser] = useState({
-        fullName: fullName || '',
-        address: '',
-        phoneNumber: '',
-        gender: '',
-        registrationNumber: '',
-        studentNumber: '',
-        course: '',
-        semester: '',
-        profilePic: null,  
+        fullName: localStorage.getItem('userfullName') || '',
+        address: localStorage.getItem('address') || '',
+        phoneNumber: localStorage.getItem('phoneNumber') || '',
+        gender: localStorage.getItem('gender') || '',
+        registrationNumber: localStorage.getItem('registrationNumber') || '',
+        studentNumber: localStorage.getItem('studentNumber') || '',
+        course: localStorage.getItem('course') || '',
+        semester: localStorage.getItem('semester') || '',
     });
 
-    const getInitials =(name) => {
+    const getInitials = (name) => {
         if (!name) return 'N/A';
         return name.charAt(0).toUpperCase();
     };
 
-    useEffecct(() => {
+    useEffect(() => {
+        // Load profile picture from localStorage
         const savedProfilePic = localStorage.getItem('profilePic');
-        const savedFullName = localStorage.getItem('userfullName');
-        const savedAddress = localStorage.getItem('address');
-        const savedPhoneNumber = localStorage.getItem('phoneNumber');
-        const savedGender = localStorage.getItem('gender');
-        const savedRegistrationNumber = localStorage.getItem('registrationNumber');
-        const savedStudentNumber = localStorage.getItem('studentNumber');
-        const savedCourse = localStorage.getItem('course');
-        const savedSemester = localStorage.getItem('semester');
-
-        if (savedProfilePic) setProfilePic(savedProfilePic); 
-        setUser((prevUser) => ({
-            ...prevUser,
-            fullName: savedFullName || prevUser.fullName,
-            address: savedAddress || prevUser.address,
-            phoneNumber: savedPhoneNumber || prevUser.phoneNumber,
-            gender: savedGender || prevUser.gender,
-            registrationNumber: savedRegistrationNumber || prevUser.registrationNumber,
-            studentNumber: savedStudentNumber || prevUser.studentNumber,
-            course: savedCourse || prevUser.course,
-            semester: savedSemester || prevUser.semester,
-        }));
+        if (savedProfilePic) {
+            setProfilePic(savedProfilePic);
+        }
     }, []);
 
     return (
@@ -59,35 +41,40 @@ const Profile = () => {
                 <h1>Profile</h1>
                 <div className='profile-section'></div>
                 <div className='profile'>
-                <div className="profile-picture-container">
-    {user.profilePic ? (
-        <img src={user.profilePic} alt="Profile" className="profile-picture" />
-    ) : (
-        <div className="profile-initials">
-            {getInitials(user.fullName)}
-        </div>
-    )}
-</div>
-                    <button 
-                         className='editbutton'
-                          onClick={() => navigate('/editprofilepicture')}
+                    <div className="profile-picture-container">
+                        {profilePic ? (
+                            <img
+                                src={profilePic}
+                                alt="Profile"
+                                className="profile-picture"
+                                style={{ width: '150px', height: '150px', borderRadius: '50%' }}
+                            />
+                        ) : (
+                            <div className="profile-initials">
+                                {getInitials(user.fullName)}
+                            </div>
+                        )}
+                    </div>
+                    <button
+                        className='editbutton'
+                        onClick={() => navigate('/editprofilepicture')}
                     >
                         Edit
                         <img src={edit} alt='edit' className='edit' />
                     </button>
                 </div>
                 <div className='personal-information'>
-                    <h1>Personal Information </h1>
+                    <h1>Personal Information</h1>
                     <label className='name'>Full Name:</label>
-                    <h2 className='fullname'>{user.fullname}</h2>
+                    <h2 className='fullname'>{user.fullName}</h2>
                     <label className='address'>Email Address:</label>
-                    <h2 className='address'>{user.email}</h2>
+                    <h2 className='address'>{user.address}</h2>
                     <label className='phone'>Phone Number:</label>
-                    <h2 className='phone-number'>{user.phone}</h2>
+                    <h2 className='phone-number'>{user.phoneNumber}</h2>
                     <label className='gender'>Gender:</label>
                     <h2>{user.gender}</h2>
-                    <button 
-                         className='personal-information-editbutton'
+                    <button
+                        className='personal-information-editbutton'
                         onClick={() => navigate('/editpersonalinfo')}
                     >
                         Edit
@@ -104,16 +91,14 @@ const Profile = () => {
                     <h2 className='course-name'>{user.course}</h2>
                     <label className='semester'>Semester:</label>
                     <h2 className='semester-name'>{user.semester}</h2>
-                    <button 
-                         className='academic-information-editbutton'
-                            onClick={() => navigate('/editacademicinfo')}
-                    
+                    <button
+                        className='academic-information-editbutton'
+                        onClick={() => navigate('/editacademicinfo')}
                     >
                         Edit
                         <img src={edit} alt='edit' className='edit' />
                     </button>
-                </div>    
-
+                </div>
             </div>
         </div>
     );

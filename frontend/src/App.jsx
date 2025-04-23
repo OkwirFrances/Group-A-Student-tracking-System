@@ -17,6 +17,7 @@ import Settings from './pages/settings';
 import Messages from './pages/messages';
 import NewMessage from './pages/newmessages';
 import Profile from './pages/profile';
+import EditProfilePicture from './pages/EditProfilePicture';
 import RegistrarDashboard from './pages/RegistrarDashboard';
 import EmailRequest from './pages/emailrequest';
 import ForgotPassword from './pages/forgotpassword';
@@ -54,6 +55,7 @@ const App = () => {
           <Route path="issueform" element={<IssueForm />} />
           <Route path="issue/:id" element={<IssueDetails />} />
           <Route path="support" element={<HelpSupport />} />
+          
           <Route path="settings" element={<Settings />} />
           <Route path="messages" element={<Messages />} />
           <Route path="profile" element={<Profile />} />
