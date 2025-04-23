@@ -18,6 +18,7 @@ import Messages from './pages/messages';
 import NewMessage from './pages/newmessages';
 import Profile from './pages/profile';
 import EditProfilePicture from './pages/EditProfilePicture';
+import EditPersonalInfo from './pages/EditPersonalInfo';
 import RegistrarDashboard from './pages/RegistrarDashboard';
 import EmailRequest from './pages/emailrequest';
 import ForgotPassword from './pages/forgotpassword';
