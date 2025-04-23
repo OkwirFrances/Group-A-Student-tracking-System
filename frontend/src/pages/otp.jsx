@@ -4,12 +4,14 @@ import shield from '../assets/shield.png';
 import refresh from '../assets/refresh.png';
 import help from '../assets/help.png';
 import Congratulations from './congratulations';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { authAPI } from '../services/api'; // Import authAPI from services
 
 const Otp = ({ email, onResendOtp }) => {
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
+    const [isVerifying, setIsVerifying] = useState(false);
     const [showCongratulations, setShowCongratulations] = useState(false);
     const inputRefs = useRef([]);
     const navigate = useNavigate();
@@ -27,35 +29,58 @@ const Otp = ({ email, onResendOtp }) => {
         }
     };
 
-    const handleVerifyClick = () => {
+    const handleVerifyClick = async () => {
         const enteredOtp = otp.join('');
-        const mockOtp = '123456'; // Mock OTP for verification
 
         if (!enteredOtp) {
             setError('Please enter the OTP.');
             return;
         }
 
-        if (enteredOtp === mockOtp) {
-            setSuccess(true);
+        try {
+            setIsVerifying(true);
             setError('');
+            
+            // Call the API to verify OTP
+            await authAPI.verifyOTP(email, enteredOtp);
+            
+            setSuccess(true);
             console.log('OTP verified successfully');
             setShowCongratulations(true);
-            navigate('/congratulations'); // Redirect to congratulations page
-        } else {
-            setError('Invalid OTP. Please try again.');
+            navigate('/congs'); // Redirect to congratulations page
+        } catch (err) {
+            console.error('OTP verification failed:', err);
+            setError(typeof err === 'string' ? err : 'Invalid OTP. Please try again.');
             setSuccess(false);
+        } finally {
+            setIsVerifying(false);
         }
     };
 
-    const handleResendClick = () => {
+    const handleResendClick = async () => {
         setOtp(['', '', '', '', '', '']);
         setError('');
         setSuccess(false);
 
-        // Mock OTP resend logic
-        console.log('OTP resent successfully');
-        onResendOtp && onResendOtp();
+        try {
+            if (onResendOtp) {
+                await onResendOtp();
+            } else {
+                // Fallback if onResendOtp is not provided
+                await authAPI.resendOTP(email);
+                alert('OTP resent successfully to your email');
+            }
+        } catch (err) {
+            console.error('Failed to resend OTP:', err);
+            setError('Failed to resend OTP. Please try again.');
+        }
+    };
+
+    const handleKeyDown = (e, index) => {
+        // Allow focusing previous input when backspace is pressed on empty input
+        if (e.key === 'Backspace' && otp[index] === '' && index > 0) {
+            inputRefs.current[index - 1].focus();
+        }
     };
 
     const isOtpComplete = otp.every(digit => digit !== '');
@@ -89,6 +114,7 @@ const Otp = ({ email, onResendOtp }) => {
                             maxLength='1'
                             value={digit}
                             onChange={(e) => handleChange(e, index)}
+                            onKeyDown={(e) => handleKeyDown(e, index)}
                             ref={(el) => (inputRefs.current[index] = el)}
                         />
                     ))}
@@ -96,8 +122,8 @@ const Otp = ({ email, onResendOtp }) => {
                 <button
                     className='verify-button'
                     onClick={handleVerifyClick}
-                    disabled={!isOtpComplete}>
-                    Verify
+                    disabled={!isOtpComplete || isVerifying}>
+                    {isVerifying ? 'Verifying...' : 'Verify'}
                 </button>
                 <button
                     className='resend-button'
