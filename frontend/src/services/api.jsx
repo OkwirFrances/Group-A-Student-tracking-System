@@ -296,14 +296,11 @@
     
     
   
-
 import axios from 'axios';
-import { getToken, clearToken, storeToken } from '../pages/auth'; // Adjust the import path as necessary
+import { getToken, clearToken, storeToken } from '../pages/auth'; // Make sure this path is correct
 
-const API_BASE_URL = 'http://localhost:8000/api/';
+const API_BASE_URL = 'http://127.0.0.1:8000/api/';
 // const API_BASE_URL = 'https://groupaaits.onrender.com/api/';
-// const API_BASE_URL = 'https://groupaaits.onrender.com/api/';
-
 
 // Create an axios instance with default config
 const api = axios.create({
@@ -326,7 +323,7 @@ const refreshAccessToken = async (refreshToken) => {
 // Add request interceptor to include the token in headers
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getToken('token');
+    const token = getToken(); // Fixed: Use the imported function instead of localStorage.getToken
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -369,51 +366,7 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-// Authentication API
-export const authAPI = {
-  signup: async (email, fullname, password, role) => {
-    try {
-      const response = await api.post('/signup/', { email, fullname, password, role });
-      return response.data;
-    } catch (error) {
-      throw error.response?.data || error.message;
-    }
-  },
-
-  verifyOTP: async (email, otp) => {
-    try {
-      const response = await api.post('/verify-otp/', { email, otp });
-      return response.data;
-    } catch (error) {
-      throw error.response?.data || error.message;
-    }
-  },
-  signin: async (email, password) => {
-    try {
-      const response = await api.post('/login/', { email, password });
-      // Store tokens
-      storeToken(response.data.access);
-      localStorage.setItem('refreshToken', response.data.refresh);
-      return response.data;
-    } catch (error) {
-      throw error.response?.data || error.message;
-    }
-  },
-
-  resendOTP: async (email) => {
-    try {
-      const response = await api.post('/resend-otp/', { email });
-      return response.data;
-    } catch (error) {
-      throw error.response?.data || error.message;
-    }
-  },
-  logout: () => {
-    clearToken();
-    localStorage.removeItem('refreshToken');
-  },
-};
+ 
 
 // User API
 export const userAPI = {
@@ -435,6 +388,52 @@ export const userAPI = {
   },
 };
 
+// Authentication API
+export const authAPI = {
+  signup: async (email, fullname, password, role) => {
+    try {
+      const response = await api.post('/signup/', { email, fullname, password, role });
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+
+  verifyOTP: async (email, otp) => {
+    try {
+      const response = await api.post('/verify-otp/', { email, otp });
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+
+  signin: async (email, password) => {
+    try {
+      const response = await api.post('/login/', { email, password });
+      // Store tokens
+      storeToken(response.data.access);
+      localStorage.setItem('refreshToken', response.data.refresh);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+
+  resendOTP: async (email) => {
+    try {
+      const response = await api.post('/resend-otp/', { email });
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+
+  logout: () => {
+    clearToken();
+    localStorage.removeItem('refreshToken');
+  },
+};
 // Department API
 export const departmentAPI = {
   getDepartments: async () => {

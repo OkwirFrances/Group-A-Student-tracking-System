@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import './signin.css';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import padlock from '../assets/padlock.png';
-import { authAPI } from '../services/api';
+import { useNavigate, Link } from 'react-router-dom';
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -13,9 +11,9 @@ const SignIn = () => {
         email: '',
         password: '',
     });
-
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,48 +27,55 @@ const SignIn = () => {
         setIsTermsAccepted(e.target.checked);
     };
 
-    const handleSignInClick = async (e) => {
+    const handleSignInClick = (e) => {
         e.preventDefault();
+        setLoading(true);
+        setError('');
 
         if (!formData.email || !formData.password) {
             setError('Please fill in all fields.');
+            setLoading(false);
             return;
         }
 
         if (formData.password.length < 8) {
             setError('Password must be at least 8 characters long.');
+            setLoading(false);
             return;
         }
 
-        try {
-            const data = await authAPI.login(formData.email, formData.password);
+        // Mock login logic
+        setTimeout(() => {
+            const mockUsers = [
+                { email: 'registrar@example.com', password: 'password123', role: 'registrar' },
+                { email: 'lecturer@example.com', password: 'password123', role: 'lecturer' },
+                { email: 'student@example.com', password: 'password123', role: 'student' },
+            ];
 
-            // Store user data in localStorage
-            localStorage.setItem('authToken', data.access);
-            localStorage.setItem('refreshToken', data.refresh);
-            localStorage.setItem('userRole', data.role);
-            localStorage.setItem('userEmail', data.email);
-            localStorage.setItem('userFullname', data.fullname);
+            const user = mockUsers.find(
+                (u) => u.email === formData.email && u.password === formData.password
+            );
 
-            // Redirect to the appropriate dashboard based on the user's role
-            switch (data.role) {
-                case 'lecturer':
-                    navigate('/lecturer/dashboard');
-                    break;
-                case 'student':
-                    navigate('/app/dashboard');
-                    break;
-                case 'registrar':
-                    navigate('/registrar/dashboard');
-                    break;
-                default:
-                    setError('Unknown user role.');
-                    break;
+            if (user) {
+                // Store user data in localStorage
+                localStorage.setItem('authToken', 'mockAuthToken');
+                localStorage.setItem('userRole', user.role);
+                localStorage.setItem('userEmail', user.email);
+
+                // Redirect to the appropriate dashboard based on the user's role
+                const dashboardPaths = {
+                    registrar: '/registrar-dashboard/dashboard',
+                    lecturer: '/lecturer/dashboard',
+                    student: '/app/dashboard',
+                };
+
+                navigate(dashboardPaths[user.role] || '/');
+            } else {
+                setError('Invalid email or password.');
             }
-        } catch (error) {
-            console.error('Sign-in failed:', error);
-            setError(error.message || 'Unable to connect to the server. Please try again later.');
-        }
+
+            setLoading(false);
+        }, 1000); // Simulate network delay
     };
 
     const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
@@ -125,10 +130,11 @@ const SignIn = () => {
                     </label>
                     <button
                         className='signinbutton'
-                        disabled={!isFormValid}>
-                        SIGN IN
+                        disabled={!isFormValid || loading}>
+                        {loading ? 'Signing In...' : 'SIGN IN'}
                     </button>
-                    <p className='link'>Don't have an account? <a href='signup' className='signup-link'>Sign Up</a></p>
+                    {error && <p className='error-message'>{error}</p>}
+                    <p className='link'>Don't have an account? <Link to='/signup' className='signup-link'>Sign Up</Link></p>
                 </form>
             </div>
         </div>

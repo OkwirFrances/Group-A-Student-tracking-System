@@ -6,8 +6,9 @@ export const IssuesProvider = ({ children }) => {
     const [issues, setIssues] = useState([]);
     const [notificationMessage, setNotificationMessage] = useState(null);
 
-    const addIssue = (issue) => {
-        setIssues([...issues, issue]);
+    const addIssue = (newissue) => {
+        setIssues((prevIssues) => [...prevIssues, newissue]);
+        localStorage.setItem('issues', JSON.stringify([...issues, newissue]));
     };
 
     return (

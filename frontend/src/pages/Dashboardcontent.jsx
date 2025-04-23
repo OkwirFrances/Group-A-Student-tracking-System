@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import './Dashboardcontent.css';
 import search from '../assets/search.png';
 import add from '../assets/add.png';
-import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
 import { IssuesContext } from '../context/IssueContext';
 import { Link, useNavigate } from 'react-router-dom';
@@ -61,8 +60,6 @@ const DashboardContent = () => {
                             <option value='in-progress'>In-progress</option>
                             <option value='resolved'>Resolved</option>
                             </select>
-                            <img src={filter} alt='filter' className='filter-icon' /> 
-                    
                </div>
                <div className='my-issues-search-container'>
                     <input 

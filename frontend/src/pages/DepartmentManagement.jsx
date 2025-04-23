@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './DepartmentManagement.css';
 import { useNavigate } from 'react-router-dom';
-import { departmentAPI, userAPI} from '../services/api';
+import { toast } from 'react-toastify';
 
 const DepartmentManagement = () => {
     const [departments, setDepartments] = useState([]);
@@ -13,58 +13,50 @@ const DepartmentManagement = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const verifyAccess = async () => {
-            try {
-                const userInfo = await userAPI.getUserInfo();
-                if (userInfo.role !== 'registrar') {
-                    toast.error('Unauthorized access');
-                    navigate('/dashboard');
-                }
-            } catch (error) {
-                console.error('Role verification failed:', error);
+        const verifyAccess = () => {
+            const userInfo = { role: 'registrar' }; 
+            if (userInfo.role !== 'registrar') {
+                toast.error('Unauthorized access');
+                navigate('/dashboard');
             }
         };
+
+        const fetchData = () => {
+            const mockDepartments = [
+                { id: 1, name: 'Computer Science', code: 'CS' },
+                { id: 2, name: 'Mathematics', code: 'MATH' }
+            ];
+            setDepartments(mockDepartments);
+            setLoading(false);
+        };
+
         verifyAccess();
         fetchData();
     }, [navigate]);
 
-    const fetchData = async () => {
-        try {
-            setLoading(true);
-            const data = await departmentAPI.getDepartments();
-            setDepartments(data);
-        } catch (error) {
-            toast.error(error.message || 'Failed to load departments');
-            console.error('Fetch error:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
-    const handleSubmit = async (e) => {
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            await departmentAPI.createDepartment(formData);
-            toast.success('Department created successfully');
-            setFormData({ name: '', code: '' });
-            await fetchData();
-        } catch (error) {
-            toast.error(error.message || 'Failed to create department. Please check your inputs.');
-        }
+        const newDepartment = {
+            id: departments.length + 1,
+            name: formData.name,
+            code: formData.code
+        };
+        setDepartments([...departments, newDepartment]);
+        toast.success('Department created successfully');
+        setFormData({ name: '', code: '' });
     };
-    const handleDelete = async (departmentId) => {
-        try {
-            await departmentAPI.deleteDepartment(departmentId);
-            toast.success('Department deleted successfully');
-            await fetchData();
-        } catch (error) {
-            toast.error(error.message || 'Failed to delete department');
-        }
+
+    const handleDelete = (departmentId) => {
+        const updatedDepartments = departments.filter(dept => dept.id !== departmentId);
+        setDepartments(updatedDepartments);
+        toast.success('Department deleted successfully');
     };
 
     if (loading) return <div className="loading">Loading departments...</div>;
