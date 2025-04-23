@@ -388,6 +388,52 @@ export const userAPI = {
   },
 };
 
+// Authentication API
+export const authAPI = {
+  signup: async (email, fullname, password, role) => {
+    try {
+      const response = await api.post('/signup/', { email, fullname, password, role });
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+
+  verifyOTP: async (email, otp) => {
+    try {
+      const response = await api.post('/verify-otp/', { email, otp });
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+
+  signin: async (email, password) => {
+    try {
+      const response = await api.post('/login/', { email, password });
+      // Store tokens
+      storeToken(response.data.access);
+      localStorage.setItem('refreshToken', response.data.refresh);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+
+  resendOTP: async (email) => {
+    try {
+      const response = await api.post('/resend-otp/', { email });
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+
+  logout: () => {
+    clearToken();
+    localStorage.removeItem('refreshToken');
+  },
+};
 // Department API
 export const departmentAPI = {
   getDepartments: async () => {
