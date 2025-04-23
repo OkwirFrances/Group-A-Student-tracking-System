@@ -1,48 +1,48 @@
 .edit-personal-info-container {
-    padding: 20px;
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: flex-start; /* Align content to the top */
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    min-height: 100vh;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    box-sizing: border-box;
+    min-height: 100vh; /* Ensure full height */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in height calculations */
 }
 
 .edit-personal-info-h1 {
-    font-size: 28px;
+    font-size: 28px; /* Increased font size for better visibility */
     color: #333;
-    text-align: center;
     margin-bottom: 20px;
+    text-align: left; /* Align the heading to the left */
 }
 
 form {
     background-color: #fff;
-    padding: 0px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px; /* Increased padding for better spacing */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow for better visibility */
     max-width: 600px;
-    width: 100%;
-    margin: auto;
+    width: 100%; /* Ensure the form takes full width within the container */
+    margin: 0; /* Remove auto-centering */
 }
-
 
 label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
     color: #0e0d0d;
+    text-align: left; /* Align labels to the left */
 }
 
-input,,
-select{
+input,
+select {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
+    padding: 12px; /* Increased padding for better usability */
+    margin-bottom: 20px; /* Increased margin for better spacing */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    box-sizing: border-box; /* Include padding in width calculations */
 }
 
 input:focus,
@@ -55,13 +55,32 @@ select:focus {
 .save-changes-button {
     background-color: #28a745;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px; /* Increased padding for better button size */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px; /* Increased font size for better readability */
+    display: block;
+    margin-top: 20px; /* Add spacing above the button */
+    text-align: left; /* Align the button to the left */
 }
 
 .save-changes-button:hover {
     background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    form {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    input,
+    select {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+    .save-changes-button {
+        font-size: 16px; /* Adjust button font size for smaller screens */
+    }
 }
