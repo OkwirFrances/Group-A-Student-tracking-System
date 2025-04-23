@@ -17,7 +17,7 @@ import Settings from './pages/settings';
 import Messages from './pages/messages';
 import NewMessage from './pages/newmessages';
 import Profile from './pages/profile';
-import RegistrarDashboard from './pages/RegistrarDashboard';
+import RegistrarDashboard from './pages/registrardashboard';
 import EmailRequest from './pages/emailrequest';
 import ForgotPassword from './pages/forgotpassword';
 import LecturerDashboard from './pages/LecturerDashboard';

@@ -50,7 +50,6 @@ const IssueForm = ({ setBadgeCount }) => {
         setError(null);
 
         try {
-            // Mock issue creation
             const newIssue = {
                 id: uuidv4(),
                 ...formData,
@@ -60,24 +59,24 @@ const IssueForm = ({ setBadgeCount }) => {
             };
 
             addIssue(newIssue);
-            // Update localStorage
+            
             const existingIssues = JSON.parse(localStorage.getItem('issues')) || [];
             const updatedIssues = [...existingIssues, newIssue];
             localStorage.setItem('issues', JSON.stringify(updatedIssues));
 
-            // Set notification message
+        
             setNotificationMessage({
                 message: 'Your issue has been submitted successfully!',
                 date: newIssue.date,
                 time: newIssue.time,
             });
 
-            // Increment badge count if setBadgeCount is provided
+            
             if (setBadgeCount) {
                 setBadgeCount(prevCount => prevCount + 1);
-            }
+            };
 
-            // Reset form
+
             setFormData({
                 title: '',
                 description: '',
@@ -222,7 +221,7 @@ const IssueForm = ({ setBadgeCount }) => {
                 <button
                     className='issue-submit-button'
                     onClick={handleSubmit}
-                    disabled={!isFormComplete() || isSubmitting}>
+                    disabled={isSubmitting}>
                     {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
             </div>

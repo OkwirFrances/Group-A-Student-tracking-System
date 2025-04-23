@@ -12,7 +12,8 @@
     border: 1px solid green;
     border-radius: 10px;
     padding: 15px;
-    width: 90%;
+    width: 85%;
+    margin-left: 120px;
     background-color: white;
     position: relative;
 }
@@ -46,14 +47,13 @@
     font-weight: bold;
 }
 
-.backarrow-icon {
+.notification-backarrow-icon {
     cursor: pointer;
     width: 30px;
     height: 30px;
     margin-right: 980px;
-    margin-top: 99px;
-    margin-bottom: -10px;
-    position: relative;
+    margin-top: 80px;
+    margin-bottom: 10px;
     
 }
 
