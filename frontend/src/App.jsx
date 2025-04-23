@@ -19,6 +19,7 @@ import NewMessage from './pages/newmessages';
 import Profile from './pages/profile';
 import EditProfilePicture from './pages/EditProfilePicture';
 import EditPersonalInfo from './pages/EditPersonalInfo';
+import EditAcademicInfo from './pages/EditAcademicInfo';      
 import RegistrarDashboard from './pages/RegistrarDashboard';
 import EmailRequest from './pages/emailrequest';
 import ForgotPassword from './pages/forgotpassword';
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="support" element={<HelpSupport />} />
           <Route path='editpersonalinfo' element={<EditPersonalInfo />} />
           <Route path='editprofilepicture' element={<EditProfilePicture />} />
+          <Route path='editacademicinfo' element={<EditAcademicInfo />} />
           <Route path="settings" element={<Settings />} />
           <Route path="messages" element={<Messages />} />
           <Route path="profile" element={<Profile />} />

@@ -1,31 +1,31 @@
 .edit-personal-info-container {
     display: flex;
-    justify-content: flex-start; /* Align content to the left */
-    align-items: flex-start; /* Align content to the top */
+    justify-content: flex-start; 
+    align-items: flex-start; 
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    min-height: 100vh; /* Ensure full height */
+    min-height: 100vh; 
     padding: 70px;
-    box-sizing: border-box; /* Include padding in height calculations */
+    box-sizing: border-box; 
     margin-left: 50px;
 }
 
 .edit-personal-info-h1 {
-    font-size: 28px; /* Increased font size for better visibility */
+    font-size: 28px; 
     color: #333;
     margin-bottom: 20px;
-    text-align: left; /* Align the heading to the left */
+    text-align: left; 
 }
 
 form {
     background-color: #fff;
-    padding: 30px; /* Increased padding for better spacing */
-    border-radius: 10px; /* Slightly rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow for better visibility */
+    padding: 30px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     max-width: 600px;
-    width: 100%; /* Ensure the form takes full width within the container */
+    width: 100%; 
     margin-left: -400px;
-    margin-top: 50px; /* Added margin to the top for spacing */
+    margin-top: 50px; 
 }
 
 label {
@@ -33,19 +33,19 @@ label {
     font-weight: bold;
     margin-bottom: 15px;
     color: #0e0d0d;
-    text-align: left; /* Align labels to the left */
+    text-align: left; 
 
 }
 
 input,
 select {
     width: 100%;
-    padding: 12px; /* Increased padding for better usability */
-    margin-bottom: 20px; /* Increased margin for better spacing */
+    padding: 12px; 
+    margin-bottom: 20px; 
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    box-sizing: border-box; /* Include padding in width calculations */
+    box-sizing: border-box; 
 }
 
 input:focus,
@@ -58,32 +58,33 @@ select:focus {
 .save-changes-button {
     background-color: #28a745;
     color: white;
-    padding: 12px 25px; /* Increased padding for better button size */
+    padding: 12px 25px; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px; /* Increased font size for better readability */
+    font-size: 18px; 
     display: block;
-    margin-top: 20px; /* Add spacing above the button */
-    text-align: left; /* Align the button to the left */
+    margin-top: 20px; 
+    text-align: left; 
 }
 
 .save-changes-button:hover {
     background-color: #218838;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     form {
-        padding: 20px; /* Adjust padding for smaller screens */
+        padding: 20px; 
     }
 
     input,
     select {
-        font-size: 14px; /* Adjust font size for smaller screens */
+        font-size: 14px; 
     }
 
     .save-changes-button {
-        font-size: 16px; /* Adjust button font size for smaller screens */
+        font-size: 16px;
     }
 }
+

@@ -93,7 +93,7 @@ const Profile = () => {
                     <h2 className='semester-name'>{user.semester}</h2>
                     <button
                         className='academic-information-editbutton'
-                        onClick={() => navigate('/editacademicinfo')}
+                        onClick={() => navigate('/app/editacademicinfo')}
                     >
                         Edit
                         <img src={edit} alt='edit' className='edit' />
