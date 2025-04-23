@@ -1,56 +1,51 @@
 .edit-academic-info-container {
-    padding: 20px;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-start; 
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    min-height: 100vh;
+    min-height: 100vh; 
+    padding: 70px;
+    box-sizing: border-box; 
+    margin-left: 50px;
 }
 
-h1 {
-    font-size: 24px;
+.edit-academic-info-h1 {
+    font-size: 28px; 
     color: #333;
     margin-bottom: 20px;
+    text-align: left; 
 }
 
-.edit-academic-info-form {
+form {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 600px;;
-}
-
-.edit-academic-info-form h2 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 5px;
+    padding: 30px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 600px;
+    width: 100%; 
+    margin-left: -400px;
+    margin-top: 50px; 
 }
 
 label {
     display: block;
     font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
+    margin-bottom: 15px;
+    color: #0e0d0d;
+    text-align: left; 
+
 }
 
 input,
 select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 12px; 
+    margin-bottom: 20px; 
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-}
-
-input::placeholder {
-    color: #aaa;
-}
-
-select {
-    background-color: #fff;
-    color: #555;
+    box-sizing: border-box; 
 }
 
 input:focus,
@@ -63,15 +58,33 @@ select:focus {
 .save-changes-button {
     background-color: #28a745;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    text-align: center;
+    font-size: 18px; 
+    display: block;
+    margin-top: 20px; 
+    text-align: left; 
 }
 
 .save-changes-button:hover {
     background-color: #218838;
 }
+
+
+@media (max-width: 768px) {
+    form {
+        padding: 20px; 
+    }
+
+    input,
+    select {
+        font-size: 14px; 
+    }
+
+    .save-changes-button {
+        font-size: 16px;
+    }
+}
+
