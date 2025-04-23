@@ -4,6 +4,7 @@ import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import padlock from '../assets/padlock.png';
 import { useNavigate, Link } from 'react-router-dom';
+import { authAPI } from '../services/api'; // Update this path to where your api.jsx file is located
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ const SignIn = () => {
         setIsTermsAccepted(e.target.checked);
     };
 
-    const handleSignInClick = (e) => {
+    const handleSignInClick = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
@@ -44,38 +45,31 @@ const SignIn = () => {
             return;
         }
 
-        // Mock login logic
-        setTimeout(() => {
-            const mockUsers = [
-                { email: 'registrar@example.com', password: 'password123', role: 'registrar' },
-                { email: 'lecturer@example.com', password: 'password123', role: 'lecturer' },
-                { email: 'student@example.com', password: 'password123', role: 'student' },
-            ];
+        try {
+            // Call the signin API endpoint
+            const response = await authAPI.signin(formData.email, formData.password);
+            
+            // Get user role from the response or from another API call if needed
+            const userRole = response.role || 'student'; // Default to student if no role provided
+            
+            // Store user data in localStorage
+            localStorage.setItem('userRole', userRole);
+            localStorage.setItem('userEmail', formData.email);
+            
+            // Redirect to the appropriate dashboard based on the user's role
+            const dashboardPaths = {
+                registrar: '/registrar-dashboard/dashboard',
+                lecturer: '/lecturer/dashboard',
+                student: '/app/dashboard',
+            };
 
-            const user = mockUsers.find(
-                (u) => u.email === formData.email && u.password === formData.password
-            );
-
-            if (user) {
-                // Store user data in localStorage
-                localStorage.setItem('authToken', 'mockAuthToken');
-                localStorage.setItem('userRole', user.role);
-                localStorage.setItem('userEmail', user.email);
-
-                // Redirect to the appropriate dashboard based on the user's role
-                const dashboardPaths = {
-                    registrar: '/registrar-dashboard/dashboard',
-                    lecturer: '/lecturer/dashboard',
-                    student: '/app/dashboard',
-                };
-
-                navigate(dashboardPaths[user.role] || '/');
-            } else {
-                setError('Invalid email or password.');
-            }
-
+            navigate(dashboardPaths[userRole] || '/');
+        } catch (err) {
+            // Handle API errors
+            setError(err.message || 'Invalid email or password. Please try again.');
+        } finally {
             setLoading(false);
-        }, 1000); // Simulate network delay
+        }
     };
 
     const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
