@@ -47,14 +47,13 @@
     font-weight: bold;
 }
 
-.backarrow-icon {
+.notification-backarrow-icon {
     cursor: pointer;
     width: 30px;
     height: 30px;
     margin-right: 980px;
-    margin-top: 99px;
-    margin-bottom: -10px;
-    position: relative;
+    margin-top: 80px;
+    margin-bottom: 10px;
     
 }
 
