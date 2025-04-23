@@ -55,7 +55,7 @@ const App = () => {
           <Route path="issueform" element={<IssueForm />} />
           <Route path="issue/:id" element={<IssueDetails />} />
           <Route path="support" element={<HelpSupport />} />
-          
+          <Route path='editprofilepicture' element={<EditProfilePicture />} />
           <Route path="settings" element={<Settings />} />
           <Route path="messages" element={<Messages />} />
           <Route path="profile" element={<Profile />} />
