@@ -221,7 +221,7 @@ const IssueForm = ({ setBadgeCount }) => {
                 <button
                     className='issue-submit-button'
                     onClick={handleSubmit}
-                    disabled={isSubmitting}>
+                    disabled={!isFormComplete() || isSubmitting}>
                     {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
             </div>
