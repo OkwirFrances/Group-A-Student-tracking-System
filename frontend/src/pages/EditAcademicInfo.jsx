@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './EditAcademicInfo.css';
 
 const EditAcademicInfo = () => {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ const EditAcademicInfo = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <div>
             <h1>Edit Academic Information</h1>
             <form>
                 <label>
