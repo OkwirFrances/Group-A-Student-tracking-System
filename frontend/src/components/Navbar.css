@@ -162,6 +162,7 @@
     top: 60px;
     left: 20px;
     background-color: white;
+    border: 1px solid #ccc;
 }
 
 @media (max-width: 768px) {
