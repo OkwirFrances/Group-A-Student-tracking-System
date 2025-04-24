@@ -1,12 +1,13 @@
 .edit-personal-info-container {
     display: flex;
     justify-content: flex-start; /* Align content to the left */
-    align-items: flex-start; /* Align content to the top */
+    align-items: flex-start; 
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    min-height: 100vh; /* Ensure full height */
-    padding: 20px; /* Add padding for spacing */
-    box-sizing: border-box; /* Include padding in height calculations */
+    min-height: 100vh; 
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left:100px;
 }
 
 .edit-peersonal-info-h1 {

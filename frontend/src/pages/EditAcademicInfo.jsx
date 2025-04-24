@@ -33,8 +33,8 @@ const EditAcademicInfo = () => {
     };
 
     return (
-        <div>
-            <h1>Edit Academic Information</h1>
+        <div className='edit-academic-info-container'>
+            <h1 className='edit-academic-info-h1'>Edit Academic Information</h1>
             <form>
                 <label>
                     Registration Number:
