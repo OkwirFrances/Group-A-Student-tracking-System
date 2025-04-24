@@ -58,19 +58,21 @@ select:focus {
 .academic-info-button {
     background-color: #28a745;
     color:white;
-    padding: 12px 25px; /* Add padding for better button size */
+    padding: 12px 25px; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px; /* Increase font size for better readability */
+    font-size: 18px; 
     display: block;
-    margin-top: 20px; /* Add spacing above the button */
-    text-align: left; /* Align the button to the left */
+    margin-top: 20px; 
+    text-align: left;
 }
 
 
-.academic-info-button:hover {
-    
+.academic-info-button:hover  {
+    background-color: #218838; 
+
+
 }
 
     
