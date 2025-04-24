@@ -40,6 +40,7 @@ select {
     width: 100%
     padding: 12px; /* Add padding for better usability */
     margin-bottom: 20px; /* Add margin for spacing */
+    border: 1px solid #ccc;
 }
 
 
