@@ -1,100 +1,86 @@
 .edit-personal-info-container {
     display: flex;
-    justify-content: flex-start; 
-    align-items: flex-start; 
+    justify-content: flex-start; /* Align content to the left */
+    align-items: flex-start; /* Align content to the top */
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    min-height: 100vh; 
-    padding: 70px;
-    box-sizing: border-box; 
-    margin-left: 60px;
-    margin-right: -500px;
-    margin-top: -50px;
+    min-height: 100vh; /* Ensure full height */
+    padding: 20px; /* Add padding for spacing */
+    box-sizing: border-box; /* Include padding in height calculations */
 }
 
-.edit-personal-info-h1 {
-    font-size: 28px; 
+.edit-peersonal-info-h1 {
+    font-size: 28px; /* Increased font size for better visibility */
     color: #333;
     margin-bottom: 20px;
-    text-align: center;
-    margin-right: -500px;
-    margin-left: -10px;
-     
+    text-align: left; /* Align the heading to the left */
 }
 
 form {
     background-color: #fff;
-    padding: 20px; 
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    max-width: 300px;
-    width: 100%; 
-    margin-right: -500px;
-    margin-top: 50px;
-    margin-left: 600px;
-    margin-bottom: 50px;
-    display: flex; 
-    flex-direction: column;
-
+    padding: 30px; /* Add padding for better spacing */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+    max-width: 600px;
+    width: 100%; /* Ensure the form takes full width within the container */
+    margin: 0; /* Remove unnecessary margins */
 }
 
 label {
     display: block;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     color: #0e0d0d;
-    text-align: center; 
-
+    text-align: left; /* Align labels to the left */
 }
 
 input,
 select {
     width: 100%;
-    padding: 12px; 
-    margin-bottom: 20px; 
+    padding: 12px; /* Add padding for better usability */
+    margin-bottom: 20px; /* Add margin for spacing */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    box-sizing: border-box; 
+    box-sizing: border-box; /* Include padding in width calculations */
 }
 
 input:focus,
 select:focus {
     outline: none;
     border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add focus effect */
 }
 
-.save-changes-button {
+.personal-info-button {
     background-color: #28a745;
     color: white;
-    padding: 12px 25px; 
+    padding: 12px 25px; /* Add padding for better button size */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px; 
+    font-size: 18px; /* Increase font size for better readability */
     display: block;
-    margin-top: 20px; 
-    text-align: left; 
+    margin-top: 20px; /* Add spacing above the button */
+    text-align: left; /* Align the button to the left */
 }
 
-.save-changes-button:hover {
-    background-color: #218838;
+.personal-info-button:hover {
+    background-color: #218838; /* Change color on hover */
 }
 
-
+/* Responsive Design */
 @media (max-width: 768px) {
     form {
-        padding: 20px; 
+        padding: 20px; /* Adjust padding for smaller screens */
     }
 
     input,
     select {
-        font-size: 14px; 
+        font-size: 14px; /* Adjust font size for smaller screens */
     }
 
-    .save-changes-button {
-        font-size: 16px;
+    .personal-info-button {
+        font-size: 16px; /* Adjust button font size for smaller screens */
     }
 }
-
