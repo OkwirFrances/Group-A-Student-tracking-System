@@ -161,6 +161,7 @@
     position: absolute;
     top: 60px;
     left: 20px;
+    background-color: white;
 }
 
 @media (max-width: 768px) {
