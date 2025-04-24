@@ -64,6 +64,8 @@ const Navbar = () => {
         }
     };
 
+    const handleSearchSubmit = (e) => {
+
     return (
             <nav className='navbar'>
                 <div className='navbar-logo'>
