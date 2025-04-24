@@ -66,13 +66,12 @@ select:focus {
     display: block;
     margin-top: 20px; /* Add spacing above the button */
     text-align: left; /* Align the button to the left */
-
-
-
-
-}
 }
 
+
+.academic-info-button:hover {
+    
+}
 
     
 
