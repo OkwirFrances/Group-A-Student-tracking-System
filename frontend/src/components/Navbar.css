@@ -157,6 +157,10 @@
     padding: 5px 10px;
 }
 
+.search-results {
+    position: absolute;
+}
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
