@@ -5,7 +5,6 @@ import './EditAcademicInfo.css';
 const EditAcademicInfo = () => {
     const navigate = useNavigate();
 
-    
     const [academicInfo, setAcademicInfo] = useState({
         registrationNumber: localStorage.getItem('registrationNumber') || '',
         studentNumber: localStorage.getItem('studentNumber') || '',
@@ -22,19 +21,22 @@ const EditAcademicInfo = () => {
     };
 
     const handleSave = () => {
-        
+        // Save updated academic information to localStorage
         localStorage.setItem('registrationNumber', academicInfo.registrationNumber);
         localStorage.setItem('studentNumber', academicInfo.studentNumber);
         localStorage.setItem('course', academicInfo.course);
         localStorage.setItem('semester', academicInfo.semester);
 
-        alert('Academic information updated successfully!');
-        navigate('/profile'); 
+        // Show confirmation message and navigate back to the profile page
+        setTimeout(() => {
+            alert('Academic information updated successfully!');
+            navigate('/profile'); // Redirect to the profile page
+        }, 0); // Use a timeout to ensure proper execution
     };
 
     return (
-        <div className='edit-academic-info-container'>
-            <h1 className='edit-academic-info-h1'>Edit Academic Information</h1>
+        <div className="edit-academic-info-container">
+            <h1 className="edit-academic-info-h1">Edit Academic Information</h1>
             <form>
                 <label>
                     Registration Number:
@@ -43,6 +45,7 @@ const EditAcademicInfo = () => {
                         name="registrationNumber"
                         value={academicInfo.registrationNumber}
                         onChange={handleChange}
+                        className="registration-number-info"
                     />
                 </label>
                 <br />
@@ -53,6 +56,7 @@ const EditAcademicInfo = () => {
                         name="studentNumber"
                         value={academicInfo.studentNumber}
                         onChange={handleChange}
+                        className="student-number-info"
                     />
                 </label>
                 <br />
@@ -63,6 +67,7 @@ const EditAcademicInfo = () => {
                         name="course"
                         value={academicInfo.course}
                         onChange={handleChange}
+                        className="course-info"
                     />
                 </label>
                 <br />
@@ -73,10 +78,15 @@ const EditAcademicInfo = () => {
                         name="semester"
                         value={academicInfo.semester}
                         onChange={handleChange}
+                        className="semester-info"
                     />
                 </label>
                 <br />
-                <button type="button" onClick={handleSave}>
+                <button
+                    type="button"
+                    onClick={handleSave}
+                    className="academic-info-button"
+                >
                     Save
                 </button>
             </form>

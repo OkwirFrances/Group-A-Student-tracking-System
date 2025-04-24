@@ -43,12 +43,12 @@ const EditProfilePicture = () => {
                         <img
                             src={profilePic}
                             alt="Profile Preview"
-                            style={{ width: '150px', height: '150px', borderRadius: '50%' }}
+    
                         />
                     </div>
                 )}
                 <br />
-                <button type="submit" style={{ marginTop: '20px' }}>
+                <button type="submit">
                     Save
                 </button>
             </form>
