@@ -7,3 +7,7 @@
     min-height: 100vh; /* Ensure full height */
     padding: 20px; /* Add padding for spacing */
     box-sizing: border-box; /* Include padding in height calculations */
+}
+
+.edit-academic-info-h1 {
+    font-size: 28px; /* Increased font size for better visibility */
