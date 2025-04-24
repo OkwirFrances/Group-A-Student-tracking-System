@@ -29,7 +29,7 @@ const EditPersonalInfo = () => {
         localStorage.setItem('gender', personalInfo.gender);
 
         alert('Personal information updated successfully!');
-        navigate('/profile'); 
+        navigate('/app/profile'); 
     };
 
     return (

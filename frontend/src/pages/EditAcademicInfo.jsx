@@ -21,17 +21,17 @@ const EditAcademicInfo = () => {
     };
 
     const handleSave = () => {
-        // Save updated academic information to localStorage
+        
         localStorage.setItem('registrationNumber', academicInfo.registrationNumber);
         localStorage.setItem('studentNumber', academicInfo.studentNumber);
         localStorage.setItem('course', academicInfo.course);
         localStorage.setItem('semester', academicInfo.semester);
 
-        // Show confirmation message and navigate back to the profile page
+        
         setTimeout(() => {
             alert('Academic information updated successfully!');
-            navigate('/profile'); // Redirect to the profile page
-        }, 0); // Use a timeout to ensure proper execution
+            navigate('/profile'); 
+        }, 0); 
     };
 
     return (

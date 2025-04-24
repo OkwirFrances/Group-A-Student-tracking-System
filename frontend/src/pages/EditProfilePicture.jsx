@@ -24,8 +24,8 @@ const EditProfilePicture = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h1>Edit Profile Picture</h1>
+        <div classname="edit-profile-picture-container">
+            <h1 className="edit-profile-picture-h1">Edit Profile Picture</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     Upload Profile Picture:
@@ -38,7 +38,7 @@ const EditProfilePicture = () => {
                 </label>
                 <br />
                 {profilePic && (
-                    <div style={{ marginTop: '20px' }}>
+                    <div className="profile-picture-preview">
                         <h3>Preview:</h3>
                         <img
                             src={profilePic}
