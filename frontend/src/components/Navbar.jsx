@@ -16,6 +16,8 @@ const Navbar = () => {
         profilePic: null,
     });
     
+    const [searchQuery, setSearchQuery] = useState('');
+
     useEffect(() => {
         const userFullName = localStorage.getItem('userFullName') || 'Guest User';
         setUser((prevUser) => ({
