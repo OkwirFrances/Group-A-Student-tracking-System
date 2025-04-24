@@ -52,6 +52,10 @@ const Navbar = () => {
     const handleSearchChange = (e) => {
         const query = e.target.value;
         setSearchQuery(query);
+
+        if (query.trim() === '') {
+            setSearchResults([]);
+        }
     };
 
     return (
