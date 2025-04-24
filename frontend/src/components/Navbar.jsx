@@ -65,6 +65,8 @@ const Navbar = () => {
     };
 
     const handleSearchSubmit = (e) => {
+        e.preventDefault();
+    };
 
     return (
             <nav className='navbar'>
