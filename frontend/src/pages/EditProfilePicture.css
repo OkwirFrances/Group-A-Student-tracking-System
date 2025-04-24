@@ -7,7 +7,12 @@
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
+}
 
-
-
+.edit-profile-picture-h1 {
+    font-size: 28px;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
 }
