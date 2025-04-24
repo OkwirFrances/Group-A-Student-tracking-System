@@ -7,14 +7,15 @@
     min-height: 100vh; 
     padding: 20px;
     box-sizing: border-box;
-    margin-left:100px;
+
 }
 
 .edit-peersonal-info-h1 {
     font-size: 28px; /* Increased font size for better visibility */
     color: #333;
     margin-bottom: 20px;
-    text-align: left; /* Align the heading to the left */
+    text-align: left;
+    margin-left: 150px; /* Adjusted margin for better alignment */
 }
 
 form {
