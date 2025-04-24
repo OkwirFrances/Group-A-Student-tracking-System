@@ -9,7 +9,7 @@ import { IssuesContext } from '../context/IssueContext';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { badgeCount, setBadgeCount } = useContext(IssuesContext);
+    const { badgeCount, setBadgeCount, issues } = useContext(IssuesContext);
 
     const [user, setUser] = useState({
         fullName: '',
