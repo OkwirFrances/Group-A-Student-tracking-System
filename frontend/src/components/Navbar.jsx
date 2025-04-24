@@ -113,6 +113,12 @@ const Navbar = () => {
                         )}
                 </div>
                 <span className='user-greeting'>Hi, {user.fullName}</span>
+
+                {searchResults.length > 0 && (
+                    <div className='search-results'>
+                        <h3>Search Results:</h3>
+                    </div>
+                )}
             </nav>
     );
 };
