@@ -1,29 +1,28 @@
 .edit-academic-info-container {
     display: flex;
-    justify-content: flex-start; /* Align content to the left */
-    align-items: flex-start; /* Align content to the top */
+    justify-content: flex-start; 
+    align-items: flex-start; 
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    min-height: 100vh; /* Ensure full height */
-    padding: 20px; /* Adjust padding for better spacing */
-    box-sizing: border-box; /* Include padding in height calculations */
-    margin-right: 70px; /* Added margin to the left for spacing */
+    min-height: 100vh; 
+    padding: 20px; 
+    margin-right: 70px; 
 }
 
 .edit-academic-info-h1 {
-    font-size: 28px; /* Increased font size for better visibility */
+    font-size: 28px; 
     color: #333;
     margin-bottom: 20px;
-    text-align: left; /* Align header to the left */
-    margin-right: 500px; /* Added margin to the left for spacing */
+    text-align: left; 
+    margin-right: 500px; 
     
 }
 
 form {
     background-color: #fff;
-    padding: 30px; /* Increased padding for better spacing */
-    border-radius: 10px; /* Slightly rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow for better visibility */
+    padding: 30px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     max-width: 600px;
     width: 100%; 
     margin-left: 500px;
