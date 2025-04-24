@@ -81,6 +81,7 @@ const Navbar = () => {
                         type='text'
                         className='search-input'
                         placeholder='Search for anything...'
+                        onChange={handleSearchChange}
                         />
                     <img src={search} alt='search' className='search-icon' />
                     </div>
