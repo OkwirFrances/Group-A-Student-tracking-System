@@ -159,6 +159,7 @@
 
 .search-results {
     position: absolute;
+    top: 60px;
 }
 
 @media (max-width: 768px) {
