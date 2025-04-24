@@ -84,7 +84,7 @@ select:focus {
     }
     input,
     select {
-        font-size: 14px; /* Decrease font size for smaller screens */
+        font-size: 14px; 
     }
     .academic-info-button {
         font-size: 16px; 
