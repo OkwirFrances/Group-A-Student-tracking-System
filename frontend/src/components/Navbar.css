@@ -182,6 +182,10 @@
     padding: 0;
     margin: 0;
 }
+
+.search-results li {
+    padding: 10px;
+}
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
