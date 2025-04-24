@@ -5,98 +5,89 @@ import './EditAcademicInfo.css';
 const EditAcademicInfo = () => {
     const navigate = useNavigate();
 
-    // Initialize state for academic information
-    const [formData, setFormData] = useState({
-        registrationNumber: localStorage.getItem('userRegistrationNumber') || '',
-        studentNumber: localStorage.getItem('userStudentNumber') || '',
-        semester: localStorage.getItem('userSemester') || '',
-        course: localStorage.getItem('userCourse') || '',
+    const [academicInfo, setAcademicInfo] = useState({
+        registrationNumber: localStorage.getItem('registrationNumber') || '',
+        studentNumber: localStorage.getItem('studentNumber') || '',
+        course: localStorage.getItem('course') || '',
+        semester: localStorage.getItem('semester') || '',
     });
 
-    // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setAcademicInfo((prevInfo) => ({
+            ...prevInfo,
             [name]: value,
-        });
+        }));
     };
 
-    // Handle form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Save updated academic information to local storage
-        localStorage.setItem('userRegistrationNumber', formData.registrationNumber);
-        localStorage.setItem('userStudentNumber', formData.studentNumber);
-        localStorage.setItem('userSemester', formData.semester);
-        localStorage.setItem('userCourse', formData.course);
-        // Navigate back to the profile page
-        navigate('/profile');
+    const handleSave = () => {
+        
+        localStorage.setItem('registrationNumber', academicInfo.registrationNumber);
+        localStorage.setItem('studentNumber', academicInfo.studentNumber);
+        localStorage.setItem('course', academicInfo.course);
+        localStorage.setItem('semester', academicInfo.semester);
+
+        
+        setTimeout(() => {
+            alert('Academic information updated successfully!');
+            navigate('/app/profile'); 
+        }, 0); 
     };
 
     return (
         <div className="edit-academic-info-container">
-            <h1>Profile &gt; Academic Information</h1>
-            <form className="edit-academic-info-form" onSubmit={handleSubmit}>
-                <h2>Academic Information</h2>
+            <h1 className="edit-academic-info-h1">Edit Academic Information</h1>
+            <form>
                 <label>
-                    Registration Number
+                    Registration Number:
                     <input
                         type="text"
                         name="registrationNumber"
-                        value={formData.registrationNumber}
+                        value={academicInfo.registrationNumber}
                         onChange={handleChange}
-                        placeholder="Enter your registration number"
-                        required
+                        className="registration-number-info"
                     />
                 </label>
+                <br />
                 <label>
-                    Student Number
+                    Student Number:
                     <input
                         type="text"
                         name="studentNumber"
-                        value={formData.studentNumber}
+                        value={academicInfo.studentNumber}
                         onChange={handleChange}
-                        placeholder="Enter your student number"
-                        required
+                        className="student-number-info"
                     />
                 </label>
+                <br />
                 <label>
-                    Semester
-                    <select
-                        name="semester"
-                        value={formData.semester}
-                        onChange={handleChange}
-                    >
-                        <option value="">Select your semester</option>
-                        <option value="1st">1st</option>
-                        <option value="2nd">2nd</option>
-                        <option value="3rd">3rd</option>
-                        <option value="4th">4th</option>
-                        <option value="5th">5th</option>
-                        <option value="6th">6th</option>
-                        <option value="7th">7th</option>
-                        <option value="8th">8th</option>
-                    </select>
-                </label>
-                <label>
-                    Course
-                    <select
+                    Course:
+                    <input
+                        type="text"
                         name="course"
-                        value={formData.course}
+                        value={academicInfo.course}
                         onChange={handleChange}
-                    >
-                        <option value="">Select your course</option>
-                        <option value="Computer Science">Computer Science</option>
-                        <option value="Engineering">Engineering</option>
-                        <option value="Mathematics">Mathematics</option>
-                        <option value="Physics">Physics</option>
-                        <option value="Biology">Biology</option>
-                        <option value="Chemistry">Chemistry</option>
-                    </select>
+                        className="course-info"
+                    />
                 </label>
-                <button type="submit" className="save-changes-button">
-                    Save Changes
+                <br />
+                <label>
+                    Semester:
+                    <input
+                        type="text"
+                        name="semester"
+                        value={academicInfo.semester}
+                        onChange={handleChange}
+                        className="semester-info"
+                    />
+                </label>
+                <br />
+                <button
+                    type="button"
+                    onClick={handleSave}
+                    className="academic-info-button"
+                >
+                    Save
                 </button>
             </form>
         </div>

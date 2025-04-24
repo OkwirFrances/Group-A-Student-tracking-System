@@ -7,7 +7,8 @@ import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 import { IssuesContext } from '../context/IssueContext';
 
-const Navbar = () => {
+const Navbar = ({ badgeCount, setBadgeCount }) => {
+    const [profilePic, setProfilePic] = useState(null);
     const navigate = useNavigate();
     const { badgeCount, setBadgeCount } = useContext(IssuesContext);
 
@@ -17,12 +18,17 @@ const Navbar = () => {
     });
     
     useEffect(() => {
-        const userFullName = localStorage.getItem('userFullName') || 'Guest User';
+    const userFullName = localStorage.getItem('userFullName') || 'Guest User';
         setUser((prevUser) => ({
             ...prevUser,
             fullName: userFullName,
         }));
-    }, []);
+        const savedProfilePic = localStorage.getItem('profilePic');
+        if (savedProfilePic) {
+            setProfilePic(savedProfilePic);
+            };
+        }
+    , []);
 
     const getInitials = (name) => {
         if (!name) return '';
@@ -79,7 +85,10 @@ const Navbar = () => {
                         onClick={handleMailClick}
                     />
                         {user.profilePic ? (
-                            <img src={user.profilePic} alt='user' className='user-icon' />
+                            <img 
+                               src={profilePic} 
+                               alt='Profile' 
+                               className='navbar-profile-picture' />
                         ) : (
                             <div className='user-initials'>
                                 {getInitials(user.fullName)}
