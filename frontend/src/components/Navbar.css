@@ -186,6 +186,11 @@
 .search-results li {
     padding: 10px;
     border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.search-results li:last-child {
+    border-bottom: none;
 }
 @media (max-width: 768px) {
     .navbar {
