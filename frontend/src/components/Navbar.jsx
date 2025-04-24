@@ -55,6 +55,11 @@ const Navbar = () => {
 
         if (query.trim() === '') {
             setSearchResults([]);
+        } else {
+            const filteredResults = issues.filter((issue) =>
+                issue.title.toLowerCase().includes(query.toLowerCase()) ||
+                issue.description.toLowerCase().includes(query.toLowerCase())
+    );
         }
     };
 
