@@ -10,7 +10,6 @@ const Profile = () => {
     const [profilePic, setProfilePic] = useState(null);
 
     const [user, setUser] = useState({
-        fullName: localStorage.getItem('userfullName') || '',
         address: localStorage.getItem('address') || '',
         phoneNumber: localStorage.getItem('phoneNumber') || '',
         gender: localStorage.getItem('gender') || '',
@@ -26,7 +25,7 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        // Load profile picture from localStorage
+        
         const savedProfilePic = localStorage.getItem('profilePic');
         if (savedProfilePic) {
             setProfilePic(savedProfilePic);
@@ -65,8 +64,6 @@ const Profile = () => {
                 </div>
                 <div className='personal-information'>
                     <h1>Personal Information</h1>
-                    <label className='name'>Full Name:</label>
-                    <h2 className='fullname'>{user.fullName}</h2>
                     <label className='address'>Email Address:</label>
                     <h2 className='address'>{user.address}</h2>
                     <label className='phone'>Phone Number:</label>

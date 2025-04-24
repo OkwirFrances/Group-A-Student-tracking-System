@@ -36,16 +36,7 @@ const EditPersonalInfo = () => {
         <div className='edit-personal-info-container'>
             <h1 className='edit-peersonal-info-h1'>Edit Personal Information</h1>
             <form>
-                <label>
-                    Full Name:
-                    <input
-                        type="text"
-                        name="fullName"
-                        value={personalInfo.fullName}
-                        onChange={handleChange}
-                        className='full-name-info'
-                    />
-                </label>
+
                 <br />
                 <label>
                     Address:

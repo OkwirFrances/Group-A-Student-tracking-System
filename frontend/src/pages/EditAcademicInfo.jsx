@@ -30,7 +30,7 @@ const EditAcademicInfo = () => {
         
         setTimeout(() => {
             alert('Academic information updated successfully!');
-            navigate('/profile'); 
+            navigate('/app/profile'); 
         }, 0); 
     };
 
