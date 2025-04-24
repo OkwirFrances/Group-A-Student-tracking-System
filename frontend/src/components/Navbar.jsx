@@ -117,6 +117,13 @@ const Navbar = () => {
                 {searchResults.length > 0 && (
                     <div className='search-results'>
                         <h3>Search Results:</h3>
+                        <ul>
+                            {searchResults.map((result) => (
+                                <li key={result.id} onClick={() => navigate(`/issue/${result.id}`)}>
+                                    <strong>{result.title}</strong>: {result.description}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 )}
             </nav>
