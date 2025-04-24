@@ -52,6 +52,7 @@
     height: 20px;
     pointer-events: none;
     margin-right: 0px;
+    margin-top: 15px;
 }
 
 .notification-icon {
@@ -155,6 +156,47 @@
     border-radius: 50%;
     padding: 5px 10px;
 }
+
+.search-results {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.search-results h3 {
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.search-results ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-results li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.search-results li:last-child {
+    border-bottom: none;
+}
+
+.search-results li:hover {
+    background-color: #f9f9f9;
+}
+
 
 @media (max-width: 768px) {
     .navbar {

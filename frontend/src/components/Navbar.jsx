@@ -10,13 +10,15 @@ import { IssuesContext } from '../context/IssueContext';
 const Navbar = ({ badgeCount, setBadgeCount }) => {
     const [profilePic, setProfilePic] = useState(null);
     const navigate = useNavigate();
-    const { badgeCount, setBadgeCount } = useContext(IssuesContext);
+    const { badgeCount, setBadgeCount, issues } = useContext(IssuesContext);
 
     const [user, setUser] = useState({
         fullName: '',
         profilePic: null,
     });
     
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
     useEffect(() => {
     const userFullName = localStorage.getItem('userFullName') || 'Guest User';
         setUser((prevUser) => ({
@@ -53,6 +55,26 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
         navigate(`${basePath}/messages`);
     };
 
+    const handleSearchChange = (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+
+        if (query.trim() === '') {
+            setSearchResults([]);
+        } else {
+            const filteredResults = issues.filter((issue) =>
+                issue.title.toLowerCase().includes(query.toLowerCase()) ||
+                issue.description.toLowerCase().includes(query.toLowerCase())
+        );
+        setSearchResults(filteredResults);
+        }
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        navigate('/search', { state: { query: searchQuery, results: searchResults } });
+    };
+
     return (
             <nav className='navbar'>
                 <div className='navbar-logo'>
@@ -61,12 +83,16 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
                     className='makerere-logo' />
                     <span className='navbar-logo-text'>Academic Issue Tracking System</span>
                     <div className='search-container'>
-                        <input
-                        type='text'
-                        className='search-input'
-                        placeholder='Search for anything...'
-                        />
-                    <img src={search} alt='search' className='search-icon' />
+                        <form onSubmit={handleSearchSubmit}>
+                            <input
+                            type='text'
+                            className='search-input'
+                            placeholder='Search for anything...'
+                            onChange={handleSearchChange}
+                            value={searchQuery}
+                            />
+                            <img src={search} alt='search' className='search-icon' />
+                    </form>
                     </div>
                     <div className='notifications-container'>
                         <img 
@@ -96,6 +122,19 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
                         )}
                 </div>
                 <span className='user-greeting'>Hi, {user.fullName}</span>
+
+                {searchResults.length > 0 && (
+                    <div className='search-results'>
+                        <h3>Search Results:</h3>
+                        <ul>
+                            {searchResults.map((result) => (
+                                <li key={result.id} onClick={() => navigate(`/issue/${result.id}`)}>
+                                    <strong>{result.title}</strong>: {result.description}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </nav>
     );
 };
