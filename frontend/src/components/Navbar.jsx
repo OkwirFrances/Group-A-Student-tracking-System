@@ -50,7 +50,7 @@ const Navbar = () => {
     };
 
     const handleSearchChange = (e) => {
-        
+        const query = e.target.value;
     };
 
     return (
