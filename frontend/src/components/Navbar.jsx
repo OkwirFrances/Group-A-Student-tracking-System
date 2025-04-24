@@ -66,6 +66,7 @@ const Navbar = () => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
+        navigate('/search', { state: { query: searchQuery, results: searchResults } });
     };
 
     return (
