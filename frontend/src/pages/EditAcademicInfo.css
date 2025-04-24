@@ -64,6 +64,7 @@ select:focus {
     cursor: pointer;
     font-size: 18px; /* Increase font size for better readability */
     display: block;
+    margin-top: 20px; /* Add spacing above the button */
 
 
 
