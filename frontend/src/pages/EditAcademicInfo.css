@@ -61,7 +61,8 @@ select:focus {
     padding: 12px 25px; /* Add padding for better button size */
     border: none;
     border-radius: 5px;
-    
+    cursor: pointer;
+
 
 
 
