@@ -171,6 +171,10 @@
     z-index: 1000;
 }
 
+.search-results h3 {
+    margin: 10px;
+}
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
