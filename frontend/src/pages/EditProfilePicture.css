@@ -3,6 +3,8 @@
     justify-content: flex-start;
     align-items: flex-start;
     font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    min-height: 100vh;
 
 
 }
