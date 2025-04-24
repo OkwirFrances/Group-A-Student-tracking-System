@@ -58,7 +58,9 @@ select:focus {
 .academic-info-button {
     background-color: #28a745;
     color:white;
-    
+    padding: 12px 25px; /* Add padding for better button size */
+
+
 
 }
 }
