@@ -49,6 +49,10 @@ const Navbar = () => {
         navigate(`${basePath}/messages`);
     };
 
+    const handleSearchChange = (e) => {
+        
+    };
+
     return (
             <nav className='navbar'>
                 <div className='navbar-logo'>
