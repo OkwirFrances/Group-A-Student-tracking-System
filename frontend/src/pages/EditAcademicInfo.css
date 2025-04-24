@@ -37,14 +37,16 @@ label {
 
 input,
 select {
-    width: 100%
+    width: 100%;
     padding: 12px; /* Add padding for better usability */
     margin-bottom: 20px; /* Add margin for spacing */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
     box-sizing: border-box; /* Include padding in width calculations */
-}
+}   
+    
+input:focus,
 
 
     
