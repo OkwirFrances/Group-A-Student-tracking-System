@@ -77,14 +77,16 @@ const Navbar = () => {
                     className='makerere-logo' />
                     <span className='navbar-logo-text'>Academic Issue Tracking System</span>
                     <div className='search-container'>
-                        <input
-                        type='text'
-                        className='search-input'
-                        placeholder='Search for anything...'
-                        onChange={handleSearchChange}
-                        value={searchQuery}
-                        />
-                    <img src={search} alt='search' className='search-icon' />
+                        <form onSubmit={handleSearchSubmit}>
+                            <input
+                            type='text'
+                            className='search-input'
+                            placeholder='Search for anything...'
+                            onChange={handleSearchChange}
+                            value={searchQuery}
+                            />
+                            <img src={search} alt='search' className='search-icon' />
+                    </form>
                     </div>
                     <div className='notifications-container'>
                         <img 
