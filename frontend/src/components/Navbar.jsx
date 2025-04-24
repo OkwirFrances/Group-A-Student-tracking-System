@@ -59,7 +59,8 @@ const Navbar = () => {
             const filteredResults = issues.filter((issue) =>
                 issue.title.toLowerCase().includes(query.toLowerCase()) ||
                 issue.description.toLowerCase().includes(query.toLowerCase())
-    );
+        );
+        setSearchResults(filteredResults);
         }
     };
 
