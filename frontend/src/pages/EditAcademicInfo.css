@@ -80,7 +80,7 @@ select:focus {
         padding: 20px; /* Adjust padding for smaller screens */
     }
     .edit-academic-info-h1 {
-        font-size: 24px; /* Decrease font size for smaller screens */
+        font-size: 24px; 
     }
     input,
     select {
