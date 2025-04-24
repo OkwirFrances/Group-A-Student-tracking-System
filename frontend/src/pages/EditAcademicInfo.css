@@ -50,8 +50,15 @@ input:focus,
 select:focus {
     outline: none;
     border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add focus effect */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
 
+}
+
+
+.academic-info-button {
+    background-color: #28a745;
+
+}
 }
 
 
