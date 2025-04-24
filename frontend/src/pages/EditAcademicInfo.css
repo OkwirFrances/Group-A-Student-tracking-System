@@ -35,6 +35,11 @@ label {
     text-align: left; /* Align labels to the left */
 }
 
+input,
+select {
+    
+}
+
 
     
 
