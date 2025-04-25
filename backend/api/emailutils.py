@@ -17,9 +17,15 @@ def notification_email(issue_id, registrar_name):
         f"Dear {lecturer_name},\n"
         f"You have been assigned a new issue by {registrar_name}.\n"
         f"Issue Details:\n"
-
+        f"Title: {issue.title}\n"
+        f"Description: {issue.description}\n"
+        f"Please address this issue promptly."
+)
+    
+    send_mail(
+        subject=subject,
+        message=message,
         
-
     )
   
    
