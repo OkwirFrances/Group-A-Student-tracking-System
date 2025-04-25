@@ -7,13 +7,13 @@ import { v4 as uuidv4 } from 'uuid';
 const IssueForm = ({ setBadgeCount }) => {
     const { addIssue, setNotificationMessage } = useContext(IssuesContext);
     const [formData, setFormData] = useState({
-        title: '',
-        description: '',
-        category: '',
-        registrar: '',
-        lecturer: '',
-        coursecode: '',
-        coursename: '',
+        title: 'est',
+        description: 'desc',
+        category: 'cat',
+        registrar: 'res',
+        lecturer: 'lec',
+        coursecode: 'cour',
+        coursename: 'name',
         attachment: null,
     });
 
@@ -36,7 +36,11 @@ const IssueForm = ({ setBadgeCount }) => {
     };
 
     const isFormComplete = () => {
-        return Object.values(formData).every(value => value !== '' && value !== null);
+        // return Object.values(formData).every(value => value !== '' && value !== null);
+        return Object.entries(formData).every(([key, value]) => {
+            if (key === 'attachment' && value === null) return true;
+            return value !== '' && value !== null;
+        })
     };
 
     const handleSubmit = (e) => {
@@ -103,6 +107,7 @@ const IssueForm = ({ setBadgeCount }) => {
                 <h1>Create a New Issue</h1>
             </div>
             <div className='issue-form-content'>
+                
                 {error && <p className='error-message'>{error}</p>}
                 <label className='registrar-select-label'>
                     Registrar's Name
