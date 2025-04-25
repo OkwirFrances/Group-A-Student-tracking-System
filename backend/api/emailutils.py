@@ -1,3 +1,9 @@
+from django.core.mail import send_mail
+from django.conf import settings
+
+from .models import Lecturer, Issue
+
+
 """defining a function for sending emails to lecturers when an issue hs been assigned"""
 def send_email_to_lecturer(lecturer_email,title,student_name,issue_id):
    subject = "New Issue Assigned"
