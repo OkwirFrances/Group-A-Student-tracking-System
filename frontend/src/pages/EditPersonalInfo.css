@@ -7,6 +7,9 @@
     min-height: 100vh; 
     padding: 20px;
     box-sizing: border-box;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    margin-left: 100px;
 
 }
 
@@ -18,7 +21,7 @@
     margin-left: 300px; 
 }
 
-form {
+.edit-personal-info-form {
     background-color: #fff;
     padding: 30px; 
     border-radius: 10px; 
@@ -26,6 +29,11 @@ form {
     max-width: 600px;
     width: 100%; 
     margin: 0; 
+    margin-left: -400px;
+    margin-top: 60px;
+    margin-bottom: -300px;
+
+    
 }
 
 label {

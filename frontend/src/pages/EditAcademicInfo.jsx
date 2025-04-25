@@ -37,7 +37,7 @@ const EditAcademicInfo = () => {
     return (
         <div className="edit-academic-info-container">
             <h1 className="edit-academic-info-h1">Edit Academic Information</h1>
-            <form>
+            <form onSubmit={handleSave} className="edit-academic-info-form">
                 <label>
                     Registration Number:
                     <input

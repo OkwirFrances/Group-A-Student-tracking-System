@@ -9,7 +9,7 @@
     box-sizing: border-box;
     margin-top: 30px;
     margin-bottom: 100px;
-    margin-left: 300px;
+    margin-left: 100px;
     margin-right: 50px;
     
 
@@ -24,7 +24,7 @@
     text-align: left; 
 }
 
-form {
+.edit-academic-info-form {
     background-color: #fff;
     padding: 30px; 
     border-radius: 10px;
@@ -33,7 +33,7 @@ form {
     width: 100%; 
     margin: 0; 
     margin-bottom: -500px;
-    margin-left: 20px;
+    margin-left: -365px;
     margin-top: 90px;
     
 }

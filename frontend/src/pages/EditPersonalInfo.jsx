@@ -69,7 +69,8 @@ const EditPersonalInfo = () => {
                     </select>
                 </label>
                 <br />
-                <button type="submit" className="personal-info-button">
+                <button type="submit" 
+                className="personal-info-button">
                     Save
                 </button>
             </form>

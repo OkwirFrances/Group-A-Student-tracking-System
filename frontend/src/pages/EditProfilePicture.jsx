@@ -21,7 +21,7 @@ const EditProfilePicture = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         alert('Profile picture updated successfully!');
-        navigate('/profile'); 
+        navigate('/app/profile'); 
     };
 
     return (
