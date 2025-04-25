@@ -2,7 +2,8 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from .views import (signup, verify_otp, login, resend_otp, DepartmentView, CourseView, 
     IssueView, assign_issue, resolve_issue, UserInfoView, UserEditView,
-    LecturerView, LecturerIssuesView, CourseDetailView, CustomTokenRefreshView  # Add these new views
+    LecturerView, LecturerIssuesView, CourseDetailView, CustomTokenRefreshView,  # Add these new views
+    RegistrarView, CollegeView,
 )
 
 
@@ -24,5 +25,7 @@ urlpatterns = [
     path('user-info/edit/', UserEditView.as_view(), name='user-edit'),
     path('courses/<int:pk>/', CourseDetailView.as_view(), name='course-detail'),
     path('token/refresh/', CustomTokenRefreshView.as_view(), name='token_refresh'),
-
+    path('colleges/', CollegeView.as_view(), name='colleges'),
+    path('registrars/', RegistrarView.as_view(), name='registrars'),
+    path('registrars/<int:pk>/', RegistrarView.as_view(), name='registrars'),
 ]

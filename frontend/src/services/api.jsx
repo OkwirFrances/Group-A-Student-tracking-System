@@ -506,6 +506,24 @@ export const courseAPI = {
       throw error.response?.data || error.message;
     }
   },
+  
+  fetchRegistrars: async ({ id } = {}) => {
+    const url = `/registrars/${id === undefined ? '' : id}`
+    return request(api.get, url);
+  },
+
+  fetchRegistrarById: async (id) => {
+    return this.fetchRegistrars({ id });
+  },
+
+  fetchColleges: async ({ id } = {}) => {
+    const url = `/colleges/${id === undefined ? '' : id}`
+    return request(api.get, url);
+  },
+
+  fetchCollegeById: async (id) => {
+    return this.fetchColleges({ id });
+  },
 };
 
 // Lecturer API
@@ -564,6 +582,7 @@ export const issueAPI = {
       throw error.response?.data || error.message;
     }
   },
+  
   createIssue: async (issueData) => {
     try {
       const response = await api.post('/issues/', issueData, {
@@ -613,5 +632,15 @@ export const issueAPI = {
     }
   },
 };
+
+async function request(method, url, ...args) {
+  try {
+    const response = await method(url, args);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+}
+
 
 export default api;

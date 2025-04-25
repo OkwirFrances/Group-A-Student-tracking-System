@@ -17,7 +17,16 @@ class CustomUserManager(BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+
+        if user.role == 'student':
+            Student.objects.create(user=user, **extra_fields)
+        elif user.role == 'lecturer':
+            pass
+        elif user.role == 'registrar':
+            pass
+
         return user
+    
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
@@ -32,7 +41,7 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     id = models.AutoField(primary_key=True)
-    username = None  
+    username = None
     email = models.EmailField(unique=True)
     fullname = models.CharField(max_length=255, null=False)
     otp = models.CharField(max_length=6, blank=True, null=True)
@@ -53,14 +62,11 @@ class CustomUser(AbstractUser):
     
     role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='student')
 
-    
-    
-   
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['fullname', 'role'] 
     
     
-    objects = CustomUserManager() 
+    objects = CustomUserManager()
 
     def __str__(self):
         return self.fullname
@@ -121,7 +127,7 @@ class Registrar(CustomUser):
 
 class Issue(models.Model):
     ISSUE_STATUS = (
-        ('open', 'Open'),
+        ('pending', 'Pending'),
         ('assigned', 'Assigned'),
         ('in_progress', 'In Progress'),
         ('resolved', 'Resolved'),
@@ -132,15 +138,16 @@ class Issue(models.Model):
                      ('appeal','APPEAL'),
                      ('correction','CORRECTION'))
     
-    SEMESTER_CHOICES = (('Semester 1','SEMESTER 1'),
-                        ('Semester 2','SEMESTER 2'))
+    SEMESTER_CHOICES = (('1','Semester One'),
+                        ('2','Semester Two'))
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    issue_type = models.CharField(max_length=50,choices=ISSUE_CHOICES)
+    registrar = models.ForeignKey(Registrar, on_delete=models.CASCADE)
+    category = models.CharField(max_length=50,choices=ISSUE_CHOICES)
     semester = models.CharField(max_length=50,choices=SEMESTER_CHOICES)
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True)
     title = models.CharField(max_length=200)
     description = models.TextField( validators=[MaxLengthValidator(500)], null=True, blank=True)
-    image = models.ImageField(upload_to='issue_images/', null=True, blank=True)
+    attachments = models.ImageField(upload_to='issue_attachments/', null=True, blank=True)
     status = models.CharField(max_length=20, choices=ISSUE_STATUS, default='open')
     created_at = models.DateTimeField(default=datetime.datetime.now)
     updated_at = models.DateTimeField(auto_now=True)
@@ -192,5 +199,10 @@ class Issue(models.Model):
     class Meta:
         ordering = ['-created_at']
 
-
+class College(models.Model):  
+    name = models.CharField(max_length=100)
+    registrar = models.ForeignKey(Registrar, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.code} - {self.name}"  
 

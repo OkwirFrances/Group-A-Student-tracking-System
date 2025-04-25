@@ -136,7 +136,10 @@ def signup(request):
 
     if User.objects.filter(email=email).exists():
         return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
-
+    
+    if role not in ['student', 'lecturer', 'registrar']:
+        return JsonResponse({'error': 'Invalid role'}, status=status.HTTP_400_BAD_REQUEST)
+    
     otp = generate_otp()
     cache.set(f'otp_{email}', {'otp': otp, 'fullname': fullname, 'password': password, 'role': role}, timeout=600)  # Store OTP for 10 minutes
 
@@ -341,11 +344,12 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
         return Issue.objects.all()
     
     def perform_create(self, serializer):
+        print({"role": self.request.user.role, "user": self.request.user})
         if self.request.user.role == 'student':
             course = serializer.validated_data.get('course')
             if course and self.request.user not in course.students.all():
                 raise PermissionDenied('You can only report issues for courses you are enrolled in.')
-            serializer.save(student=self.request.user)
+            serializer.save(student=self.request.user.id)
         else:
             raise PermissionDenied('Only students can create issues.')
         
@@ -450,4 +454,18 @@ class CustomTokenRefreshView(TokenRefreshView):
 #                 status=status.HTTP_401_UNAUTHORIZED
 #             )
 
-               
+
+class CollegeView(generics.ListCreateAPIView):
+    serializer_class = CollegeSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return College.objects.all()
+    
+
+class RegistrarView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = RegistrarSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Registrar.objects.all()

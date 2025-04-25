@@ -59,7 +59,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
      class Meta:
         model = Course
-        fields = ['id', 'name', 'code', 'department', 'description']
+        fields = '__all__'
         extra_kwargs = {
             'department': {'required': True}
         }
@@ -71,18 +71,13 @@ class IssueSerializer(serializers.ModelSerializer):
     assigned_by = RegistrarSerializer(read_only=True)
     resolved_by = RegistrarSerializer(read_only=True)
     
-    issue_type = serializers.ChoiceField(choices=Issue.ISSUE_CHOICES)
+    # issue_type = serializers.ChoiceField(choices=Issue.ISSUE_CHOICES)
     semester = serializers.ChoiceField(choices=Issue.SEMESTER_CHOICES)
     status = serializers.ChoiceField(choices=Issue.ISSUE_STATUS)
     
     class Meta:
         model = Issue
-        
-        fields = [
-            'id', 'student', 'issue_type', 'semester', 'course', 'title', 'description', 
-            'status', 'created_at', 'updated_at', 'assigned_to', 'assigned_by', 
-            'assigned_at', 'resolved_by', 'resolved_at'
-        ]
+        fields = '__all__'
 
     def create(self, validated_data):
         student = self.context['request'].user
@@ -109,3 +104,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+class CollegeSerializer(serializers.ModelSerializer): 
+    class Meta:
+        model = College
+        fields = '__all__'
