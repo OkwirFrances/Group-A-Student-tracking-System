@@ -10,6 +10,8 @@
     box-sizing: border-box; 
     margin: 0;
     margin-left: -50px;
+    min-height: 100vh;
+    margin-top: 30px;   
 }
 
 .edit-profile-picture-h1 {

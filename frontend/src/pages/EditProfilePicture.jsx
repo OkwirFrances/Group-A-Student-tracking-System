@@ -25,7 +25,7 @@ const EditProfilePicture = () => {
     };
 
     return (
-        <div classname="edit-profile-picture-container">
+        <div className="edit-profile-picture-container">
             <h1 className="edit-profile-picture-h1">Edit Profile Picture</h1>
             <form onSubmit={handleSubmit} className="edit-profile-picture-form">
                 <label>
