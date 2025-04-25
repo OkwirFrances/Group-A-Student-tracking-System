@@ -12,16 +12,14 @@ def notification_email(issue_id, registrar_name):
 
     recipient_email = lecturer.email
     lecturer_name = f"{lecturer.first_name} {lecturer.last_name}"  # Get the lecturer's full name
+    subject = 'New Issue Assignment'
+    message = (
+        f"Dear {lecturer_name},\n"
+        f"You have been assigned a new issue by {registrar_name}.\n"
+        f"Issue Details:\n"
 
-   subject = "New Issue Assigned"
-   body = f"""
-   Dear Lecturer,
-   You have been assigned a new issue with ID: {issue_id}.
-   Issue details:
-   student_name: {student_name}
-   issue_id: {issue_id}
-   issue_title:{title}
-   kindly check the system for more details and take the necessary actions.
-   """
+        
 
+    )
+  
    
