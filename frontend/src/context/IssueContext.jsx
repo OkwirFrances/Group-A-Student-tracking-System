@@ -10,6 +10,7 @@ export const IssuesProvider = ({ children }) => {
 
     const [notificationMessage, setNotificationMessage] = useState(null);
     const [badgeCount, setBadgeCount] = useState(0); 
+    const [registrarBadgeCount, setRegistrarBadgeCount] = useState(0); 
 
     const addIssue = (newIssue) => {
         setIssues((prevIssues) => {
@@ -18,8 +19,9 @@ export const IssuesProvider = ({ children }) => {
             return updatedIssues;
         });
 
-    
-        setBadgeCount((prevCount) => prevCount + 1);
+       
+        setBadgeCount((prevCount) => prevCount + 1); 
+        setRegistrarBadgeCount((prevCount) => prevCount + 1); 
     };
 
     return (
@@ -31,6 +33,8 @@ export const IssuesProvider = ({ children }) => {
                 setNotificationMessage,
                 badgeCount,
                 setBadgeCount,
+                registrarBadgeCount,
+                setRegistrarBadgeCount,
             }}
         >
             {children}

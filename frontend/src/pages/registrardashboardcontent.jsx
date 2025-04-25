@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import './registrardashboardcontent.css';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
 import search from '../assets/search.png';
+import { IssuesContext } from "../context/IssueContext";
 
 const RegistrarDashboardContent = () => {
     const [issues, setIssues] = useState([]);
+    const {registrarBadgeCount, setRegistrarBadgeCount} = useContext(IssuesContext);
     const [assignedIssues, setAssignedIssues] = useState(0);
     const [pendingIssues, setPendingIssues] = useState(0);
     const [inProgressIssues, setInProgressIssues] = useState(0);
@@ -42,6 +44,7 @@ const RegistrarDashboardContent = () => {
     }, []);
 
     const handleOpenIssuesClick = () => {
+        setRegistrarBadgeCount(0); 
         navigate('/registrar-dashboard/openissues');
     };
 

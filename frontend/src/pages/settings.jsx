@@ -86,7 +86,7 @@ const Settings = () => {
                     {!showChangePassword && !showHelpSupport && !showDeleteConfirmation && (
                         <>
                             <img src={settings} alt='settings' className='settings' />
-                            <h2>Tap one of the tabs to appear here</h2>
+                            <h2 className='settings-h1'>Tap one of the tabs to appear here</h2>
                         </>
                     )}
                         <div className='settings-tab'>

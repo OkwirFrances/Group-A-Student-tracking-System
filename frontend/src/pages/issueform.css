@@ -283,7 +283,7 @@
 
 @media (max-width: 768px) {
     .issue-form-container {
-        padding: 15px;
+        width: 90%; /* Reduce the width */
     }
 
     .issue-form-header h1 {
@@ -292,25 +292,31 @@
 
     .issue-form-content {
         padding: 15px;
-        margin-left: 0;
-        max-width: 90%;
-    }
-
-    .issue-form-content input,
-    .issue-form-content select {
-        font-size: 0.9rem;
-        padding: 8px;
+        width: 100%; /* Full width */
     }
 
     .issue-title-input,
     .course-name-input,
-    .issue-description-input {
-        width: 100%;
+    .issue-description-input,
+    .course-code-input,
+    .lecturer-select {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .upload-section {
+        padding: 15px;
+    }
+
+    .issue-submit-button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
     }
 }
 
 @media (max-width: 480px) {
     .issue-form-container {
+        width: 100%; /* Full width */
         padding: 10px;
     }
 
@@ -321,29 +327,24 @@
 
     .issue-form-content {
         padding: 10px;
-        margin-left: 0;
-        max-width: 100%;
-    }
-
-    .issue-form-content input,
-    .issue-form-content select {
-        font-size: 0.8rem;
-        padding: 6px;
+        width: 100%; /* Full width */
     }
 
     .issue-title-input,
     .course-name-input,
-    .issue-description-input {
-        width: 100%; 
+    .issue-description-input,
+    .course-code-input,
+    .lecturer-select {
+        font-size: 0.8rem;
+        padding: 6px;
     }
 
     .upload-section {
-        width: 100%; 
+        padding: 10px;
     }
 
     .issue-submit-button {
         font-size: 0.8rem;
         padding: 6px 12px;
-        width: 100%; 
     }
 }
