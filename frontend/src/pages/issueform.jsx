@@ -7,13 +7,13 @@ import { v4 as uuidv4 } from 'uuid';
 const IssueForm = ({ setBadgeCount }) => {
     const { addIssue, setNotificationMessage } = useContext(IssuesContext);
     const [formData, setFormData] = useState({
-        title: 'est',
-        description: 'desc',
-        category: 'cat',
-        registrar: 'res',
-        lecturer: 'lec',
-        coursecode: 'cour',
-        coursename: 'name',
+        title: '',
+        description: '',
+        category: '',
+        registrar: '',
+        lecturer: '',
+        coursecode: '',
+        coursename: '',
         attachment: null,
     });
 
