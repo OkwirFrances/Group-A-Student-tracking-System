@@ -7,7 +7,7 @@ import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 import { IssuesContext } from '../context/IssueContext';
 
-const Navbar = ({ badgeCount, setBadgeCount }) => {
+const Navbar = () => {
     const [profilePic, setProfilePic] = useState(null);
     const navigate = useNavigate();
     const { badgeCount, setBadgeCount } = useContext(IssuesContext);

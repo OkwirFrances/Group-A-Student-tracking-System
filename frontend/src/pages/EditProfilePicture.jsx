@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './EditProfilePicture.css';
 
 const EditProfilePicture = () => {
     const [profilePic, setProfilePic] = useState(null);
@@ -20,13 +21,13 @@ const EditProfilePicture = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         alert('Profile picture updated successfully!');
-        navigate('/profile'); 
+        navigate('/app/profile'); 
     };
 
     return (
         <div classname="edit-profile-picture-container">
             <h1 className="edit-profile-picture-h1">Edit Profile Picture</h1>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <label>
                     Upload Profile Picture:
                     <input
