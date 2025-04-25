@@ -9,15 +9,15 @@
     padding: 20px;
     box-sizing: border-box; 
     margin: 0;
+    margin-left: -50px;
 }
 
-.edit-profile-picture-title {
+.edit-profile-picture-h1 {
     font-size: 28px; 
     color: #333;
-    margin-bottom: 20px;
+    margin-top: 60px;
     text-align: center; 
-    margin-left: -20px;
-    margin-right: px;
+    margin-right: 900px;
 }
 
 .edit-profile-picture-form {
@@ -29,15 +29,19 @@
     width: 100%; 
     text-align: center; 
     margin: 0;
+    margin-left: 200px;
+    margin-top: 60px;
 
 }
 
 .edit-profile-picture-form label {
-    display: block;
+    display: block; 
     font-weight: bold;
     margin-bottom: 10px;
     color: #0e0d0d;
     text-align: left; 
+    margin-left: 20px;
+    font-size: medium;
 }
 
 .edit-profile-picture-form input[type="file"] {

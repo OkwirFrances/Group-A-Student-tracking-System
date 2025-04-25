@@ -5,9 +5,7 @@ import './EditPersonalInfo.css';
 const EditPersonalInfo = () => {
     const navigate = useNavigate();
 
-    
     const [personalInfo, setPersonalInfo] = useState({
-        fullName: localStorage.getItem('fullName') || '',
         address: localStorage.getItem('address') || '',
         phoneNumber: localStorage.getItem('phoneNumber') || '',
         gender: localStorage.getItem('gender') || '',
@@ -21,9 +19,8 @@ const EditPersonalInfo = () => {
         }));
     };
 
-    const handleSave = () => {
-        
-        localStorage.setItem('fullName', personalInfo.fullName);
+    const handleSave = (e) => {
+        e.preventDefault(); 
         localStorage.setItem('address', personalInfo.address);
         localStorage.setItem('phoneNumber', personalInfo.phoneNumber);
         localStorage.setItem('gender', personalInfo.gender);
@@ -33,11 +30,9 @@ const EditPersonalInfo = () => {
     };
 
     return (
-        <div className='edit-personal-info-container'>
-            <h1 className='edit-peersonal-info-h1'>Edit Personal Information</h1>
-            <form>
-
-                <br />
+        <div className="edit-personal-info-container">
+            <h1 className="edit-personal-info-h1">Edit Personal Information</h1>
+            <form onSubmit={handleSave} className="edit-personal-info-form">
                 <label>
                     Address:
                     <input
@@ -45,7 +40,7 @@ const EditPersonalInfo = () => {
                         name="address"
                         value={personalInfo.address}
                         onChange={handleChange}
-                        className='address-info'
+                        className="address-info"
                     />
                 </label>
                 <br />
@@ -56,7 +51,7 @@ const EditPersonalInfo = () => {
                         name="phoneNumber"
                         value={personalInfo.phoneNumber}
                         onChange={handleChange}
-                        className='phone-number-info'
+                        className="phone-number-info"
                     />
                 </label>
                 <br />
@@ -66,7 +61,7 @@ const EditPersonalInfo = () => {
                         name="gender"
                         value={personalInfo.gender}
                         onChange={handleChange}
-                        className='gender-info'
+                        className="gender-info"
                     >
                         <option value="">Select</option>
                         <option value="Male">Male</option>
@@ -74,7 +69,7 @@ const EditPersonalInfo = () => {
                     </select>
                 </label>
                 <br />
-                <button type="button" onClick={handleSave} className='personal-info-button'>
+                <button type="submit" className="personal-info-button">
                     Save
                 </button>
             </form>
