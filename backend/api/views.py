@@ -364,6 +364,10 @@ def assign_issue(request, issue_id, lecturer_id):
     issue.save()
     return JsonResponse({'message': 'Issue assigned successfully'})
 
+    #send email notification to the lecturer
+    
+
+
 # Resolve Issue View (Accessible by lecturers and registrars)
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
