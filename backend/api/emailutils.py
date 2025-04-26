@@ -20,6 +20,7 @@ def notification_email(issue_id, registrar_name):
             f"Title: {issue.title}\n"
             f"Description: {issue.description}\n"
             f"Please address this issue promptly."
+            f"Update the status of the issue once you have addressed it.\n\n"
     )
         
         send_mail(
