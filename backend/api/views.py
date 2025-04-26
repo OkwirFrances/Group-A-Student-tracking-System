@@ -43,14 +43,7 @@ def generate_otp():
         
 
     
-#     return JsonResponse({
-#         'access': str(refresh.access_token),
-#         'refresh': str(refresh),
-#         'role': user.role,
-#         'fullname': user.fullname,
-#         'email': user.email
-#     }, status=status.HTTP_200_OK)
-    
+
 # @api_view(['POST'])
 # def verify_otp(request):
 #     email = request.data.get('email')
