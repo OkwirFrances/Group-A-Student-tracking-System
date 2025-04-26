@@ -36,17 +36,6 @@ def generate_otp():
 
 
     
-#     if not email or not password:
-#         return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     if User.objects.filter(email=email).exists():
-#         return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     otp = generate_otp()
-#     cache.set(f'otp_{email}', {'otp': otp, 'fullname': fullname, 'password': password, 'role': role}, timeout=600)  # Store OTP for 10 minutes
-
-#     send_mail('Your OTP Code', f'Your OTP is {otp}', 'Group-A-AITS@mail.com', [email])
-#     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
 # @api_view(['POST'])
 # def login(request):
