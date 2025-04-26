@@ -34,15 +34,7 @@ def generate_otp():
     return str(random.randint(100000, 999999))
 
 
-# Signup View
 
-
-# @api_view(['POST'])
-# def signup(request):
-#     email = request.data.get('email')
-#     fullname = request.data.get('fullname')
-#     password = request.data.get('password')
-#     role = request.data.get('role', 'student')
     
 #     if not email or not password:
 #         return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
