@@ -369,7 +369,7 @@ def assign_issue(request, issue_id, lecturer_id):
     email_response = notification_email(issue.id, registrar_name)
 
     if not email_response.get("success"):
-        return JsonResponse({'error': email_response.get("message")}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return JsonResponse({'message':'Issue assigned, but email notification failed','error': email_response.get("message")}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     return JsonResponse({'message': 'Issue assigned successfully'})
 
