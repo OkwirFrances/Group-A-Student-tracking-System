@@ -1,7 +1,5 @@
 from django.core.mail import send_mail
 from django.conf import settings
-from django.core.validators import validate_email 
-from django.core.exceptions import ValidationError
 from .models import Lecturer, Issue
 
 def notification_email(issue_id, registrar_name):
@@ -11,11 +9,7 @@ def notification_email(issue_id, registrar_name):
         if not lecturer:
             return {"success": False, "message": "No lecturer assigned to this issue."}
         
-        try:
-            validate_email = lecturer.email
-        except ValidationError:
-            return {"success": False, "message": "Invalid email address for the lecturer."}
-        
+         
         recipient_email = lecturer.email
         lecturer_name = f"{lecturer.first_name} {lecturer.last_name}"  # Get the lecturer's full name
         subject = 'New Issue Assignment'
