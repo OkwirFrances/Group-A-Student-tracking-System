@@ -22,7 +22,7 @@ from django.shortcuts import  get_object_or_404
 import random
 from django.core.cache import cache  # Import Django cache
 import logging  # Import logging module
-
+from .emailutils import notification_email  # Import the email utility function
 # Configure logger
 logger = logging.getLogger(__name__)
 
@@ -362,9 +362,13 @@ def assign_issue(request, issue_id, lecturer_id):
     issue.assign_to_lecturer(request.user, lecturer)
     issue.assigned_at = timezone.now()
     issue.save()
+
+     #send email notification to the lecturer
+    registrar_name = request.user.get_full_name()
+    email_response = notification_email(issue.id, registrar_name)
     return JsonResponse({'message': 'Issue assigned successfully'})
 
-    #send email notification to the lecturer
+   
     
 
 
