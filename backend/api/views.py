@@ -39,13 +39,7 @@ def generate_otp():
 
 
         
-#     try:
-#         user = User.objects.get(email=email)
-#     except User.DoesNotExist:
-#         return JsonResponse(
-#             {'error': 'Invalid email or password'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
+
         
 #     if not user.check_password(password):
 #         return JsonResponse(
