@@ -10,10 +10,12 @@ def notification_email(issue_id, registrar_name):
         lecturer = issue.assigned_to  # Using the 'assigned_to' field to get the lecturer
         if not lecturer:
             return {"success": False, "message": "No lecturer assigned to this issue."}
+        
         try:
             validate_email = lecturer.email
         except validationError:
             return {"success": False, "message": "Invalid email address for the lecturer."}
+        
         recipient_email = lecturer.email
         lecturer_name = f"{lecturer.first_name} {lecturer.last_name}"  # Get the lecturer's full name
         subject = 'New Issue Assignment'
