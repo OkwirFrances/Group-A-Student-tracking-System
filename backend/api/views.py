@@ -41,13 +41,7 @@ def generate_otp():
         
 
         
-#     if not user.check_password(password):
-#         return JsonResponse(
-#             {'error': 'Invalid email or password'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
-        
-#     refresh = RefreshToken.for_user(user)
+
     
 #     return JsonResponse({
 #         'access': str(refresh.access_token),
