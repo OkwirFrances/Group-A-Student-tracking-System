@@ -23,6 +23,7 @@ import random
 from django.core.cache import cache  # Import Django cache
 import logging  # Import logging module
 from .emailutils import notification_email  # Import the email utility function
+from django.conf import settings
 # Configure logger
 logger = logging.getLogger(__name__)
 
@@ -366,6 +367,10 @@ def assign_issue(request, issue_id, lecturer_id):
      #send email notification to the lecturer
     registrar_name = request.user.get_full_name()
     email_response = notification_email(issue.id, registrar_name)
+
+    if not email_response.get("success"):
+        return JsonResponse({'error': email_response.get("message")}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     return JsonResponse({'message': 'Issue assigned successfully'})
 
    
