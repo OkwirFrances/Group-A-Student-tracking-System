@@ -13,6 +13,7 @@ urlpatterns = [
     path('verify-otp/', verify_otp),
     path('login/', login),
     path('resend-otp/', resend_otp),
+    path('forgot-password/', forgot_password, name='forgot-password'),
     path('departments/', DepartmentView.as_view(), name='department-list-create'),
     path('courses/', CourseView.as_view(), name='course-list-create'),
     path('lecturers/', LecturerView.as_view(), name='lecturer-list-create'),  # New
