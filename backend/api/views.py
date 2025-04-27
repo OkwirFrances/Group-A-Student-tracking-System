@@ -201,10 +201,13 @@ def reset_password(request):
     if not all([email, otp, new_password]):
          return Response({'error': 'Email, OTP and new password are required'}, status=status.HTTP_400_BAD_REQUEST)
      
-     try:
+    try:
         user = User.objects.get(email=email)
-     except User.DoesNotExist:
+    except User.DoesNotExist:
          return Response({'error': 'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
+     
+    if user.otp != otp:
+        return Response({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
 
     
 class DepartmentView(generics.ListCreateAPIView):
