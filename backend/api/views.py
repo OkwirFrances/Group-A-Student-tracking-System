@@ -179,6 +179,8 @@ def forgot_password(request):
     
     subject = 'Password Reset OTP'
     message = f'Your OTP for password reset is: {otp}'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
 
     
 class DepartmentView(generics.ListCreateAPIView):
