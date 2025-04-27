@@ -145,6 +145,9 @@ export const authAPI = {
     }
   },
 
+  resetPassword: async (email, otp, newPassword) => {
+    try {
+
   logout: () => {
     clearToken();
     localStorage.removeItem('refreshToken');
