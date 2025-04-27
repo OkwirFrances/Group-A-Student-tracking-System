@@ -170,6 +170,8 @@ def resend_otp(request):
 @api_view(['POST'])
 def forgot_password(request):
     email = request.data.get('email')
+    if not email:
+        return Response({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
 
     
 class DepartmentView(generics.ListCreateAPIView):
