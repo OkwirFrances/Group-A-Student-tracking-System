@@ -183,5 +183,7 @@
 }
 
 @media (max-width: 480px) {
-    .department-content h1 {}
+    .department-content h1 {
+        font-size: 1.5rem;
+    }
 }
