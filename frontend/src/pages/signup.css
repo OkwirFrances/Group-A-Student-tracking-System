@@ -88,7 +88,7 @@ label {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 5px;
-    width: 120%;
+    width: 125%;
     transition: border-color 0.33;
     margin-bottom: 0px;    
 }
@@ -130,7 +130,7 @@ label {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 5px;
-    width: 120%;
+    width: 125%;
 }
 
 .password {
@@ -139,17 +139,8 @@ label {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 5px;
-    width: 120%;
+    width: 125%;
 
-}
-
-.confirpassword {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    width: 120%;
 }
 
 .dropdown {
@@ -192,6 +183,9 @@ input:hover, .role-select:hover {
     background-color: black;
     color: white;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;

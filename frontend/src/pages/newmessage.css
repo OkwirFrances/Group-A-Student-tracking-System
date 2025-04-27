@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    height: 100vh;
     background-color: white;
 }
 
@@ -12,21 +13,30 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+
 }
 
 .newmessage-content h1 {
     font-weight: bold;
-    margin-bottom: 575px;
+    margin-bottom: 525px;
     margin-right: 1150px;
 }
 
 .back-arrow {
     position: absolute;
-    width: 40px;
+    width: 40;
     height: auto;
-    margin-bottom: 550px;
+    height: 40px;
+    margin-bottom: 510px;
     margin-right: 1400px;
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.back-arrow:hover {
+    animation: hologram-hover 2s infinite ease-in-out;
+    transform: scale(1.1);
+    border-radius: 50%;
 }
 
 .newmessage-left {
@@ -90,6 +100,13 @@
     color: black;
 }
 
+.searchinput:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+
 .search {
     position: absolute;
     right: 10px;
@@ -109,13 +126,19 @@
 
 .newmessage {
     width: 50px;
-    height: auto;
+    height: 50px;
     right: 10px;
     position: absolute;
     bottom: 10px;
     border-radius: 5px;
     background-color: rgb(11, 165, 11);
+    animation: hologram 2s infinite ease-in-out;
+    transition: transform 0.3s ease-in-out;
     cursor: pointer;
+}
+
+.newmessage:hover {
+    transform: scale(1.1);
 }
 
 .chat-box {
@@ -129,11 +152,19 @@
     margin-top: 130px;
 }
 
+.chatarea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
 .chatmessage {
     text-align: center;
     margin-left: 10px;
     margin-top: 130px;
     font-size: 1.1rem;
+    color: black;
 }
 
 .user-list {
@@ -192,6 +223,7 @@
     height: 40px;
     border-radius: 50%;
     margin-left: -100px;
+    margin-left: 10px;
     justify-content: center;
     position: absolute;
 }
@@ -200,7 +232,7 @@
     font-size: 1.2rem;
     color: rgb(255, 255, 255);
     font-weight: bold;
-    margin-left: 100px
+    margin-left: 200px;
 }
 
 .chatbox {
@@ -272,6 +304,48 @@
     height: 90px;
     border-radius: 5px;
     margin-top: 10px;
+}
+
+@keyframes hologram {
+    0% {
+        background: linear-gradient(90deg, rgba(0, 255, 0, 0.8), rgba(255, 255, 255, 0.2));
+        background-size: 200% 200%;
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+    50% {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(0, 255, 0, 0.8));
+        background-size: 200% 200%;
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    }
+    100% {
+        background: linear-gradient(90deg, rgba(0, 255, 0, 0.8), rgba(255, 255, 255, 0.2));
+        background-size: 200% 200%;
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+}
+
+@keyframes hologram-hover {
+    0% {
+        background: linear-gradient(90deg, rgba(0, 255, 0, 0.8), rgba(255, 255, 255, 0.2));
+        background-size: 200% 200%;
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+    50% {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(0, 255, 0, 0.8));
+        transform: scale(1.05);
+        background-size: 200% 200%;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    }
+    100% {
+        background: linear-gradient(90deg, rgba(0, 255, 0, 0.8), rgba(255, 255, 255, 0.2));
+        background-size: 200% 200%;
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
 }
 
 @media (max-width: 768px) {
@@ -348,4 +422,5 @@
         font-size: 0.8rem;
         padding: 6px 12px;
     }
+
 }

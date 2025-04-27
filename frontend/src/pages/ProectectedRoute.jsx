@@ -1,22 +1,32 @@
+// ProtectedRoute.jsx
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-const ProtectedRoute = ({ requiredRole }) => {
-    const token = localStorage.getItem('authToken');
+const ProtectedRoute = ({ allowedRoles, children }) => {
+    // Get authentication data from local storage
+    const authToken = localStorage.getItem('authToken');
     const userRole = localStorage.getItem('userRole');
 
-    // If the user is not authenticated, redirect to the sign-in page
-    if (!token) {
-        return <Navigate to="/signin" />;
-    }
+    // If no token or role, redirect to signin
+    if (!authToken || !userRole) {
+        return <Navigate to="/signin" replace />;
+    };
 
-    // If the user's role does not match the required role, redirect to the sign-in page
-    if (userRole !== requiredRole) {
-        return <Navigate to="/signin" />;
-    }
-
-    // If authenticated and the role matches, render the child routes
-    return <Outlet />;
+    // Check if user's role is in the allowedRoles array
+    if (!allowedRoles.includes(userRole)) {
+        // If not authorized, redirect to appropriate dashboard or signin
+        switch (userRole) {
+            case 'student':
+                return <Navigate to="/app/dashboard" replace />;
+            case 'lecturer':
+                return <Navigate to="/lecturer/dashboard" replace />;
+            case 'registrar':
+                return <Navigate to="/registrar-dashboard/dashboard" replace />;
+            };
+        };
+    
+        // If authorized, render the child routes
+    return children ? children : <Outlet />;
 };
 
 export default ProtectedRoute;

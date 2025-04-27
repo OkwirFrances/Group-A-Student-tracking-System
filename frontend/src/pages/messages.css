@@ -3,8 +3,10 @@
     flex-direction: column;
     justify-content: flex-start;
     min-height: 100vh;
+    height: 100vh;
     background-color: white;
 }
+
 
 .messages-content {
     flex: 1;
@@ -19,7 +21,7 @@
 
 .messages-content h1 {
     margin-bottom: 620px;
-    margin-right: 1200px;
+    margin-right: 850px;
 }
 
 .backarrow {
@@ -27,7 +29,7 @@
     height: 40px;
     position: absolute;
     margin-bottom: 590px;
-    margin-right: 1400px;
+    margin-right: 1040px;
     cursor: pointer;
 }
 
@@ -38,7 +40,8 @@
     height: 100vh;
     position: absolute;
     margin-top: 300px;
-    width: 95%;
+    margin-left: 130px;
+    width: 80%;
     background-color: white;
     gap: 20px;
 }
@@ -50,11 +53,13 @@
     margin-left: 450px;
 }
 
+
 .content h2 {
     font-size: 1.8rem;
     text-align: center;
     justify-content: center;
     align-items: center;
+    color: black;
 }
 
 .content p {
@@ -73,11 +78,35 @@
     background-color: green;
     font-weight: bold;
     font-size: 1rem;
+    animation: hologram 2s infinite ease-in-out;
+    transition: transform 0.3s ease-in-out;
     cursor: pointer;
 }
 
 .new-message:hover {
     color: white;
+
+}
+
+@keyframes hologram {
+    0% {
+        background: linear-gradient(90deg, rgba(0, 255, 0, 0.5), rgba(255, 255, 255, 0.2));
+        background-size: 200% 200%;
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(0, 255,0 0.5);
+    }
+    50% {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(0, 255, 0, 0.8));
+        background-size: 200% 200%;
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    }
+    100% {
+        background: linear-gradient(90deg, rgba(0, 255, 0, 0.8), rgba(255, 255, 255, 0.2));
+        background-size: 200% 200%;
+        transform: scale(1);
+        box-shadow: 0 0  10px rgba(0, 255, 0, 0.5);
+    }
 }
 
 @media (max-width: 768px) {
@@ -150,4 +179,5 @@
     .content p {
         font-size: 0.8rem;
     }
+
 }

@@ -15,7 +15,6 @@ const SignUp = () => {
         fullName:'',
         email:'',
         password:'',
-        confirmPassword:'',
         role:'',
         termsAccepted: false,
     });
@@ -32,17 +31,15 @@ const SignUp = () => {
     };
 
     const isFormValid = () => {
-        const { fullName, email, password, confirmPassword, role, termsAccepted } = formData;
+        const { fullName, email, password, role, termsAccepted } = formData;
         return (
             fullName &&
             email &&
             password &&
-            confirmPassword &&
             role &&
             termsAccepted &&
-            password === confirmPassword &&
-            password.length >= 8 &&
-            confirmPassword.length >=8
+            password &&
+            password.length >= 8 
         );
     };
 
@@ -117,20 +114,6 @@ const SignUp = () => {
                             name='password' 
                             placeholder='Enter your Password (min - 8 characters)' 
                             value={formData.password} 
-                            onChange={handleChange}
-                            minLength={8} />
-                            <img src={padlock} alt='padlock' className='padlockicon' />
-                        </div>
-                    </label>
-                    <label>
-                        Confirm Password
-                        <div className='input-container'>
-                        <input 
-                            className='confirpassword'
-                            type='password' 
-                            name='confirmPassword' 
-                            placeholder='Confirm your Password (min -8 characters)' 
-                            value={formData.confirmPassword} 
                             onChange={handleChange}
                             minLength={8} />
                             <img src={padlock} alt='padlock' className='padlockicon' />

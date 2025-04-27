@@ -16,8 +16,8 @@
 .settings-content h1 {
     font-size: 2rem;
     font-weight: bold;
-    margin-right: 1000px;
-    margin-bottom: 670px;
+    margin-right: 900px;
+    margin-bottom: 620px;
 }
 
 .settings-box {
@@ -51,6 +51,10 @@
     margin-bottom: 15px;
     font-size: 1.2rem;
     margin-right: 300px;
+}
+
+.settings-h1 {
+    color: black;
 }
 
 .old-password {
@@ -102,7 +106,7 @@
 }
 
 .save-changes {
-    margin-top: 100px;
+    margin-top: 110px;
     padding: 10px 20px;
     font-size: 1rem;
     background-color: green;
@@ -110,8 +114,11 @@
     cursor: pointer;
     transition: background-color 0.3 ease;
     width: 55%;
-    margin-left: 260px;
+    margin-left: 385px;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .save-changes:hover {
@@ -137,6 +144,7 @@
 .p {
     font-size: 1.2rem;
     font-weight: 500;
+    color: black;
     text-align: center;
     margin-left: 300px;
 }
@@ -168,6 +176,13 @@
     border: 1px solid black;
 }
 
+.settingsright h2 {
+    color: black;
+}
+
+.settingsright p {
+    color: black;
+}
 
 .settings {
     width: 100px;
@@ -179,8 +194,11 @@
 .change-password {
     margin-top: 60px;
     padding: 10px 60px;
+    border: 1px solid black;
+    margin-left: 50px;
     border-radius: 10px;
     font-size: 1rem;
+    justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -189,6 +207,8 @@
     margin-top: 80px;
     padding: 10px 75px;
     border-radius: 10px;
+    margin-left: 50px;
+    border: 1px solid black;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -201,7 +221,9 @@
 
 .delete-account {
     margin-top: 80px;
+    border: 1px solid black;
     padding: 10px 75px;
+    margin-left: 50px;
     border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
@@ -225,6 +247,27 @@
     margin-left: 180px;
     background-color: white;
     margin-top: 220px;
+}
+
+.delete-confirmation h2 {
+    color: black;
+}
+
+.old-password:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.new-password:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+.confirm-password {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
 }
 
 .delete-buttons {

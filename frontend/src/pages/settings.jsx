@@ -86,14 +86,14 @@ const Settings = () => {
                     {!showChangePassword && !showHelpSupport && !showDeleteConfirmation && (
                         <>
                             <img src={settings} alt='settings' className='settings' />
-                            <h2>Tap one of the tabs to appear here</h2>
+                            <h2 className='settings-h1'>Tap one of the tabs to appear here</h2>
                         </>
                     )}
                         <div className='settings-tab'>
                             <img src={logo} alt='muk-logo' className='muklogo' />
                             <button 
-                            className='change-password'
-                            onClick={handleChangePasswordClick}>Change Password</button>
+                                className='change-password'
+                                onClick={handleChangePasswordClick}>Change Password</button>
                             <button 
                             className='help-support'
                             onClick={handleHelpSupportClick}
@@ -142,9 +142,9 @@ const Settings = () => {
                             minLength={8}/>
                         </label>
                         <button 
-                        className='save-changes'
-                        disabled={!isFormComplete()}
-                        onClick={handleSaveChanges}
+                            className='save-changes'
+                            disabled={!isFormComplete()}
+                            onClick={handleSaveChanges}
                         >Save Changes
                         </button>
                     </div>
@@ -164,12 +164,12 @@ const Settings = () => {
                         <h2>Are you sure your want to delete your account?</h2>
                         <div className='delete-buttons'>
                             <button
-                            className='delete-no'
-                            onClick={handleCancelDelete}
+                                className='delete-no'
+                                onClick={handleCancelDelete}
                             >No</button>
                             <button
-                            className='delete-yes'
-                            onClick={handleDeleteAccount}
+                                className='delete-yes'
+                                onClick={handleDeleteAccount}
                             >Yes
                             </button>
                         </div>

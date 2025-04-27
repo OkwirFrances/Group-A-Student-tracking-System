@@ -33,7 +33,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 90%;
+    width: 92%;
     transition: border-color 0.33;
     margin-bottom: 20px;
     padding-right: 0%;
@@ -67,6 +67,8 @@
     margin-top: 30px;
     background-color: black;
     color: white;
+    display: flex;
+    justify-content: center;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;

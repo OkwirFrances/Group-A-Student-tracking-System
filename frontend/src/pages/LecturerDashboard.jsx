@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import './studentdashboard.css';
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 
 
@@ -10,10 +10,6 @@ const LecturerDashboard = () => {
     const userRole = localStorage.getItem('userRole');
     return (
             <div className="dashboard-container">
-                <h1>
-                    <h1>Lecturer Dashboard</h1>
-                    <p>Welcome {userRole}</p>
-                </h1>
                 <Navbar />
                 <Sidebar />
                 <div className="dashboard-content">

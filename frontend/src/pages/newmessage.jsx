@@ -26,7 +26,7 @@ const NewMessage = () => {
     const fileInputRef = useRef(null);
 
     const handleBackMessageClick = () => {
-        navigate('/messages');
+        navigate('/app/messages');
     };
 
     const handleNewMessageClick = () => {
@@ -69,30 +69,33 @@ const NewMessage = () => {
             <Navbar />
             <div className='newmessage-content'>
                 <img 
-                src={backarrow} 
-                alt='backarrow' 
-                className='back-arrow'
-                onClick={handleBackMessageClick} />
+                    src={backarrow} 
+                    alt='backarrow' 
+                    className='back-arrow'
+                    onClick={handleBackMessageClick} />
                 <h1>New Message</h1>
             </div>
             <div className='newmessage-left'>
                 <div className='searchcontainer'>
                     <input 
-                    type='text'
-                    className='searchinput'
-                    placeholder='Search for anything...'
+                        type='text'
+                        className='searchinput'
+                        placeholder='Search for anything...'
                     />
                     <img src={search} alt='search' className='search' />
                 </div>
                 {!showUserList ? (
                     <>
-                        <img src={emptybox} alt='emptybox' className='newmessage-emptybox' />
+                        <img 
+                            src={emptybox} 
+                            alt='emptybox' 
+                            className='newmessage-emptybox' />
                         <p>Click the button below to start a new chat.</p>
                         <img 
-                        src={newmessage} 
-                        alt='newmessage' 
-                        className='newmessage'
-                        onClick={handleNewMessageClick} />
+                            src={newmessage} 
+                            alt='newmessage' 
+                            className='newmessage'
+                            onClick={handleNewMessageClick} />
                     </>
                 ) : (
                     <div className='user-list'>
@@ -157,7 +160,7 @@ const NewMessage = () => {
                 </div>
             ) : (
                 <div>
-                    <nav>Chat Area</nav>
+                    <nav className='chatarea'>Chat Area</nav>
                     <div className='chat-box'>
                         <h2 className='chatmessage'>Select a chat for it to appear here by clicking on it.</h2>
                     </div>

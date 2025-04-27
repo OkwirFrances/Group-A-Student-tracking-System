@@ -12,16 +12,14 @@ import course from '../assets/course.png';
 
 const Sidebar = () => {
     const navigate = useNavigate();
-    const userRole = localStorage.getItem('userRole'); // Get the user role from localStorage
+    const userRole = localStorage.getItem('userRole'); 
 
     const handleLogout = () => {
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('userRole');
         navigate('/signin');
     };
 
     
-    const basePath = userRole === 'registrar' ? '/registrar-dashboard' : '/app';
+    const basePath = userRole === 'registrar' ? '/registrar-dashboard' : userRole === 'lecturer' ? '/lecturer' : '/app';
 
     return (
         <div className='sidebar'>
@@ -35,15 +33,25 @@ const Sidebar = () => {
                 {userRole === 'registrar' && (
                     <>
                         <li className='sidebar-item'>
-                            <Link to={`${basePath}/department`}>
+                            <Link to={`${basePath}/departments`}>
                                 <img src={department} alt='department' className='sidebar-icon' />
                                 Departments
                             </Link>
                         </li>
                         <li className='sidebar-item'>
-                            <Link to={`${basePath}/course`}>
+                            <Link to={`${basePath}/courses`}>
                                 <img src={course} alt='course' className='sidebar-icon' />
                                 Courses
+                            </Link>
+                        </li>
+                    </>
+                )}
+                {userRole === 'lecturer' && (
+                    <>
+                        <li className='sidebar-item'>
+                            <Link to={`${basePath}/lecturerissue`}>
+                                <img src={issue} alt='assigned-issues' className='sidebar-icon' />
+                                Assigned Issues
                             </Link>
                         </li>
                     </>
@@ -72,9 +80,9 @@ const Sidebar = () => {
                         Help & Support
                     </Link>
                 </li>
-                <li className='sidebar-item logout'>
+                <li className='sidebar-item'>
                     <button onClick={handleLogout} className='logout-button'>
-                        <img src={logout} alt='logout' className='sidebar-icon' />
+                        <img src={logout} alt='logout' className='sidebaricon' />
                         Logout
                     </button>
                 </li>

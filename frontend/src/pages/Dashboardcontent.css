@@ -2,9 +2,11 @@
     padding: 0px;
     display: flex;
     flex-direction: column;
-    margin-left: 198px;
+    margin-left: 120px;
     height: 100vh;
-    width: 85%;
+    width: 90%;
+    margin-left: 120px;
+    margin-top: 40px;
     
 }
 
@@ -23,11 +25,29 @@
     padding: 20px;
     width: 28%;
     height: 70%;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
     text-align: center;
+}
+
+.card:hover {
+    animation: shake 0.5s ease-in-out;
 }
 
 .card.pending {
     background-color: rgb(255, 255, 255);
+}
+
+.card.pending h2 {
+    color: black;
+}
+
+.card.in-progress h2 {
+    color: black;
+}
+
+.card.resolved h2 {
+    color: black;
 }
 
 .card.in-progress {
@@ -80,6 +100,7 @@
     position: absolute;
     top: 10px;
     right: 20px;
+    color: black;
     font-size: 1.5rem;
     font-weight: bold;
     left: 20px;
@@ -102,12 +123,19 @@
     border-radius: 10px;
 }
 
+.my-issues-search-input:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
 .my-issues-search-icon {
     width: 20px;
     height: 20px;
     position: absolute;
     left: 480px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .new-issue-button {
@@ -122,10 +150,12 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 1.2rem;
+    animation: hologram 2s infinite ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
 .new-issue-button:hover {
-    background-color: rgb(21, 176, 21);
+    transform: scale(1.1);
 }
 
 .add-icon {
@@ -197,7 +227,6 @@
 
 .emptybox-icon {
     width: 550px;
-
 }
 
 .emptybox-p {
@@ -214,11 +243,42 @@
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid black;
+    gap: 20px;
 }
 
 .table-row-item {
     flex: 1;
     text-align: center;
+    
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes hologram {
+    0% {
+        background: linear-gradient(90deg, rgba(28, 184, 28, 0.8), rgba(255, 255, 255, 0.2));
+        background-size: 200% 200%;
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(28, 184, 28, 0.5);
+    }
+    50% {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(28, 184, 28, 0.8));
+        background-size: 200% 200%;
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(28, 184, 28, 0.8);
+    }
+    100% {
+        background: linear-gradient(90deg, rgba(28, 184, 28, 0.8), rgba(255, 255, 255, 0.2));
+        background-size: 200% 200%;
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(28, 184, 28, 0.5);
+    }
 }
 
 @media (max-width: 768px) {

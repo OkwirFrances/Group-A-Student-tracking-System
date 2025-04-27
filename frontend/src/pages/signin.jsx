@@ -7,6 +7,13 @@ import padlock from '../assets/padlock.png';
 
 const SignIn = () => {
     const navigate = useNavigate();
+
+    const predifinedUsers = [
+        { email: 'alvin69david@gmail.com' , password: 'student123', role: 'student'},
+        { email: 'waluube69alvin@gmail.com', password:  'lecturer123', role: 'lecturer'},
+        { email: 'waluubedavid2004@gmail.com', password:  'registrar123', role: 'registrar'},
+    ];
+
     const [formData, setFormData] = useState({
         email: '',
         password:'',
@@ -29,22 +36,29 @@ const SignIn = () => {
     };
 
     const handleSignInClick = (e) => {
-        console.log('Sign In:', formData);
+        
         e.preventDefault();
         if (isFormValid) {
-            const userRole = localStorage.getItem('userRole');
 
-            if (userRole === 'registrar') {
-                navigate('/registrar-dashboard');
-            } else if (userRole === 'student') {
-                navigate('/app');
-            } else if (userRole === 'lecturer') {
-                navigate('/lecturer-dashboard');
-            } else {
-                console.log('Invalid user role');
+            const user = predifinedUsers.find(
+                (u) => u.email === formData.email && u.password === formData.password
+            );
+            
+            if (user) {
+                localStorage.setItem('userRole', user.role);
+            
+            if (user.role === 'registrar') {
+                navigate('/registrar-dashboard/dashboard');
+            } else if (user.role === 'student') {
+                navigate('/app/dashboard');
+            } else if (user.role === 'lecturer') {
+                navigate('/lecturerdashboard/dashboard');
             }
         } else {
-            console.log('Form is  not valid');
+                alert('Invalid email or password');
+            }
+        } else {
+            alert('Please accept the terms and conditions');
         }
     };
 

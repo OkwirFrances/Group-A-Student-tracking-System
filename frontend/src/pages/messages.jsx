@@ -23,15 +23,15 @@ const Messages = () => {
             <div className='messages-content'>
                 <h1>Messages</h1>
                 <img 
-                src={backarrow} 
-                alt='backarrow' 
-                className='backarrow'
-                onClick={handleBackClick}/>
+                    src={backarrow} 
+                    alt='backarrow' 
+                    className='backarrow'
+                    onClick={handleBackClick}/>
                 <div className='content'>
                     <button 
-                    className='new-message'
-                    onClick={handleNewMessageClick}
-                    >New Message
+                        className='new-message'
+                        onClick={handleNewMessageClick}>
+                        New Message
                     </button>
                     <img src={emptybox} alt='emptybox' className='empty-box'/>
                     <h2>There are no messages here.</h2>

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import './registrardashboardcontent.css';
 import filter from '../assets/filter.png';
 import emptybox from '../assets/emptybox.png';
 import search from '../assets/search.png';
+import { IssuesContext } from "../context/IssueContext";
 
 const RegistrarDashboardContent = () => {
+    const [issues, setIssues] = useState([]);
+    const {registrarBadgeCount, setRegistrarBadgeCount} = useContext(IssuesContext);
     const [assignedIssues, setAssignedIssues] = useState(0);
     const [pendingIssues, setPendingIssues] = useState(0);
     const [inProgressIssues, setInProgressIssues] = useState(0);
@@ -14,7 +17,34 @@ const RegistrarDashboardContent = () => {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const loadIssues = () => {
+            const storedIssues = JSON.parse(localStorage.getItem('issues')) || [];
+            setIssues(storedIssues);
+
+            const assignedCount = storedIssues.length;
+            const pendingCount = storedIssues.filter(issue => issue.status.toLowerCase() === 'pending').length;
+            const inProgressCount = storedIssues.filter(issue => issue.status.toLowerCase() === 'in-progress').length;
+            const resolvedCount = storedIssues.filter(issue => issue.status.toLowerCase() === 'resolved').length;   
+
+            setAssignedIssues(assignedCount);
+            setPendingIssues(pendingCount); 
+            setInProgressIssues(inProgressCount);
+            setResolvedIssues(resolvedCount);
+
+        };
+
+        loadIssues();
+
+        window.addEventListener('storage', loadIssues);
+
+        return () => {
+            window.removeEventListener('storage', loadIssues);
+        };
+    }, []);
+
     const handleOpenIssuesClick = () => {
+        setRegistrarBadgeCount(0); 
         navigate('/registrar-dashboard/openissues');
     };
 
@@ -45,9 +75,12 @@ const RegistrarDashboardContent = () => {
             </div>
             <p className="recent">Recent Actions</p>
             <div className="registrar-recent">
-                <p className="assigned">Assigned Issues</p>
-                <button className="open-issues-button" onClick={handleOpenIssuesClick}>
-                    Open Issues
+                <p 
+                className="assigned">Assigned Issues</p>
+                <button 
+                    className="open-issues-button" 
+                    onClick={handleOpenIssuesClick}>
+                        Open Issues
                 </button>
                 <div className='filter-issue-container'>
                     <select className='filter-issue' >
@@ -79,7 +112,7 @@ const RegistrarDashboardContent = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 

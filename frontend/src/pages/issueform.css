@@ -1,6 +1,6 @@
+
 .issue-form-container {
-    padding: 0px;
-    padding-top: 70px;
+    padding-top: 40px;
     margin: 0;
     margin-left: -160px;
     margin-bottom: 10px;
@@ -18,27 +18,30 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-left: 360px;
+    position: absolute;
     color: black;
-    margin-top: -26px;
+    margin-top: 7px;
 }
 
 .issue-form-content {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 40px;
     padding: 20px;
     margin-left: 360px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
-    height: 200vh;
+    height: 100vh;
     border: 1px solid black;
     width: 74%;
 }
 
 .registrar-select-label {
     margin-top: 5px;
+    display: flex;
+    flex-direction: column;
     font-weight: bold;
     font-size: 1.2rem;
     color: black;
@@ -54,6 +57,12 @@
     font-size: 0.9rem;
 }
 
+.registrar-select:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
 .issue-select {
     width: 40%;
     margin-top: 10px;
@@ -61,6 +70,12 @@
     border: 1px solid black;
     border-radius: 10px;
     font-size: 0.9rem;
+}
+
+.issue-select:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
 }
 
 .issue-label {
@@ -75,7 +90,7 @@
 .course-code-label {
     position: absolute;
     top: 29px;
-    right: 400px;
+    right: 250px;
     font-weight: bold;
     font-size: 1.2rem;
     color: black;
@@ -84,7 +99,7 @@
 .lecturer-label {
     position: absolute;
     top: 111px;
-    right: 440px;
+    right: 300px;
     font-weight: bold;
     font-size: 1.2rem;
     color: black;
@@ -139,6 +154,41 @@
     border: none;
 }
 
+.course-code-input:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.lecturer-select:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.upload-section:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.issue-title-input:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.issue-description-input:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
+
+.course-name-input:focus {
+    border-color: rgb(38, 160, 10);
+    outline: none;
+    box-shadow: 0 0 5px rgb(38, 160, 10);
+}
 .selected-image {
     max-width: 300px;
     max-height: 200px;
@@ -155,7 +205,7 @@
 }
 
 .lecturer-select {
-    width: 323%;
+    width: 180%;
     margin-top: 5px;
     border: 1px solid black;
     border-radius: 10px;
@@ -165,7 +215,7 @@
 }
 
 .course-code-input {
-    width: 250%;
+    width: 150%;
     margin-top: 5px;
     border: 1px solid black;
     border-radius: 10px;
@@ -203,11 +253,14 @@
 
 .issue-submit-button {
     width: 200px;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 10px;
     background-color: green;
-    margin-left: 890px;
-    margin-top: 40px;
+    margin-left: 865px;
+    margin-top: 70px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
 }
 
@@ -230,7 +283,7 @@
 
 @media (max-width: 768px) {
     .issue-form-container {
-        padding: 15px;
+        width: 90%; /* Reduce the width */
     }
 
     .issue-form-header h1 {
@@ -239,25 +292,31 @@
 
     .issue-form-content {
         padding: 15px;
-        margin-left: 0;
-        max-width: 90%;
-    }
-
-    .issue-form-content input,
-    .issue-form-content select {
-        font-size: 0.9rem;
-        padding: 8px;
+        width: 100%; /* Full width */
     }
 
     .issue-title-input,
     .course-name-input,
-    .issue-description-input {
-        width: 100%;
+    .issue-description-input,
+    .course-code-input,
+    .lecturer-select {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .upload-section {
+        padding: 15px;
+    }
+
+    .issue-submit-button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
     }
 }
 
 @media (max-width: 480px) {
     .issue-form-container {
+        width: 100%; /* Full width */
         padding: 10px;
     }
 
@@ -268,29 +327,24 @@
 
     .issue-form-content {
         padding: 10px;
-        margin-left: 0;
-        max-width: 100%;
-    }
-
-    .issue-form-content input,
-    .issue-form-content select {
-        font-size: 0.8rem;
-        padding: 6px;
+        width: 100%; /* Full width */
     }
 
     .issue-title-input,
     .course-name-input,
-    .issue-description-input {
-        width: 100%; 
+    .issue-description-input,
+    .course-code-input,
+    .lecturer-select {
+        font-size: 0.8rem;
+        padding: 6px;
     }
 
     .upload-section {
-        width: 100%; 
+        padding: 10px;
     }
 
     .issue-submit-button {
         font-size: 0.8rem;
         padding: 6px 12px;
-        width: 100%; 
     }
 }
