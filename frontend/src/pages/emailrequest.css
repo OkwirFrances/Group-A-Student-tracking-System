@@ -8,7 +8,7 @@
 }
 
 .emailrequest-container::before {
-    
+    content: '';
 }
 
 .emailrequest-container h1 {
