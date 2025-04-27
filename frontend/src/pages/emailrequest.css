@@ -27,6 +27,7 @@
     }
     50% {
         transform: translate(-50%, -70%) scale(1.5);
+        opacity: 0;
     }
 }
 
