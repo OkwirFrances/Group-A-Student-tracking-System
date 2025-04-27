@@ -169,5 +169,7 @@
     }
 
     .course-form-section,
-    .course-list-section {}
+    .course-list-section {
+        width: 90%;
+    }
 }
