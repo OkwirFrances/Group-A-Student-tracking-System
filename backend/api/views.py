@@ -33,95 +33,7 @@ def generate_otp():
     return str(random.randint(100000, 999999))
 
 
-# Signup View
 
-
-# @api_view(['POST'])
-# def signup(request):
-#     email = request.data.get('email')
-#     fullname = request.data.get('fullname')
-#     password = request.data.get('password')
-#     role = request.data.get('role', 'student')
-    
-#     if not email or not password:
-#         return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     if User.objects.filter(email=email).exists():
-#         return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     otp = generate_otp()
-#     cache.set(f'otp_{email}', {'otp': otp, 'fullname': fullname, 'password': password, 'role': role}, timeout=600)  # Store OTP for 10 minutes
-
-#     send_mail('Your OTP Code', f'Your OTP is {otp}', 'Group-A-AITS@mail.com', [email])
-#     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
-
-# @api_view(['POST'])
-# def login(request):
-#     email = request.data.get('email')
-#     password = request.data.get('password')
-    
-#     if not email or not password:
-#         return JsonResponse(
-#             {'error': 'Email and password are required'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
-        
-#     try:
-#         user = User.objects.get(email=email)
-#     except User.DoesNotExist:
-#         return JsonResponse(
-#             {'error': 'Invalid email or password'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
-        
-#     if not user.check_password(password):
-#         return JsonResponse(
-#             {'error': 'Invalid email or password'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
-        
-#     refresh = RefreshToken.for_user(user)
-    
-#     return JsonResponse({
-#         'access': str(refresh.access_token),
-#         'refresh': str(refresh),
-#         'role': user.role,
-#         'fullname': user.fullname,
-#         'email': user.email
-#     }, status=status.HTTP_200_OK)
-    
-# @api_view(['POST'])
-# def verify_otp(request):
-#     email = request.data.get('email')
-#     otp = request.data.get('otp')
-
-#     if not email or not otp:
-#         return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     cached_data = cache.get(f'otp_{email}')
-#     if not cached_data:
-#         return JsonResponse({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     if cached_data['otp'] == otp:
-#         # Create user after OTP verification
-#         user = User.objects.create_user(
-#             fullname=cached_data['fullname'], 
-#             email=email, 
-#             password=cached_data['password'], 
-#             role=cached_data['role']
-#         )
-        
-#         user.is_verified = True
-#         user.save()
-        
-#         cache.delete(f'otp_{email}')  # Clear OTP data
-
-#         refresh = RefreshToken.for_user(user)
-#         return JsonResponse({'token': str(refresh.access_token), 'message': 'User created successfully!'}, status=status.HTTP_201_CREATED)
-
-#     return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
-
-    
 
 @api_view(['POST'])
 # @permission_classes([AllowAny])
@@ -136,10 +48,14 @@ def signup(request):
 
     if User.objects.filter(email=email).exists():
         return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
-
+    
+    if role not in ['student', 'lecturer', 'registrar']:
+        return JsonResponse({'error': 'Invalid role'}, status=status.HTTP_400_BAD_REQUEST)
+    
     otp = generate_otp()
     cache.set(f'otp_{email}', {'otp': otp, 'fullname': fullname, 'password': password, 'role': role}, timeout=600)  # Store OTP for 10 minutes
 
+    print({"otp": cache.get(f"otp_{email}")})
     send_mail('Your OTP Code', f'Your OTP is {otp}', 'Group-A-AITS@mail.com', [email])
     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
@@ -180,21 +96,65 @@ def login(request):
     }, status=status.HTTP_200_OK)
 
 
+# @api_view(['POST'])
+# # @permission_classes([AllowAny])
+# def verify_otp(request):
+#     email = request.data.get('email')
+#     otp = request.data.get('otp')
+
+#     if not email or not otp:
+#         return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+#     cached_data = cache.get(f'otp_{email}')
+#     if not cached_data:
+#         return JsonResponse({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
+
+#     if cached_data['otp'] == otp:
+#         # Create user after OTP verification
+#         user = User.objects.create_user(
+#             fullname=cached_data['fullname'], 
+#             email=email, 
+#             password=cached_data['password'], 
+#             role=cached_data['role']
+#         )
+#         user.is_verified = True
+#         user.save()
+
+#         cache.delete(f'otp_{email}')  # Clear OTP data
+
+#         refresh = RefreshToken.for_user(user)
+#         return JsonResponse({'token': str(refresh.access_token), 'message': 'User created successfully!'}, status=status.HTTP_201_CREATED)
+
+#     return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['POST'])
-# @permission_classes([AllowAny])
 def verify_otp(request):
     email = request.data.get('email')
     otp = request.data.get('otp')
+
+    # Debug logging
+    print(f"Verifying OTP for email: {email}, OTP: {otp}")
 
     if not email or not otp:
         return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
 
     cached_data = cache.get(f'otp_{email}')
+    
+    # Debug logging
+    print(f"Cached data for {email}: {cached_data}")
+    
     if not cached_data:
-        return JsonResponse({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'error': 'Invalid or expired OTP. Please request a new one.'}, status=status.HTTP_400_BAD_REQUEST)
 
-    if cached_data['otp'] == otp:
-        # Create user after OTP verification
+    if str(cached_data['otp']) != str(otp):
+        return JsonResponse({'error': 'Invalid OTP. Please try again.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    # Create user after OTP verification
+    try:
+        # Check if user already exists
+        if User.objects.filter(email=email).exists():
+            return JsonResponse({'error': 'User with this email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+            
         user = User.objects.create_user(
             fullname=cached_data['fullname'], 
             email=email, 
@@ -207,9 +167,14 @@ def verify_otp(request):
         cache.delete(f'otp_{email}')  # Clear OTP data
 
         refresh = RefreshToken.for_user(user)
-        return JsonResponse({'token': str(refresh.access_token), 'message': 'User created successfully!'}, status=status.HTTP_201_CREATED)
-
-    return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({
+            'token': str(refresh.access_token),
+            'refresh': str(refresh),
+            'message': 'User created successfully!'
+        }, status=status.HTTP_201_CREATED)
+    except Exception as e:
+        print(f"Error creating user: {str(e)}")
+        return JsonResponse({'error': f'Error creating user: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 # @api_view(['POST'])
@@ -345,7 +310,8 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
             course = serializer.validated_data.get('course')
             if course and self.request.user not in course.students.all():
                 raise PermissionDenied('You can only report issues for courses you are enrolled in.')
-            serializer.save(student=self.request.user)
+            # serializer.save(student=self.request.user.student)
+            serializer.save()
         else:
             raise PermissionDenied('Only students can create issues.')
         
@@ -450,4 +416,18 @@ class CustomTokenRefreshView(TokenRefreshView):
 #                 status=status.HTTP_401_UNAUTHORIZED
 #             )
 
-               
+
+class CollegeView(generics.ListCreateAPIView):
+    serializer_class = CollegeSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return College.objects.all()
+    
+
+class RegistrarView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = RegistrarSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Registrar.objects.all()

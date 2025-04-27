@@ -15,6 +15,15 @@
     grid-column: 1/-1;
 }
 
+.search-form {
+    /* padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0; */
+    padding: 0;
+    margin: auto;
+}
+
 .navbar-logo {
     display: flex;
     align-items: center;
@@ -85,7 +94,7 @@
     border: 1px solid green;
     border-radius: 15px;
     font-size: 1rem;
-    margin-left: 80px;
+    margin: 5px 5px 5px 5px;
     flex-grow: 1;
     width: 350px;
     

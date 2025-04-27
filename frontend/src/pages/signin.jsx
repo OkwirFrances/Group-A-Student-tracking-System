@@ -15,6 +15,7 @@ const SignIn = () => {
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const passwordLength = 3;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -39,8 +40,8 @@ const SignIn = () => {
             return;
         }
 
-        if (formData.password.length < 8) {
-            setError('Password must be at least 8 characters long.');
+        if (formData.password.length < passwordLength) {
+            setError(`Password must be at least ${passwordLength} characters long.`);
             setLoading(false);
             return;
         }
@@ -72,7 +73,7 @@ const SignIn = () => {
         }
     };
 
-    const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
+    const isFormValid = formData.email && formData.password.length >= passwordLength && isTermsAccepted;
 
     return (
         <div className='signin-container'>
@@ -107,7 +108,7 @@ const SignIn = () => {
                                 placeholder='Enter Your Password'
                                 value={formData.password}
                                 onChange={handleChange}
-                                minLength={8} />
+                                minLength={passwordLength} />
                             <img src={padlock} alt='padlock' className='padlock-icon' />
                         </div>
                     </label>

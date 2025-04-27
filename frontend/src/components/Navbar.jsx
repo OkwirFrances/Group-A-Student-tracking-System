@@ -82,8 +82,9 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
                     src={logo} alt='muk-logo' 
                     className='makerere-logo' />
                     <span className='navbar-logo-text'>Academic Issue Tracking System</span>
+                    </div>
                     <div className='search-container'>
-                        <form onSubmit={handleSearchSubmit}>
+                        <form onSubmit={handleSearchSubmit} className='search-form'>
                             <input
                             type='text'
                             className='search-input'
@@ -120,7 +121,7 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
                                 {getInitials(user.fullName)}
                             </div>
                         )}
-                </div>
+                
                 <span className='user-greeting'>Hi, {user.fullName}</span>
 
                 {searchResults.length > 0 && (
