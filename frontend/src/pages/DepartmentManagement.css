@@ -186,4 +186,7 @@
     .department-content h1 {
         font-size: 1.5rem;
     }
+
+    .department-form-section,
+    .list-section {}
 }
