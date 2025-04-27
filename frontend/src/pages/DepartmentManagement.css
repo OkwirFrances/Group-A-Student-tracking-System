@@ -2,6 +2,7 @@
 .department-content {
     display: flex;
     padding: 0px;
+    flex-direction: column;
     min-height: 100vh;
     width: 1700px;
     border-radius: 8px;
