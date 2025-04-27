@@ -167,4 +167,7 @@
     .course-content {
         flex-direction: column;
     }
+
+    .course-form-section,
+    .course-list-section {}
 }
