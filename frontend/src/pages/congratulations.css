@@ -71,7 +71,7 @@
 }
 
 .signin-button:hover {
-    background-color: orange;
+    background-color: rgb(248, 168, 21);
 }
 
 @media (max-width: 768px) {
