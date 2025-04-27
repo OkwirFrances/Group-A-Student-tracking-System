@@ -12,8 +12,6 @@ const ForgotPassword = ({ email, onResendOtp }) => {
     const [otp, setOtp] = useState(['','','','','','']);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
-    const [isVerifying, setIsVerifying] = useState(false);
-    const [isResending, setIsResending] = useState(false);
     const [showCongratulations, setShowCongratulations] = useState(false);
     const inputRefs = useRef([]);
     const navigate = useNavigate();
@@ -25,23 +23,17 @@ const ForgotPassword = ({ email, onResendOtp }) => {
             newOtp[index] = value;
             setOtp(newOtp);
 
-            if (value !== '' && index < 5) {
+            if (value !== '' && index < 3) {
                 inputRefs.current[index + 1].focus();
             }
         }
     };
 
     const handleVerifyClick = () => {
-        try {
-            setIsVerifying(true);
-            setError('');
         const enteredOtp = otp.join('');
-        const fixedOtp = '123456';
+        const fixedOtp = '1234';
         if (enteredOtp === fixedOtp) {
             setSuccess(true);
-
-            alert('Your Password Has Been Successfully Reset');
-                navigate('/signin');
             setError('');
             console.log('OTP verified successfully');
             setShowCongratulations(true);
@@ -64,10 +56,13 @@ const ForgotPassword = ({ email, onResendOtp }) => {
     };
 
     const handleResendClick = () => {
-        setOtp(['','','','']);
+        setOtp(['','','','','','']);
         setError('');
         setSuccess(false);
-        onResendOtp();
+        await authAPI.resendOTP(email);
+        // onResendOtp();
+        if (onResendOtp) {
+            onResendOtp();
     };
 
     const isOtpComplete = otp.every(digit => digit !== '');
