@@ -166,6 +166,11 @@ def resend_otp(request):
     send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'AITS@mail.com', [email])
     return JsonResponse({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
+
+@api_view(['POST'])
+def forgot_password(request):
+    email = request.data.get('email')
+
     
 class DepartmentView(generics.ListCreateAPIView):
     serializer_class = DepartmentSerializer
