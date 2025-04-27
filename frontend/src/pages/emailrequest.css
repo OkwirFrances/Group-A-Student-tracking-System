@@ -10,6 +10,7 @@
 .emailrequest-container::before {
     content: '';
     position: absolute;
+    top: 50%;
 }
 
 .emailrequest-container h1 {
