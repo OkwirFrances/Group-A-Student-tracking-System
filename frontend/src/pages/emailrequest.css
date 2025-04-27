@@ -122,6 +122,7 @@
     transition: background-color 0.3s ease;
     overflow: hidden;
     position: relative;
+    z-index: 1;
 }
 
 .emailrequest-nextbutton:disabled {
