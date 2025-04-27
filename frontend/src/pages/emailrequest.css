@@ -180,3 +180,7 @@
     text-decoration: underline;
     color: rgb(15, 177, 15);
 }
+
+@media (max-width: 768px) {
+    
+}
