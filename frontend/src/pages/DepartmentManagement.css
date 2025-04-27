@@ -169,5 +169,6 @@
     .department-form-section,
     .list-section {
         width: 90%;
+        margin: 20px auto;
     }
 }
