@@ -190,6 +190,10 @@ def forgot_password(request):
         return Response({'message': 'OTP sent to your email'}, status=status.HTTP_200_OK)
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    
+@api_view(['POST'])
+def reset_password(request):    
 
     
 class DepartmentView(generics.ListCreateAPIView):
