@@ -195,5 +195,7 @@
         padding: 15px;
     }
 
-    .course-submit-button {}
+    .course-submit-button {
+        font-size: 0.9rem;
+    }
 }
