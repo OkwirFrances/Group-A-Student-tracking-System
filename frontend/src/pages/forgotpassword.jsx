@@ -9,9 +9,10 @@ import { useNavigate } from 'react-router-dom';
 import { authAPI } from '../api/services';
 
 const ForgotPassword = ({ email, onResendOtp }) => {
-    const [otp, setOtp] = useState(['','','','']);
+    const [otp, setOtp] = useState(['','','','','','']);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
+    const [isVerifying, setIsVerifying] = useState(false);
     const [showCongratulations, setShowCongratulations] = useState(false);
     const inputRefs = useRef([]);
     const navigate = useNavigate();
