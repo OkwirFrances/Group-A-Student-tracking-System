@@ -175,4 +175,7 @@
     .department-submit-button {
         width: 100%;
     }
+
+    .management-table th,
+    .management-table td {
 }
