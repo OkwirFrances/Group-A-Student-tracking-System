@@ -7,7 +7,7 @@ import mail from '../assets/mail.png';
 import { useNavigate } from 'react-router-dom';
 import { IssuesContext } from '../context/IssueContext';
 
-const Navbar = ({ badgeCount, setBadgeCount }) => {
+const Navbar = () => {
     const [profilePic, setProfilePic] = useState(null);
     const navigate = useNavigate();
     const { badgeCount, setBadgeCount, issues } = useContext(IssuesContext);
@@ -28,9 +28,10 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
         const savedProfilePic = localStorage.getItem('profilePic');
         if (savedProfilePic) {
             setProfilePic(savedProfilePic);
-            };
+            
         }
-    , []);
+    }, []);
+     
 
     const getInitials = (name) => {
         if (!name) return '';
@@ -45,7 +46,7 @@ const Navbar = ({ badgeCount, setBadgeCount }) => {
         setBadgeCount(0);
 
         if (userRole === 'registrar') {
-            setBadgeCount(0);
+           
         }
     };
 
