@@ -164,5 +164,7 @@
 }
 
 @media (max-width: 768px) {
-    .course-content {}
+    .course-content {
+        flex-direction: column;
+    }
 }
