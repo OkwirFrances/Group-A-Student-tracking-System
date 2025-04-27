@@ -36,9 +36,12 @@ const ForgotPassword = ({ email, onResendOtp }) => {
             setIsVerifying(true);
             setError('');
         const enteredOtp = otp.join('');
-        const fixedOtp = '1234';
+        const fixedOtp = '123456';
         if (enteredOtp === fixedOtp) {
             setSuccess(true);
+
+            alert('Your Password Has Been Successfully Reset');
+                navigate('/signin');
             setError('');
             console.log('OTP verified successfully');
             setShowCongratulations(true);
