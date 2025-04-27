@@ -6,8 +6,8 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'fullname', 'role', 'is_verified', 'first_name', 'last_name', 'phone_number', 'profile_picture', 'termsAccepted']
-
+        # fields = ['id', 'email', 'fullname', 'role', 'is_verified', 'first_name', 'last_name', 'phone_number', 'profile_picture', 'termsAccepted']
+        exclude = ["password"]
  
 class LecturerSerializer(UserSerializer):
     department = serializers.PrimaryKeyRelatedField(queryset=Department.objects.all())
@@ -18,9 +18,11 @@ class LecturerSerializer(UserSerializer):
 
     class Meta:
         model = Lecturer
-        fields = UserSerializer.Meta.fields + [
-            'staff_id', 'department', 'courses', 'office_location', 'password'
-        ]
+        # fields = UserSerializer.Meta.fields + [
+        #     'staff_id', 'department', 'courses', 'office_location', 'password'
+        # ]
+        exclude = ["password"]
+
         extra_kwargs = {
             'password': {'write_only': True},
             'role': {'read_only': True}
@@ -41,7 +43,8 @@ class StudentSerializer(UserSerializer):
  
     class Meta:
         model = Student
-        fields = UserSerializer.Meta.fields + ['student_id', 'department', 'enrolled_courses', 'enrollment_date']
+        # fields = UserSerializer.Meta.fields + ['student_id', 'department', 'enrolled_courses', 'enrollment_date']
+        exclude = ["password"]
 
 class RegistrarSerializer(UserSerializer):
     staff_id = serializers.CharField(max_length=20)
@@ -49,7 +52,8 @@ class RegistrarSerializer(UserSerializer):
 
     class Meta:
         model = Registrar
-        fields = UserSerializer.Meta.fields + ['staff_id', 'office_number']
+        # fields = UserSerializer.Meta.fields + ['staff_id', 'office_number']
+        exclude = ["password"]
 
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -80,7 +84,8 @@ class IssueSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        student = self.context['request'].user
+        # student = self.context['request'].user
+        student = self.context['request'].user.student
         validated_data['student'] = student
         return super().create(validated_data)
 
