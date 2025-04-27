@@ -192,5 +192,6 @@
     .course-form-section,
     .course-list-section {
         width: 95%;
+        padding: 15px;
     }
 }
