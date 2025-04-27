@@ -174,5 +174,7 @@
         margin: 20px auto;
     }
 
-    .course-submit-button {}
+    .course-submit-button {
+        width: 100%;
+    }
 }
