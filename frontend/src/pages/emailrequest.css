@@ -9,6 +9,7 @@
 
 .emailrequest-container::before {
     content: '';
+    position: absolute;
 }
 
 .emailrequest-container h1 {
