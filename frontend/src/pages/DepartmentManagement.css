@@ -162,5 +162,7 @@
 }
 
 @media (max-width: 768px) {
-    .department-content {}
+    .department-content {
+        flex-direction: column;
+    }
 }
