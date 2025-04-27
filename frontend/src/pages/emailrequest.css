@@ -132,7 +132,7 @@
 }
 
 .emailrequest-nextbutton:hover:not(:disabled) {
-    background-color: rgb(16, 146, 16);
+    background-color: rgb(6, 168, 6);
     color: white;
 }
 
