@@ -179,5 +179,7 @@
     }
 
     .course-management-table th,
-    .course-management-table td {}
+    .course-management-table td {
+        font-size: 0.9rem;
+    }
 }
