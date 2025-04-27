@@ -203,6 +203,7 @@ def reset_password(request):
      
      try:
         user = User.objects.get(email=email)
+         except User.DoesNotExist:
 
     
 class DepartmentView(generics.ListCreateAPIView):
