@@ -190,5 +190,6 @@
     .department-form-section,
     .list-section {
         width: 95%;
+        padding: 15px;
     }
 }
