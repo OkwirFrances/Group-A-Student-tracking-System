@@ -29,6 +29,9 @@
         transform: translate(-50%, -70%) scale(1.5);
         opacity: 0;
     }
+    100% {
+        
+    }
 }
 
 .emailrequest-container h1 {
