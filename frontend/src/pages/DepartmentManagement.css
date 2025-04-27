@@ -172,5 +172,7 @@
         margin: 20px auto;
     }
 
-    .department-submit-button {}
+    .department-submit-button {
+        width: 100%;
+    }
 }
