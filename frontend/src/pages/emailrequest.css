@@ -7,6 +7,10 @@
     overflow: hidden;
 }
 
+.emailrequest-container::before {
+    
+}
+
 .emailrequest-container h1 {
     font-weight: bold;
     font-size: 1.8rem;
