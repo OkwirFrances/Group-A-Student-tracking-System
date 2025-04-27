@@ -189,6 +189,7 @@ def forgot_password(request):
         send_mail(subject, message, email_from, recipient_list)
         return Response({'message': 'OTP sent to your email'}, status=status.HTTP_200_OK)
     except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     
 class DepartmentView(generics.ListCreateAPIView):
