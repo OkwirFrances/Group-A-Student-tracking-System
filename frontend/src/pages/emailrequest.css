@@ -126,7 +126,7 @@
 }
 
 .emailrequest-nextbutton:disabled {
-    background-color: rgb(105, 101, 101);
+    background-color: rgb(88, 87, 87);
     cursor: not-allowed;
     color: white;
 }
