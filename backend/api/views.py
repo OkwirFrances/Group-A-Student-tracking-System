@@ -175,6 +175,7 @@ def forgot_password(request):
     try:
         user = User.objects.get(email=email)
     except User.DoesNotExist:
+        return Response({'error': 'User with this email does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
     
 class DepartmentView(generics.ListCreateAPIView):
