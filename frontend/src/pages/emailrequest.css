@@ -207,5 +207,6 @@
 @media (max-width: 480px) {
     .emailrequest-content {
         width: 95%;
+        padding: 10px;
     }
 }
