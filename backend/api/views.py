@@ -177,10 +177,16 @@ def forgot_password(request):
     except User.DoesNotExist:
         return Response({'error': 'User with this email does not exist'}, status=status.HTTP_404_NOT_FOUND)
     
+    otp = generate_otp()
+    user.otp = otp  
+    user.save()
     subject = 'Password Reset OTP'
     message = f'Your OTP for password reset is: {otp}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
+    
+     try:
+        send_mail(subject, message, email_from, recipient_list)
 
     
 class DepartmentView(generics.ListCreateAPIView):
