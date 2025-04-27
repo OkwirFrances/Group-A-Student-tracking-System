@@ -193,5 +193,7 @@
         padding: 15px;
     }
 
-    .department-submit-button {}
+    .department-submit-button {
+        font-size: 0.9rem;
+    }
 }
