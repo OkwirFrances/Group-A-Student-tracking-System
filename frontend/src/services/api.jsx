@@ -147,6 +147,8 @@ export const authAPI = {
 
   resetPassword: async (email, otp, newPassword) => {
     try {
+      const response = await api.post('/reset-password/', { 
+        
 
   logout: () => {
     clearToken();
