@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from django.core.mail import send_mail
+from django.conf import settings
 from rest_framework import status, generics
 from rest_framework.response import Response
 from django.utils import timezone
@@ -20,6 +21,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenRefreshView
 from django.shortcuts import  get_object_or_404
 import random
+import string
 from django.core.cache import cache  # Import Django cache
 import logging  # Import logging module
 
@@ -96,36 +98,6 @@ def login(request):
     }, status=status.HTTP_200_OK)
 
 
-# @api_view(['POST'])
-# # @permission_classes([AllowAny])
-# def verify_otp(request):
-#     email = request.data.get('email')
-#     otp = request.data.get('otp')
-
-#     if not email or not otp:
-#         return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
-
-#     cached_data = cache.get(f'otp_{email}')
-#     if not cached_data:
-#         return JsonResponse({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
-
-#     if cached_data['otp'] == otp:
-#         # Create user after OTP verification
-#         user = User.objects.create_user(
-#             fullname=cached_data['fullname'], 
-#             email=email, 
-#             password=cached_data['password'], 
-#             role=cached_data['role']
-#         )
-#         user.is_verified = True
-#         user.save()
-
-#         cache.delete(f'otp_{email}')  # Clear OTP data
-
-#         refresh = RefreshToken.for_user(user)
-#         return JsonResponse({'token': str(refresh.access_token), 'message': 'User created successfully!'}, status=status.HTTP_201_CREATED)
-
-#     return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def verify_otp(request):
@@ -177,71 +149,6 @@ def verify_otp(request):
         return JsonResponse({'error': f'Error creating user: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-# @api_view(['POST'])
-# @permission_classes([AllowAny])
-# def verify_otp(request):
-#     data = request.data
-#     email = data.get('email')
-#     otp = data.get('otp')
-
-#     # Debug log incoming data
-#     logger.debug(f"Verifying OTP - Incoming data: {data}")
-
-#     if not email or not otp:
-#         return Response({'error': 'Email and OTP are required.'}, status=status.HTTP_400_BAD_REQUEST)
-
-#     cached_data = cache.get(f'otp_{email}')
-    
-#     if not cached_data:
-#         return Response({'error': 'OTP has expired or is invalid. Please request a new one.'}, status=status.HTTP_400_BAD_REQUEST)
-
-#     if cached_data['otp'] != otp:
-#         return Response({'error': 'Invalid OTP. Please try again.'}, status=status.HTTP_400_BAD_REQUEST)
-
-    # # OTP is valid — create user
-    # user = User.objects.create_user(
-    #     fullname=cached_data['fullname'],
-    #     email=email,
-    #     password=cached_data['password'],
-    #     role=cached_data['role']
-    # )
-    # user.is_verified = True
-    # user.save()
-
-    # # Remove OTP from cache
-    # cache.delete(f'otp_{email}')
-
-    # # Generate JWT tokens
-    # refresh = RefreshToken.for_user(user)
-    # access_token = str(refresh.access_token)
-
-    # return Response({
-    #     'token': access_token,
-    #     'message': 'User created and verified successfully.'
-    # }, status=status.HTTP_201_CREATED)
-
-# Resend OTP View
-# @api_view(['POST'])
-# # @permission_classes([AllowAny])
-# def resend_otp(request):
-#     email = request.data.get('email')
-#     if not email:
-#         return JsonResponse({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     user = User.objects.filter(email=email).first()
-#     if not user:
-#         return JsonResponse({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
-#     cached_data = cache.get(f'otp_{email}')
-#     if not cached_data:
-#         return JsonResponse({'error': 'No signup request found. Please signup again.'}, status=404)
-    
-#     new_otp = generate_otp()
-#     cached_data['otp'] = new_otp
-#     cache.set(f'otp_{email}', cached_data, timeout=600)
-#     # user.otp_created_at = timezone.now()  # Reset the OTP timestamp
-#     # user.save()
-#     send_mail('Your OTP Code', f'Your OTP is {new_otp}', 'AITS@mail.com', [email])
-#     return JsonResponse({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
 api_view(['POST'])
 def resend_otp(request):
@@ -406,15 +313,7 @@ class CustomTokenRefreshView(TokenRefreshView):
             
         return response
 
-# class CustomTokenRefreshView(TokenRefreshView):
-#     def post(self, request, *args, **kwargs):
-#         try:
-#             return super().post(request, *args, **kwargs)
-#         except Exception as e:
-#             return Response(
-#                 {"error": "Session expired. Please login again."},
-#                 status=status.HTTP_401_UNAUTHORIZED
-#             )
+
 
 
 class CollegeView(generics.ListCreateAPIView):
