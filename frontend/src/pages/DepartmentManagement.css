@@ -196,4 +196,7 @@
     .department-submit-button {
         font-size: 0.9rem;
     }
+
+    .management-table th,
+    .management-table td {}
 }
