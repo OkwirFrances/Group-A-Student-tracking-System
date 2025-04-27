@@ -192,6 +192,10 @@
     }
 
     .emailrequest-content p {
+        font-size: 1rem;
+    }
+
+    .emailrequest-email {
         
     }
 }
