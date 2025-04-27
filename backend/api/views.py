@@ -199,6 +199,7 @@ def reset_password(request):
     new_password = request.data.get('new_password') 
     
     if not all([email, otp, new_password]):
+         return Response({'error': 'Email, OTP and new password are required'}, status=status.HTTP_400_BAD_REQUEST)
 
     
 class DepartmentView(generics.ListCreateAPIView):
