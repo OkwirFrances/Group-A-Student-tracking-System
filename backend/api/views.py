@@ -172,6 +172,9 @@ def forgot_password(request):
     email = request.data.get('email')
     if not email:
         return Response({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
 
     
 class DepartmentView(generics.ListCreateAPIView):
