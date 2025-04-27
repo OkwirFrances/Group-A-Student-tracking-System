@@ -184,5 +184,6 @@
 @media (max-width: 768px) {
     .emailrequest-content {
         width: 90%;
+        padding: 15px;
     }
 }
