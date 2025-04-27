@@ -197,6 +197,8 @@ def reset_password(request):
     email = request.data.get('email')  
     otp = request.data.get('otp') 
     new_password = request.data.get('new_password') 
+    
+    if not all([email, otp, new_password]):
 
     
 class DepartmentView(generics.ListCreateAPIView):
