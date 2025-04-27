@@ -30,6 +30,7 @@ import OpenIssues from './pages/openissues';
 import CourseManagement from './pages/CourseManagement';
 import DepartmentManagement from './pages/DepartmentManagement';
 import LecturerIssues from './pages/lecturerissues';
+import ErrorBoundary from './pages/errorboundary';
 import { IssuesProvider } from './context/IssueContext';
 import RoleBasedRoute from './components/rolebassedroute';
 
@@ -52,7 +53,10 @@ const App = () => {
           <Route path="dashboard" element={<DashboardContent />} />
           <Route path="notifications" element={<NotificationScreen />} />
           <Route path="issueform" element={<IssueForm />} />
-          <Route path="issue/:id" element={<IssueDetails />} />
+          <Route path="issue/:id" element={
+            <ErrorBoundary>
+              <IssueDetails />
+            </ErrorBoundary>} />
           <Route path="support" element={<HelpSupport />} />
           <Route path='editpersonalinfo' element={<EditPersonalInfo />} />
           <Route path='editprofilepicture' element={<EditProfilePicture />} />
@@ -82,7 +86,10 @@ const App = () => {
               <LecturerDashboard />
         </RoleBasedRoute>}>
           <Route path="dashboard" element={<LecturerDashboardContent />} />
-          <Route path='lecturerissue' element={<LecturerIssues />} />
+          <Route path='lecturerissue' element={
+            <ErrorBoundary>
+              <LecturerIssues />
+            </ErrorBoundary>} />
           <Route path="issue/:id" element={<IssueDetails />} />
           <Route path="notifications" element={<NotificationScreen />} />
           <Route path="profile" element={<Profile />} />

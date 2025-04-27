@@ -109,13 +109,14 @@
     margin-bottom: 130px;
 }
 
-.filter-issues {
+.filterissues {
     padding: 10px 20px;
     border-radius: 10px;
     text-align: center;
     font-weight: bold;
     position: absolute;
     right: -70px;
+    width: 158px;
     margin-top: 200px;
     margin-right: 90px;
 }

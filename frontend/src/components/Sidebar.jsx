@@ -57,7 +57,7 @@ const Sidebar = () => {
                     </>
                 )}
                 <li className='sidebar-item'>
-                    <Link to={`${basePath}/issues`}>
+                    <Link to={`${basePath}/lecturerissue`}>
                         <img src={issue} alt='issue' className='sidebar-icon' />
                         Issues
                     </Link>

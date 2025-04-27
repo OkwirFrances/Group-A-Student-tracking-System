@@ -60,8 +60,8 @@ const DashboardContent = () => {
                             <option value='pending'>Pending</option>
                             <option value='in-progress'>In-progress</option>
                             <option value='resolved'>Resolved</option>
-                            <img src={filter} alt='filter' className='filter-icon' /> 
                     </select>
+                    <img src={filter} alt='filter' className='filter-icon' />
                </div>
                <div className='my-issues-search-container'>
                     <input 
@@ -80,7 +80,7 @@ const DashboardContent = () => {
                 <div className='table-body'>
                     {filteredIssues.length > 0 ? (
                         filteredIssues.map((issue, index) => (
-                            <div key={index} className='table-row' onClick={() => handleIssueClick(issue.id)}>
+                            <div key={index} className='table-row' onClick={handleIssueClick}>
                                 <div className='table-row-item'>{issue.title}</div>
                                 <div className='table-row-item'>{issue.status}</div>
                                 <div className='table-row-item'>{issue.category}</div>

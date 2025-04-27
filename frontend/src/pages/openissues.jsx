@@ -96,7 +96,7 @@ const OpenIssues = () => {
                 </div>
                 <div className='filter-issues-container'>
                     <select 
-                    className='filter-issues'
+                    className='filterissues'
                     onChange={(e) => setSelectedTab(e.target.value)}>
                         <option value='all'>All</option>
                         <option value='pending'>Pending</option>

@@ -19,9 +19,10 @@
 
 .filter-dropdown {
     padding: 8px;
-    font-size: irem;
+    font-size: 1rem;
     border: 1px solid black;
     border-radius: 10px;
+    width: 158px;
 }
 
 .filter-dropdown:focus {

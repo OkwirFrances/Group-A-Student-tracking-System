@@ -166,6 +166,7 @@
     right: -60px;
     margin-top: 10px;
     margin-right: 20px;
+    width: 158px;
 }
 
 .issuestable {
@@ -198,3 +199,5 @@
 .emptyboxicon {
     height: auto;
 }
+
+

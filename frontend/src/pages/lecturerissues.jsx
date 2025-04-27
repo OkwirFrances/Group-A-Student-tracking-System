@@ -29,6 +29,8 @@ const LecturerIssues = () => {
     };
 
     const handleIssueClick = (id) => {
+        const issue = issues.find(issue => issue.id === id);
+        setSelectedIssue(issue);
         navigate(`/lecturer/issue/${id}`);
     };
 

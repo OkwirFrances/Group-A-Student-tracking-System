@@ -5,7 +5,7 @@ import './issuedetails.css';
 
 const IssueDetails = () => {
     const { id } = useParams();
-    const { issues, setIssues } = useContext(IssuesContext);
+    const { issues } = useContext(IssuesContext);
     const navigate = useNavigate();
     const issue = issues.find((issue) => issue.id === id );
 
@@ -83,11 +83,17 @@ const IssueDetails = () => {
                 {issue.attachment && (
                     <div>
                         <strong>Attachment:</strong>
+                        {typeof issue.attachment === 'string' ? (
+                            <a href={issue.attachment} target='_blank' rel='noopener noreferrer'>
+                                View Attachment
+                            </a>
+                        ) : (
                         <img
                             src={URL.createObjectURL(issue.attachment)}
                             alt='attachment'
                             className='issue-attachment'
                         />
+                    )}   
                     </div>
                 )}
             </div>

@@ -52,7 +52,7 @@ const SignIn = () => {
             } else if (user.role === 'student') {
                 navigate('/app/dashboard');
             } else if (user.role === 'lecturer') {
-                navigate('/lecturerdashboard/dashboard');
+                navigate('/lecturer/dashboard');
             }
         } else {
                 alert('Invalid email or password');
@@ -97,7 +97,8 @@ const SignIn = () => {
                             placeholder='Enter Your Password'
                             value={formData.password}
                             onChange={handleChange}
-                            minLength={8}/>
+                            minLength={8}
+                            autoComplete='current-password'/>
                             <img src={padlock} alt='padlock' className='padlock-icon' />
                             </div>
                     </label>
