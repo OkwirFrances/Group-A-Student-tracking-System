@@ -13,6 +13,7 @@ const ForgotPassword = ({ email, onResendOtp }) => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const [isVerifying, setIsVerifying] = useState(false);
+    const [isResending, setIsResending] = useState(false);
     const [showCongratulations, setShowCongratulations] = useState(false);
     const inputRefs = useRef([]);
     const navigate = useNavigate();
@@ -24,13 +25,16 @@ const ForgotPassword = ({ email, onResendOtp }) => {
             newOtp[index] = value;
             setOtp(newOtp);
 
-            if (value !== '' && index < 3) {
+            if (value !== '' && index < 5) {
                 inputRefs.current[index + 1].focus();
             }
         }
     };
 
     const handleVerifyClick = () => {
+        try {
+            setIsVerifying(true);
+            setError('');
         const enteredOtp = otp.join('');
         const fixedOtp = '1234';
         if (enteredOtp === fixedOtp) {
