@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    
+
 }
 
 .congratulations-container h1 {
@@ -32,6 +32,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     margin-bottom: 20px;
+    
 }
 
 .congratulations-container p {
