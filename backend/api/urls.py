@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
-from .views import (signup, verify_otp, login, resend_otp, DepartmentView, CourseView, 
+from .views import (signup, verify_otp, login, resend_otp, reset_password, forgot_password, DepartmentView, CourseView, 
     IssueView, assign_issue, resolve_issue, UserInfoView, UserEditView,
     LecturerView, LecturerIssuesView, CourseDetailView, CustomTokenRefreshView,  # Add these new views
     RegistrarView, CollegeView,
