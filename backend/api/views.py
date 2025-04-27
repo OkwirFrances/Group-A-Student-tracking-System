@@ -195,7 +195,8 @@ def forgot_password(request):
 @api_view(['POST'])
 def reset_password(request):
     email = request.data.get('email')  
-    otp = request.data.get('otp')  
+    otp = request.data.get('otp') 
+    new_password = request.data.get('new_password') 
 
     
 class DepartmentView(generics.ListCreateAPIView):
