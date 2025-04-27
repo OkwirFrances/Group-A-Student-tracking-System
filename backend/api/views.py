@@ -208,6 +208,10 @@ def reset_password(request):
      
     if user.otp != otp:
         return Response({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Reset password
+    user.set_password(new_password)
+    user.otp = None  # Clear the OTP
 
     
 class DepartmentView(generics.ListCreateAPIView):
