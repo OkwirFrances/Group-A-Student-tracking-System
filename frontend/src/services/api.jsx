@@ -155,6 +155,9 @@ export const authAPI = {
 
             return response.data;
           } catch (error) {
+            throw error.response?.data || error.message;
+        }
+    },
 
   logout: () => {
     clearToken();
