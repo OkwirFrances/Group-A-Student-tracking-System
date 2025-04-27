@@ -153,6 +153,9 @@ export const authAPI = {
                 new_password: newPassword 
             });
 
+            return response.data;
+          } catch (error) {
+
   logout: () => {
     clearToken();
     localStorage.removeItem('refreshToken');
