@@ -177,4 +177,7 @@
     .course-submit-button {
         width: 100%;
     }
+
+    .course-management-table th,
+    .course-management-table td {}
 }
