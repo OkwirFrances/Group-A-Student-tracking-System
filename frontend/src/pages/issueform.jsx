@@ -8,12 +8,11 @@ import { courseAPI, issueAPI } from '../services/api'
 const IssueForm = ({ setBadgeCount }) => {
     const { addIssue, setNotificationMessage } = useContext(IssuesContext);
     const [formData, setFormData] = useState({
-        title: 'est',
-        description: 'desc',
-        category: 'appeal',
+        title: '',
+        category: '',
         registrar: '',
         // lecturer: 'lec',
-        coursecode: 'cour',
+        coursecode: '',
         // coursename: 'name',
         attachments: null,
         semester: '1',
@@ -95,25 +94,29 @@ const IssueForm = ({ setBadgeCount }) => {
                 mFormData.append(key, value)
             });
             
-            
-            const existingIssues = JSON.parse(localStorage.getItem('issues')) || [];
-            const updatedIssues = [...existingIssues, newIssue];
-            localStorage.setItem('issues', JSON.stringify(updatedIssues));
-
-        
-            setNotificationMessage({
-                message: 'Your issue has been submitted successfully!',
-                date: newIssue.date,
-                time: newIssue.time,
-            });
-
-            
-            if (setBadgeCount) {
-                setBadgeCount(prevCount => prevCount + 1);
-            };
-
             console.log({formData, newIssue, mFormData: [...mFormData]})
-
+            
+            try {
+                issueAPI.createIssue(mFormData)
+                
+                const existingIssues = JSON.parse(localStorage.getItem('issues')) || [];
+                const updatedIssues = [...existingIssues, newIssue];
+                localStorage.setItem('issues', JSON.stringify(updatedIssues));
+                
+                setNotificationMessage({
+                    message: 'Your issue has been submitted successfully!',
+                    date: newIssue.date,
+                    time: newIssue.time,
+                });
+                console.log('Form submitted successfully', formData);
+                
+                if (setBadgeCount) {
+                    setBadgeCount(prevCount => prevCount + 1);
+                };
+            } catch (error) {
+                console.error({error});
+                setFetchError("Failed to create issue.");
+            }
 
             setFormData({
                 title: '',
@@ -125,14 +128,6 @@ const IssueForm = ({ setBadgeCount }) => {
                 coursename: '',
                 attachment: null,
             });
-
-            try {
-                issueAPI.createIssue(mFormData)
-                console.log('Form submitted successfully', formData);
-            } catch (error) {
-                console.error({error});
-                setFetchError("Failed to create issue.");
-            }
         } catch (err) {
             console.error('Error submitting form:', err);
             setError('Failed to submit the issue. Please try again.');
