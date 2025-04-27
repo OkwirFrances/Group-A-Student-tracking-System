@@ -6,6 +6,7 @@ import help from '../assets/help.png';
 import Congratulations from './congratulations';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { authAPI } from '../api/services';
 
 const ForgotPassword = ({ email, onResendOtp }) => {
     const [otp, setOtp] = useState(['','','','']);
