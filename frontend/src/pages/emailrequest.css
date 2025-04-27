@@ -121,18 +121,17 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     overflow: hidden;
-    position: relative;
-    z-index: 1;
+    
 }
 
 .emailrequest-nextbutton:disabled {
-    background-color: rgb(88, 87, 87);
+    background-color: rgb(105, 101, 101);
     cursor: not-allowed;
     color: white;
 }
 
 .emailrequest-nextbutton:hover:not(:disabled) {
-    background-color: rgb(6, 168, 6);
+    background-color: rgb(16, 146, 16);
     color: white;
 }
 
