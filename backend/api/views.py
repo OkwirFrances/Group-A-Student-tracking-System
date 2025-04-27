@@ -193,7 +193,8 @@ def forgot_password(request):
     
     
 @api_view(['POST'])
-def reset_password(request):    
+def reset_password(request):
+    email = request.data.get('email')    
 
     
 class DepartmentView(generics.ListCreateAPIView):
