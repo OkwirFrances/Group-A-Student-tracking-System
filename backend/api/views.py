@@ -212,6 +212,7 @@ def reset_password(request):
     # Reset password
     user.set_password(new_password)
     user.otp = None  # Clear the OTP
+    user.save()
 
     
 class DepartmentView(generics.ListCreateAPIView):
