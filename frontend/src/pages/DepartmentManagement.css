@@ -167,5 +167,7 @@
     }
 
     .department-form-section,
-    .list-section {}
+    .list-section {
+        width: 90%;
+    }
 }
