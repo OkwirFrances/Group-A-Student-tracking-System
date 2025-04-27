@@ -213,6 +213,8 @@ def reset_password(request):
     user.set_password(new_password)
     user.otp = None  # Clear the OTP
     user.save()
+    
+    return Response({'message': 'Password reset successfully'}, status=status.HTTP_200_OK)
 
     
 class DepartmentView(generics.ListCreateAPIView):
