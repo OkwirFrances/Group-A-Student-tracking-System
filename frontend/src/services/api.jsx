@@ -126,6 +126,16 @@ export const authAPI = {
     }
   },
 
+  forgotPassword: async (email) => {
+    try {
+      const response = await api.post('/forgot-password/', { email });
+            return response.data;
+
+          } catch (error) {
+            throw error.response?.data || error.message;
+        }
+    },
+
   resendOTP: async (email) => {
     try {
       const response = await api.post('/resend-otp/', { email });
