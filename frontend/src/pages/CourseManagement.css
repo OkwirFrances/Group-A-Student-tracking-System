@@ -198,4 +198,7 @@
     .course-submit-button {
         font-size: 0.9rem;
     }
+
+    .course-management-table th,
+    .course-management-table td {}
 }
