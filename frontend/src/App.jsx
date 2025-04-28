@@ -63,6 +63,10 @@ const App = () => {
           <Route path='editacademicinfo' element={<EditAcademicInfo />} />
           <Route path="settings" element={<Settings />} />
           <Route path="messages" element={<Messages />} />
+          <Route path='lecturerissue' element={
+            <ErrorBoundary>
+              <LecturerIssues />
+            </ErrorBoundary>} />
           <Route path="profile" element={<Profile />} />
           <Route path="issues" element={<Issuemanagement />} />
         </Route>
