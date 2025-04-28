@@ -99,4 +99,6 @@ select:focus {
         width: 100%; 
         padding: 10px;
     }
+
+    .edit-personal-info-form h2 {}
 }
