@@ -45,5 +45,6 @@
 @media (max-width: 768px) {
     .issue-detail-container {
         max-width: 95%;
+        padding: 15px;
     }
 }
