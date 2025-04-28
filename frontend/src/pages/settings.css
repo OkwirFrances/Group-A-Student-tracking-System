@@ -71,14 +71,20 @@
 
 .newpassword {
     margin-top: 100px;
-    margin-right: 100px;
-    margin-left: 60px;
+    margin-right: 200px;
+    margin-left: 400px;
+}
+
+.old {
+    margin-top: 100px;
+    margin-right: 200px;
+    margin-left: 400px;
 }
 
 .confirmpassword {
     margin-top: 100px;
     margin-right: 90px;
-    margin-left: 90px;
+    margin-left: 400px;
 }
 
 .new-password {

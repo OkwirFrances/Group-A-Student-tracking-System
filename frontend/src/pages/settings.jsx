@@ -107,7 +107,7 @@ const Settings = () => {
                     </div>
                     {showChangePassword && (
                         <div className='settings-right'>
-                        <label>
+                        <label className='old'>
                             Old Password
                             <input 
                             type='password'
