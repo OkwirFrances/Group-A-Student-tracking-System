@@ -12,10 +12,10 @@ const SignIn = () => {
         email: '',
         password: '',
     });
-    const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+    // const [isTermsAccepted, setIsTermsAccepted] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-
+    const passwordLength = 8;
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -39,8 +39,8 @@ const SignIn = () => {
             return;
         }
 
-        if (formData.password.length < 8) {
-            setError('Password must be at least 8 characters long.');
+        if (formData.password.length < passwordLength) {
+            setError(`Password must be at least ${passwordLength} characters long.`);
             setLoading(false);
             return;
         }
@@ -72,7 +72,8 @@ const SignIn = () => {
         }
     };
 
-    const isFormValid = formData.email && formData.password.length >= 8 && isTermsAccepted;
+    // const isFormValid = formData.email && formData.password.length >= passwordLength && isTermsAccepted;
+    const isFormValid = formData.email && formData.password.length >= passwordLength;
 
     return (
         <div className='signin-container'>
@@ -107,21 +108,21 @@ const SignIn = () => {
                                 placeholder='Enter Your Password'
                                 value={formData.password}
                                 onChange={handleChange}
-                                minLength={8} />
+                                minLength={passwordLength} />
                             <img src={padlock} alt='padlock' className='padlock-icon' />
                         </div>
                     </label>
                     <p className='forgot-password'>
                         <Link to="/emailrequest" className='forgot-password-link'>Forgot Password?</Link>
                     </p>
-                    <label className='aits-terms'>
+                    {/* <label className='aits-terms'>
                         <input
                             type='checkbox'
                             className='termscheckbox'
                             checked={isTermsAccepted}
                             onChange={handleCheckboxChange} />
                         I have read and accepted all the AITS terms and conditions
-                    </label>
+                    </label> */}
                     <button
                         className='signinbutton'
                         disabled={!isFormValid || loading}>

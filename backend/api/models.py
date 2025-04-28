@@ -5,6 +5,7 @@ from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
 import datetime
 from django.core.validators import MaxLengthValidator
+from uuid import uuid4
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -14,16 +15,20 @@ class CustomUserManager(BaseUserManager):
         if not email:
             raise ValueError('The Email field must be set')
         email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+
+        match role := extra_fields.get("role"):
+            case 'student':
+                user_model = Student
+            case 'lecturer':
+                user_model = Lecturer
+            case 'registrar':
+                user_model = Registrar
+            case _:
+                user_model = self.model  # fallback to CustomUser
+
+        user = user_model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
-
-        if user.role == 'student':
-            Student.objects.create(user=user, **extra_fields)
-        elif user.role == 'lecturer':
-            pass
-        elif user.role == 'registrar':
-            pass
 
         return user
     
@@ -89,37 +94,43 @@ class Course(models.Model):
         return f"{self.code} - {self.name}"   
 
 class Lecturer(CustomUser):
-    staff_id = models.CharField(max_length=20, unique=True)
+    staff_id = models.CharField(max_length=36, unique=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     courses = models.ManyToManyField(Course)
     office_location = models.CharField(max_length=100)
 
     def save(self, *args, **kwargs):
-        self.role = CustomUser.ROLE_CHOICES.Lecturer # Set role to 'lecturer'  
+        # self.role = CustomUser.ROLE_CHOICES.Lecturer # Set role to 'lecturer'  
+        self.role = "lecturer"
+        self.staff_id = str(uuid4())
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.staff_id} - {self.first_name} {self.last_name}" 
 
 class Student(CustomUser): 
-    student_id = models.CharField(max_length=20, unique=True)
+    student_id = models.CharField(max_length=36, unique=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     enrolled_courses = models.ManyToManyField(Course, blank=True)
-    enrollment_date = models.DateField()
+    # enrollment_date = models.DateField()
 
     def save(self, *args, **kwargs):
-        self.role = CustomUser.ROLE_CHOICES.Student # Set role to 'student'
+        # self.role = CustomUser.ROLE_CHOICES.student # Set role to 'student'
+        self.role = "student"
+        self.student_id=str(uuid4())
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.student_id} - {self.first_name} {self.last_name}" 
     
 class Registrar(CustomUser):  
-    staff_id = models.CharField(max_length=20, unique=True)
-    office_number = models.CharField(max_length=20)
+    staff_id = models.CharField(max_length=36, unique=True)
+    office_number = models.CharField(max_length=20, null=True, blank=False)
 
     def save(self, *args, **kwargs):
-        self.role = CustomUser.ROLE_CHOICES.Registrar # Set role to 'registrar'
+        # self.role = CustomUser.ROLE_CHOICES.Registrar # Set role to 'registrar'
+        self.role = "registrar"
+        self.staff_id = str(uuid4())
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -134,7 +145,7 @@ class Issue(models.Model):
         
     )
 
-    ISSUE_CHOICES = (('missing_marks','MISSING MARKS'),
+    ISSUE_CHOICES = (('missingmarks','MISSING MARKS'),
                      ('appeal','APPEAL'),
                      ('correction','CORRECTION'))
     
@@ -204,5 +215,5 @@ class College(models.Model):
     registrar = models.ForeignKey(Registrar, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.code} - {self.name}"  
-
+        return f"{self.code} - {self.name}"
+    

@@ -1,17 +1,20 @@
 import React, { useState, useRef } from 'react';
-import './forgotpassword.css';
-import mail from '../assets/mail.png';
+import './Otp.css';
+import shield from '../assets/shield.png';
 import refresh from '../assets/refresh.png';
 import help from '../assets/help.png';
+import person from '../assets/person.png';
 import Congratulations from './congratulations';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { authAPI } from '../services/api'; // Import authAPI from services
 
-const ForgotPassword = ({ email, onResendOtp }) => {
-    const [otp, setOtp] = useState(['','','','']);
+const Otp = ({ email, onResendOtp }) => {
+    const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
+    const [isVerifying, setIsVerifying] = useState(false);
     const [showCongratulations, setShowCongratulations] = useState(false);
+    const [newPassword, setNewPassword] = useState('');
     const inputRefs = useRef([]);
     const navigate = useNavigate();
 
@@ -22,53 +25,78 @@ const ForgotPassword = ({ email, onResendOtp }) => {
             newOtp[index] = value;
             setOtp(newOtp);
 
-            if (value !== '' && index < 3) {
+            if (value !== '' && index < 5) {
                 inputRefs.current[index + 1].focus();
             }
         }
     };
 
-    const handleVerifyClick = () => {
+    const handleVerifyClick = async () => {
         const enteredOtp = otp.join('');
-        const fixedOtp = '1234';
-        if (enteredOtp === fixedOtp) {
-            setSuccess(true);
+
+        if (!enteredOtp) {
+            setError('Please enter the OTP.');
+            return;
+        }
+        if (!newPassword) {
+            setError('Please enter (new) password.');
+            return;
+        }
+
+        try {
+            setIsVerifying(true);
             setError('');
-            console.log('OTP verified successfully');
-            setShowCongratulations(true);
-
-            alert('Your Password Has Been Successfully Reset');
-
-            const userRole = localStorage.getItem('userRole');
-
-            if (userRole === 'registrar') {
-                navigate('/signin');
-            } else if (userRole === 'student') {
-                navigate('/signin');
-            } else if (userRole === 'lecturer') {
-                navigate('/signin');
-            }
-        } else {
-            setError('Invalid OTP. Please try again.');
+            
+            // Call the API to verify OTP
+            await authAPI.changePassword({email, new_password: newPassword, otp: enteredOtp, flow: "forgot_password"});
+            
+            setSuccess(true);
+            console.log('Password changed successfully');
+            // setShowCongratulations(true);
+            navigate('/signin'); // Redirect to congratulations page
+        } catch (err) {
+            console.error('OTP verification failed:', err);
+            setError(typeof err === 'string' ? err : 'Invalid OTP. Please try again.');
             setSuccess(false);
+        } finally {
+            setIsVerifying(false);
         }
     };
 
-    const handleResendClick = () => {
-        setOtp(['','','','']);
+    const handleResendClick = async () => {
+        setOtp(['', '', '', '', '', '']);
         setError('');
         setSuccess(false);
-        onResendOtp();
+
+        try {
+            if (onResendOtp) {
+                await onResendOtp();
+            } else {
+                // Fallback if onResendOtp is not provided
+                await authAPI.resendOTP(email);
+                alert('OTP resent successfully to your email');
+            }
+        } catch (err) {
+            console.error('Failed to resend OTP:', err);
+            setError('Failed to resend OTP. Please try again.');
+        }
+    };
+
+    const handleKeyDown = (e, index) => {
+        // Allow focusing previous input when backspace is pressed on empty input
+        if (e.key === 'Backspace' && otp[index] === '' && index > 0) {
+            inputRefs.current[index - 1].focus();
+        }
     };
 
     const isOtpComplete = otp.every(digit => digit !== '');
 
-    if (showCongratulations) {
-        return <Congratulations />;
-    }
+    // if (showCongratulations) {
+    //     return <Congratulations />;
+    // }
 
     return (
-        <div className='forgotpassword-container'>
+        <div className='otp-container'>
             <div className='aits-logo'>AITS</div>
             <div className='help'>
                 <img src={help} alt='help logo' className='help-logo' />Help?
@@ -77,41 +105,57 @@ const ForgotPassword = ({ email, onResendOtp }) => {
                     Phone Number: 0758862363
                 </div>
             </div>
-            <div className='forgotpassword-content'>
-                <img  className='doorkey'src={mail} alt='mail' />
-                <h2 className='reset-title'>Email Verification</h2>
-                <p className='reset-sub-title'>Enter the verification code we sent to you on {email}</p>
-                <div className='reset-inputs'>
+            <div className='otp-content'>
+                <img className='shield' src={shield} alt='shield logo' />
+                <h2 className='authenticate-title'>Change Password</h2>
+                <p className='authenticate-sub-title'>
+                    {/* Protecting your account is our top priority. Please confirm your account by entering the authorization code we sent to <strong>{email}</strong>. */}
+                </p>
+                <div className='input-container'>
+                    <label htmlFor='password'>New Password</label>
+                    <input
+                        className='password'
+                        type='password'
+                        name='password'
+                        placeholder='Enter your (new) Password'
+                        value={newPassword}
+                        onChange={e => setNewPassword(e.target.value)}
+                        required
+                    />
+                    <img src={person} alt='person' className='person-icon' />
+                </div>
+                    <p>OTP code</p>
+                <div className='otp-inputs'>
                     {otp.map((digit, index) => (
                         <input
                             key={index}
-                            className='reset-input'
+                            className='otp-input'
                             type='text'
                             maxLength='1'
                             value={digit}
                             onChange={(e) => handleChange(e, index)}
-                            ref={(el) => (inputRefs.current[index] = el)} 
+                            onKeyDown={(e) => handleKeyDown(e, index)}
+                            ref={(el) => (inputRefs.current[index] = el)}
                         />
                     ))}
                 </div>
-            <Link to="/signin">
-            
-            <button 
-                onClick={handleVerifyClick}
-                className='reset-verify-button' 
-               disabled={!isOtpComplete}>
-                   Next
-            </button></Link>
-                <button 
-                className='reset-resend-button'>
-                    <img className='reset-refresh-icon'src={refresh} alt='refresh icon' /> 
+                <button
+                    className='verify-button'
+                    onClick={handleVerifyClick}
+                    disabled={!isOtpComplete || !newPassword || isVerifying}>
+                    {isVerifying ? 'Submiting...' : 'Change Password'}
+                </button>
+                <button
+                    className='resend-button'
+                    onClick={handleResendClick}>
+                    <img className='refresh-icon' src={refresh} alt='refresh icon' />
                     Resend Code
                 </button>
-                </div>   
-                {error && <p className='error-message'>{error}</p>}
-                {success && <p className='success-message'>OTP verified successfully!</p>}
+            </div>
+            {error && <p className='error-message'>{error}</p>}
+            {success && <p className='success-message'>OTP verified successfully!</p>}
         </div>
     );
 };
 
-export default ForgotPassword;
+export default Otp;

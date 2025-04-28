@@ -299,9 +299,13 @@
 import axios from 'axios';
 import { getToken, clearToken, storeToken } from '../pages/auth'; // Make sure this path is correct
 
-const API_BASE_URL = 'http://127.0.0.1:8000/api/';
-// const API_BASE_URL = 'https://groupaaits.onrender.com/api/';
+let API_BASE_URL;
 
+if (import.meta.env.DEV){
+  API_BASE_URL = 'http://127.0.0.1:8000/api/';
+} else {
+  API_BASE_URL = 'https://groupaaits.onrender.com/api/';
+}
 // Create an axios instance with default config
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -390,7 +394,7 @@ export const userAPI = {
 
 // Authentication API
 export const authAPI = {
-  signup: async (email, fullname, password, role) => {
+    signup: async (email, fullname, password, role) => {
     try {
       const response = await api.post('/signup/', { email, fullname, password, role });
       return response.data;
@@ -433,7 +437,37 @@ export const authAPI = {
     clearToken();
     localStorage.removeItem('refreshToken');
   },
+  
+  forgotPassword: async (email) => {
+    try {
+      const response = await api.post('/forgot-password/', { email });
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+
+  // forgotPassword: async (email) => request(api.post, '/forgot-password/', { email }),
+  forgotPassword: async (email) => {
+    try {
+      const response = await api.post('/forgot-password/', { email })
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+
+  // changePassword: async (data) => request(api.post, '/change-password/', data),
+  changePassword: async (data) => {
+    try {
+      const response = await api.post('/change-password/', data)
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
 };
+
 // Department API
 export const departmentAPI = {
   getDepartments: async () => {
@@ -635,12 +669,11 @@ export const issueAPI = {
 
 async function request(method, url, ...args) {
   try {
-    const response = await method(url, args);
+    const response = await method.call(api, url, args);
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;
   }
 }
-
 
 export default api;
