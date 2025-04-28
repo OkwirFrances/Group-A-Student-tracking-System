@@ -58,5 +58,7 @@
 }
 
 @media (max-width: 480px) {
-    .issue-detail-container {}
+    .issue-detail-container {
+        max-width: 100%;
+    }
 }
