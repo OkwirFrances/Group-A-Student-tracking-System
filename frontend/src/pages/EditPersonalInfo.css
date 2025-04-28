@@ -108,4 +108,6 @@ select:focus {
     select {
         font-size: 0.8rem;
     }
+
+    .save-changes-button {}
 }
