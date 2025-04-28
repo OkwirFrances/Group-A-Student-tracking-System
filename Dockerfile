@@ -15,11 +15,11 @@ WORKDIR /app/frontend
 
 # RUN npm install --global corepack@latest && corepack enable && \
 #     corepack prepare pnpm@latest-10 --activate && pnpm config set store-dir ~/.pnpm-store \
-RUN npm install -g pnpm && \
-    pnpm install && pnpm build
+# RUN npm install -g pnpm && \
+#     pnpm install && pnpm build
 
-RUN mkdir /app/backend/staticfiles \
-    && mv /app/frontend/dist /app/backend/staticfiles/reactapp
+# # RUN mkdir /app/backend/staticfiles \
+# #     && mv /app/frontend/dist /app/backend/staticfiles/reactapp
 
 WORKDIR /app/backend
 
