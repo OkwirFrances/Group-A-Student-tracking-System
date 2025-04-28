@@ -71,5 +71,7 @@
         font-size: 0.8rem;
     }
 
-    .issue-attachment {}
+    .issue-attachment {
+        margin-top: 5px;
+    }
 }
