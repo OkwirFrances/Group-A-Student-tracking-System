@@ -100,5 +100,7 @@ select:focus {
         padding: 10px;
     }
 
-    .edit-personal-info-form h2 {}
+    .edit-personal-info-form h2 {
+        font-size: 1.2rem;
+    }
 }
