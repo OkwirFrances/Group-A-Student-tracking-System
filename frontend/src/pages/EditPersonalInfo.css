@@ -79,4 +79,7 @@ select:focus {
     .edit-personal-info-form h2 {
         font-size: 1.3rem;
     }
+
+    input,
+    select {}
 }
