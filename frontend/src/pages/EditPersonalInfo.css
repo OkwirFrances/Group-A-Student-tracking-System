@@ -97,5 +97,6 @@ select:focus {
 
     .edit-personal-info-form {
         width: 100%; 
+        padding: 10px;
     }
 }
