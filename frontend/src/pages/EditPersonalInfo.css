@@ -71,5 +71,7 @@ select:focus {
         font-size: 1.8rem;
     }
 
-    .edit-personal-info-form {}
+    .edit-personal-info-form {
+        width: 95%;
+    }
 }
