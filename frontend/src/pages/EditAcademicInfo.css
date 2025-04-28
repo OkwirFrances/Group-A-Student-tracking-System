@@ -92,5 +92,7 @@ select:focus {
     }
 
     input,
-    select {}
+    select {
+        font-size: 0.9rem;
+    }
 }
