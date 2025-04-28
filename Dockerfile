@@ -18,7 +18,7 @@ WORKDIR /app/frontend
 RUN npm install -g pnpm && \
     pnpm install && pnpm build
 
-RUN mkdir /app/backend/staticfiles && \
+RUN mkdir /app/backend/staticfiles \
     && mv /app/frontend/dist /app/backend/staticfiles/reactapp
 
 WORKDIR /app/backend
