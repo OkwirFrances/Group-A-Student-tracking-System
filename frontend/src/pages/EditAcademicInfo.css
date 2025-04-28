@@ -85,5 +85,7 @@ select:focus {
     .edit-academic-info-form {
         width: 95%; 
         padding: 15px;
-     }
+    }
+
+     .edit-academic-info-form h2 {}
 }
