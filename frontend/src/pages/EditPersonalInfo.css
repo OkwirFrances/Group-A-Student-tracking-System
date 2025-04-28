@@ -65,3 +65,5 @@ select:focus {
 .save-changes-button:hover {
     background-color: #218838;
 }
+
+@media (max-width: 768px) {}
