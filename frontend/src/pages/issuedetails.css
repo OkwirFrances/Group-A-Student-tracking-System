@@ -52,5 +52,7 @@
         font-size: 1.8rem; 
     }
 
-    .issue-detail p {}
+    .issue-detail p {
+        font-size: 0.9rem;
+    }
 }
