@@ -102,5 +102,7 @@ select:focus {
 }
 
 @media (max-width: 480px) {
-    h1 {}
+    h1 {
+        font-size: 1.5rem;
+    }
 }
