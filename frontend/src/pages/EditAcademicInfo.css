@@ -89,5 +89,8 @@ select:focus {
 
      .edit-academic-info-form h2 {
         font-size: 1.3rem;
-     }
+    }
+
+    input,
+    select {}
 }
