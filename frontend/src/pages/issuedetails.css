@@ -63,5 +63,7 @@
         padding: 10px;
     }
 
-    .issue-detail-container h1 {}
+    .issue-detail-container h1 {
+        font-size: 1.5rem; 
+    }
 }
