@@ -23,7 +23,7 @@ import EditAcademicInfo from './pages/EditAcademicInfo';
 import RegistrarDashboard from './pages/registrardashboard';
 import EmailRequest from './pages/emailrequest';
 import ForgotPassword from './pages/forgotpassword';
-import LecturerDashboard from './pages/lecturerdashboard';
+import LecturerDashboard from './pages/LecturerDashboard';
 import RegistrarDashboardContent from './pages/registrardashboardcontent';
 import LecturerDashboardContent from './pages/lecturerdashboardcontent';
 import OpenIssues from './pages/openissues';
