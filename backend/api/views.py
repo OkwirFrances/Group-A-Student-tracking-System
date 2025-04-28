@@ -36,7 +36,6 @@ def generate_otp():
 
 
 
-
 @api_view(['POST'])
 # @permission_classes([AllowAny])
 def signup(request):
@@ -57,7 +56,7 @@ def signup(request):
     otp = generate_otp()
     cache.set(f'otp_{email}', {'otp': otp, 'fullname': fullname, 'password': password, 'role': role}, timeout=600)  # Store OTP for 10 minutes
 
-    print({"otp": cache.get(f"otp_{email}")})
+    # print({"signup:": cache.get(f"otp_{email}")})
     send_mail('Your OTP Code', f'Your OTP is {otp}', 'Group-A-AITS@mail.com', [email])
     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
@@ -98,22 +97,67 @@ def login(request):
     }, status=status.HTTP_200_OK)
 
 
+@api_view(['POST'])
+# @permission_classes([AllowAny])
+def forgot_password(request):
+    email = request.data.get('email')
+
+    if not email:
+        return JsonResponse(
+            {'error': 'Email is are required'}, 
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    if user := User.objects.filter(email=email).exists():
+        otp = generate_otp()
+        cache.set(f'forgot_password_{email}', {'otp': otp}, timeout=600)  # Store OTP for 10 minutes
+        body = f"Someone requested a password reset for your account. If you didn't request this, you can ignore this email. Your OTP is: {otp}"
+        send_mail('Password Reset Request', body, 'Group-A-AITS@mail.com', [email])
+
+    return JsonResponse({'message': 'A password reset code has been sent to your email!'}, status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+# @permission_classes([AllowAny])
+def change_password(request):
+    email = request.data.get('email')
+    new_password = request.data.get('new_password')
+    otp = request.data.get('otp')
+    flow = request.data.get('flow')
+
+    if not new_password:
+        return JsonResponse(
+            {'error': 'New password is required'}, 
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    match flow:
+        case 'forgot_password':
+            cached_data = cache.get(f'forgot_password_{email}')
+            if not cached_data or cached_data['otp'] != otp:
+                return JsonResponse({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
+        case _:
+            return JsonResponse({'error': 'Invalid flow'}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = User.objects.get(email=email)
+    user.set_password(new_password)
+    user.save()
+    cache.delete(f'forgot_password_{email}')
+    
+    return JsonResponse({'message': 'Password changed successfully!'}, status=status.HTTP_200_OK)
+
 
 @api_view(['POST'])
 def verify_otp(request):
     email = request.data.get('email')
     otp = request.data.get('otp')
-
-    # Debug logging
-    print(f"Verifying OTP for email: {email}, OTP: {otp}")
+    
 
     if not email or not otp:
         return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
 
     cached_data = cache.get(f'otp_{email}')
-    
-    # Debug logging
-    print(f"Cached data for {email}: {cached_data}")
+
+    # print({"verify:": cache.get(f"otp_{email}"), 'verify:otp': otp})
     
     if not cached_data:
         return JsonResponse({'error': 'Invalid or expired OTP. Please request a new one.'}, status=status.HTTP_400_BAD_REQUEST)
@@ -139,82 +183,66 @@ def verify_otp(request):
         cache.delete(f'otp_{email}')  # Clear OTP data
 
         refresh = RefreshToken.for_user(user)
-        return JsonResponse({
-            'token': str(refresh.access_token),
-            'refresh': str(refresh),
-            'message': 'User created successfully!'
-        }, status=status.HTTP_201_CREATED)
-    except Exception as e:
-        print(f"Error creating user: {str(e)}")
-        return JsonResponse({'error': f'Error creating user: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return JsonResponse({'token': str(refresh.access_token), 'message': 'User created successfully!'}, status=status.HTTP_201_CREATED)
+
+    return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-
-api_view(['POST'])
+@api_view(['POST'])
+# @permission_classes([AllowAny])
 def resend_otp(request):
     email = request.data.get('email')
-    if not email:
-        return JsonResponse({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
+    # if not email:
+    #     return JsonResponse({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
     
-    user = User.objects.filter(email=email).first()
-    if not user:
-        return JsonResponse({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+    # user = User.objects.filter(email=email).first()
+    # if not user:
+    #     return JsonResponse({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
     
-    user.otp = generate_otp()
-    user.otp_created_at = timezone.now()  # Reset the OTP timestamp
-    user.save()
-    send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'AITS@mail.com', [email])
+    # user.otp = generate_otp()
+    # user.otp_created_at = timezone.now()  # Reset the OTP timestamp
+    # user.save()
+    # send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'AITS@mail.com', [email])
+    
+    cached_data = cache.get(f'otp_{email}')
+    
+    if not cached_data:
+        return JsonResponse({'error': 'Sorry, your session has probably expired, please repeat the process'}, status=status.HTTP_400_BAD_REQUEST)
+
+    otp = generate_otp()
+    cached_data['otp'] = otp
+    cache.set(f'otp_{email}', cached_data, timeout=600)  # Store OTP for 10 minutes
+
+    send_mail('Your OTP Code', f'Your OTP is {otp}', 'AITS@mail.com', [email])
     return JsonResponse({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
 def forgot_password(request):
     email = request.data.get('email')
-    if not email:
-        return Response({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
-    try:
-        user = User.objects.get(email=email)
-    except User.DoesNotExist:
-        return Response({'error': 'User with this email does not exist'}, status=status.HTTP_404_NOT_FOUND)
+    # if not email:
+    #     return JsonResponse({'error': 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
     
+    # user = User.objects.filter(email=email).first()
+    # if not user:
+    #     return JsonResponse({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    # user.otp = generate_otp()
+    # user.otp_created_at = timezone.now()  # Reset the OTP timestamp
+    # user.save()
+    # send_mail('Your OTP Code', f'Your OTP is {user.otp}', 'AITS@mail.com', [email])
+    
+    cached_data = cache.get(f'otp_{email}')
+    
+    if not cached_data:
+        return JsonResponse({'error': 'Sorry, your session has probably expired, please repeat the process'}, status=status.HTTP_400_BAD_REQUEST)
+
     otp = generate_otp()
-    user.otp = otp  
-    user.save()
-    subject = 'Password Reset OTP'
-    message = f'Your OTP for password reset is: {otp}'
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [email]
-    
-    try:
-        send_mail(subject, message, email_from, recipient_list)
-        return Response({'message': 'OTP sent to your email'}, status=status.HTTP_200_OK)
-    except Exception as e:
-        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
-    
-@api_view(['POST'])
-def reset_password(request):
-    email = request.data.get('email')  
-    otp = request.data.get('otp') 
-    new_password = request.data.get('new_password') 
-    
-    if not all([email, otp, new_password]):
-         return Response({'error': 'Email, OTP and new password are required'}, status=status.HTTP_400_BAD_REQUEST)
-     
-    try:
-        user = User.objects.get(email=email)
-    except User.DoesNotExist:
-         return Response({'error': 'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
-     
-    if user.otp != otp:
-        return Response({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
-    
-    # Reset password
-    user.set_password(new_password)
-    user.otp = None  # Clear the OTP
-    user.save()
-    
-    return Response({'message': 'Password reset successfully'}, status=status.HTTP_200_OK)
+    cached_data['otp'] = otp
+    cache.set(f'otp_{email}', cached_data, timeout=600)  # Store OTP for 10 minutes
+
+    send_mail('Your OTP Code', f'Your OTP is {otp}', 'AITS@mail.com', [email])
+    return JsonResponse({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
     
 class DepartmentView(generics.ListCreateAPIView):

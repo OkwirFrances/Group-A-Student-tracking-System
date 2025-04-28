@@ -33,5 +33,6 @@ WORKDIR /app/backend
 # RUN mv /app/frontend/dist /app/backend/staticfiles/frontend
 
 # Run Django’s development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 # ENTRYPOINT ["bash", "build.sh"]
