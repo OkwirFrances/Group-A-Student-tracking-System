@@ -106,5 +106,7 @@ select:focus {
         font-size: 1.5rem;
     }
 
-    .edit-academic-info-form {}
+    .edit-academic-info-form {
+        width: 100%;
+    }
 }
