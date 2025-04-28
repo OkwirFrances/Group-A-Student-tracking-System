@@ -77,4 +77,6 @@ select:focus {
     background-color: #218838;
 }
 
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+    h1 {}
+}
