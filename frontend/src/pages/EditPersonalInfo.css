@@ -70,4 +70,6 @@ select:focus {
     h1 {
         font-size: 1.8rem;
     }
+
+    .edit-personal-info-form {}
 }
