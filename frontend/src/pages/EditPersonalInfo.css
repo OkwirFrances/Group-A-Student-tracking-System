@@ -85,5 +85,7 @@ select:focus {
         font-size: 0.9rem; 
     }
 
-    .save-changes-button {}
+    .save-changes-button {
+        font-size: 0.9rem;
+    }
 }
