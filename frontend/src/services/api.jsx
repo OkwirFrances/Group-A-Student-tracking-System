@@ -437,15 +437,6 @@ export const authAPI = {
     clearToken();
     localStorage.removeItem('refreshToken');
   },
-  
-  forgotPassword: async (email) => {
-    try {
-      const response = await api.post('/forgot-password/', { email });
-      return response.data;
-    } catch (error) {
-      throw error.response?.data || error.message;
-    }
-  },
 
   // forgotPassword: async (email) => request(api.post, '/forgot-password/', { email }),
   forgotPassword: async (email) => {
