@@ -1,6 +1,7 @@
 # Use the official Python runtime image
-FROM python:3.13  
- 
+# FROM python:3.13  
+FROM nikolaik/python-nodejs:python3.13-nodejs23
+
 # Create the app directory
 RUN mkdir /app
  
@@ -9,7 +10,19 @@ WORKDIR /app
 
 # Copy the Django project to the container
 COPY . /app/
- 
+
+WORKDIR /app/frontend
+
+# RUN npm install --global corepack@latest && corepack enable && \
+#     corepack prepare pnpm@latest-10 --activate && pnpm config set store-dir ~/.pnpm-store \
+RUN npm install -g pnpm && \
+    pnpm install && pnpm build
+
+RUN mkdir /app/backend/staticfiles && \
+    && mv /app/frontend/dist /app/backend/staticfiles/reactapp
+
+WORKDIR /app/backend
+
 # Set environment variables 
 # Prevents Python from writing pyc files to disk
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -24,9 +37,6 @@ RUN pip install --no-cache-dir -r backend/requirements.txt
  
 # Expose the Django port
 EXPOSE 8000
-
-# Change to a specific folder, within /app
-WORKDIR /app/backend
 
 # RUN python manage.py collectstatic --noinput
 
