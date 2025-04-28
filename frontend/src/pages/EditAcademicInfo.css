@@ -108,5 +108,6 @@ select:focus {
 
     .edit-academic-info-form {
         width: 100%;
+        padding: 10px;
     }
 }
