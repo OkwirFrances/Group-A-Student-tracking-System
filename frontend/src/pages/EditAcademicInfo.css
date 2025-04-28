@@ -68,7 +68,7 @@ select:focus {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     width: 100%;
     text-align: center;
 }
