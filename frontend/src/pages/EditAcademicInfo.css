@@ -82,5 +82,7 @@ select:focus {
         font-size: 1.8rem;
     }
 
-    .edit-academic-info-form { }
+    .edit-academic-info-form {
+        width: 95%; 
+     }
 }
