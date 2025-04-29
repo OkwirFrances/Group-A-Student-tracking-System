@@ -3,6 +3,36 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.emailrequest-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    animation: bubble-animation 5s infinite ease-in-out;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes bubble-animation {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(-50%, -70%) scale(1.5);
+        opacity: 0;
+    }
+    100% {
+        transform:  translate(-50%, -70%) scale(1.5);
+        opacity: 0;
+    }
 }
 
 .emailrequest-container h1 {
@@ -18,7 +48,6 @@
     font-weight: bold;
     color: black;
     cursor: pointer;
-
 }
 
 .emailrequest-help-logo {
@@ -85,7 +114,7 @@
 }
 
 .emailrequest-email {
-    width: 400px;
+    width: 27%;
     border: 1px solid black;
     font-size: 1rem;
     position: absolute;
@@ -108,7 +137,7 @@
 }
 
 .emailrequest-nextbutton {
-    width: 422px;
+    width: 28.5%;
     display: flex;
     border: 1px solid rgb(27, 172, 8);
     font-size: 1rem;
@@ -121,6 +150,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    overflow: hidden;
 }
 
 .emailrequest-nextbutton:disabled {
@@ -149,4 +179,57 @@
 .emailrequest-signin-link:hover {
     text-decoration: underline;
     color: rgb(15, 177, 15);
+}
+
+@media (max-width: 768px) {
+    .emailrequest-content {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .emailrequest-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .emailrequest-content p {
+        font-size: 1rem;
+    }
+
+    .emailrequest-email {
+        width: 100%;
+    }
+
+    .emailrequest-nextbutton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .emailrequest-content {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .emailrequest-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .emailrequest-content p {
+        font-size: 0.9rem;
+    }
+
+    .emailrequest-email {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .emailrequest-nextbutton {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .emailrequest-signin-link {
+        font-size: 0.9rem;
+    }
+
 }

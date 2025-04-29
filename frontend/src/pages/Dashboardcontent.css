@@ -7,7 +7,6 @@
     width: 90%;
     margin-left: 120px;
     margin-top: 40px;
-    
 }
 
 .cards-container {
@@ -76,7 +75,6 @@
     margin-right: 40px;
     margin-left: -19px;
     margin-top: -28px;
-
 }
 
 .issue-count {
@@ -196,7 +194,6 @@
     border-top-left-radius: 5px;
     overflow: hidden;
     background-color: rgb(186, 185, 184);
-    
 }
 
 
@@ -206,6 +203,7 @@
     padding: 10px;
     border-bottom: 1px solid black;
 }
+
 .table-header-item {
     flex: 1;
     text-align: center;
