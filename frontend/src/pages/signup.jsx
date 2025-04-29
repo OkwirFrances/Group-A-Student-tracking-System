@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 import person from '../assets/person.png';
 import mail from '../assets/mail.png';
 import padlock from '../assets/padlock.png';
-import { authAPI } from '../services/api'; // Make sure this path is correct
+import { authAPI } from '../services/api'; 
 
 const SignUp = () => {
     const [formData, setFormData] = useState({

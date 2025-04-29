@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { IssuesContext } from '../context/IssueContext';
 
 const Navbar = () => {
+    const [profilePic, setProfilePic] = useState(null);
     const navigate = useNavigate();
     const { badgeCount, setBadgeCount, issues } = useContext(IssuesContext);
 
@@ -19,12 +20,18 @@ const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     useEffect(() => {
-        const userFullName = localStorage.getItem('userFullName') || 'Guest User';
+    const userFullName = localStorage.getItem('userFullName') || 'Guest User';
         setUser((prevUser) => ({
             ...prevUser,
             fullName: userFullName,
         }));
+        const savedProfilePic = localStorage.getItem('profilePic');
+        if (savedProfilePic) {
+            setProfilePic(savedProfilePic);
+            
+        }
     }, []);
+     
 
     const getInitials = (name) => {
         if (!name) return '';
@@ -39,7 +46,7 @@ const Navbar = () => {
         setBadgeCount(0);
 
         if (userRole === 'registrar') {
-            setBadgeCount(0);
+           
         }
     };
 
@@ -76,8 +83,9 @@ const Navbar = () => {
                     src={logo} alt='muk-logo' 
                     className='makerere-logo' />
                     <span className='navbar-logo-text'>Academic Issue Tracking System</span>
+                    </div>
                     <div className='search-container'>
-                        <form onSubmit={handleSearchSubmit}>
+                        <form onSubmit={handleSearchSubmit} className='search-form'>
                             <input
                             type='text'
                             className='search-input'
@@ -105,13 +113,16 @@ const Navbar = () => {
                         onClick={handleMailClick}
                     />
                         {user.profilePic ? (
-                            <img src={user.profilePic} alt='user' className='user-icon' />
+                            <img 
+                               src={profilePic} 
+                               alt='Profile' 
+                               className='navbar-profile-picture' />
                         ) : (
                             <div className='user-initials'>
                                 {getInitials(user.fullName)}
                             </div>
                         )}
-                </div>
+                
                 <span className='user-greeting'>Hi, {user.fullName}</span>
 
                 {searchResults.length > 0 && (

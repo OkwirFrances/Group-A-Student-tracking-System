@@ -1,23 +1,33 @@
 .edit-personal-info-container {
-    padding: 20px;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-start; 
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    min-height: 100vh;
+    min-height: 100vh; 
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+.edit-personal-info-h1,
 h1 {
-    font-size: 2rem;
+    font-size: 28px; 
     color: #333;
     margin-bottom: 20px;
+    text-align: left;
+    margin-left: 100px; 
+    margin-top: 50px;
 }
 
 .edit-personal-info-form {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     max-width: 600px;
-    margin: auto;
+    width: 100%; 
+    margin-left: -350px;
+    margin-top: 100px;
 }
 
 .edit-personal-info-form h2 {
@@ -33,40 +43,47 @@ label {
     font-weight: bold;
     margin-bottom: 5px;
     color: #0e0d0d;
+    text-align: left; 
 }
 
 input,
 select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 12px; 
+    margin-bottom: 20px; 
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 16px;
+    box-sizing: border-box; 
 }
 
 input:focus,
 select:focus {
     outline: none;
     border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
 }
 
-.save-changes-button {
+.personal-info-button {
     background-color: #28a745;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 18px; 
+    display: block;
+    margin-top: 20px; 
+    text-align: left; 
+    width: 100%;
 }
 
-.save-changes-button:hover {
+.personal-info-button:hover {
     background-color: #218838;
 }
 
 @media (max-width: 768px) {
+    .edit-personal-info-h1,
     h1 {
         font-size: 1.8rem;
     }
@@ -74,6 +91,7 @@ select:focus {
     .edit-personal-info-form {
         width: 95%;
         padding: 15px;
+        margin-left: 0;
     }
 
     .edit-personal-info-form h2 {
@@ -85,12 +103,13 @@ select:focus {
         font-size: 0.9rem; 
     }
 
-    .save-changes-button {
+    .personal-info-button {
         font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
+    .edit-personal-info-h1,
     h1 {
         font-size: 1.5rem;
     }
@@ -98,6 +117,7 @@ select:focus {
     .edit-personal-info-form {
         width: 100%; 
         padding: 10px;
+        margin-left: 0;
     }
 
     .edit-personal-info-form h2 {
@@ -109,7 +129,7 @@ select:focus {
         font-size: 0.8rem;
     }
 
-    .save-changes-button {
+    .personal-info-button {
         font-size: 0.8rem; 
     }
 }
