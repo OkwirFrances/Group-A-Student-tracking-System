@@ -39,11 +39,13 @@ ALLOWED_HOSTS = [
     'localhost',
     'localhost:5173',
     'groupaaits.onrender.com',
+    'groupaaits-fcc13149840c.herokuapp.com/'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',
     'https://groupaaits.onrender.com',
+    'https://groupaaits-fcc13149840c.herokuapp.com'
 ]
 
 # ALLOWED_HOSTS =['*']
@@ -186,6 +188,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     'https://groupaaits.onrender.com'
+    'https://groupaaits-fcc13149840c.herokuapp.com'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
