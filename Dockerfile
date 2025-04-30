@@ -38,14 +38,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Expose the Django port
 EXPOSE 8000
 
-
 RUN python manage.py collectstatic --noinput \
-    && python manage.py migrate --noinput
+    && python manage.py migrate --noinput \
+    mv /app/frontend/dist /app/backend/staticfiles/reactapp
     # && python manage.py loaddata initial_data.json
-
-RUN mkdir /app/backend/staticfiles \
-    && mv /app/frontend/dist /app/backend/staticfiles/reactapp
-
 
 # Run Django’s development server
 # CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
