@@ -15,11 +15,11 @@ WORKDIR /app/frontend
 
 # RUN npm install --global corepack@latest && corepack enable && \
 #     corepack prepare pnpm@latest-10 --activate && pnpm config set store-dir ~/.pnpm-store \
-# RUN npm install -g pnpm && \
-#     pnpm install && pnpm build
+RUN npm install -g pnpm && \
+    pnpm install && pnpm build
 
-# # RUN mkdir /app/backend/staticfiles \
-# #     && mv /app/frontend/dist /app/backend/staticfiles/reactapp
+# RUN mkdir /app/backend/staticfiles \
+#     && mv /app/frontend/dist /app/backend/staticfiles/reactapp
 
 WORKDIR /app/backend
 
@@ -38,11 +38,16 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Expose the Django port
 EXPOSE 8000
 
-# RUN python manage.py collectstatic --noinput
 
-# RUN mv /app/frontend/dist /app/backend/staticfiles/frontend
+RUN python manage.py collectstatic --noinput \
+    && python manage.py migrate --noinput
+    # && python manage.py loaddata initial_data.json
+
+RUN mkdir /app/backend/staticfiles \
+    && mv /app/frontend/dist /app/backend/staticfiles/reactapp
+
 
 # Run Django’s development server
 # CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 # ENTRYPOINT ["bash", "build.sh"]
