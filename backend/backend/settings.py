@@ -203,5 +203,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True  
 EMAIL_HOST_USER = 'okwirfrancis2010@gmail.com'  
 EMAIL_HOST_PASSWORD = 'pptl jkld aodn cmrt'  
-
-PORT = env('PORT', default=8000)
