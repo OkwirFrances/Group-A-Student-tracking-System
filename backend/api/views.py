@@ -354,7 +354,9 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
             serializer.save()
         else:
             raise PermissionDenied('Only students can create issues.')
+        
         for lecturer in course.lecturer_set.all():
+            send_mail(
         
 # Assign Issue View (Only accessible by registrars)
 @api_view(['POST'])
