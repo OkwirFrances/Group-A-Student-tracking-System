@@ -351,7 +351,7 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
             if course and self.request.user not in course.students.all():
                 raise PermissionDenied('You can only report issues for courses you are enrolled in.')
             # serializer.save(student=self.request.user.student)
-            serializer.save()
+            issue = serializer.save()
         else:
             raise PermissionDenied('Only students can create issues.')
         
@@ -359,9 +359,10 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
             send_mail(
                  subject=f"Issue Logged by {self.request.user.fullname}",
                  message=f"A student logged an issue for {course.name}.\n\n"
-                 f"Title: {issue.title}\n"
-                 f"Description: {issue.description}",
+                         f"Title: {issue.title}\n"
+                         f"Description: {issue.description}",
                  from_email='Group-A-AITS@mail.com',
+                 recipient_list=[lecturer.email],
                  
         
 # Assign Issue View (Only accessible by registrars)
