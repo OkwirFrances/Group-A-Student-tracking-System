@@ -364,6 +364,7 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
                  from_email='Group-A-AITS@mail.com',
                  recipient_list=[lecturer.email],
                  fail_silently=False
+            )
         
 # Assign Issue View (Only accessible by registrars)
 @api_view(['POST'])
