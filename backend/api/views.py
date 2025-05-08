@@ -357,6 +357,7 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
         
         for lecturer in course.lecturer_set.all():
             send_mail(
+                 subject=f"Issue Logged by {self.request.user.fullname}",
         
 # Assign Issue View (Only accessible by registrars)
 @api_view(['POST'])
