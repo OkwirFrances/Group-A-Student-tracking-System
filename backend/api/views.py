@@ -361,6 +361,7 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
                  message=f"A student logged an issue for {course.name}.\n\n"
                  f"Title: {issue.title}\n"
                  f"Description: {issue.description}",
+                 from_email='Group-A-AITS@mail.com',
                  
         
 # Assign Issue View (Only accessible by registrars)
