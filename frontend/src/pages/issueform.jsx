@@ -8,13 +8,13 @@ import { courseAPI, issueAPI } from '../services/api'
 const IssueForm = ({ setBadgeCount }) => {
     const { addIssue, setNotificationMessage } = useContext(IssuesContext);
     const [formData, setFormData] = useState({
-        title: 'est',
-        description: 'desc',
-        category: 'appeal',
+        title: '',
+        description: '',
+        category: '',
         registrar: '',
-        // lecturer: 'lec',
-        coursecode: 'cour',
-        // coursename: 'name',
+        // lecturer: '',
+        coursecode: '',
+        // coursename: '',
         attachments: null,
         semester: '1',
     });
