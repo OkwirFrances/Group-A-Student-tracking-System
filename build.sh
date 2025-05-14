@@ -11,6 +11,7 @@ fi
 ls -la /app/backend/staticfiles/
 echo ===============================================================
 ls -la /app/backend/staticfiles/reactapp/
+ls -la /app/backend/staticfiles/reactapp/assets/
 echo ===============================================================
 ls -la /app/frontend/
 echo ===============================================================
