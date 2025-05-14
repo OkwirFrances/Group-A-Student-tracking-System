@@ -16,7 +16,7 @@ urlpatterns = [
     path('change-password/', change_password),
     path('resend-otp/', resend_otp),
     path('forgot-password/', forgot_password, name='forgot-password'),
-    path('reset-password/', reset_password, name='reset-password'),
+    path('reset-password/', forgot_password, name='forgot-password'),
     path('departments/', DepartmentView.as_view(), name='department-list-create'),
     path('courses/', CourseView.as_view(), name='course-list-create'),
     path('lecturers/', LecturerView.as_view(), name='lecturer-list-create'),  # New
