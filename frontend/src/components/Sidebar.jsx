@@ -15,8 +15,9 @@ const Sidebar = () => {
     const userRole = localStorage.getItem('userRole'); 
 
     const handleLogout = () => {
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('userRole');
+        //localStorage.removeItem('authToken');
+        //localStorage.removeItem('userRole');
+        localStorage.clear();
         navigate('/signin');
     };
 
