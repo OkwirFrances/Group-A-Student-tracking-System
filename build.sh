@@ -8,6 +8,12 @@ if [ ! -f "/app/backend/staticfiles/reactapp/index.html" ]; then
     # mv /app/frontend/dist /app/backend/staticfiles/reactapp
 
 fi
+ls -la /app/backend/staticfiles/
+echo ===============================================================
+ls -la /app/backend/staticfiles/reactapp/
+echo ===============================================================
+ls -la /app/frontend/
+echo ===============================================================
 
 echo SPINING UP SERVER...
 
