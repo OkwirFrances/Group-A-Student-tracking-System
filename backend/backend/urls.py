@@ -25,6 +25,7 @@ from django.conf import settings
 FRONTEND_EXCULDES = "|".join([
     "admin/",
     "api/",
+    "static/",
     "media/",
 ] + ([settings.MEDIA_URL.lstrip('/')] if settings.MEDIA_URL.lstrip('/') else []))
 

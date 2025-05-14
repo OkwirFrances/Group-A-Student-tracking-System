@@ -20,7 +20,7 @@ import Profile from './pages/profile';
 import EditProfilePicture from './pages/EditProfilePicture';
 import EditPersonalInfo from './pages/EditPersonalInfo';
 import EditAcademicInfo from './pages/EditAcademicInfo';      
-import RegistrarDashboard from './pages/RegistrarDashboard';
+import RegistrarDashboard from './pages/registrardashboard';
 import EmailRequest from './pages/emailrequest';
 import ForgotPassword from './pages/forgotpassword';
 import LecturerDashboard from './pages/LecturerDashboard';

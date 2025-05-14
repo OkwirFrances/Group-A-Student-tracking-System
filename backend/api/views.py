@@ -354,18 +354,7 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
             issue = serializer.save()
         else:
             raise PermissionDenied('Only students can create issues.')
-        
-        for lecturer in course.lecturer_set.all():
-            send_mail(
-                 subject=f"Issue Logged by {self.request.user.fullname}",
-                 message=f"A student logged an issue for {course.name}.\n\n"
-                         f"Title: {issue.title}\n"
-                         f"Description: {issue.description}",
-                 from_email='Group-A-AITS@mail.com',
-                 recipient_list=[lecturer.email],
-                 fail_silently=False
-            )
-        
+        assigned_lecturer = course.lecturer
 # Assign Issue View (Only accessible by registrars)
 @api_view(['POST'])
 @permission_classes([IsAuthenticated, IsRegistrar])  # Only registrars can assign issues

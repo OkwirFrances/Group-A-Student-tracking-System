@@ -9,11 +9,12 @@ const IssueForm = ({ setBadgeCount }) => {
     const { addIssue, setNotificationMessage } = useContext(IssuesContext);
     const [formData, setFormData] = useState({
         title: '',
+        description: '',
         category: '',
         registrar: '',
-        // lecturer: 'lec',
+        // lecturer: '',
         coursecode: '',
-        // coursename: 'name',
+        // coursename: '',
         attachments: null,
         semester: '1',
     });

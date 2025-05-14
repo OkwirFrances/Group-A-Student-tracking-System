@@ -39,11 +39,13 @@ ALLOWED_HOSTS = [
     'localhost',
     'localhost:5173',
     'groupaaits.onrender.com',
+    'groupaaits-fcc13149840c.herokuapp.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',
     'https://groupaaits.onrender.com',
+    'https://groupaaits-fcc13149840c.herokuapp.com',
 ]
 
 # ALLOWED_HOSTS =['*']
@@ -66,6 +68,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,9 +84,11 @@ ROOT_URLCONF = 'backend.urls'
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collecting static files in production
 STATICFILES_DIRS = [
     os.path.join(STATIC_ROOT, 'reactapp'),  # This is where your React build files will be located
+    
 ]
 
 TEMPLATES = [
@@ -120,7 +125,7 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST', default='localhost'),
         'PORT': env('DB_PORT'),
-    }
+    },
 }
 
 
@@ -185,7 +190,8 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    'https://groupaaits.onrender.com'
+    'https://groupaaits.onrender.com',
+    'https://groupaaits-fcc13149840c.herokuapp.com',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
