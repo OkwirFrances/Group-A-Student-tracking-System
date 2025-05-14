@@ -5,7 +5,7 @@ if [ ! -f "/app/backend/staticfiles/reactapp/index.html" ]; then
     echo COLLECTING STATIC FILES... && python manage.py collectstatic --noinput
     echo RUNNING MIGRATIONS... && python manage.py makemigrations &&  python manage.py migrate
     
-    # mv /app/frontend/dist /app/backend/staticfiles/reactapp
+    mv /app/frontend/dist /app/backend/staticfiles/reactapp
 
 fi
 ls -la /app/backend/staticfiles/
