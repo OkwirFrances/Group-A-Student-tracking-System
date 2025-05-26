@@ -98,7 +98,7 @@ def login(request):
         'email': user.email
     }, status=status.HTTP_200_OK)
 
-
+# Forgot Password View
 @api_view(['POST'])
 # @permission_classes([AllowAny])
 def forgot_password(request):
