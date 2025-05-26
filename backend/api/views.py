@@ -470,12 +470,13 @@ class CustomTokenRefreshView(TokenRefreshView):
 #             )
 
 
-class CollegeView(generics.ListCreateAPIView):
+class CollegeViewset(viewsets.ModelViewSet):
     serializer_class = CollegeSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
+    queryset = College.objects.all()
 
-    def get_queryset(self):
-        return College.objects.all()
+    #def get_queryset(self):
+    #    return College.objects.all()
     
 
 class RegistrarView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
