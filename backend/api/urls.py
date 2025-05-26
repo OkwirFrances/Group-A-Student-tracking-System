@@ -33,7 +33,7 @@ urlpatterns = [
     path('user-info/edit/', UserEditView.as_view(), name='user-edit'),
     path('courses/<int:pk>/', CourseDetailView.as_view(), name='course-detail'),
     path('token/refresh/', CustomTokenRefreshView.as_view(), name='token_refresh'),
-    path('colleges/', CollegeView.as_view(), name='colleges'),
+    #path('colleges/', CollegeView.as_view(), name='colleges'),
     path('registrars/', RegistrarView.as_view(), name='registrars'),
     path('registrars/<int:pk>/', RegistrarView.as_view(), name='registrars'),
 ]
