@@ -336,7 +336,8 @@ class UserEditView(generics.UpdateAPIView):
     def update(self, request, *args, **kwargs):
         response = super().update(request, *args, **kwargs)
         return response
-    
+
+#returns the lecturers 
 class LecturerView(generics.ListCreateAPIView):
     serializer_class = LecturerSerializer
     permission_classes = [IsAuthenticated, IsRegistrar]
