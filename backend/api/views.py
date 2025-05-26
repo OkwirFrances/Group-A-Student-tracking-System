@@ -147,7 +147,7 @@ def change_password(request):
     
     return JsonResponse({'message': 'Password changed successfully!'}, status=status.HTTP_200_OK)
 
-
+#verify otp view
 @api_view(['POST'])
 # @permission_classes([AllowAny])
 def verify_otp(request):
