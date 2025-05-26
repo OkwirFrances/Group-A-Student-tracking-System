@@ -212,7 +212,7 @@ def resend_otp(request):
     send_mail('Your OTP Code', f'Your OTP is {otp}', 'AITS@mail.com', [email])
     return JsonResponse({'message': 'OTP resent successfully!'}, status=status.HTTP_200_OK)
 
-    
+# returns the list of departments
 class DepartmentView(generics.ListCreateAPIView):
     serializer_class = DepartmentSerializer
     permission_classes = [IsAuthenticated, IsRegistrar]
@@ -223,7 +223,7 @@ class DepartmentView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save()
     
-# returns the details of a specific department
+# returns the issues
 class IssueView(viewsets.ModelViewSet):
     queryset = Issue.objects.all()
     serializer_class = IssueSerializer
