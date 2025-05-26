@@ -223,7 +223,7 @@ class DepartmentView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save()
     
-
+# returns the details of a specific department
 class IssueView(viewsets.ModelViewSet):
     queryset = Issue.objects.all()
     serializer_class = IssueSerializer
