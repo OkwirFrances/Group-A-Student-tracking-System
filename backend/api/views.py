@@ -37,7 +37,7 @@ def generate_otp():
 
         
 
-
+#signup
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def signup(request):
