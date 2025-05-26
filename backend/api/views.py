@@ -345,6 +345,7 @@ class LecturerView(generics.ListCreateAPIView):
         # Only show issues assigned to the current lecturer
         return Issue.objects.filter(assigned_to=self.request.user)
 
+#returns the issues assigned to the current lecturer
 class LecturerIssuesView(generics.ListAPIView):
     serializer_class = IssueSerializer
     permission_classes = [IsAuthenticated, IsLecturer]
