@@ -118,6 +118,7 @@ def forgot_password(request):
 
     return JsonResponse({'message': 'A password reset code has been sent to your email!'}, status=status.HTTP_201_CREATED)
 
+#change password
 @api_view(['POST'])
 # @permission_classes([AllowAny])
 def change_password(request):
