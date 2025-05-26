@@ -229,7 +229,7 @@ class IssueView(viewsets.ModelViewSet):
     serializer_class = IssueSerializer
     permission_classes = [IsAuthenticated]
     
-
+# returns the list of courses
 class CourseView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, IsRegistrar]
     serializer_class = CourseSerializer
