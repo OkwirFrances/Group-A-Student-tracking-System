@@ -243,6 +243,7 @@ class CourseView(generics.ListCreateAPIView):
             raise serializer.ValidationError("Department does not exist")
         serializer.save()
     
+#returns the course details
 class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
