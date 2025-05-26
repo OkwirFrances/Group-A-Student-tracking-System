@@ -39,10 +39,7 @@ def generate_otp():
 
 
 @api_view(['POST'])
-def your_function_name(request):
-    # Add your implementation here
-    return JsonResponse({'message': 'Function implemented successfully!'}, status=status.HTTP_200_OK)
-# @permission_classes([AllowAny])
+@permission_classes([AllowAny])
 def signup(request):
     email = request.data.get('email')
     fullname = request.data.get('fullname')
