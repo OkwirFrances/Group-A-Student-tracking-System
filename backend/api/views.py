@@ -37,13 +37,6 @@ def generate_otp():
 
         
 
-#         cache.delete(f'otp_{email}')  # Clear OTP data
-
-#         refresh = RefreshToken.for_user(user)
-#         return JsonResponse({'token': str(refresh.access_token), 'message': 'User created successfully!'}, status=status.HTTP_201_CREATED)
-
-#     return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
-
 
 @api_view(['POST'])
 def your_function_name(request):
