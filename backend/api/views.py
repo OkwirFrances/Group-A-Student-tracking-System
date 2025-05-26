@@ -34,46 +34,7 @@ def generate_otp():
     return str(random.randint(100000, 999999))
 
 
-# Signup View
 
-
-# @api_view(['POST'])
-# def signup(request):
-#     email = request.data.get('email')
-#     fullname = request.data.get('fullname')
-#     password = request.data.get('password')
-#     role = request.data.get('role', 'student')
-    
-#     if not email or not password:
-#         return JsonResponse({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     if User.objects.filter(email=email).exists():
-#         return JsonResponse({'error': 'User already exists'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     otp = generate_otp()
-#     cache.set(f'otp_{email}', {'otp': otp, 'fullname': fullname, 'password': password, 'role': role}, timeout=600)  # Store OTP for 10 minutes
-
-#     send_mail('Your OTP Code', f'Your OTP is {otp}', 'Group-A-AITS@mail.com', [email])
-#     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
-
-# @api_view(['POST'])
-# def login(request):
-#     email = request.data.get('email')
-#     password = request.data.get('password')
-    
-#     if not email or not password:
-#         return JsonResponse(
-#             {'error': 'Email and password are required'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
-        
-#     try:
-#         user = User.objects.get(email=email)
-#     except User.DoesNotExist:
-#         return JsonResponse(
-#             {'error': 'Invalid email or password'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
         
 #     if not user.check_password(password):
 #         return JsonResponse(
