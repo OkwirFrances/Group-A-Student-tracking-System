@@ -36,46 +36,7 @@ def generate_otp():
 
 
         
-#     if not user.check_password(password):
-#         return JsonResponse(
-#             {'error': 'Invalid email or password'}, 
-#             status=status.HTTP_400_BAD_REQUEST
-#         )
-        
-#     refresh = RefreshToken.for_user(user)
-    
-#     return JsonResponse({
-#         'access': str(refresh.access_token),
-#         'refresh': str(refresh),
-#         'role': user.role,
-#         'fullname': user.fullname,
-#         'email': user.email
-#     }, status=status.HTTP_200_OK)
-    
-# @api_view(['POST'])
-# def verify_otp(request):
-#     email = request.data.get('email')
-#     otp = request.data.get('otp')
 
-#     if not email or not otp:
-#         return JsonResponse({'error': 'Email and OTP are required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     cached_data = cache.get(f'otp_{email}')
-#     if not cached_data:
-#         return JsonResponse({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
-    
-#     if cached_data['otp'] == otp:
-#         # Create user after OTP verification
-#         user = User.objects.create_user(
-#             fullname=cached_data['fullname'], 
-#             email=email, 
-#             password=cached_data['password'], 
-#             role=cached_data['role']
-#         )
-        
-#         user.is_verified = True
-#         user.save()
-        
 #         cache.delete(f'otp_{email}')  # Clear OTP data
 
 #         refresh = RefreshToken.for_user(user)
