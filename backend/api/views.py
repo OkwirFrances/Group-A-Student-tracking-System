@@ -62,6 +62,7 @@ def signup(request):
     send_mail('Your OTP Code', f'Your OTP is {otp}', 'Group-A-AITS@mail.com', [email])
     return JsonResponse({'message': 'OTP sent to your email!'}, status=status.HTTP_201_CREATED)
 
+#login view
 @api_view(['POST'])
 # @permission_classes([AllowAny])
 def login(request):
