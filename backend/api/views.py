@@ -183,7 +183,7 @@ def verify_otp(request):
 
     return JsonResponse({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
 
-
+# Resend OTP View
 @api_view(['POST'])
 # @permission_classes([AllowAny])
 def resend_otp(request):
