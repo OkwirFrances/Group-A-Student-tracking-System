@@ -268,6 +268,8 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
         else:
             raise PermissionDenied('Only students can create issues.')
         assigned_lecturer = course.lecturer
+
+
 # Assign Issue View (Only accessible by registrars)
 @api_view(['POST'])
 @permission_classes([IsAuthenticated, IsRegistrar])  # Only registrars can assign issues
@@ -325,6 +327,7 @@ class UserInfoView(generics.RetrieveAPIView):
             "profile_picture": user.profile_picture.url if user.profile_picture else None
         }
         return JsonResponse(user_data, status=status.HTTP_200_OK)
+
 # User Edit View (Accessible by authenticated users)
 class UserEditView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
