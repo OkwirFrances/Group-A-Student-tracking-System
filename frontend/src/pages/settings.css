@@ -53,6 +53,10 @@
     margin-right: 300px;
 }
 
+.settings-h1 {
+    color: black;
+}
+
 .old-password {
     position: absolute;
     width: 100%;

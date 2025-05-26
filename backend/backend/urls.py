@@ -20,12 +20,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include, path
 from django.views.generic import TemplateView
+from django.conf import settings
 
 FRONTEND_EXCULDES = "|".join([
     "admin/",
     "api/",
+    "static/",
     "media/",
-])
+] + ([settings.MEDIA_URL.lstrip('/')] if settings.MEDIA_URL.lstrip('/') else []))
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),

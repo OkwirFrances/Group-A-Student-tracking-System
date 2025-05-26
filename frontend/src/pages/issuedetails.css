@@ -41,3 +41,37 @@
     border: 1px solid black;
     border-radius: 10px;
 }
+
+@media (max-width: 768px) {
+    .issue-detail-container {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    .issue-detail-container h1 {
+        font-size: 1.8rem; 
+    }
+
+    .issue-detail p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .issue-detail-container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .issue-detail-container h1 {
+        font-size: 1.5rem; 
+    }
+
+    .issue-detail p {
+        font-size: 0.8rem;
+    }
+
+    .issue-attachment {
+        margin-top: 5px;
+    }
+}

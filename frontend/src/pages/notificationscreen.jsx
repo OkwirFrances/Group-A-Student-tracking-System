@@ -18,7 +18,7 @@ const NotificationScreen = () => {
         <div>
             <Navbar />
             <div className='notification-screen'>
-                <img src={backarrow} alt="backarrow" className='backarrow-icon' onClick={handleBackClick} />
+                <img src={backarrow} alt="backarrow" className='notification-backarrow-icon' onClick={handleBackClick} />
                 <h1></h1>
                 {notificationMessage && notificationMessage.message ? (
                     <div className='notification-container'>

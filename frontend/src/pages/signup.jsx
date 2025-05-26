@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 import person from '../assets/person.png';
 import mail from '../assets/mail.png';
 import padlock from '../assets/padlock.png';
-import { authAPI } from '../services/api'; // Make sure this path is correct
+import { authAPI } from '../services/api'; 
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -26,7 +26,7 @@ const SignUp = () => {
             ...formData,
             [name]: type === 'checkbox' ? checked : value,
         });
-        // Clear error when form changes
+        
         if (error) setError(null);
     };
 
@@ -37,7 +37,7 @@ const SignUp = () => {
             setIsLoading(true);
             setError(null);
             
-            // Call the signup API endpoint
+            
             await authAPI.signup(
                 formData.email, 
                 formData.fullName, 
@@ -45,10 +45,10 @@ const SignUp = () => {
                 formData.role
             );
             
-            // Store basic info in localStorage
+            
             localStorage.setItem('userEmail', formData.email);
             
-            // Show OTP verification screen
+            
             setShowOtpScreen(true);
         } catch (err) {
             console.error('Signup failed:', err);

@@ -17,7 +17,10 @@ import Settings from './pages/settings';
 import Messages from './pages/messages';
 import NewMessage from './pages/newmessages';
 import Profile from './pages/profile';
-import RegistrarDashboard from './pages/RegistrarDashboard';
+import EditProfilePicture from './pages/EditProfilePicture';
+import EditPersonalInfo from './pages/EditPersonalInfo';
+import EditAcademicInfo from './pages/EditAcademicInfo';      
+import RegistrarDashboard from './pages/registrardashboard';
 import EmailRequest from './pages/emailrequest';
 import ForgotPassword from './pages/forgotpassword';
 import LecturerDashboard from './pages/LecturerDashboard';
@@ -29,6 +32,7 @@ import DepartmentManagement from './pages/DepartmentManagement';
 import LecturerIssues from './pages/lecturerissues';
 import { IssuesProvider } from './context/IssueContext';
 import RoleBasedRoute from './components/rolebassedroute';
+
 
 const App = () => {
   return (
@@ -50,6 +54,9 @@ const App = () => {
           <Route path="issueform" element={<IssueForm />} />
           <Route path="issue/:id" element={<IssueDetails />} />
           <Route path="support" element={<HelpSupport />} />
+          <Route path='editpersonalinfo' element={<EditPersonalInfo />} />
+          <Route path='editprofilepicture' element={<EditProfilePicture />} />
+          <Route path='editacademicinfo' element={<EditAcademicInfo />} />
           <Route path="settings" element={<Settings />} />
           <Route path="messages" element={<Messages />} />
           <Route path="profile" element={<Profile />} />

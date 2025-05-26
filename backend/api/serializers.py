@@ -6,8 +6,8 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'fullname', 'role', 'is_verified', 'first_name', 'last_name', 'phone_number', 'profile_picture', 'termsAccepted']
-
+        # fields = ['id', 'email', 'fullname', 'role', 'is_verified', 'first_name', 'last_name', 'phone_number', 'profile_picture', 'termsAccepted']
+        exclude = ["password"]
  
 class LecturerSerializer(UserSerializer):
     department = serializers.PrimaryKeyRelatedField(queryset=Department.objects.all())
@@ -18,9 +18,11 @@ class LecturerSerializer(UserSerializer):
 
     class Meta:
         model = Lecturer
-        fields = UserSerializer.Meta.fields + [
-            'staff_id', 'department', 'courses', 'office_location', 'password'
-        ]
+        # fields = UserSerializer.Meta.fields + [
+        #     'staff_id', 'department', 'courses', 'office_location', 'password'
+        # ]
+        exclude = ["password"]
+
         extra_kwargs = {
             'password': {'write_only': True},
             'role': {'read_only': True}
@@ -41,7 +43,8 @@ class StudentSerializer(UserSerializer):
  
     class Meta:
         model = Student
-        fields = UserSerializer.Meta.fields + ['student_id', 'department', 'enrolled_courses', 'enrollment_date']
+        # fields = UserSerializer.Meta.fields + ['student_id', 'department', 'enrolled_courses', 'enrollment_date']
+        exclude = ["password"]
 
 class RegistrarSerializer(UserSerializer):
     staff_id = serializers.CharField(max_length=20)
@@ -49,7 +52,8 @@ class RegistrarSerializer(UserSerializer):
 
     class Meta:
         model = Registrar
-        fields = UserSerializer.Meta.fields + ['staff_id', 'office_number']
+        # fields = UserSerializer.Meta.fields + ['staff_id', 'office_number']
+        exclude = ["password"]
 
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -59,7 +63,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
      class Meta:
         model = Course
-        fields = ['id', 'name', 'code', 'department', 'description']
+        fields = '__all__'
         extra_kwargs = {
             'department': {'required': True}
         }
@@ -71,21 +75,17 @@ class IssueSerializer(serializers.ModelSerializer):
     assigned_by = RegistrarSerializer(read_only=True)
     resolved_by = RegistrarSerializer(read_only=True)
     
-    issue_type = serializers.ChoiceField(choices=Issue.ISSUE_CHOICES)
+    # issue_type = serializers.ChoiceField(choices=Issue.ISSUE_CHOICES)
     semester = serializers.ChoiceField(choices=Issue.SEMESTER_CHOICES)
     status = serializers.ChoiceField(choices=Issue.ISSUE_STATUS)
     
     class Meta:
         model = Issue
-        
-        fields = [
-            'id', 'student', 'issue_type', 'semester', 'course', 'title', 'description', 
-            'status', 'created_at', 'updated_at', 'assigned_to', 'assigned_by', 
-            'assigned_at', 'resolved_by', 'resolved_at'
-        ]
+        fields = '__all__'
 
     def create(self, validated_data):
-        student = self.context['request'].user
+        # student = self.context['request'].user
+        student = self.context['request'].user.student
         validated_data['student'] = student
         return super().create(validated_data)
 
@@ -109,3 +109,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+class CollegeSerializer(serializers.ModelSerializer): 
+    class Meta:
+        model = College
+        fields = '__all__'

@@ -12,9 +12,18 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -23,17 +32,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(gee@d34)!iwlkj5b(tg3e(h%e@j03yyzk645i1q0w5=v*tw5w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-'''
-ALLOWED_HOSTS = [
-    'localhost:5173',
-    'localhost',
-    'groupaaits.onrender.com',
-    '127.0.0.1',
-    ]
+DEBUG = env('DEBUG', default=False)
 
-'''
-ALLOWED_HOSTS =['*']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'localhost:5173',
+    'groupaaits.onrender.com',
+    'groupaaits-fcc13149840c.herokuapp.com',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5173',
+    'https://groupaaits.onrender.com',
+    'https://groupaaits-fcc13149840c.herokuapp.com',
+]
+
+# ALLOWED_HOSTS =['*']
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,6 +68,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,9 +84,11 @@ ROOT_URLCONF = 'backend.urls'
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collecting static files in production
 STATICFILES_DIRS = [
     os.path.join(STATIC_ROOT, 'reactapp'),  # This is where your React build files will be located
+    
 ]
 
 TEMPLATES = [
@@ -96,10 +114,18 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': env('DB_ENGINE', default='django.db.backends.postgresql'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST', default='localhost'),
+        'PORT': env('DB_PORT'),
+    },
 }
 
 
@@ -164,8 +190,8 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    #'https://groupaaits.onrender.com'
-    
+    'https://groupaaits.onrender.com',
+    'https://groupaaits-fcc13149840c.herokuapp.com',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True

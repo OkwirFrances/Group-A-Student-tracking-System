@@ -7,15 +7,19 @@ const IssueDetails = () => {
     const { id } = useParams();
     const { issues, setIssues } = useContext(IssuesContext);
     const navigate = useNavigate();
-    const issue = issues.find(issue => issue.id === id || issue.id === Number(id));
+    const issue = issues.find((issue) => issue.id === id );
 
     const [comment, setComment] = useState('');
     const [status, setStatus] = useState(issue?.status || '');
 
+    if (!issue) {
+        return <p>Issue not found. Please check the issue ID.</p>;
+    }
+    
     useEffect(() => {
         if (issue && issue.status === 'pending') {
             
-            const updatedIssues = issues.map(i => {
+            const updatedIssues = issues.map((i) => {
                 if (i.id === issue.id) {
                     return { ...i, status: 'in-progress' };
                 }
@@ -31,7 +35,7 @@ const IssueDetails = () => {
     }, [issue, issues, setIssues]);
 
     const handleStatusUpdate = () => {
-        const updatedIssues = issues.map(i => {
+        const updatedIssues = issues.map((i) => {
             if (i.id === issue.id) {
                 return { ...i, status: 'resolved', comment };
             }
@@ -48,20 +52,20 @@ const IssueDetails = () => {
     };
 
     const sendNotification = (studentId, message) => {
-        const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
-        const newNotification = {
-            id: notifications.length + 1,
-            studentId,
-            message,
-            date: new Date().toLocaleString(),
-        };
-        const updatedNotifications = [...notifications, newNotification];
-        localStorage.setItem('notifications', JSON.stringify(updatedNotifications));
+        try {
+            const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+            const newNotification = {
+                id: notifications.length + 1,
+                studentId,
+                message,
+                date: new Date().toLocaleString(),
+            };
+            const updatedNotifications = [...notifications, newNotification];
+            localStorage.setItem('notifications', JSON.stringify(updatedNotifications));
+        } catch (error) {
+            console.error('Failed to send notification:', error);
+        }
     };
-
-    if (!issue) {
-        return <div>Issue not found</div>;
-    }
 
     return (
         <div className='issue-detail-container'>
