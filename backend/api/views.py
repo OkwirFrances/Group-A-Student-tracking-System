@@ -390,7 +390,7 @@ class CollegeViewset(viewsets.ModelViewSet):
     #def get_queryset(self):
     #    return College.objects.all()
     
-
+#returns the available registrars
 class RegistrarView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RegistrarSerializer
     permission_classes = [IsAuthenticated]
