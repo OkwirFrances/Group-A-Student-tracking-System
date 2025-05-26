@@ -3,9 +3,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from .views import (signup, verify_otp, login, resend_otp, DepartmentView, CourseView, forgot_password, change_password,
     IssueView, assign_issue, resolve_issue, UserInfoView, UserEditView,
     LecturerView, LecturerIssuesView, CourseDetailView, CustomTokenRefreshView,  # Add these new views
-    RegistrarView, CollegeView,
+    RegistrarView, CollegeViewset,
 )
 
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'colleges',CollegeViewset,basename='colleges')
 
 
 urlpatterns = [
