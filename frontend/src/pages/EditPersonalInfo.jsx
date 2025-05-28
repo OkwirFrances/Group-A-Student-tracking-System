@@ -5,7 +5,9 @@ import './EditPersonalInfo.css';
 const EditPersonalInfo = () => {
     const navigate = useNavigate();
 
+
     const [personalInfo, setPersonalInfo] = useState({
+        fullName: localStorage.getItem('fullName') || '',
         address: localStorage.getItem('address') || '',
         phoneNumber: localStorage.getItem('phoneNumber') || '',
         gender: localStorage.getItem('gender') || '',
@@ -19,8 +21,9 @@ const EditPersonalInfo = () => {
         }));
     };
 
-    const handleSave = (e) => {
-        e.preventDefault(); 
+    const handleSave = () => {
+
+        localStorage.setItem('fullName', personalInfo.fullName);
         localStorage.setItem('address', personalInfo.address);
         localStorage.setItem('phoneNumber', personalInfo.phoneNumber);
         localStorage.setItem('gender', personalInfo.gender);
@@ -32,7 +35,9 @@ const EditPersonalInfo = () => {
     return (
         <div className="edit-personal-info-container">
             <h1 className="edit-personal-info-h1">Edit Personal Information</h1>
-            <form onSubmit={handleSave} className="edit-personal-info-form">
+            <form>
+
+                <br />
                 <label>
                     Address:
                     <input
