@@ -11,10 +11,12 @@
     margin-bottom: 100px;
     margin-left: 100px;
     margin-right: 50px;
+
+
+
 }
 
-.edit-academic-info-h1,
-h1 {
+.edit-academic-info-h1 {
     font-size: 28px; 
     color: #333;
     margin-top: 20px; 
@@ -22,24 +24,19 @@ h1 {
     text-align: left; 
 }
 
-.edit-academic-info-form {
+form {
     background-color: #fff;
     padding: 30px; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     max-width: 600px;
     width: 100%; 
+    margin:0;
+    margin-bottom: -500px;
     margin-left: 20px;
     margin-top: 90px;
 }
 
-.edit-academic-info-form h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 5px;
-}
 
 label {
     display: block;
@@ -60,21 +57,14 @@ select {
     box-sizing: border-box; 
 }
 
-input::placeholder {
-    color: #aaa;
-}
-
-select {
-    background-color: #fff;
-    color: #555;
-}
-
 input:focus,
 select:focus {
     outline: none;
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+
 }
+
 
 .academic-info-button {
     background-color: #28a745;
@@ -87,59 +77,27 @@ select:focus {
     display: block;
     margin-top: 20px; 
     text-align: left;
-    width: 100%;
 }
+
 
 .academic-info-button:hover {
     background-color: #218838; 
+
 }
+
 
 @media (max-width: 768px) {
-    h1,
+    form {
+        padding: 20px; 
+    }
     .edit-academic-info-h1 {
-        font-size: 1.8rem;
+        font-size: 24px; 
     }
-
-    .edit-academic-info-form {
-        width: 95%; 
-        padding: 15px;
-    }
-
-    .edit-academic-info-form h2 {
-        font-size: 1.3rem;
-    }
-
     input,
     select {
-        font-size: 0.9rem;
+        font-size: 14px; 
     }
-
     .academic-info-button {
-        font-size: 0.9rem; 
-    }
-}
-
-@media (max-width: 480px) {
-    h1,
-    .edit-academic-info-h1 {
-        font-size: 1.5rem;
-    }
-
-    .edit-academic-info-form {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .edit-academic-info-form h2 {
-        font-size: 1.2rem; 
-    }
-
-    input,
-    select {
-        font-size: 0.8rem; 
-    }
-
-    .academic-info-button {
-        font-size: 0.8rem;
+        font-size: 16px; 
     }
 }
