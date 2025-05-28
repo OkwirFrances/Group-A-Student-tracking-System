@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './EditProfilePicture.css';
 
 const EditProfilePicture = () => {
     const [profilePic, setProfilePic] = useState(null);
