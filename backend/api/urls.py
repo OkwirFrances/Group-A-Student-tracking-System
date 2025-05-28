@@ -3,13 +3,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from .views import (signup, verify_otp, login, resend_otp, DepartmentView, CourseView, forgot_password, change_password,
     IssueView, assign_issue, resolve_issue, UserInfoView, UserEditView,
     LecturerView, LecturerIssuesView, CourseDetailView, CustomTokenRefreshView,  # Add these new views
-    RegistrarView, CollegeViewset,
+    RegistrarView, CollegeView,
 )
 
-from rest_framework.routers import DefaultRouter
-
-router = DefaultRouter()
-router.register(r'colleges',CollegeViewset,basename='colleges')
 
 
 urlpatterns = [
@@ -19,8 +15,6 @@ urlpatterns = [
     path('forgot-password/', forgot_password),
     path('change-password/', change_password),
     path('resend-otp/', resend_otp),
-    path('forgot-password/', forgot_password, name='forgot-password'),
-    path('reset-password/', forgot_password, name='forgot-password'),
     path('departments/', DepartmentView.as_view(), name='department-list-create'),
     path('courses/', CourseView.as_view(), name='course-list-create'),
     path('lecturers/', LecturerView.as_view(), name='lecturer-list-create'),  # New
@@ -33,7 +27,7 @@ urlpatterns = [
     path('user-info/edit/', UserEditView.as_view(), name='user-edit'),
     path('courses/<int:pk>/', CourseDetailView.as_view(), name='course-detail'),
     path('token/refresh/', CustomTokenRefreshView.as_view(), name='token_refresh'),
-    #path('colleges/', CollegeView.as_view(), name='colleges'),
+    path('colleges/', CollegeView.as_view(), name='colleges'),
     path('registrars/', RegistrarView.as_view(), name='registrars'),
     path('registrars/<int:pk>/', RegistrarView.as_view(), name='registrars'),
 ]

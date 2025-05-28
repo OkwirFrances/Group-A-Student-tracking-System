@@ -39,7 +39,7 @@ def generate_otp():
 
 #signup
 @api_view(['POST'])
-@permission_classes([AllowAny])
+#@permission_classes([AllowAny])
 def signup(request):
     email = request.data.get('email')
     fullname = request.data.get('fullname')
@@ -267,7 +267,7 @@ class IssueView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIVie
             if course and self.request.user not in course.students.all():
                 raise PermissionDenied('You can only report issues for courses you are enrolled in.')
             # serializer.save(student=self.request.user.student)
-            issue = serializer.save()
+            serializer.save()
         else:
             raise PermissionDenied('Only students can create issues.')
         assigned_lecturer = course.lecturer
@@ -286,18 +286,8 @@ def assign_issue(request, issue_id, lecturer_id):
     issue.assign_to_lecturer(request.user, lecturer)
     issue.assigned_at = timezone.now()
     issue.save()
-
-     #send email notification to the lecturer
-    registrar_name = request.user.get_full_name()
-    email_response = notification_email(issue.id, registrar_name)
-
-    if not email_response.get("success"):
-        return JsonResponse({'message':'Issue assigned, but email notification failed','error': email_response.get("message")}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
     return JsonResponse({'message': 'Issue assigned successfully'})
 
-   
-    
 
 
 # Resolve Issue View (Accessible by lecturers and registrars)
@@ -390,7 +380,7 @@ class CustomTokenRefreshView(TokenRefreshView):
 #             )
 
 
-class CollegeViewset(viewsets.ModelViewSet):
+class CollegeView(generics.ListCreateAPIView):
     serializer_class = CollegeSerializer
     #permission_classes = [IsAuthenticated]
     queryset = College.objects.all()
