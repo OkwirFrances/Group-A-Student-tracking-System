@@ -8,8 +8,7 @@
     min-height: 100vh; 
     padding: 20px;
     box-sizing: border-box; 
-    padding: 20px;
-    position: absolute;
+    margin:0;
 }
 
 .edit-profile-picture-h1 {
@@ -30,9 +29,7 @@
     width: 100%; 
     text-align: center; 
     margin: 0;
-    margin-right: -150px;
-    margin-top: 80px;
-
+   
 }
 
 .edit-profile-picture-form label {
