@@ -1,7 +1,6 @@
 .course-content {
     display: flex;
     padding: 0px;
-    flex-direction: column;
     min-height: 100vh;
     width: 1500px;
     border-radius: 8px;
@@ -161,46 +160,4 @@
     font-size: 1.2rem;
     color: black;
     margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-    .course-content {
-        flex-direction: column;
-    }
-
-    .course-form-section,
-    .course-list-section {
-        width: 90%;
-        margin: 20px auto;
-    }
-
-    .course-submit-button {
-        width: 100%;
-    }
-
-    .course-management-table th,
-    .course-management-table td {
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .course-content h1 {
-        font-size: 1.5rem;
-    }
-
-    .course-form-section,
-    .course-list-section {
-        width: 95%;
-        padding: 15px;
-    }
-
-    .course-submit-button {
-        font-size: 0.9rem;
-    }
-
-    .course-management-table th,
-    .course-management-table td {
-        font-size: 0.8rem; 
-    }
 }
