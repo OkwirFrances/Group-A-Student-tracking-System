@@ -130,16 +130,7 @@ export const authAPI = {
     }
   },
 
-  forgotPassword: async (email) => {
-    try {
-      const response = await api.post('/forgot-password/', { email });
-            return response.data;
-
-          } catch (error) {
-            throw error.response?.data || error.message;
-        }
-    },
-
+ 
   resendOTP: async (email) => {
     try {
       const response = await api.post('/resend-otp/', { email });
@@ -149,19 +140,7 @@ export const authAPI = {
     }
   },
 
-  resetPassword: async (email, otp, newPassword) => {
-    try {
-      const response = await api.post('/reset-password/', { 
-        email, 
-                otp, 
-                new_password: newPassword 
-            });
-
-            return response.data;
-          } catch (error) {
-            throw error.response?.data || error.message;
-        }
-    },
+  
 
   logout: () => {
     clearToken();
@@ -178,6 +157,16 @@ export const authAPI = {
     }
   },
 
+  // forgotPassword: async (email) => request(api.post, '/forgot-password/', { email }),
+  forgotPassword: async (email) => {
+    try {
+      const response = await api.post('/forgot-password/', { email })
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
+  
   // changePassword: async (data) => request(api.post, '/change-password/', data),
   changePassword: async (data) => {
     try {
